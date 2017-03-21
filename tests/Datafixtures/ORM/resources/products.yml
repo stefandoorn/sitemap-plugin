@@ -1,0 +1,7 @@
+Sylius\Component\Core\Model\Product:
+    book1:
+        name: "Lord of The Rings"
+        author: "J. R. R. Tolkien"
+    book2:
+        name: "Game of Thrones"
+        price: "George R. R. Martin"

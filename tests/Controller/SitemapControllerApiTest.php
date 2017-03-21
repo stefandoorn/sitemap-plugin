@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Tests\Controller;
+namespace Tests\SyliusSitemapBundle\Controller;
 
 use Lakion\ApiTestCase\XmlApiTestCase;
 
@@ -18,13 +18,28 @@ use Lakion\ApiTestCase\XmlApiTestCase;
  */
 class SitemapControllerApiTest extends XmlApiTestCase
 {
+    /**
+     * @before
+     */
+    public function setUpDatabase()
+    {
+        /*
+        $em = static::$sharedKernel->getContainer()->get('doctrine.orm.entity_manager');
+        $em->getConnection()->connect();*/
+
+        passthru('php tests/Application/bin/console doctrine:schema:update --force --env=test');
+        parent::setUpDatabase();
+        passthru('php tests/Application/bin/console sylius:fixtures:load --env=test');
+
+    }
+
     public function testShowActionResponse()
     {
-        $this->loadFixturesFromFile('resources/product.yml');
+        //$this->loadFixturesFromFile('resources/products.yml');
         $this->client->request('GET', '/sitemap.xml');
 
         $response = $this->client->getResponse();
 
-        $this->assertResponse($response, 'sitemap/show_sitemap');
+        $this->assertResponse($response, 'show_sitemap');
     }
 }
