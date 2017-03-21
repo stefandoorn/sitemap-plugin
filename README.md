@@ -8,8 +8,13 @@ extraction to a separate bundle.
 
 ## Installation
 
-1. Run `composer require stefandoorn/sylius-sitemap-bundle -s`.
-2. Add 
+1. Run `composer require stefandoorn/sylius-sitemap-bundle`.
+2. Add to `app/AppKernel.php`:
+
+```
+  new SyliusSitemapBundle\SyliusSitemapBundle(),
+```
+
 3. Add to `app/config/config.yml`: 
 
 ```
