@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- https://phpunit.de/manual/current/en/appendixes.configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
+         backupGlobals="false"
+         colors="false"
+         bootstrap="tests/Application/app/autoload.php"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         stopOnError="true"
+         stopOnFailure="true"
+         stopOnIncomplete="true"
+         stopOnSkipped="true"
+         stopOnRisky="true"
+         syntaxCheck="true"
+         mapTestClassNameToCoveredClassName="true"
+>
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <server name="KERNEL_DIR" value="tests/Application/app/" />
+        <server name="IS_DOCTRINE_ORM_SUPPORTED" value="1"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="tests">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>src</directory>
+            <exclude>
+                <directory>src/Resources</directory>
+           </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

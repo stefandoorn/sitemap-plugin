@@ -1,0 +1,27 @@
+{
+    "name": "stefandoorn/sylius-sitemap-bundle",
+    "type": "sylius-bundle",
+    "description": "Sitemap bundle for Sylius",
+    "license": "MIT",
+    "require": {
+        "php": "^5.6|^7.0",
+        "sylius/sylius": "dev-master"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.2",
+        "phpunit/phpunit": "^5.0",
+        "lakion/api-test-case": "^1.1",
+        "raveren/kint": "^1.1",
+        "matthiasnoback/symfony-dependency-injection-test": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SyliusSitemapBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\SyliusSitemapBundle\\": "tests/"
+        }
+    }
+}
