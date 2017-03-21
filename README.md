@@ -1,16 +1,24 @@
-# Sylius Bundle Skeleton [![License](https://img.shields.io/packagist/l/sylius/bundle-skeleton.svg)](https://packagist.org/packages/sylius/bundle-skeleton) [![Version](https://img.shields.io/packagist/v/sylius/bundle-skeleton.svg)](https://packagist.org/packages/sylius/bundle-skeleton) [![Build status on Linux](https://img.shields.io/travis/Sylius/BundleSkeleton/master.svg)](http://travis-ci.org/Sylius/BundleSkeleton) [![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/Sylius/BundleSkeleton.svg)](https://scrutinizer-ci.com/g/Sylius/BundleSkeleton/)
+# Sylius Sitemap Bundle [![License](https://img.shields.io/packagist/l/stefandoorn/sylius-sitemap-bundle.svg)](https://packagist.org/packages/stefandoorn/sylius-sitemap-bundle) [![Version](https://img.shields.io/packagist/v/stefandoorn/sylius-sitemap-bundle.svg)](https://packagist.org/packages/stefandoorn/sylius-sitemap-bundle) [![Build status on Linux](https://img.shields.io/travis/Sylius/BundleSkeleton/master.svg)](http://travis-ci.org/Sylius/BundleSkeleton) [![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/Sylius/BundleSkeleton.svg)](https://scrutinizer-ci.com/g/Sylius/BundleSkeleton/)
 
-## Usage
+## Big thanks
 
-1. Run `composer create-project sylius/bundle-skeleton -s dev ProjectName`.
+Goes out to the Sylius team. The core code of this bundle is created by the Sylius team.
+Unfortunately it got removed from the Sylius core. Luckily the Sylius team approved the 
+extraction to a separate bundle.
 
-## Testing
+## Installation
 
-In order to run Behat suites, execute following commands:
+1. Run `composer require stefandoorn/sylius-sitemap-bundle -s`.
+2. Add 
+3. Add to `app/config/config.yml`: 
 
-```bash
-$ composer install
-$ tests/Application/bin/console doctrine:database:create --env test
-$ tests/Application/bin/console doctrine:schema:create --env test
-$ vendor/bin/behat
+```
+  - { resource: "@SyliusSitemapBundle/Resources/config/config.yml" }
+```
+
+4. Add to `app/config/routing.yml`: 
+
+```
+sylius_sitemap:
+     resource: "@SyliusSitemapBundle/Resources/config/routing.yml"
 ```
