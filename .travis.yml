@@ -19,6 +19,7 @@ install:
 
 before_script:
     - (cd tests/Application && bin/console doctrine:schema:create --env=test)
+    - (cd tests/Application && bin/console sylius:fixtures:load --env=test)
     - (cd tests/Application && bin/console assets:install --env=test)
     - (cd tests/Application && npm run gulp)
 
@@ -33,5 +34,10 @@ before_script:
 
 script:
     - composer validate --strict
-
+    - vendor/bin/phpspec run
+    - vendor/bin/phpunit --coverage-clover=coverage.clover
     - vendor/bin/behat --strict -vvv --no-interaction || vendor/bin/behat --strict -vvv --no-interaction --rerun
+
+after_script:
+    - wget https://scrutinizer-ci.com/ocular.phar
+    - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
