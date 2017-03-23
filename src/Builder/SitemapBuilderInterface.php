@@ -7,6 +7,7 @@ use SyliusSitemapBundle\Provider\UrlProviderInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 interface SitemapBuilderInterface
 {
@@ -18,5 +19,10 @@ interface SitemapBuilderInterface
     /**
      * @return SitemapInterface
      */
-    public function build();
+    public function build(array $filter = []);
+
+    /**
+     * @return array
+     */
+    public function getProviders();
 }

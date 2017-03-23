@@ -10,6 +10,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 final class ProductUrlProvider implements UrlProviderInterface
 {
@@ -46,6 +47,14 @@ final class ProductUrlProvider implements UrlProviderInterface
         $this->productRepository = $productRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'products';
     }
 
     /**

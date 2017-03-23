@@ -36,7 +36,7 @@ class SitemapControllerApiTest extends XmlApiTestCase
 
     public function testShowActionResponse()
     {
-        $this->client->request('GET', '/sitemap.xml');
+        $this->client->request('GET', '/sitemap/all.xml');
 
         $response = $this->client->getResponse();
 

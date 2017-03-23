@@ -7,6 +7,7 @@ use SyliusSitemapBundle\Provider\UrlProviderInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 final class SitemapBuilder implements SitemapBuilderInterface
 {
@@ -37,18 +38,40 @@ final class SitemapBuilder implements SitemapBuilderInterface
     }
 
     /**
+     * @return array
+     */
+    public function getProviders()
+    {
+        return $this->providers;
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function build()
+    public function build(array $filter = [])
     {
         $sitemap = $this->sitemapFactory->createNew();
         $urls = [];
 
-        foreach ($this->providers as $provider) {
+        foreach ($this->filter($filter) as $provider) {
             $urls = array_merge($urls, $provider->generate());
         }
         $sitemap->setUrls($urls);
 
         return $sitemap;
+    }
+
+    /**
+     * @param array $filter
+     * @return array
+     */
+    private function filter(array $filter) {
+        if (empty($filter)) {
+            return $this->providers;
+        }
+
+        return array_filter($this->providers, function(UrlProviderInterface $provider) use ($filter) {
+            return in_array($provider->getName(), $filter);
+        });
     }
 }

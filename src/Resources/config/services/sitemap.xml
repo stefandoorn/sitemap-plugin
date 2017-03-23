@@ -23,5 +23,11 @@
             <argument type="service" id="sylius.sitemap_url_factory" />
             <tag name="sylius.sitemap_provider" />
         </service>
+        <service id="sylius.sitemap.routing_loader" class="SyliusSitemapBundle\Routing\SitemapLoader">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="routing.loader" />
+        </service>
     </services>
 </container>

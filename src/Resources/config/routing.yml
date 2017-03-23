@@ -1,8 +1,12 @@
-sylius_sitemap:
-    path: /sitemap.{_format}
+sylius_sitemap_all:
+    path: /sitemap/all.{_format}
     methods: [GET]
     defaults:
         _controller: sylius.controller.sitemap:showAction
         _format: xml
     requirements:
         _format: xml
+
+sylius_sitemap_providers:
+    resource: .
+    type: sitemap
