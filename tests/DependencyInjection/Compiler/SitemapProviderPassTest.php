@@ -4,8 +4,10 @@ namespace Tests\SyliusSitemapBundle\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\DefinitionHasMethodCallConstraint;
+use SyliusSitemapBundle\Builder\SitemapIndexBuilder;
 use SyliusSitemapBundle\DependencyInjection\Compiler\SitemapProviderPass;
 use SyliusSitemapBundle\Builder\SitemapBuilder;
+use SyliusSitemapBundle\Provider\IndexUrlProvider;
 use SyliusSitemapBundle\Provider\ProductUrlProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -13,6 +15,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 class SitemapProviderPassTest extends AbstractCompilerPassTestCase
 {
@@ -28,6 +31,13 @@ class SitemapProviderPassTest extends AbstractCompilerPassTestCase
         $productUrlProviderDefinition->addTag('sylius.sitemap_provider');
         $this->setDefinition('sylius.sitemap_provider.product', $productUrlProviderDefinition);
 
+        $sitemapBuilderDefinition = new Definition(SitemapIndexBuilder::class);
+        $this->setDefinition('sylius.sitemap_index_builder', $sitemapBuilderDefinition);
+
+        $indexUrlProviderDefinition = new Definition(IndexUrlProvider::class);
+        $indexUrlProviderDefinition->addTag('sylius.sitemap_index_provider');
+        $this->setDefinition('sylius.sitemap_index_provider.index', $indexUrlProviderDefinition);
+
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
@@ -35,6 +45,14 @@ class SitemapProviderPassTest extends AbstractCompilerPassTestCase
             'addProvider',
             [
                 new Reference('sylius.sitemap_provider.product'),
+            ]
+        );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'sylius.sitemap_index_builder',
+            'addIndexProvider',
+            [
+                new Reference('sylius.sitemap_index_provider.index'),
             ]
         );
     }
@@ -47,10 +65,18 @@ class SitemapProviderPassTest extends AbstractCompilerPassTestCase
         $sitemapBuilderDefinition = new Definition(SitemapBuilder::class);
         $this->setDefinition('sylius.sitemap_builder', $sitemapBuilderDefinition);
 
+        $sitemapBuilderDefinition = new Definition(SitemapIndexBuilder::class);
+        $this->setDefinition('sylius.sitemap_index_builder', $sitemapBuilderDefinition);
+
         $this->compile();
 
         $this->assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall(
             'sylius.sitemap_builder',
+            'addProvider'
+        );
+
+        $this->assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall(
+            'sylius.sitemap_index_builder',
             'addProvider'
         );
     }

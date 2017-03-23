@@ -32,6 +32,7 @@ final class Configuration implements ConfigurationInterface
         $node
             ->children()
             ->scalarNode('template')->defaultValue('@SyliusSitemap/show.xml.twig')->end()
+            ->scalarNode('index_template')->defaultValue('@SyliusSitemap/index.xml.twig')->end()
             ->end();
     }
 }

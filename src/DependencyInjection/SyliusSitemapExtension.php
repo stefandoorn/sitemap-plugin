@@ -24,5 +24,6 @@ final class SyliusSitemapExtension extends Extension
         $loader->load('services.xml');
 
         $container->setParameter('sylius.sitemap_template', $config['template']);
+        $container->setParameter('sylius.sitemap_index_template', $config['index_template']);
     }
 }

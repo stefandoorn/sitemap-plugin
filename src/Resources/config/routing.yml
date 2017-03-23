@@ -1,9 +1,16 @@
+sylius_sitemap_index:
+    path: /sitemap.{_format}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.sitemap_index:showAction
+    requirements:
+        _format: xml
+
 sylius_sitemap_all:
     path: /sitemap/all.{_format}
     methods: [GET]
     defaults:
         _controller: sylius.controller.sitemap:showAction
-        _format: xml
     requirements:
         _format: xml
 

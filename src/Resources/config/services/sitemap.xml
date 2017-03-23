@@ -5,29 +5,57 @@
             <argument type="service" id="sylius.sitemap_renderer"/>
             <argument type="service" id="sylius.sitemap_builder" />
         </service>
+        <service id="sylius.controller.sitemap_index" class="SyliusSitemapBundle\Controller\SitemapIndexController">
+            <argument type="service" id="sylius.sitemap_index_renderer"/>
+            <argument type="service" id="sylius.sitemap_index_builder" />
+        </service>
+
         <service id="sylius.sitemap_renderer.twig_adapter" class="SyliusSitemapBundle\Renderer\TwigAdapter">
             <argument type="service" id="templating" />
             <argument>%sylius.sitemap_template%</argument>
         </service>
+        <service id="sylius.sitemap_index_renderer.twig_adapter" class="SyliusSitemapBundle\Renderer\TwigAdapter">
+            <argument type="service" id="templating" />
+            <argument>%sylius.sitemap_index_template%</argument>
+        </service>
+
         <service id="sylius.sitemap_renderer" class="SyliusSitemapBundle\Renderer\SitemapRenderer">
             <argument type="service" id="sylius.sitemap_renderer.twig_adapter" />
         </service>
+        <service id="sylius.sitemap_index_renderer" class="SyliusSitemapBundle\Renderer\SitemapRenderer">
+            <argument type="service" id="sylius.sitemap_index_renderer.twig_adapter" />
+        </service>
+
         <service id="sylius.sitemap_factory" class="SyliusSitemapBundle\Factory\SitemapFactory" />
+        <service id="sylius.sitemap_index_factory" class="SyliusSitemapBundle\Factory\SitemapIndexFactory" />
         <service id="sylius.sitemap_url_factory" class="SyliusSitemapBundle\Factory\SitemapUrlFactory" />
+        <service id="sylius.sitemap_index_url_factory" class="SyliusSitemapBundle\Factory\SitemapIndexUrlFactory" />
+
         <service id="sylius.sitemap_builder" class="SyliusSitemapBundle\Builder\SitemapBuilder">
             <argument type="service" id="sylius.sitemap_factory" />
         </service>
+        <service id="sylius.sitemap_index_builder" class="SyliusSitemapBundle\Builder\SitemapIndexBuilder">
+            <argument type="service" id="sylius.sitemap_index_factory" />
+        </service>
+
+        <service id="sylius.sitemap.routing_loader" class="SyliusSitemapBundle\Routing\SitemapLoader">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="routing.loader" />
+        </service>
+
         <service id="sylius.sitemap_provider.product" class="SyliusSitemapBundle\Provider\ProductUrlProvider" >
             <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
             <tag name="sylius.sitemap_provider" />
         </service>
-        <service id="sylius.sitemap.routing_loader" class="SyliusSitemapBundle\Routing\SitemapLoader">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-            <tag name="routing.loader" />
+
+        <service id="sylius.sitemap_index_provider.index" class="SyliusSitemapBundle\Provider\IndexUrlProvider" >
+            <argument type="service" id="router" />
+            <argument type="service" id="sylius.sitemap_index_url_factory" />
+            <tag name="sylius.sitemap_index_provider" />
         </service>
     </services>
 </container>
