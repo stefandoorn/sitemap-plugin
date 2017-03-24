@@ -3,4 +3,7 @@
   <sitemap>
     <loc>/sitemap/products.xml</loc>
   </sitemap>
+  <sitemap>
+    <loc>/sitemap/taxons.xml</loc>
+  </sitemap>
 </sitemapindex>

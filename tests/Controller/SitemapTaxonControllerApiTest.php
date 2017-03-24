@@ -9,7 +9,7 @@ use Sylius\Component\Core\Model\Taxon;
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapIndexControllerApiTest extends XmlApiTestCase
+class SitemapTaxonControllerApiTest extends XmlApiTestCase
 {
     /**
      * @before
@@ -18,12 +18,12 @@ class SitemapIndexControllerApiTest extends XmlApiTestCase
     {
         parent::setUpDatabase();
 
-        $product = new Product();
-        $product->setCurrentLocale('en_US');
-        $product->setName('Test');
-        $product->setCode('test-code');
-        $product->setSlug('test');
-        $this->getEntityManager()->persist($product);
+        $taxon = new Taxon();
+        $taxon->setCurrentLocale('en_US');
+        $taxon->setName('Test');
+        $taxon->setCode('test-code');
+        $taxon->setSlug('test');
+        $this->getEntityManager()->persist($taxon);
 
         $taxon = new Taxon();
         $taxon->setCurrentLocale('en_US');
@@ -37,10 +37,10 @@ class SitemapIndexControllerApiTest extends XmlApiTestCase
 
     public function testShowActionResponse()
     {
-        $this->client->request('GET', '/sitemap.xml');
+        $this->client->request('GET', '/sitemap/taxons.xml');
 
         $response = $this->client->getResponse();
 
-        $this->assertResponse($response, 'show_sitemap_index');
+        $this->assertResponse($response, 'show_sitemap_taxons');
     }
 }

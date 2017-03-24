@@ -52,6 +52,13 @@
             <tag name="sylius.sitemap_provider" />
         </service>
 
+        <service id="sylius.sitemap_provider.taxon" class="SyliusSitemapBundle\Provider\TaxonUrlProvider" >
+            <argument type="service" id="sylius.repository.taxon" />
+            <argument type="service" id="router" />
+            <argument type="service" id="sylius.sitemap_url_factory" />
+            <tag name="sylius.sitemap_provider" />
+        </service>
+
         <service id="sylius.sitemap_index_provider.index" class="SyliusSitemapBundle\Provider\IndexUrlProvider" >
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_index_url_factory" />

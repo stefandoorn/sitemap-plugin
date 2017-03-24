@@ -4,12 +4,11 @@ namespace Tests\SyliusSitemapBundle\Controller;
 
 use Lakion\ApiTestCase\XmlApiTestCase;
 use Sylius\Component\Core\Model\Product;
-use Sylius\Component\Core\Model\Taxon;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapIndexControllerApiTest extends XmlApiTestCase
+class SitemapProductControllerApiTest extends XmlApiTestCase
 {
     /**
      * @before
@@ -25,22 +24,22 @@ class SitemapIndexControllerApiTest extends XmlApiTestCase
         $product->setSlug('test');
         $this->getEntityManager()->persist($product);
 
-        $taxon = new Taxon();
-        $taxon->setCurrentLocale('en_US');
-        $taxon->setName('Mock');
-        $taxon->setCode('mock-code');
-        $taxon->setSlug('mock');
-        $this->getEntityManager()->persist($taxon);
+        $product = new Product();
+        $product->setCurrentLocale('en_US');
+        $product->setName('Mock');
+        $product->setCode('mock-code');
+        $product->setSlug('mock');
+        $this->getEntityManager()->persist($product);
 
         $this->getEntityManager()->flush();
     }
 
     public function testShowActionResponse()
     {
-        $this->client->request('GET', '/sitemap.xml');
+        $this->client->request('GET', '/sitemap/products.xml');
 
         $response = $this->client->getResponse();
 
-        $this->assertResponse($response, 'show_sitemap_index');
+        $this->assertResponse($response, 'show_sitemap_products');
     }
 }
