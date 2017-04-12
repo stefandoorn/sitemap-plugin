@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-final class SyliusSitemapExtension extends Extension
+final class SitemapExtension extends Extension
 {
 
     /**
