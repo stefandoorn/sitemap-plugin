@@ -1,10 +1,10 @@
 <?php
 
-namespace SyliusSitemapBundle\Builder;
+namespace SitemapPlugin\Builder;
 
-use SyliusSitemapBundle\Model\SitemapInterface;
-use SyliusSitemapBundle\Provider\IndexUrlProviderInterface;
-use SyliusSitemapBundle\Provider\UrlProviderInterface;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Provider\IndexUrlProviderInterface;
+use SitemapPlugin\Provider\UrlProviderInterface;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>

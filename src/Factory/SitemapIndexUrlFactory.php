@@ -1,8 +1,8 @@
 <?php
 
-namespace SyliusSitemapBundle\Factory;
+namespace SitemapPlugin\Factory;
 
-use SyliusSitemapBundle\Model\SitemapIndexUrl;
+use SitemapPlugin\Model\SitemapIndexUrl;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>

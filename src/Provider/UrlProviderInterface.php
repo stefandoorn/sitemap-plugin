@@ -1,6 +1,6 @@
 <?php
 
-namespace SyliusSitemapBundle\Provider;
+namespace SitemapPlugin\Provider;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

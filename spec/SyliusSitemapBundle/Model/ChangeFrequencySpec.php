@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Model;
+namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
-use SyliusSitemapBundle\Model\ChangeFrequency;
+use SitemapPlugin\Model\ChangeFrequency;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

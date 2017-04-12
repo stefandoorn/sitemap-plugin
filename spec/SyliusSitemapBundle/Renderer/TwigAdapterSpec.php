@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Renderer;
+namespace spec\SitemapPlugin\Renderer;
 
 use PhpSpec\ObjectBehavior;
-use SyliusSitemapBundle\Model\SitemapInterface;
-use SyliusSitemapBundle\Model\SitemapUrlInterface;
-use SyliusSitemapBundle\Renderer\RendererAdapterInterface;
-use SyliusSitemapBundle\Renderer\TwigAdapter;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Renderer\RendererAdapterInterface;
+use SitemapPlugin\Renderer\TwigAdapter;
 use Symfony\Component\Templating\EngineInterface;
 
 /**

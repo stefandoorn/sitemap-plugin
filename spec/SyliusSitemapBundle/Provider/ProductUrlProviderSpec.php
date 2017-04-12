@@ -1,15 +1,15 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Provider;
+namespace spec\SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
-use SyliusSitemapBundle\Factory\SitemapUrlFactoryInterface;
-use SyliusSitemapBundle\Model\ChangeFrequency;
-use SyliusSitemapBundle\Model\SitemapUrlInterface;
-use SyliusSitemapBundle\Provider\ProductUrlProvider;
-use SyliusSitemapBundle\Provider\UrlProviderInterface;
+use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Provider\ProductUrlProvider;
+use SitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Symfony\Component\Routing\RouterInterface;
 

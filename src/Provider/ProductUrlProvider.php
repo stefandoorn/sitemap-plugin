@@ -1,10 +1,10 @@
 <?php
 
-namespace SyliusSitemapBundle\Provider;
+namespace SitemapPlugin\Provider;
 
 use Sylius\Component\Core\Model\ProductInterface;
-use SyliusSitemapBundle\Factory\SitemapUrlFactoryInterface;
-use SyliusSitemapBundle\Model\ChangeFrequency;
+use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 

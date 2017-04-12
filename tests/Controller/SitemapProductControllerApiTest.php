@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\SyliusSitemapBundle\Controller;
+namespace Tests\SitemapPlugin\Controller;
 
 use Lakion\ApiTestCase\XmlApiTestCase;
 use Sylius\Component\Core\Model\Product;

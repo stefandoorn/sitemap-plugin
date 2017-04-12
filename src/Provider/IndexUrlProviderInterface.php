@@ -1,6 +1,6 @@
 <?php
 
-namespace SyliusSitemapBundle\Provider;
+namespace SitemapPlugin\Provider;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>

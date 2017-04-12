@@ -1,8 +1,8 @@
 <?php
  
-namespace SyliusSitemapBundle\Model;
+namespace SitemapPlugin\Model;
 
-use SyliusSitemapBundle\Exception\SitemapUrlNotFoundException;
+use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

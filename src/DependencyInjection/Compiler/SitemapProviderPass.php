@@ -1,6 +1,6 @@
 <?php
 
-namespace SyliusSitemapBundle\DependencyInjection\Compiler;
+namespace SitemapPlugin\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

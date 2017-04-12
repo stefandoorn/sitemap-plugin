@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Factory;
+namespace spec\SitemapPlugin\Factory;
 
 use PhpSpec\ObjectBehavior;
-use SyliusSitemapBundle\Factory\SitemapFactory;
-use SyliusSitemapBundle\Factory\SitemapFactoryInterface;
-use SyliusSitemapBundle\Model\Sitemap;
-use SyliusSitemapBundle\Model\SitemapInterface;
+use SitemapPlugin\Factory\SitemapFactory;
+use SitemapPlugin\Factory\SitemapFactoryInterface;
+use SitemapPlugin\Model\Sitemap;
+use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

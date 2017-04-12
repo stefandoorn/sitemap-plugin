@@ -4,4 +4,4 @@ sylius:
 # Put your own routes here
 
 sitemap:
-    resource: "@SyliusSitemapBundle/Resources/config/routing.yml"
+    resource: "@SitemapPlugin/Resources/config/routing.yml"

@@ -1,8 +1,8 @@
 <?php
 
-namespace SyliusSitemapBundle\Renderer;
+namespace SitemapPlugin\Renderer;
 
-use SyliusSitemapBundle\Model\SitemapInterface;
+use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

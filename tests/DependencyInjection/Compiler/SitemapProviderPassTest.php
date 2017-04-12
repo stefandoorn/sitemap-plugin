@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\SyliusSitemapBundle\DependencyInjection\Compiler;
+namespace Tests\SitemapPlugin\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\DefinitionHasMethodCallConstraint;
-use SyliusSitemapBundle\Builder\SitemapIndexBuilder;
-use SyliusSitemapBundle\DependencyInjection\Compiler\SitemapProviderPass;
-use SyliusSitemapBundle\Builder\SitemapBuilder;
-use SyliusSitemapBundle\Provider\IndexUrlProvider;
-use SyliusSitemapBundle\Provider\ProductUrlProvider;
+use SitemapPlugin\Builder\SitemapIndexBuilder;
+use SitemapPlugin\DependencyInjection\Compiler\SitemapProviderPass;
+use SitemapPlugin\Builder\SitemapBuilder;
+use SitemapPlugin\Provider\IndexUrlProvider;
+use SitemapPlugin\Provider\ProductUrlProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;

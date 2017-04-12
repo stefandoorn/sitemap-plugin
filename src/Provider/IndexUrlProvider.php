@@ -1,8 +1,8 @@
 <?php
 
-namespace SyliusSitemapBundle\Provider;
+namespace SitemapPlugin\Provider;
 
-use SyliusSitemapBundle\Factory\SitemapIndexUrlFactoryInterface;
+use SitemapPlugin\Factory\SitemapIndexUrlFactoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**

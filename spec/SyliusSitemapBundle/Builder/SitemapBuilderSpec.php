@@ -1,14 +1,14 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Builder;
+namespace spec\SitemapPlugin\Builder;
 
 use PhpSpec\ObjectBehavior;
-use SyliusSitemapBundle\Builder\SitemapBuilder;
-use SyliusSitemapBundle\Builder\SitemapBuilderInterface;
-use SyliusSitemapBundle\Factory\SitemapFactoryInterface;
-use SyliusSitemapBundle\Model\SitemapInterface;
-use SyliusSitemapBundle\Model\SitemapUrlInterface;
-use SyliusSitemapBundle\Provider\UrlProviderInterface;
+use SitemapPlugin\Builder\SitemapBuilder;
+use SitemapPlugin\Builder\SitemapBuilderInterface;
+use SitemapPlugin\Factory\SitemapFactoryInterface;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Provider\UrlProviderInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

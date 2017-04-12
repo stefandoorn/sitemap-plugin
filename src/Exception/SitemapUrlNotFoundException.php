@@ -1,8 +1,8 @@
 <?php
  
-namespace SyliusSitemapBundle\Exception;
+namespace SitemapPlugin\Exception;
 
-use SyliusSitemapBundle\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\SitemapUrlInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

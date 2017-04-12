@@ -1,8 +1,8 @@
 <?php
 
-namespace SyliusSitemapBundle\Factory;
+namespace SitemapPlugin\Factory;
 
-use SyliusSitemapBundle\Model\SitemapUrl;
+use SitemapPlugin\Model\SitemapUrl;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

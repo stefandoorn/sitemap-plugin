@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Renderer;
+namespace spec\SitemapPlugin\Renderer;
 
 use PhpSpec\ObjectBehavior;
-use SyliusSitemapBundle\Model\SitemapInterface;
-use SyliusSitemapBundle\Renderer\RendererAdapterInterface;
-use SyliusSitemapBundle\Renderer\SitemapRenderer;
-use SyliusSitemapBundle\Renderer\SitemapRendererInterface;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Renderer\RendererAdapterInterface;
+use SitemapPlugin\Renderer\SitemapRenderer;
+use SitemapPlugin\Renderer\SitemapRendererInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

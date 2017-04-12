@@ -1,6 +1,6 @@
 <?php
  
-namespace SyliusSitemapBundle\Exception;
+namespace SitemapPlugin\Exception;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>

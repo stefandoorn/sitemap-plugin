@@ -1,9 +1,9 @@
 <?php
 
-namespace SyliusSitemapBundle\Builder;
+namespace SitemapPlugin\Builder;
 
-use SyliusSitemapBundle\Model\SitemapInterface;
-use SyliusSitemapBundle\Provider\UrlProviderInterface;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Provider\UrlProviderInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

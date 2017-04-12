@@ -1,9 +1,9 @@
 <?php
 
-namespace SyliusSitemapBundle\Renderer;
+namespace SitemapPlugin\Renderer;
 
-use SyliusSitemapBundle\Exception\TemplateNotFoundException;
-use SyliusSitemapBundle\Model\SitemapInterface;
+use SitemapPlugin\Exception\TemplateNotFoundException;
+use SitemapPlugin\Model\SitemapInterface;
 use Symfony\Component\Templating\EngineInterface;
 
 /**

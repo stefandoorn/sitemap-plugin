@@ -2,7 +2,7 @@
 
 use Sylius\Bundle\CoreBundle\Application\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use SyliusSitemapBundle\SyliusSitemapBundle;
+use SitemapPlugin\SitemapPlugin;
 
 final class AppKernel extends Kernel
 {
@@ -18,7 +18,7 @@ final class AppKernel extends Kernel
             new \FOS\OAuthServerBundle\FOSOAuthServerBundle(), // Required by SyliusApiBundle
             new \Sylius\Bundle\AdminApiBundle\SyliusAdminApiBundle(),
 
-            new SyliusSitemapBundle(),
+            new SitemapPlugin(),
         ]);
     }
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace SyliusSitemapBundle\Routing;
+namespace SitemapPlugin\Routing;
 
-use SyliusSitemapBundle\Exception\RouteExistsException;
-use SyliusSitemapBundle\Provider\UrlProviderInterface;
+use SitemapPlugin\Exception\RouteExistsException;
+use SitemapPlugin\Provider\UrlProviderInterface;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\RouteCollection;
 
 /**
  * Class SitemapLoader
- * @package SyliusSitemapBundle\Routing
+ * @package SitemapPlugin\Routing
  * @author Stefan Doorn <stefan@efectos.nl>
  */
 class SitemapLoader extends Loader implements ContainerAwareInterface

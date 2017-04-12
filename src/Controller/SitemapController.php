@@ -1,9 +1,9 @@
 <?php
 
-namespace SyliusSitemapBundle\Controller;
+namespace SitemapPlugin\Controller;
 
-use SyliusSitemapBundle\Builder\SitemapBuilderInterface;
-use SyliusSitemapBundle\Renderer\SitemapRendererInterface;
+use SitemapPlugin\Builder\SitemapBuilderInterface;
+use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

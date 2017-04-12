@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Model;
+namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
-use SyliusSitemapBundle\Model\ChangeFrequency;
-use SyliusSitemapBundle\Model\SitemapUrl;
-use SyliusSitemapBundle\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Model\SitemapUrl;
+use SitemapPlugin\Model\SitemapUrlInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

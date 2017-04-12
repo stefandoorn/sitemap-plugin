@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\SyliusSitemapBundle\Model;
+namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
-use SyliusSitemapBundle\Exception\SitemapUrlNotFoundException;
-use SyliusSitemapBundle\Model\Sitemap;
-use SyliusSitemapBundle\Model\SitemapInterface;
-use SyliusSitemapBundle\Model\SitemapUrlInterface;
+use SitemapPlugin\Exception\SitemapUrlNotFoundException;
+use SitemapPlugin\Model\Sitemap;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Model\SitemapUrlInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>

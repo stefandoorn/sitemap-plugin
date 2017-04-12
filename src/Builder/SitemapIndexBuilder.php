@@ -1,11 +1,11 @@
 <?php
 
-namespace SyliusSitemapBundle\Builder;
+namespace SitemapPlugin\Builder;
 
-use SyliusSitemapBundle\Factory\SitemapIndexFactoryInterface;
-use SyliusSitemapBundle\Model\SitemapUrl;
-use SyliusSitemapBundle\Provider\IndexUrlProviderInterface;
-use SyliusSitemapBundle\Provider\UrlProviderInterface;
+use SitemapPlugin\Factory\SitemapIndexFactoryInterface;
+use SitemapPlugin\Model\SitemapUrl;
+use SitemapPlugin\Provider\IndexUrlProviderInterface;
+use SitemapPlugin\Provider\UrlProviderInterface;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
