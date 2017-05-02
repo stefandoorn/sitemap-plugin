@@ -19,12 +19,7 @@ use Symfony\Component\Routing\RouteCollection;
 class SitemapLoader extends Loader implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
-
+    
     /**
      * @var bool
      */
