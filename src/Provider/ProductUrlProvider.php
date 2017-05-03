@@ -5,6 +5,7 @@ namespace SitemapPlugin\Provider;
 use Sylius\Component\Core\Model\ProductInterface;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use Sylius\Component\Core\Repository\ProductRepositoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\RouterInterface;
 final class ProductUrlProvider implements UrlProviderInterface
 {
     /**
-     * @var RepositoryInterface
+     * @var ProductRepositoryInterface
      */
     private $productRepository;
 
@@ -35,12 +36,12 @@ final class ProductUrlProvider implements UrlProviderInterface
     private $urls = [];
 
     /**
-     * @param RepositoryInterface $productRepository
+     * @param ProductRepositoryInterface $productRepository
      * @param RouterInterface $router
      * @param SitemapUrlFactoryInterface $sitemapUrlFactory
      */
     public function __construct(
-        RepositoryInterface $productRepository,
+        ProductRepositoryInterface $productRepository,
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory
     ) {
