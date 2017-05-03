@@ -2,10 +2,8 @@
 
 namespace SitemapPlugin\Controller;
 
-use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
 use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
