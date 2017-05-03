@@ -9,13 +9,8 @@ use SitemapPlugin\Provider\UrlProviderInterface;
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-interface SitemapBuilderInterface
+interface SitemapBuilderInterface extends BuilderInterface
 {
-    /**
-     * @param UrlProviderInterface $provider
-     */
-    public function addProvider(UrlProviderInterface $provider);
-
     /**
      * @return SitemapInterface
      */

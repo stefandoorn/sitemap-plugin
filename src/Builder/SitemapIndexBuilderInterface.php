@@ -2,21 +2,14 @@
 
 namespace SitemapPlugin\Builder;
 
-use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\IndexUrlProviderInterface;
-use SitemapPlugin\Provider\UrlProviderInterface;
+use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-interface SitemapIndexBuilderInterface
+interface SitemapIndexBuilderInterface extends BuilderInterface
 {
-
-    /**
-     * @param UrlProviderInterface $provider
-     */
-    public function addProvider(UrlProviderInterface $provider);
-
     /**
      * @param IndexUrlProviderInterface $provider
      */

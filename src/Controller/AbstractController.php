@@ -3,6 +3,7 @@
 namespace SitemapPlugin\Controller;
 
 use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
+use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,34 +20,11 @@ abstract class AbstractController
     protected $sitemapRenderer;
 
     /**
-     * @var SitemapIndexBuilderInterface
-     */
-    protected $sitemapIndexBuilder;
-
-    /**
-     * @param SitemapRendererInterface $sitemapRenderer
-     * @param SitemapIndexBuilderInterface $sitemapBuilder
-     */
-    public function __construct(
-        SitemapRendererInterface $sitemapRenderer,
-        SitemapIndexBuilderInterface $sitemapIndexBuilder
-    ) {
-        $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapIndexBuilder = $sitemapIndexBuilder;
-    }
-
-    /**
+     * @param SitemapInterface $sitemap
      * @return Response
      */
-    public function showAction(Request $request)
+    protected function createResponse(SitemapInterface $sitemap): Response
     {
-        $filter = [];
-        if ($request->attributes->has('name')) {
-            $filter[] = $request->attributes->get('name');
-        }
-
-        $sitemap = $this->sitemapIndexBuilder->build();
-
         $response = new Response($this->sitemapRenderer->render($sitemap));
         $response->headers->set('Content-Type', 'application/xml');
 
