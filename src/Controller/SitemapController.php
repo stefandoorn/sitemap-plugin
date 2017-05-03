@@ -27,7 +27,7 @@ class SitemapController extends AbstractController
         SitemapBuilderInterface $sitemapIndexBuilder
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapIndexBuilder = $sitemapIndexBuilder;
+        $this->sitemapBuilder = $sitemapIndexBuilder;
     }
 
     /**
