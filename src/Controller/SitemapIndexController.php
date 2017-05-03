@@ -26,13 +26,13 @@ class SitemapIndexController extends AbstractController
         SitemapIndexBuilderInterface $sitemapIndexBuilder
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapIndexBuilder = $sitemapIndexBuilder;
+        $this->sitemapBuilder = $sitemapIndexBuilder;
     }
 
     /**
      * @return Response
      */
-    public function showAction(Request $request): Response
+    public function showAction(Request $request)
     {
         return $this->createResponse($this->sitemapBuilder->build());
     }

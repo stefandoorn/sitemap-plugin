@@ -33,7 +33,7 @@ class SitemapController extends AbstractController
     /**
      * @return Response
      */
-    public function showAction(Request $request): Response
+    public function showAction(Request $request)
     {
         $filter = [];
         if ($request->attributes->has('name')) {

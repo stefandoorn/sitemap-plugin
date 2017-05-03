@@ -21,7 +21,7 @@ abstract class AbstractController
      * @param SitemapInterface $sitemap
      * @return Response
      */
-    protected function createResponse(SitemapInterface $sitemap): Response
+    protected function createResponse(SitemapInterface $sitemap)
     {
         $response = new Response($this->sitemapRenderer->render($sitemap));
         $response->headers->set('Content-Type', 'application/xml');
