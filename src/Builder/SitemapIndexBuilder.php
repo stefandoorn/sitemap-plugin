@@ -28,7 +28,7 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
     private $indexProviders = [];
 
     /**
-     * @param SitemapIndexFactoryInterface $sitemapFactory
+     * @param SitemapIndexFactoryInterface $sitemapIndexFactory
      */
     public function __construct(SitemapIndexFactoryInterface $sitemapIndexFactory)
     {
