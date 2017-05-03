@@ -4,6 +4,8 @@ namespace SitemapPlugin\Controller;
 
 use SitemapPlugin\Builder\SitemapBuilderInterface;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
