@@ -43,7 +43,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         SitemapUrlInterface $sitemapUrl,
         \DateTime $now
     ) {
-        $repository->findAll()->willReturn($products);
+        $repository->findBy(['enabled'])->willReturn($products);
         $products->getIterator()->willReturn($iterator);
         $iterator->valid()->willReturn(true, false);
         $iterator->next()->shouldBeCalled();
