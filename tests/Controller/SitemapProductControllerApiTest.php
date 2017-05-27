@@ -31,6 +31,14 @@ class SitemapProductControllerApiTest extends XmlApiTestCase
         $product->setSlug('mock');
         $this->getEntityManager()->persist($product);
 
+        $product = new Product();
+        $product->setCurrentLocale('en_US');
+        $product->setName('Test 2');
+        $product->setCode('test-code-3');
+        $product->setSlug('test 2');
+        $product->setEnabled(false);
+        $this->getEntityManager()->persist($product);
+
         $this->getEntityManager()->flush();
     }
 

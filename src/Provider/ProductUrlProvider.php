@@ -63,7 +63,9 @@ final class ProductUrlProvider implements UrlProviderInterface
      */
     public function generate()
     {
-        $products = $this->productRepository->findAll();
+        $products = $this->productRepository->findBy([
+            'enabled' => true,
+        ]);
 
         foreach ($products as $product) {
             /** @var ProductInterface $product */
