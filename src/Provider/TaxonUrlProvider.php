@@ -36,7 +36,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /**
      * @var bool
      */
-    private $excludeTaxonRoot;
+    private $excludeTaxonRoot = true;
 
     /**
      * TaxonUrlProvider constructor.
@@ -49,7 +49,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory,
-        bool $excludeTaxonRoot
+        $excludeTaxonRoot
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;

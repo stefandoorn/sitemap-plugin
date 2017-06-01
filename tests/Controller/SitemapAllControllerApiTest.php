@@ -25,12 +25,18 @@ class SitemapAllControllerApiTest extends XmlApiTestCase
         $product->setSlug('test');
         $this->getEntityManager()->persist($product);
 
+        $root = new Taxon();
+        $root->setCurrentLocale('en_US');
+        $root->setName('Root');
+        $root->setCode('root');
+        $root->setSlug('root');
         $taxon = new Taxon();
         $taxon->setCurrentLocale('en_US');
         $taxon->setName('Mock');
         $taxon->setCode('mock-code');
         $taxon->setSlug('mock');
-        $this->getEntityManager()->persist($taxon);
+        $taxon->setParent($root);
+        $this->getEntityManager()->persist($root);
 
         $this->getEntityManager()->flush();
     }
