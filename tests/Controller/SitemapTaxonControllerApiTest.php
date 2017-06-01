@@ -30,7 +30,6 @@ class SitemapTaxonControllerApiTest extends XmlApiTestCase
         $taxon->setCode('test-code');
         $taxon->setSlug('test');
         $taxon->setParent($root);
-        $this->getEntityManager()->persist($taxon);
 
         $taxon = new Taxon();
         $taxon->setCurrentLocale('en_US');
@@ -38,10 +37,8 @@ class SitemapTaxonControllerApiTest extends XmlApiTestCase
         $taxon->setCode('mock-code');
         $taxon->setSlug('mock');
         $taxon->setParent($root);
-        $this->getEntityManager()->persist($taxon);
 
         $this->getEntityManager()->persist($root);
-
         $this->getEntityManager()->flush();
     }
 
