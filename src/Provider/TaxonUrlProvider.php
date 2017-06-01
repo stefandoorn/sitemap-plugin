@@ -34,18 +34,27 @@ final class TaxonUrlProvider implements UrlProviderInterface
     private $urls = [];
 
     /**
+     * @var bool
+     */
+    private $excludeTaxonRoot;
+
+    /**
+     * TaxonUrlProvider constructor.
      * @param RepositoryInterface $taxonRepository
      * @param RouterInterface $router
      * @param SitemapUrlFactoryInterface $sitemapUrlFactory
+     * @param bool $excludeTaxonRoot
      */
     public function __construct(
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
-        SitemapUrlFactoryInterface $sitemapUrlFactory
+        SitemapUrlFactoryInterface $sitemapUrlFactory,
+        bool $excludeTaxonRoot
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
+        $this->excludeTaxonRoot = $excludeTaxonRoot;
     }
 
     /**
@@ -64,7 +73,11 @@ final class TaxonUrlProvider implements UrlProviderInterface
         $taxons = $this->taxonRepository->findAll();
 
         foreach ($taxons as $taxon) {
-            /** @var TaxonInterface $product */
+            /** @var TaxonInterface $taxon */
+            if ($this->excludeTaxonRoot && $taxon->isRoot()) {
+                continue;
+            }
+
             $taxonUrl = $this->sitemapUrlFactory->createNew();
             $localization = $this->router->generate('sylius_shop_product_index', ['slug' => $taxon->getSlug()], true);
 

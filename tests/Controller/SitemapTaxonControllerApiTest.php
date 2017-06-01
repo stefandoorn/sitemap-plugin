@@ -18,11 +18,19 @@ class SitemapTaxonControllerApiTest extends XmlApiTestCase
     {
         parent::setUpDatabase();
 
+        $root = new Taxon();
+        $root->setCurrentLocale('en_US');
+        $root->setName('Root');
+        $root->setCode('root');
+        $root->setSlug('root');
+        $this->getEntityManager()->persist($root);
+
         $taxon = new Taxon();
         $taxon->setCurrentLocale('en_US');
         $taxon->setName('Test');
         $taxon->setCode('test-code');
         $taxon->setSlug('test');
+        $taxon->setParent($root);
         $this->getEntityManager()->persist($taxon);
 
         $taxon = new Taxon();
@@ -30,6 +38,7 @@ class SitemapTaxonControllerApiTest extends XmlApiTestCase
         $taxon->setName('Mock');
         $taxon->setCode('mock-code');
         $taxon->setSlug('mock');
+        $taxon->setParent($root);
         $this->getEntityManager()->persist($taxon);
 
         $this->getEntityManager()->flush();

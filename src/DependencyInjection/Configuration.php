@@ -33,6 +33,7 @@ final class Configuration implements ConfigurationInterface
             ->children()
             ->scalarNode('template')->defaultValue('@SitemapPlugin/show.xml.twig')->end()
             ->scalarNode('index_template')->defaultValue('@SitemapPlugin/index.xml.twig')->end()
+            ->scalarNode('exclude_taxon_root')->defaultTrue()->end()
             ->end();
     }
 }

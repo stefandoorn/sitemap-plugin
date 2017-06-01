@@ -25,5 +25,6 @@ final class SitemapExtension extends Extension
 
         $container->setParameter('sylius.sitemap_template', $config['template']);
         $container->setParameter('sylius.sitemap_index_template', $config['index_template']);
+        $container->setParameter('sylius.sitemap_exclude_taxon_root', $config['exclude_taxon_root']);
     }
 }
