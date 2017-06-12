@@ -37,10 +37,23 @@ class SitemapIndexControllerApiTest extends XmlApiTestCase
 
     public function testShowActionResponse()
     {
-        $this->client->request('GET', '/sitemap.xml');
+        $this->client->request('GET', '/sitemap_index.xml');
 
         $response = $this->client->getResponse();
 
         $this->assertResponse($response, 'show_sitemap_index');
+    }
+
+    public function testRedirectResponse()
+    {
+        $this->client->request('GET', '/sitemap.xml');
+
+        $response = $this->client->getResponse();
+
+        $this->assertResponseCode($response, 301);
+        $this->assertTrue($response->isRedirect());
+
+        $location = $response->headers->get('Location');
+        $this->assertContains('sitemap_index.xml', $location);
     }
 }
