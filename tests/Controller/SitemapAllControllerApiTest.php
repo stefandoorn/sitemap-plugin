@@ -2,6 +2,7 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
+use Lakion\ApiTestCase\MediaTypes;
 use Lakion\ApiTestCase\XmlApiTestCase;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\Taxon;
@@ -52,7 +53,7 @@ class SitemapAllControllerApiTest extends XmlApiTestCase
 
     public function testShowActionResponseRelative()
     {
-        $this->client->getContainer()->setParameter('sylius.sitemap_absolute_url', false);
+        $this->client = static::createClient(array('environment' => 'testing_relative'), array('HTTP_ACCEPT' => MediaTypes::XML));
         $this->client->request('GET', '/sitemap/all.xml');
 
         $response = $this->client->getResponse();

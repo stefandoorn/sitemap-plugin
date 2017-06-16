@@ -1,0 +1,5 @@
+imports:
+    - { resource: config.yml }
+
+sitemap:
+    absolute_url: false
