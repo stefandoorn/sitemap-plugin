@@ -1,3 +1,3 @@
 {% macro url(url, should_become_absolute_url) %}
-    {{ should_become_absolute_url is same as(true) ? absolute_url(url) : url }}
+    {{ should_become_absolute_url ? absolute_url(url) : url }}
 {% endmacro %}
