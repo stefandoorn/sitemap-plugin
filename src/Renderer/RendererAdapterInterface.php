@@ -17,5 +17,5 @@ interface RendererAdapterInterface
      *
      * @throws \RuntimeException if the template cannot be rendered
      */
-    public function render(SitemapInterface $sitemap): string;
+    public function render(SitemapInterface $sitemap);
 }

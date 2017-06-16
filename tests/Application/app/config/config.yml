@@ -39,6 +39,3 @@ doctrine:
 
 fos_rest:
    exception: ~
-
-sitemap:
-    absolute_url: false # Disable for tests

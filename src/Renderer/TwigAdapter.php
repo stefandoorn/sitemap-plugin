@@ -31,7 +31,7 @@ final class TwigAdapter implements RendererAdapterInterface
      * @param EngineInterface $twig
      * @param string $template
      */
-    public function __construct(EngineInterface $twig, string $template, bool $absoluteUrl)
+    public function __construct(EngineInterface $twig, $template, $absoluteUrl)
     {
         $this->twig = $twig;
         $this->template = $template;
@@ -41,7 +41,7 @@ final class TwigAdapter implements RendererAdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function render(SitemapInterface $sitemap): string
+    public function render(SitemapInterface $sitemap)
     {
         return $this->twig->render($this->template, [
             'url_set' => $sitemap->getUrls(),

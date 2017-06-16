@@ -50,4 +50,14 @@ class SitemapProductControllerApiTest extends XmlApiTestCase
 
         $this->assertResponse($response, 'show_sitemap_products');
     }
+
+    public function testShowActionResponseRelative()
+    {
+        $this->client->getContainer()->setParameter('sylius.sitemap_absolute_url', false);
+        $this->client->request('GET', '/sitemap/products.xml');
+
+        $response = $this->client->getResponse();
+
+        $this->assertResponse($response, 'show_sitemap_products_relative');
+    }
 }

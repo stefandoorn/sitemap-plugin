@@ -44,6 +44,16 @@ class SitemapIndexControllerApiTest extends XmlApiTestCase
         $this->assertResponse($response, 'show_sitemap_index');
     }
 
+    public function testShowActionResponseRelative()
+    {
+        $this->client->getContainer()->setParameter('sylius.sitemap_absolute_url', false);
+        $this->client->request('GET', '/sitemap_index.xml');
+
+        $response = $this->client->getResponse();
+
+        $this->assertResponse($response, 'show_sitemap_index_relative');
+    }
+
     public function testRedirectResponse()
     {
         $this->client->request('GET', '/sitemap.xml');

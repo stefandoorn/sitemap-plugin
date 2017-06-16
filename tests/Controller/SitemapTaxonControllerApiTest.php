@@ -50,4 +50,14 @@ class SitemapTaxonControllerApiTest extends XmlApiTestCase
 
         $this->assertResponse($response, 'show_sitemap_taxons');
     }
+
+    public function testShowActionResponseRelative()
+    {
+        $this->client->getContainer()->setParameter('sylius.sitemap_absolute_url', false);
+        $this->client->request('GET', '/sitemap/taxons.xml');
+
+        $response = $this->client->getResponse();
+
+        $this->assertResponse($response, 'show_sitemap_taxons_relative');
+    }
 }
