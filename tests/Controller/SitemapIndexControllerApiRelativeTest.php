@@ -9,8 +9,9 @@ use Sylius\Component\Core\Model\Taxon;
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapIndexControllerApiTest extends XmlApiTestCase
+class SitemapIndexControllerApiRelativeTest extends XmlApiTestCase
 {
+    use RelativeClientTrait;
     use TearDownTrait;
 
     /**
@@ -37,25 +38,14 @@ class SitemapIndexControllerApiTest extends XmlApiTestCase
         $this->getEntityManager()->flush();
     }
 
-    public function testShowActionResponse()
+    public function testShowActionResponseRelative()
     {
         $this->client->request('GET', '/sitemap_index.xml');
 
         $response = $this->client->getResponse();
 
-        $this->assertResponse($response, 'show_sitemap_index');
+        $this->assertResponse($response, 'show_sitemap_index_relative');
     }
 
-    public function testRedirectResponse()
-    {
-        $this->client->request('GET', '/sitemap.xml');
 
-        $response = $this->client->getResponse();
-
-        $this->assertResponseCode($response, 301);
-        $this->assertTrue($response->isRedirect());
-
-        $location = $response->headers->get('Location');
-        $this->assertContains('sitemap_index.xml', $location);
-    }
 }

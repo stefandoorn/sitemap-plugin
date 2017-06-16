@@ -10,6 +10,8 @@ use Sylius\Component\Core\Model\Taxon;
  */
 class SitemapTaxonControllerApiTest extends XmlApiTestCase
 {
+    use TearDownTrait;
+
     /**
      * @before
      */
@@ -48,15 +50,5 @@ class SitemapTaxonControllerApiTest extends XmlApiTestCase
         $response = $this->client->getResponse();
 
         $this->assertResponse($response, 'show_sitemap_taxons');
-    }
-
-    public function testShowActionResponseRelative()
-    {
-        $this->client = static::createClient(array('environment' => 'testing_relative'), array('HTTP_ACCEPT' => 'application/xml'));
-        $this->client->request('GET', '/sitemap/taxons.xml');
-
-        $response = $this->client->getResponse();
-
-        $this->assertResponse($response, 'show_sitemap_taxons_relative');
     }
 }

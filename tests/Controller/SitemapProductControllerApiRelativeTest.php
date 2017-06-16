@@ -8,8 +8,9 @@ use Sylius\Component\Core\Model\Product;
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapProductControllerApiTest extends XmlApiTestCase
+class SitemapProductControllerApiRelativeTest extends XmlApiTestCase
 {
+    use RelativeClientTrait;
     use TearDownTrait;
 
     /**
@@ -44,12 +45,12 @@ class SitemapProductControllerApiTest extends XmlApiTestCase
         $this->getEntityManager()->flush();
     }
 
-    public function testShowActionResponse()
+    public function testShowActionResponseRelative()
     {
         $this->client->request('GET', '/sitemap/products.xml');
 
         $response = $this->client->getResponse();
 
-        $this->assertResponse($response, 'show_sitemap_products');
+        $this->assertResponse($response, 'show_sitemap_products_relative');
     }
 }

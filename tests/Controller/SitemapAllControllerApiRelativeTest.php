@@ -9,9 +9,10 @@ use Sylius\Component\Core\Model\Taxon;
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapIndexControllerApiTest extends XmlApiTestCase
+class SitemapAllControllerApiRelativeTest extends XmlApiTestCase
 {
-    use TearDownTrait;
+   use RelativeClientTrait;
+   use TearDownTrait;
 
     /**
      * @before
@@ -27,35 +28,28 @@ class SitemapIndexControllerApiTest extends XmlApiTestCase
         $product->setSlug('test');
         $this->getEntityManager()->persist($product);
 
+        $root = new Taxon();
+        $root->setCurrentLocale('en_US');
+        $root->setName('Root');
+        $root->setCode('root');
+        $root->setSlug('root');
         $taxon = new Taxon();
         $taxon->setCurrentLocale('en_US');
         $taxon->setName('Mock');
         $taxon->setCode('mock-code');
         $taxon->setSlug('mock');
-        $this->getEntityManager()->persist($taxon);
+        $taxon->setParent($root);
+        $this->getEntityManager()->persist($root);
 
         $this->getEntityManager()->flush();
     }
 
-    public function testShowActionResponse()
+    public function testShowActionResponseRelative()
     {
-        $this->client->request('GET', '/sitemap_index.xml');
+        $this->client->request('GET', '/sitemap/all.xml');
 
         $response = $this->client->getResponse();
 
-        $this->assertResponse($response, 'show_sitemap_index');
-    }
-
-    public function testRedirectResponse()
-    {
-        $this->client->request('GET', '/sitemap.xml');
-
-        $response = $this->client->getResponse();
-
-        $this->assertResponseCode($response, 301);
-        $this->assertTrue($response->isRedirect());
-
-        $location = $response->headers->get('Location');
-        $this->assertContains('sitemap_index.xml', $location);
+        $this->assertResponse($response, 'show_sitemap_all_relative');
     }
 }
