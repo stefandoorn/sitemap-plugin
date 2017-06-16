@@ -28,7 +28,7 @@ final class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         if ($this->getEnvironment() === 'test_relative') {
-            $loader->load($this->getRootDir() . '/config/config_relative.yml');
+            $loader->load($this->getRootDir() . '/config/config_test_relative.yml');
             return;
         }
 
