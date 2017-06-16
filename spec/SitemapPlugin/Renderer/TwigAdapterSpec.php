@@ -16,7 +16,7 @@ final class TwigAdapterSpec extends ObjectBehavior
 {
     function let(EngineInterface $twig)
     {
-        $this->beConstructedWith($twig, '@SyliusCore/Sitemap/url_set.xml.twig');
+        $this->beConstructedWith($twig, '@SyliusCore/Sitemap/url_set.xml.twig', false);
     }
 
     function it_is_initializable()
@@ -32,7 +32,7 @@ final class TwigAdapterSpec extends ObjectBehavior
     function it_renders_sitemap($twig, SitemapInterface $sitemap, SitemapUrlInterface $productUrl)
     {
         $sitemap->getUrls()->willReturn([$productUrl]);
-        $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', ['url_set' => [$productUrl]])->shouldBeCalled();
+        $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', ['url_set' => [$productUrl], 'absolute_url' => false])->shouldBeCalled();
 
         $this->render($sitemap);
     }
