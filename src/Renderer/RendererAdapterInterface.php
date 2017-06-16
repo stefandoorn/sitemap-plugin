@@ -6,6 +6,7 @@ use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 interface RendererAdapterInterface
 {
@@ -16,5 +17,5 @@ interface RendererAdapterInterface
      *
      * @throws \RuntimeException if the template cannot be rendered
      */
-    public function render(SitemapInterface $sitemap);
+    public function render(SitemapInterface $sitemap): string;
 }

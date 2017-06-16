@@ -13,10 +13,12 @@
         <service id="sylius.sitemap_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">
             <argument type="service" id="templating" />
             <argument>%sylius.sitemap_template%</argument>
+            <argument>%sylius.sitemap_absolute_url%</argument>
         </service>
         <service id="sylius.sitemap_index_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">
             <argument type="service" id="templating" />
             <argument>%sylius.sitemap_index_template%</argument>
+            <argument>%sylius.sitemap_absolute_url%</argument>
         </service>
 
         <service id="sylius.sitemap_renderer" class="SitemapPlugin\Renderer\SitemapRenderer">

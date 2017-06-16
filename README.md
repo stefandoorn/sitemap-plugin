@@ -27,3 +27,13 @@ extraction to a separate bundle.
 sylius_sitemap:
      resource: "@SitemapPlugin/Resources/config/routing.yml"
 ```
+
+## Default configuration
+
+```yaml
+sitemap:
+    template:             '@SitemapPlugin/show.xml.twig'
+    index_template:       '@SitemapPlugin/index.xml.twig'
+    exclude_taxon_root:   true
+    absolute_url:         true
+```

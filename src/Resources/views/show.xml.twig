@@ -1,8 +1,9 @@
+{% import 'SitemapPlugin::Macro/url.html.twig' as macro %}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for url in url_set %}
         <url>
-            <loc>{{ url.localization }}</loc>
+            <loc>{{ macro.url(url.localization, absolute_url) }}</loc>
             {% if url.lastModification is not same as(null) %}
                 <lastmod>{{ url.lastModification|date('c') }}</lastmod>
             {% endif %}

@@ -2,4 +2,3 @@ imports:
     - { resource: "services.xml" }
 
 sitemap: ~
-        
