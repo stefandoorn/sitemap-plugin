@@ -1,5 +1,5 @@
 <?php
- 
+
 namespace SitemapPlugin\Model;
 
 /**
@@ -26,6 +26,36 @@ class SitemapUrl implements SitemapUrlInterface
      * @var float
      */
     private $priority;
+
+    /**
+     * @var string
+     */
+
+    private $alternativeUrl = [];
+    /**
+     * @var string
+     */
+
+    private $alternativeLocale = [];
+
+    public function addAlternateUrl($url, $locale)
+    {
+        $this->alternativeUrl[] = $url;
+        $this->alternativeLocale[] = $locale;
+    }
+
+    public function getAlternateUrls()
+    {
+
+        $urls = [];
+        foreach ($this->alternativeUrl as $i => $url) {
+            $urls[] = [
+                'url' => $url,
+                'locale' => $this->alternativeLocale[$i]
+            ];
+        }
+        return $urls;
+    }
 
     /**
      * {@inheritdoc}
