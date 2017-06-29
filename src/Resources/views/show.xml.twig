@@ -1,16 +1,15 @@
-{% import 'SitemapPlugin::url.html.twig' as macro %}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
     {% for url in url_set %}
         <url>
-            <loc>{{ macro.url(url.localization, absolute_url) }}</loc>
+            <loc>{{ absolute_url(url.localization) }}</loc>
 
             {%  for alt in url.getAlternateUrls %}
             <xhtml:link
                     rel="alternate"
                     hreflang="{{ alt.locale }}"
-                    href="{{ macro.url(alt.url, absolute_url) }}"
+                    href="{{ absolute_url(alt.url) }}"
             />
             {%  endfor %}
             {% if url.lastModification is not same as(null) %}
