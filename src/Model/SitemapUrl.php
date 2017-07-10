@@ -1,9 +1,10 @@
 <?php
- 
+
 namespace SitemapPlugin\Model;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 class SitemapUrl implements SitemapUrlInterface
 {
@@ -26,6 +27,35 @@ class SitemapUrl implements SitemapUrlInterface
      * @var float
      */
     private $priority;
+
+    /**
+     * @var array
+     */
+    private $alternatives = [];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addAlternative($location, $locale)
+    {
+        $this->alternatives[$locale] = $location;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAlternatives(array $alternatives)
+    {
+        $this->alternatives = $alternatives;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAlternatives()
+    {
+        return $this->alternatives;
+    }
 
     /**
      * {@inheritdoc}

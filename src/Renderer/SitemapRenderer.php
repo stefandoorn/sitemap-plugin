@@ -6,6 +6,7 @@ use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 final class SitemapRenderer implements SitemapRendererInterface
 {
@@ -16,9 +17,8 @@ final class SitemapRenderer implements SitemapRendererInterface
 
     /**
      * @param RendererAdapterInterface $adapter
-     * @param array $configuration
      */
-    public function __construct(RendererAdapterInterface $adapter, array $configuration = [])
+    public function __construct(RendererAdapterInterface $adapter)
     {
         $this->adapter = $adapter;
     }

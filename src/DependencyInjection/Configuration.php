@@ -35,6 +35,7 @@ final class Configuration implements ConfigurationInterface
             ->scalarNode('index_template')->defaultValue('@SitemapPlugin/index.xml.twig')->end()
             ->scalarNode('exclude_taxon_root')->defaultTrue()->end()
             ->scalarNode('absolute_url')->defaultTrue()->end()
+            ->scalarNode('hreflang')->defaultTrue()->end()
             ->end();
     }
 }

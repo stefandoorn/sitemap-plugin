@@ -14,6 +14,7 @@
             <argument type="service" id="templating" />
             <argument>%sylius.sitemap_template%</argument>
             <argument>%sylius.sitemap_absolute_url%</argument>
+            <argument>%sylius.sitemap_hreflang%</argument>
         </service>
         <service id="sylius.sitemap_index_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">
             <argument type="service" id="templating" />
@@ -51,6 +52,7 @@
             <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
+            <argument type="service" id="sylius.context.locale"></argument>
             <tag name="sylius.sitemap_provider" />
         </service>
 
@@ -58,6 +60,7 @@
             <argument type="service" id="sylius.repository.taxon" />
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
+            <argument type="service" id="sylius.context.locale"></argument>
             <argument>%sylius.sitemap_exclude_taxon_root%</argument>
             <tag name="sylius.sitemap_provider" />
         </service>

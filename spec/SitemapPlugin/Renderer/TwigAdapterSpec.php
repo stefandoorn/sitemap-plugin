@@ -11,6 +11,7 @@ use Symfony\Component\Templating\EngineInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 final class TwigAdapterSpec extends ObjectBehavior
 {
@@ -32,7 +33,7 @@ final class TwigAdapterSpec extends ObjectBehavior
     function it_renders_sitemap($twig, SitemapInterface $sitemap, SitemapUrlInterface $productUrl)
     {
         $sitemap->getUrls()->willReturn([$productUrl]);
-        $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', ['url_set' => [$productUrl], 'absolute_url' => false])->shouldBeCalled();
+        $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', ['url_set' => [$productUrl], 'absolute_url' => false, 'hreflang' => true])->shouldBeCalled();
 
         $this->render($sitemap);
     }

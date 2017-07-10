@@ -1,12 +1,11 @@
-{% import 'SitemapPlugin::Macro/url.html.twig' as macro %}
+{% import 'SitemapPlugin::Macro/url.html.twig' as url_helper %}
+{% import 'SitemapPlugin::Macro/xml.html.twig' as xml_helper %}
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for url in url_set %}
         <sitemap>
-            <loc>{{ macro.url(url.localization, absolute_url) }}</loc>
-            {% if url.lastModification is not same as(null) %}
-                <lastmod>{{ url.lastModification|date('c') }}</lastmod>
-            {% endif %}
+            <loc>{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}</loc>
+            {{ xml_helper.last_modification(url) }}
         </sitemap>
     {% endfor %}
 </sitemapindex>

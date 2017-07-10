@@ -60,7 +60,7 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
         $urls = [];
 
         foreach ($this->indexProviders as $indexProvider) {
-            foreach($this->providers as $provider) {
+            foreach ($this->providers as $provider) {
                 $indexProvider->addProvider($provider);
             }
 

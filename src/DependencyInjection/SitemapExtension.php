@@ -17,7 +17,7 @@ final class SitemapExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->processConfiguration($this->getConfiguration([], $container), $config);;
+        $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('services.xml');
@@ -26,5 +26,6 @@ final class SitemapExtension extends Extension
         $container->setParameter('sylius.sitemap_index_template', $config['index_template']);
         $container->setParameter('sylius.sitemap_exclude_taxon_root', $config['exclude_taxon_root']);
         $container->setParameter('sylius.sitemap_absolute_url', $config['absolute_url']);
+        $container->setParameter('sylius.sitemap_hreflang', $config['hreflang']);
     }
 }
