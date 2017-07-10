@@ -24,10 +24,10 @@ class SitemapController extends AbstractController
      */
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
-        SitemapBuilderInterface $sitemapIndexBuilder
+        SitemapBuilderInterface $sitemapBuilder
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapBuilder = $sitemapIndexBuilder;
+        $this->sitemapBuilder = $sitemapBuilder;
     }
 
     /**

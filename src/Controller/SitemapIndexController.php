@@ -19,7 +19,7 @@ class SitemapIndexController extends AbstractController
 
     /**
      * @param SitemapRendererInterface $sitemapRenderer
-     * @param SitemapIndexBuilderInterface $sitemapBuilder
+     * @param SitemapIndexBuilderInterface $sitemapIndexBuilder
      */
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,

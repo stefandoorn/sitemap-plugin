@@ -4,7 +4,6 @@ namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
-use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
