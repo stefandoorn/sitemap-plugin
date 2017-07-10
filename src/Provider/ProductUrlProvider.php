@@ -4,6 +4,7 @@ namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
@@ -38,6 +39,11 @@ final class ProductUrlProvider implements UrlProviderInterface
     private $localeContext;
 
     /**
+     * @var ChannelContextInterface
+     */
+    private $channelContext;
+
+    /**
      * @var array
      */
     private $urls = [];
@@ -47,17 +53,20 @@ final class ProductUrlProvider implements UrlProviderInterface
      * @param RouterInterface $router
      * @param SitemapUrlFactoryInterface $sitemapUrlFactory
      * @param LocaleContextInterface $localeContext
+     * @param ChannelContextInterface $channelContext
      */
     public function __construct(
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory,
-        LocaleContextInterface $localeContext
+        LocaleContextInterface $localeContext,
+        ChannelContextInterface $channelContext
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
         $this->localeContext = $localeContext;
+        $this->channelContext = $channelContext;
     }
 
     /**
@@ -104,8 +113,10 @@ final class ProductUrlProvider implements UrlProviderInterface
      */
     private function getProducts()
     {
-        return $this->productRepository->findBy([
-            'enabled' => true,
-        ]);
+        return $this->productRepository->findLatestByChannel(
+            $this->channelContext->getChannel(),
+            $this->localeContext->getLocaleCode(),
+            10000000000
+        );
     }
 }
