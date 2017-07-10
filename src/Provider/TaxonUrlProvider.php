@@ -77,15 +77,25 @@ final class TaxonUrlProvider implements UrlProviderInterface
             if ($this->excludeTaxonRoot && $taxon->isRoot()) {
                 continue;
             }
+            foreach ($taxon->getTranslations() as $translation) {
+            $locales = $taxon->getTranslations()->getKeys();
 
             $taxonUrl = $this->sitemapUrlFactory->createNew();
-            $localization = $this->router->generate('sylius_shop_product_index', ['slug' => $taxon->getSlug()], true);
+            $localization = $this->router->generate('sylius_shop_product_index', ['slug' => $translation->getSlug(), '_locale' => $translation->getLocale()], true);
 
+                foreach (array_diff($locales, [$translation->getLocale()]) as $altLocale) {
+                    $altLoc = $this->router->generate('sylius_shop_product_index', [
+                        'slug' =>$taxon->getTranslations()[$altLocale]->getSlug(),
+                        '_locale' => $altLocale
+                    ], true);
+                    $taxonUrl->addAlternateUrl($altLoc, $altLocale);
+                }
             $taxonUrl->setLocalization($localization);
             $taxonUrl->setChangeFrequency(ChangeFrequency::always());
             $taxonUrl->setPriority(0.5);
 
             $this->urls[] = $taxonUrl;
+        }
         }
 
         return $this->urls;

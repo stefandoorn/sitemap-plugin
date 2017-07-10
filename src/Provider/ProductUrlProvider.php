@@ -44,7 +44,8 @@ final class ProductUrlProvider implements UrlProviderInterface
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory
-    ) {
+    )
+    {
         $this->productRepository = $productRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
@@ -67,17 +68,30 @@ final class ProductUrlProvider implements UrlProviderInterface
             'enabled' => true,
         ]);
 
+
         foreach ($products as $product) {
+            foreach ($product->getTranslations() as $translation) {
+                $locales = $product->getTranslations()->getKeys();
+                $productUrl = $this->sitemapUrlFactory->createNew();
+
+                $localization = $this->router->generate('sylius_shop_product_show', ['slug' => $translation->getSlug(), '_locale' => $translation->getLocale()], true);
+
+                foreach (array_diff($locales, [$translation->getLocale()]) as $altLocale) {
+                    $altLoc = $this->router->generate('sylius_shop_product_show', [
+                        'slug' =>$product->getTranslations()[$altLocale]->getSlug(),
+                        '_locale' => $altLocale
+                    ], true);
+                    $productUrl->addAlternateUrl($altLoc, $altLocale);
+                }
+                $productUrl->setLastModification($product->getUpdatedAt());
+                $productUrl->setLocalization($localization);
+                $productUrl->setChangeFrequency(ChangeFrequency::always());
+                $productUrl->setPriority(0.5);
+
+                $this->urls[] = $productUrl;
+            }
             /** @var ProductInterface $product */
-            $productUrl = $this->sitemapUrlFactory->createNew();
-            $localization = $this->router->generate('sylius_shop_product_show', ['slug' => $product->getSlug()], true);
 
-            $productUrl->setLastModification($product->getUpdatedAt());
-            $productUrl->setLocalization($localization);
-            $productUrl->setChangeFrequency(ChangeFrequency::always());
-            $productUrl->setPriority(0.5);
-
-            $this->urls[] = $productUrl;
         }
 
         return $this->urls;
