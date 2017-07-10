@@ -28,33 +28,32 @@ class SitemapUrl implements SitemapUrlInterface
     private $priority;
 
     /**
-     * @var string
+     * @var array
      */
+    private $alternatives = [];
 
-    private $alternativeUrl = [];
     /**
-     * @var string
+     * {@inheritdoc}
      */
-
-    private $alternativeLocale = [];
-
-    public function addAlternateUrl($url, $locale)
+    public function addAlternative($location, $locale)
     {
-        $this->alternativeUrl[] = $url;
-        $this->alternativeLocale[] = $locale;
+        $this->alternatives[$locale] = $location;
     }
 
-    public function getAlternateUrls()
+    /**
+     * {@inheritdoc}
+     */
+    public function setAlternatives(array $alternatives)
     {
+        $this->alternatives = $alternatives;
+    }
 
-        $urls = [];
-        foreach ($this->alternativeUrl as $i => $url) {
-            $urls[] = [
-                'url' => $url,
-                'locale' => $this->alternativeLocale[$i]
-            ];
-        }
-        return $urls;
+    /**
+     * {@inheritdoc}
+     */
+    public function getAlternatives()
+    {
+        return $this->alternatives;
     }
 
     /**

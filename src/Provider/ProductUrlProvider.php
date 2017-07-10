@@ -2,11 +2,14 @@
 
 namespace SitemapPlugin\Provider;
 
-use Sylius\Component\Core\Model\ProductInterface;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Core\Model\ProductInterface;
+use Sylius\Component\Core\Model\ProductTranslationInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -31,6 +34,11 @@ final class ProductUrlProvider implements UrlProviderInterface
     private $sitemapUrlFactory;
 
     /**
+     * @var LocaleContextInterface
+     */
+    private $localeContext;
+
+    /**
      * @var array
      */
     private $urls = [];
@@ -39,16 +47,18 @@ final class ProductUrlProvider implements UrlProviderInterface
      * @param ProductRepositoryInterface $productRepository
      * @param RouterInterface $router
      * @param SitemapUrlFactoryInterface $sitemapUrlFactory
+     * @param LocaleContextInterface $localeContext
      */
     public function __construct(
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
-        SitemapUrlFactoryInterface $sitemapUrlFactory
-    )
-    {
+        SitemapUrlFactoryInterface $sitemapUrlFactory,
+        LocaleContextInterface $localeContext
+    ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
+        $this->localeContext = $localeContext;
     }
 
     /**
@@ -64,36 +74,39 @@ final class ProductUrlProvider implements UrlProviderInterface
      */
     public function generate()
     {
-        $products = $this->productRepository->findBy([
-            'enabled' => true,
-        ]);
+        foreach ($this->getProducts() as $product) {
+            $productUrl = $this->sitemapUrlFactory->createNew();
+            $productUrl->setChangeFrequency(ChangeFrequency::always());
+            $productUrl->setPriority(0.5);
+            $productUrl->setLastModification($product->getUpdatedAt());
 
-
-        foreach ($products as $product) {
             foreach ($product->getTranslations() as $translation) {
-                $locales = $product->getTranslations()->getKeys();
-                $productUrl = $this->sitemapUrlFactory->createNew();
+                /** @var ProductTranslationInterface|TranslationInterface $translation */
+                $location = $this->router->generate('sylius_shop_product_show', [
+                    'slug' => $translation->getSlug(),
+                    '_locale' => $translation->getLocale()
+                ]);
 
-                $localization = $this->router->generate('sylius_shop_product_show', ['slug' => $translation->getSlug(), '_locale' => $translation->getLocale()], true);
-
-                foreach (array_diff($locales, [$translation->getLocale()]) as $altLocale) {
-                    $altLoc = $this->router->generate('sylius_shop_product_show', [
-                        'slug' =>$product->getTranslations()[$altLocale]->getSlug(),
-                        '_locale' => $altLocale
-                    ], true);
-                    $productUrl->addAlternateUrl($altLoc, $altLocale);
+                if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
+                    $productUrl->setLocalization($location);
+                } else {
+                    $productUrl->addAlternative($location, $translation->getLocale());
                 }
-                $productUrl->setLastModification($product->getUpdatedAt());
-                $productUrl->setLocalization($localization);
-                $productUrl->setChangeFrequency(ChangeFrequency::always());
-                $productUrl->setPriority(0.5);
-
-                $this->urls[] = $productUrl;
             }
-            /** @var ProductInterface $product */
 
+            $this->urls[] = $productUrl;
         }
 
         return $this->urls;
+    }
+
+    /**
+     * @return array|ProductInterface[]
+     */
+    private function getProducts()
+    {
+        return $this->productRepository->findBy([
+            'enabled' => true,
+        ]);
     }
 }

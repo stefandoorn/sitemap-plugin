@@ -1,18 +1,13 @@
-{% import 'SitemapPlugin::Macro/url.html.twig' as macro %}
+{% import 'SitemapPlugin::Macro/url.html.twig' as url_helper %}
+{% import 'SitemapPlugin::Macro/language.html.twig' as language_helper %}
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     {% for url in url_set %}
         <url>
-            <loc>{{ macro.url(url.localization, absolute_url) }}</loc>
-
-            {%  for alt in url.getAlternateUrls %}
-            <xhtml:link
-                    rel="alternate"
-                    hreflang="{{ alt.locale }}"
-                    href="{{ absolute_url(alt.url) }}"
-            />
-            {%  endfor %}
+            <loc>{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}</loc>
+            {% for locale, location in url.alternatives %}
+                <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(locale) }}" href="{{ url_helper.absolute_or_relative(location, absolute_url) }}"/>
+            {% endfor %}
             {% if url.lastModification is not same as(null) %}
                 <lastmod>{{ url.lastModification|date('c') }}</lastmod>
             {% endif %}

@@ -2,10 +2,13 @@
 
 namespace SitemapPlugin\Provider;
 
-use Sylius\Component\Core\Model\TaxonInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use Sylius\Component\Core\Model\TaxonInterface;
+use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Taxonomy\Model\TaxonTranslationInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -29,6 +32,11 @@ final class TaxonUrlProvider implements UrlProviderInterface
     private $sitemapUrlFactory;
 
     /**
+     * @var LocaleContextInterface
+     */
+    private $localeContext;
+
+    /**
      * @var array
      */
     private $urls = [];
@@ -43,17 +51,20 @@ final class TaxonUrlProvider implements UrlProviderInterface
      * @param RepositoryInterface $taxonRepository
      * @param RouterInterface $router
      * @param SitemapUrlFactoryInterface $sitemapUrlFactory
+     * @param LocaleContextInterface $localeContext
      * @param bool $excludeTaxonRoot
      */
     public function __construct(
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory,
+        LocaleContextInterface $localeContext,
         $excludeTaxonRoot
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
+        $this->localeContext = $localeContext;
         $this->excludeTaxonRoot = $excludeTaxonRoot;
     }
 
@@ -70,34 +81,41 @@ final class TaxonUrlProvider implements UrlProviderInterface
      */
     public function generate()
     {
-        $taxons = $this->taxonRepository->findAll();
-
-        foreach ($taxons as $taxon) {
+        foreach ($this->getTaxons() as $taxon) {
             /** @var TaxonInterface $taxon */
             if ($this->excludeTaxonRoot && $taxon->isRoot()) {
                 continue;
             }
-            foreach ($taxon->getTranslations() as $translation) {
-            $locales = $taxon->getTranslations()->getKeys();
 
             $taxonUrl = $this->sitemapUrlFactory->createNew();
-            $localization = $this->router->generate('sylius_shop_product_index', ['slug' => $translation->getSlug(), '_locale' => $translation->getLocale()], true);
-
-                foreach (array_diff($locales, [$translation->getLocale()]) as $altLocale) {
-                    $altLoc = $this->router->generate('sylius_shop_product_index', [
-                        'slug' =>$taxon->getTranslations()[$altLocale]->getSlug(),
-                        '_locale' => $altLocale
-                    ], true);
-                    $taxonUrl->addAlternateUrl($altLoc, $altLocale);
-                }
-            $taxonUrl->setLocalization($localization);
             $taxonUrl->setChangeFrequency(ChangeFrequency::always());
             $taxonUrl->setPriority(0.5);
 
+            foreach ($taxon->getTranslations() as $translation) {
+                /** @var TranslationInterface|TaxonTranslationInterface $translation */
+                $location = $this->router->generate('sylius_shop_product_index', [
+                    'slug' => $translation->getSlug(),
+                    '_locale' => $translation->getLocale()
+                ]);
+
+                if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
+                    $taxonUrl->setLocalization($location);
+                } else {
+                    $taxonUrl->addAlternative($location, $translation->getLocale());
+                }
+            }
+
             $this->urls[] = $taxonUrl;
-        }
         }
 
         return $this->urls;
+    }
+
+    /**
+     * @return array|TaxonInterface[]
+     */
+    private function getTaxons()
+    {
+        return $this->taxonRepository->findAll();
     }
 }
