@@ -84,7 +84,7 @@ final class ProductUrlProvider implements UrlProviderInterface
                 /** @var ProductTranslationInterface|TranslationInterface $translation */
                 $location = $this->router->generate('sylius_shop_product_show', [
                     'slug' => $translation->getSlug(),
-                    '_locale' => $translation->getLocale()
+                    '_locale' => $translation->getLocale(),
                 ]);
 
                 if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {

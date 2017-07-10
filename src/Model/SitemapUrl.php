@@ -4,6 +4,7 @@ namespace SitemapPlugin\Model;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 class SitemapUrl implements SitemapUrlInterface
 {

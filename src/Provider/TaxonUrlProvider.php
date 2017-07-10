@@ -95,7 +95,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
                 /** @var TranslationInterface|TaxonTranslationInterface $translation */
                 $location = $this->router->generate('sylius_shop_product_index', [
                     'slug' => $translation->getSlug(),
-                    '_locale' => $translation->getLocale()
+                    '_locale' => $translation->getLocale(),
                 ]);
 
                 if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {

@@ -36,4 +36,11 @@ sitemap:
     index_template:       '@SitemapPlugin/index.xml.twig'
     exclude_taxon_root:   true
     absolute_url:         true
+    hreflang:             true
 ```
+
+### Feature switches
+
+* `exclude_taxon_root`: Often you don't want to include the root of your taxon tree as it has a generic name as 'products'.
+* `absolute_url`: Whether to generate absolute URL's (true) or relative (false). 
+* `hreflang': Whether to generate alternative URL versions for each locale. Defaults to true. Background: https://support.google.com/webmasters/answer/189077?hl=en.
