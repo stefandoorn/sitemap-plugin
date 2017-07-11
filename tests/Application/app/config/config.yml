@@ -25,7 +25,7 @@ framework:
     default_locale: "%locale%"
     trusted_proxies: ~
     session:
-        handler_id: ~
+        storage_id: session.storage.mock_file
     test: ~
 
 swiftmailer:

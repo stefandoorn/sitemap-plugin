@@ -2,6 +2,9 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
+/**
+ * @author Stefan Doorn <stefan@efectos.nl>
+ */
 trait TearDownTrait
 {
     public function tearDown()
