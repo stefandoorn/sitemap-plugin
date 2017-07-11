@@ -24,6 +24,7 @@ class SitemapAllControllerApiTest extends AbstractTestController
         $product->setName('Test');
         $product->setCode('test-code');
         $product->setSlug('test');
+        $product->addChannel($this->channel);
         $this->getEntityManager()->persist($product);
 
         $root = new Taxon();

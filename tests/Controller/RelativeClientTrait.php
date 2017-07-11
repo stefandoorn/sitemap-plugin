@@ -2,6 +2,10 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
+/**
+ * Class RelativeClientTrait
+ * @package Tests\SitemapPlugin\Controller
+ */
 trait RelativeClientTrait
 {
     /**

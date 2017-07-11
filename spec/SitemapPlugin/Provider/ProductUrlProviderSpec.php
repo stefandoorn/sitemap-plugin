@@ -3,16 +3,19 @@
 namespace spec\SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
-use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\SitemapUrlInterface;
 use SitemapPlugin\Provider\ProductUrlProvider;
 use SitemapPlugin\Provider\UrlProviderInterface;
+use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslation;
-use Sylius\Component\Core\Model\ProductTranslationInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -22,9 +25,14 @@ use Symfony\Component\Routing\RouterInterface;
  */
 final class ProductUrlProviderSpec extends ObjectBehavior
 {
-    function let(ProductRepository $repository, RouterInterface $router, SitemapUrlFactoryInterface $sitemapUrlFactory, LocaleContextInterface $localeContext)
-    {
-        $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext);
+    function let(
+        ProductRepository $repository,
+        RouterInterface $router,
+        SitemapUrlFactoryInterface $sitemapUrlFactory,
+        LocaleContextInterface $localeContext,
+        ChannelContextInterface $channelContext
+    ) {
+        $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext, $channelContext);
     }
 
     function it_is_initializable()
@@ -49,11 +57,22 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductInterface $product,
         ProductTranslation $productTranslation,
         SitemapUrlInterface $sitemapUrl,
-        \DateTime $now
+        \DateTime $now,
+        QueryBuilder $queryBuilder,
+        AbstractQuery $query
     ) {
         $localeContext->getLocaleCode()->willReturn('en_US');
 
-        $repository->findBy(['enabled' => true])->willReturn($products);
+        $repository->createQueryBuilder('o')->willReturn($queryBuilder);
+        $queryBuilder->addSelect('translation')->willReturn($queryBuilder);
+        $queryBuilder->innerJoin('o.translations', 'translation')->willReturn($queryBuilder);
+        $queryBuilder->andWhere(':channel MEMBER OF o.channels')->willReturn($queryBuilder);
+        $queryBuilder->andWhere('o.enabled = :enabled')->willReturn($queryBuilder);
+        $queryBuilder->setParameter('channel', null)->willReturn($queryBuilder);
+        $queryBuilder->setParameter('enabled', true)->willReturn($queryBuilder);
+        $queryBuilder->getQuery()->willReturn($query);
+        $query->getResult()->willReturn($products);
+
         $products->getIterator()->willReturn($iterator);
         $iterator->valid()->willReturn(true, false);
         $iterator->next()->shouldBeCalled();
@@ -72,7 +91,8 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $productTranslation->getSlug()->willReturn('t-shirt');
         $product->getTranslations()->willReturn($translations);
 
-        $router->generate('sylius_shop_product_show', ['slug' => 't-shirt', '_locale' => 'en_US'])->willReturn('http://sylius.org/en_US/products/t-shirt');
+        $router->generate('sylius_shop_product_show',
+            ['slug' => 't-shirt', '_locale' => 'en_US'])->willReturn('http://sylius.org/en_US/products/t-shirt');
         $router->generate($product, [], true)->willReturn('http://sylius.org/en_US/products/t-shirt');
         $sitemapUrlFactory->createNew()->willReturn($sitemapUrl);
 

@@ -2,6 +2,10 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
+/**
+ * Class TearDownTrait
+ * @package Tests\SitemapPlugin\Controller
+ */
 trait TearDownTrait
 {
     public function tearDown()

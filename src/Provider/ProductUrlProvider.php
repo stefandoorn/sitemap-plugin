@@ -4,6 +4,7 @@ namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
@@ -19,7 +20,7 @@ use Symfony\Component\Routing\RouterInterface;
 final class ProductUrlProvider implements UrlProviderInterface
 {
     /**
-     * @var ProductRepositoryInterface
+     * @var ProductRepositoryInterface|EntityRepository
      */
     private $productRepository;
 
@@ -113,10 +114,14 @@ final class ProductUrlProvider implements UrlProviderInterface
      */
     private function getProducts()
     {
-        return $this->productRepository->findLatestByChannel(
-            $this->channelContext->getChannel(),
-            $this->localeContext->getLocaleCode(),
-            10000000000
-        );
+        return $this->productRepository->createQueryBuilder('o')
+            ->addSelect('translation')
+            ->innerJoin('o.translations', 'translation')
+            ->andWhere(':channel MEMBER OF o.channels')
+            ->andWhere('o.enabled = :enabled')
+            ->setParameter('channel', $this->channelContext->getChannel())
+            ->setParameter('enabled', true)
+            ->getQuery()
+            ->getResult();
     }
 }

@@ -24,6 +24,7 @@ class SitemapProductControllerApiRelativeTest extends AbstractTestController
         $product->setName('Test');
         $product->setCode('test-code');
         $product->setSlug('test');
+        $product->addChannel($this->channel);
         $this->getEntityManager()->persist($product);
 
         $product = new Product();
@@ -31,6 +32,7 @@ class SitemapProductControllerApiRelativeTest extends AbstractTestController
         $product->setName('Mock');
         $product->setCode('mock-code');
         $product->setSlug('mock');
+        $product->addChannel($this->channel);
         $this->getEntityManager()->persist($product);
 
         $product = new Product();
@@ -39,6 +41,7 @@ class SitemapProductControllerApiRelativeTest extends AbstractTestController
         $product->setCode('test-code-3');
         $product->setSlug('test 2');
         $product->setEnabled(false);
+        $product->addChannel($this->channel);
         $this->getEntityManager()->persist($product);
 
         $this->getEntityManager()->flush();
