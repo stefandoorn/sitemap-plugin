@@ -4,7 +4,6 @@ namespace spec\SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\AbstractQuery;
-use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;

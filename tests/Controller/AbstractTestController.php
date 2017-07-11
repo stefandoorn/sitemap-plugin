@@ -32,7 +32,7 @@ abstract class AbstractTestController extends XmlApiTestCase
     protected $currency;
     
     /**
-     *
+     * @before
      */
     public function setupDatabase()
     {
