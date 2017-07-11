@@ -2,17 +2,16 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
-use Lakion\ApiTestCase\XmlApiTestCase;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\Taxon;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapAllControllerApiRelativeTest extends XmlApiTestCase
+class SitemapAllControllerApiRelativeTest extends AbstractTestController
 {
-   use RelativeClientTrait;
-   use TearDownTrait;
+    use RelativeClientTrait;
+    use TearDownTrait;
 
     /**
      * @before

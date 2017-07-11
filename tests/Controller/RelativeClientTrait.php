@@ -18,6 +18,6 @@ trait RelativeClientTrait
      */
     public function setUpClient()
     {
-        $this->client = static::createClient(array('environment' => 'test_relative'), array('HTTP_ACCEPT' => 'application/xml'));
+        $this->client = static::createClient(array('environment' => 'test_relative'), []);
     }
 }
