@@ -11,8 +11,7 @@ use Sylius\Component\Locale\Model\Locale;
 use Sylius\Component\Locale\Model\LocaleInterface;
 
 /**
- * Class AbstractTestController
- * @package Tests\SitemapPlugin\Controller
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 abstract class AbstractTestController extends XmlApiTestCase
 {

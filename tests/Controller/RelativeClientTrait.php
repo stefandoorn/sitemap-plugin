@@ -3,8 +3,7 @@
 namespace Tests\SitemapPlugin\Controller;
 
 /**
- * Class RelativeClientTrait
- * @package Tests\SitemapPlugin\Controller
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 trait RelativeClientTrait
 {
