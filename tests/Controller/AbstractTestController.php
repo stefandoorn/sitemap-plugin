@@ -2,7 +2,6 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
-use Lakion\ApiTestCase\ApiTestCase;
 use Lakion\ApiTestCase\XmlApiTestCase;
 
 /**
@@ -11,11 +10,4 @@ use Lakion\ApiTestCase\XmlApiTestCase;
  */
 abstract class AbstractTestController extends XmlApiTestCase
 {
-    /**
-     * @before
-     */
-    public function setUpClient()
-    {
-        $this->client = static::createClient(array(), array());
-    }
 }
