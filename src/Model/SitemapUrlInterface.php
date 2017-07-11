@@ -18,6 +18,21 @@ interface SitemapUrlInterface
     public function setLocalization($localization);
 
     /**
+     * {@inheritdoc}
+     */
+    public function addAlternative($location, $locale);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAlternatives(array $alternatives);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAlternatives();
+
+    /**
      * @return \DateTime
      */
     public function getLastModification();
