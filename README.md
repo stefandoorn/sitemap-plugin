@@ -6,6 +6,14 @@ Goes out to the Sylius team. The core code of this plugin is created by the Syli
 Unfortunately it got removed from the Sylius core. Luckily the Sylius team approved the 
 extraction to a separate bundle.
 
+## Features
+
+* Creates a sitemap index file to point to sub sitemap files per type of data
+* Default providers: taxons & products
+* Easily add your own providers
+* Product provider supports locales (hreflang) & is channel aware
+* Taxon provider supports locales (hreflang)
+
 ## Installation
 
 1. Run `composer require stefandoorn/sitemap-plugin`.
@@ -44,3 +52,9 @@ sitemap:
 * `exclude_taxon_root`: Often you don't want to include the root of your taxon tree as it has a generic name as 'products'.
 * `absolute_url`: Whether to generate absolute URL's (true) or relative (false). 
 * `hreflang`: Whether to generate alternative URL versions for each locale. Defaults to true. Background: https://support.google.com/webmasters/answer/189077?hl=en.
+
+## Add own provider
+
+* Register & tag your provider service with `sylius.sitemap_provider`
+* Let your provider implement `UrlProviderInterface`
+* Use one of the default providers as an example to implement code
