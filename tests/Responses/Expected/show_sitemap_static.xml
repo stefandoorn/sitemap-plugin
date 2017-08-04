@@ -6,7 +6,7 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>http://localhost/en_US/contact</loc>
+    <loc>http://localhost/en_US/contact/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
