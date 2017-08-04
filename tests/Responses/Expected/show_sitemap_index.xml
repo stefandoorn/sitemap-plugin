@@ -6,4 +6,7 @@
   <sitemap>
     <loc>http://localhost/sitemap/taxons.xml</loc>
   </sitemap>
+  <sitemap>
+    <loc>http://localhost/sitemap/static.xml</loc>
+  </sitemap>
 </sitemapindex>
