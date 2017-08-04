@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost/</loc>
+    <loc>http://localhost/en_US/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>http://localhost/contact</loc>
+    <loc>http://localhost/en_US/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
