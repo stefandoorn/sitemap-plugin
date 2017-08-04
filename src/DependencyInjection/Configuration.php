@@ -49,7 +49,7 @@ final class Configuration implements ConfigurationInterface
                     ->info('Whether to generate alternative URL versions for each locale. Defaults to true. Background: https://support.google.com/webmasters/answer/189077?hl=en.')
                     ->defaultTrue()
                 ->end()
-                ->arrayNode('staticRoutes')
+                ->arrayNode('static_routes')
                     ->beforeNormalization()->castToArray()->end()
                     ->info('In case you want to add static routes to your sitemap (e.g. homepage), configure them here. Defaults to homepage & contact page.')
                     ->prototype('array')

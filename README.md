@@ -47,7 +47,7 @@ sitemap:
     exclude_taxon_root:   true
     absolute_url:         true
     hreflang:             true
-    staticRoutes:
+    static_routes:
         - { route: sylius_shop_homepage, parameters: [], locales: [] }
         - { route: sylius_shop_contact_request, parameters: [], locales: [] }
 ```

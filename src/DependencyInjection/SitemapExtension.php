@@ -27,6 +27,6 @@ final class SitemapExtension extends Extension
         $container->setParameter('sylius.sitemap_exclude_taxon_root', $config['exclude_taxon_root']);
         $container->setParameter('sylius.sitemap_absolute_url', $config['absolute_url']);
         $container->setParameter('sylius.sitemap_hreflang', $config['hreflang']);
-        $container->setParameter('sylius.sitemap_static', $config['staticRoutes']);
+        $container->setParameter('sylius.sitemap_static', $config['static_routes']);
     }
 }
