@@ -9,7 +9,7 @@ extraction to a separate bundle.
 ## Features
 
 * Creates a sitemap index file to point to sub sitemap files per type of data
-* Default providers: taxons & products
+* Default providers: taxons, products & static content (homepage & contact)
 * Easily add your own providers
 * Product provider supports locales (hreflang) & is channel aware
 * Taxon provider supports locales (hreflang)
@@ -38,6 +38,8 @@ sylius_sitemap:
 
 ## Default configuration
 
+Get a full list of configuration: `bin/console config:dump-reference sitemap`
+
 ```yaml
 sitemap:
     template:             '@SitemapPlugin/show.xml.twig'
@@ -45,13 +47,22 @@ sitemap:
     exclude_taxon_root:   true
     absolute_url:         true
     hreflang:             true
+    staticRoutes:
+        - { route: sylius_shop_homepage, parameters: [], locales: [] }
+        - { route: sylius_shop_contact_request, parameters: [], locales: [] }
 ```
 
 ### Feature switches
 
 * `exclude_taxon_root`: Often you don't want to include the root of your taxon tree as it has a generic name as 'products'.
-* `absolute_url`: Whether to generate absolute URL's (true) or relative (false). 
+* `absolute_url`: Whether to generate absolute URL's (true) or relative (false). Defaults to true.
 * `hreflang`: Whether to generate alternative URL versions for each locale. Defaults to true. Background: https://support.google.com/webmasters/answer/189077?hl=en.
+
+## Default providers
+
+* Products
+* Taxons
+* Static content (homepage & contact)
 
 ## Add own provider
 
