@@ -2,7 +2,7 @@
 
 namespace SitemapPlugin\Builder;
 
-use SitemapPlugin\Model\SitemapIndexInterface;
+use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\IndexUrlProviderInterface;
 
 /**
@@ -16,7 +16,7 @@ interface SitemapIndexBuilderInterface extends BuilderInterface
     public function addIndexProvider(IndexUrlProviderInterface $provider): void;
 
     /**
-     * @return SitemapIndexInterface
+     * @return SitemapInterface
      */
-    public function build(): SitemapIndexInterface;
+    public function build(): SitemapInterface;
 }

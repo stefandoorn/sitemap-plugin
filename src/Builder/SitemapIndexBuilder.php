@@ -3,8 +3,7 @@
 namespace SitemapPlugin\Builder;
 
 use SitemapPlugin\Factory\SitemapIndexFactoryInterface;
-use SitemapPlugin\Model\SitemapIndexInterface;
-use SitemapPlugin\Model\SitemapUrl;
+use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\IndexUrlProviderInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
 
@@ -55,7 +54,7 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function build(): SitemapIndexInterface
+    public function build(): SitemapInterface
     {
         $sitemap = $this->sitemapIndexFactory->createNew();
         $urls = [];
