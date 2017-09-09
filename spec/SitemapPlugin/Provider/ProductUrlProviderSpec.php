@@ -30,16 +30,16 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         SitemapUrlFactoryInterface $sitemapUrlFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext
-    ) {
+    ): void {
         $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext, $channelContext);
     }
 
-    function it_is_initializable()
+    function it_is_initializable(): void
     {
         $this->shouldHaveType(ProductUrlProvider::class);
     }
 
-    function it_implements_provider_interface()
+    function it_implements_provider_interface(): void
     {
         $this->shouldImplement(UrlProviderInterface::class);
     }
@@ -59,7 +59,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         \DateTime $now,
         QueryBuilder $queryBuilder,
         AbstractQuery $query
-    ) {
+    ): void {
         $localeContext->getLocaleCode()->willReturn('en_US');
 
         $repository->createQueryBuilder('o')->willReturn($queryBuilder);

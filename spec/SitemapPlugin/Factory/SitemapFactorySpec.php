@@ -10,10 +10,11 @@ use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 final class SitemapFactorySpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    function it_is_initializable(): void
     {
         $this->shouldHaveType(SitemapFactory::class);
     }
