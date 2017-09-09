@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Exception;
 
@@ -12,6 +12,8 @@ class RouteExistsException extends \Exception
      */
     public function __construct($routeName, \Exception $previousException = null)
     {
-        parent::__construct(sprintf('Sitemap route "%s" already exists, probably a provider with a non-unique name', $routeName), 0, $previousException);
+        $template = 'Sitemap route "%s" already exists, probably a provider with a non-unique name';
+
+        parent::__construct(sprintf($template, $routeName), 0, $previousException);
     }
 }

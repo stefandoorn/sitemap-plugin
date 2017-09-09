@@ -13,6 +13,7 @@ use SitemapPlugin\Provider\ProductUrlProvider;
 use SitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslation;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -30,16 +31,16 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         SitemapUrlFactoryInterface $sitemapUrlFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext
-    ) {
+    ): void {
         $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext, $channelContext);
     }
 
-    function it_is_initializable()
+    function it_is_initializable(): void
     {
         $this->shouldHaveType(ProductUrlProvider::class);
     }
 
-    function it_implements_provider_interface()
+    function it_implements_provider_interface(): void
     {
         $this->shouldImplement(UrlProviderInterface::class);
     }
@@ -49,6 +50,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $router,
         $sitemapUrlFactory,
         $localeContext,
+        $channelContext,
         Collection $translations,
         Collection $products,
         \Iterator $iterator,
@@ -58,16 +60,18 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         SitemapUrlInterface $sitemapUrl,
         \DateTime $now,
         QueryBuilder $queryBuilder,
-        AbstractQuery $query
-    ) {
+        AbstractQuery $query,
+        ChannelInterface $channel
+    ): void {
         $localeContext->getLocaleCode()->willReturn('en_US');
+        $channelContext->getChannel()->willReturn($channel);
 
         $repository->createQueryBuilder('o')->willReturn($queryBuilder);
         $queryBuilder->addSelect('translation')->willReturn($queryBuilder);
         $queryBuilder->innerJoin('o.translations', 'translation')->willReturn($queryBuilder);
         $queryBuilder->andWhere(':channel MEMBER OF o.channels')->willReturn($queryBuilder);
         $queryBuilder->andWhere('o.enabled = :enabled')->willReturn($queryBuilder);
-        $queryBuilder->setParameter('channel', null)->willReturn($queryBuilder);
+        $queryBuilder->setParameter('channel', $channel)->willReturn($queryBuilder);
         $queryBuilder->setParameter('enabled', true)->willReturn($queryBuilder);
         $queryBuilder->getQuery()->willReturn($query);
         $query->getResult()->willReturn($products);

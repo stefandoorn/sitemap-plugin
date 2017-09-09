@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Renderer;
 
@@ -47,7 +47,7 @@ final class TwigAdapter implements RendererAdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function render(SitemapInterface $sitemap)
+    public function render(SitemapInterface $sitemap): string
     {
         return $this->twig->render($this->template, [
             'url_set' => $sitemap->getUrls(),

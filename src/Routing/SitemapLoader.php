@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Routing;
 
@@ -30,7 +30,7 @@ class SitemapLoader extends Loader implements ContainerAwareInterface
      * @param null $type
      * @return RouteCollection
      */
-    public function load($resource, $type = null)
+    public function load($resource, $type = null): RouteCollection
     {
         if (true === $this->loaded) {
             throw new \RuntimeException('Do not add the "extra" loader twice');
@@ -77,7 +77,7 @@ class SitemapLoader extends Loader implements ContainerAwareInterface
      * @param null $type
      * @return bool
      */
-    public function supports($resource, $type = null)
+    public function supports($resource, $type = null): bool
     {
         return 'sitemap' === $type;
     }

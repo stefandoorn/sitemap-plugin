@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
@@ -21,7 +21,7 @@ abstract class AbstractController
      * @param SitemapInterface $sitemap
      * @return Response
      */
-    protected function createResponse(SitemapInterface $sitemap)
+    protected function createResponse(SitemapInterface $sitemap): Response
     {
         $response = new Response($this->sitemapRenderer->render($sitemap));
         $response->headers->set('Content-Type', 'application/xml');

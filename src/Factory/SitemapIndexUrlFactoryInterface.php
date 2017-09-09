@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Factory;
 
@@ -12,5 +12,5 @@ interface SitemapIndexUrlFactoryInterface
     /**
      * @return SitemapIndexUrlInterface
      */
-    public function createNew();
+    public function createNew(): SitemapIndexUrlInterface;
 }

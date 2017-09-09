@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
@@ -71,7 +71,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'taxons';
     }
@@ -79,7 +79,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function generate(): iterable
     {
         foreach ($this->getTaxons() as $taxon) {
             /** @var TaxonInterface $taxon */
@@ -114,7 +114,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /**
      * @return array|TaxonInterface[]
      */
-    private function getTaxons()
+    private function getTaxons(): iterable
     {
         return $this->taxonRepository->findAll();
     }

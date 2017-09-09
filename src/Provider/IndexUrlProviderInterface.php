@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
@@ -10,5 +10,10 @@ interface IndexUrlProviderInterface
     /**
      * @return array
      */
-    public function generate();
+    public function generate(): iterable;
+
+    /**
+     * @param UrlProviderInterface $provider
+     */
+    public function addProvider(UrlProviderInterface $provider): void;
 }

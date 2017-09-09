@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\DependencyInjection;
 
@@ -27,7 +27,7 @@ final class Configuration implements ConfigurationInterface
     /**
      * @param ArrayNodeDefinition $node
      */
-    private function addSitemapSection(ArrayNodeDefinition $node)
+    private function addSitemapSection(ArrayNodeDefinition $node): void
     {
         $node
             ->children()

@@ -1,6 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
+
+use DateTimeInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
@@ -14,7 +16,7 @@ class SitemapUrl implements SitemapUrlInterface
     private $localization;
 
     /**
-     * @var \DateTime
+     * @var DateTimeInterface
      */
     private $lastModification;
 
@@ -36,7 +38,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function addAlternative($location, $locale)
+    public function addAlternative($location, $locale): void
     {
         $this->alternatives[$locale] = $location;
     }
@@ -44,7 +46,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setAlternatives(array $alternatives)
+    public function setAlternatives(array $alternatives): void
     {
         $this->alternatives = $alternatives;
     }
@@ -52,7 +54,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getAlternatives()
+    public function getAlternatives(): iterable
     {
         return $this->alternatives;
     }
@@ -60,7 +62,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocalization()
+    public function getLocalization(): ?string
     {
         return $this->localization;
     }
@@ -68,7 +70,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLocalization($localization)
+    public function setLocalization(string $localization): void
     {
         $this->localization = $localization;
     }
@@ -76,7 +78,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getLastModification()
+    public function getLastModification(): ?DateTimeInterface
     {
         return $this->lastModification;
     }
@@ -84,7 +86,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLastModification(\DateTime $lastModification)
+    public function setLastModification(DateTimeInterface $lastModification): void
     {
         $this->lastModification = $lastModification;
     }
@@ -92,7 +94,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getChangeFrequency()
+    public function getChangeFrequency(): string
     {
         return (string) $this->changeFrequency;
     }
@@ -100,7 +102,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setChangeFrequency(ChangeFrequency $changeFrequency)
+    public function setChangeFrequency(ChangeFrequency $changeFrequency): void
     {
         $this->changeFrequency = $changeFrequency;
     }
@@ -108,7 +110,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getPriority()
+    public function getPriority(): ?float
     {
         return $this->priority;
     }
@@ -116,7 +118,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setPriority($priority)
+    public function setPriority(float $priority): void
     {
         if (!is_numeric($priority) || 0 > $priority || 1 < $priority) {
             throw new \InvalidArgumentException(sprintf(

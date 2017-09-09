@@ -9,7 +9,7 @@ final class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function registerBundles()
+    public function registerBundles(): array
     {
         return array_merge(parent::registerBundles(), [
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
@@ -25,7 +25,7 @@ final class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         if ($this->getEnvironment() === 'test_relative') {
             $loader->load($this->getRootDir() . '/config/config_test_relative.yml');

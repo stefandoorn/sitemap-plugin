@@ -1,7 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
+use Doctrine\Common\Collections\Collection;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -73,7 +74,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'products';
     }
@@ -81,7 +82,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function generate(): iterable
     {
         foreach ($this->getProducts() as $product) {
             $productUrl = $this->sitemapUrlFactory->createNew();
@@ -110,9 +111,9 @@ final class ProductUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * @return array|ProductInterface[]
+     * @return array|Collection|ProductInterface[]
      */
-    private function getProducts()
+    private function getProducts(): iterable
     {
         return $this->productRepository->createQueryBuilder('o')
             ->addSelect('translation')

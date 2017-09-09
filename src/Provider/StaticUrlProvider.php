@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
@@ -59,7 +59,7 @@ final class StaticUrlProvider implements UrlProviderInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'static';
     }
@@ -67,7 +67,7 @@ final class StaticUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function generate(): iterable
     {
         if (empty($this->routes)) {
             return $this->urls;

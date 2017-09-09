@@ -1,9 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 final class ChangeFrequency
 {
@@ -23,7 +24,7 @@ final class ChangeFrequency
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->value;
     }
@@ -31,7 +32,7 @@ final class ChangeFrequency
     /**
      * @return ChangeFrequency
      */
-    public static function always()
+    public static function always(): self
     {
         return new self('always');
     }
@@ -39,7 +40,7 @@ final class ChangeFrequency
     /**
      * @return ChangeFrequency
      */
-    public static function hourly()
+    public static function hourly(): self
     {
         return new self('hourly');
     }
@@ -47,7 +48,7 @@ final class ChangeFrequency
     /**
      * @return ChangeFrequency
      */
-    public static function daily()
+    public static function daily(): self
     {
         return new self('daily');
     }
@@ -55,7 +56,7 @@ final class ChangeFrequency
     /**
      * @return ChangeFrequency
      */
-    public static function weekly()
+    public static function weekly(): self
     {
         return new self('weekly');
     }
@@ -63,7 +64,7 @@ final class ChangeFrequency
     /**
      * @return ChangeFrequency
      */
-    public static function monthly()
+    public static function monthly(): self
     {
         return new self('monthly');
     }
@@ -71,7 +72,7 @@ final class ChangeFrequency
     /**
      * @return ChangeFrequency
      */
-    public static function yearly()
+    public static function yearly(): self
     {
         return new self('yearly');
     }
@@ -79,7 +80,7 @@ final class ChangeFrequency
     /**
      * @return ChangeFrequency
      */
-    public static function never()
+    public static function never(): self
     {
         return new self('never');
     }

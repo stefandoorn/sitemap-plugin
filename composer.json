@@ -4,8 +4,8 @@
     "description": "Sitemap Plugin for Sylius",
     "license": "MIT",
     "require": {
-        "php": "^5.6|^7.0",
-        "sylius/sylius": "^1.0@beta"
+        "php": "^7.1",
+        "sylius/sylius": "^1.0@beta|dev-master"
     },
     "require-dev": {
         "phpspec/phpspec": "^3.2",

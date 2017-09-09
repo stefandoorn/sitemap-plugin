@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
@@ -45,7 +45,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function addProvider(UrlProviderInterface $provider)
+    public function addProvider(UrlProviderInterface $provider): void
     {
         $this->providers[] = $provider;
     }
@@ -53,7 +53,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function generate(): iterable
     {
         foreach ($this->providers as $provider) {
             /** @var UrlProviderInterface $provider */
@@ -62,8 +62,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
                 'sylius_sitemap_' . $provider->getName(),
                 [
                     '_format' => 'xml'
-                ],
-                true
+                ]
             );
 
             $indexUrl->setLocalization($localization);

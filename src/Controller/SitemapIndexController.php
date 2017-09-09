@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
@@ -32,7 +32,7 @@ class SitemapIndexController extends AbstractController
     /**
      * @return Response
      */
-    public function showAction(Request $request)
+    public function showAction(): Response
     {
         return $this->createResponse($this->sitemapBuilder->build());
     }

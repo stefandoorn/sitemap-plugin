@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SitemapPlugin\Renderer;
 
@@ -17,5 +17,5 @@ interface RendererAdapterInterface
      *
      * @throws \RuntimeException if the template cannot be rendered
      */
-    public function render(SitemapInterface $sitemap);
+    public function render(SitemapInterface $sitemap): string;
 }
