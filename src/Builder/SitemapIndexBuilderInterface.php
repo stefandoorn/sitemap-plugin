@@ -2,8 +2,8 @@
 
 namespace SitemapPlugin\Builder;
 
+use SitemapPlugin\Model\SitemapIndexInterface;
 use SitemapPlugin\Provider\IndexUrlProviderInterface;
-use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
@@ -13,10 +13,10 @@ interface SitemapIndexBuilderInterface extends BuilderInterface
     /**
      * @param IndexUrlProviderInterface $provider
      */
-    public function addIndexProvider(IndexUrlProviderInterface $provider);
+    public function addIndexProvider(IndexUrlProviderInterface $provider): void;
 
     /**
-     * @return SitemapInterface
+     * @return SitemapIndexInterface
      */
-    public function build();
+    public function build(): SitemapIndexInterface;
 }

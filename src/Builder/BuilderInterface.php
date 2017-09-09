@@ -12,5 +12,5 @@ interface BuilderInterface
     /**
      * @param UrlProviderInterface $provider
      */
-    public function addProvider(UrlProviderInterface $provider);
+    public function addProvider(UrlProviderInterface $provider): void;
 }

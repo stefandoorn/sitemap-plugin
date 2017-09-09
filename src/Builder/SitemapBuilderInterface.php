@@ -3,7 +3,6 @@
 namespace SitemapPlugin\Builder;
 
 use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Provider\UrlProviderInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
@@ -14,10 +13,10 @@ interface SitemapBuilderInterface extends BuilderInterface
     /**
      * @return SitemapInterface
      */
-    public function build(array $filter = []);
+    public function build(array $filter = []): SitemapInterface;
 
     /**
      * @return array
      */
-    public function getProviders();
+    public function getProviders(): array;
 }

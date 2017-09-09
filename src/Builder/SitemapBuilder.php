@@ -3,6 +3,7 @@
 namespace SitemapPlugin\Builder;
 
 use SitemapPlugin\Factory\SitemapFactoryInterface;
+use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
 
 /**
@@ -32,7 +33,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function addProvider(UrlProviderInterface $provider)
+    public function addProvider(UrlProviderInterface $provider): void
     {
         $this->providers[] = $provider;
     }
@@ -40,7 +41,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
     /**
      * @return array
      */
-    public function getProviders()
+    public function getProviders(): array
     {
         return $this->providers;
     }
@@ -48,7 +49,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function build(array $filter = [])
+    public function build(array $filter = []): SitemapInterface
     {
         $sitemap = $this->sitemapFactory->createNew();
         $urls = [];
@@ -66,7 +67,8 @@ final class SitemapBuilder implements SitemapBuilderInterface
      * @param array $filter
      * @return array
      */
-    private function filter(array $filter) {
+    private function filter(array $filter): array
+    {
         if (empty($filter)) {
             return $this->providers;
         }
