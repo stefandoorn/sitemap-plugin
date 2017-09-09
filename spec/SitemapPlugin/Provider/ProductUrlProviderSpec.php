@@ -13,6 +13,7 @@ use SitemapPlugin\Provider\ProductUrlProvider;
 use SitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslation;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -49,6 +50,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $router,
         $sitemapUrlFactory,
         $localeContext,
+        $channelContext,
         Collection $translations,
         Collection $products,
         \Iterator $iterator,
@@ -58,9 +60,11 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         SitemapUrlInterface $sitemapUrl,
         \DateTime $now,
         QueryBuilder $queryBuilder,
-        AbstractQuery $query
+        AbstractQuery $query,
+        ChannelInterface $channel
     ): void {
         $localeContext->getLocaleCode()->willReturn('en_US');
+        $channelContext->getChannel()->willReturn($channel);
 
         $repository->createQueryBuilder('o')->willReturn($queryBuilder);
         $queryBuilder->addSelect('translation')->willReturn($queryBuilder);
