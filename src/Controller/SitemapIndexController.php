@@ -32,7 +32,7 @@ class SitemapIndexController extends AbstractController
     /**
      * @return Response
      */
-    public function showAction(Request $request)
+    public function showAction(): Response
     {
         return $this->createResponse($this->sitemapBuilder->build());
     }
