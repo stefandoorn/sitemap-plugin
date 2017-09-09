@@ -94,7 +94,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getChangeFrequency()
+    public function getChangeFrequency(): string
     {
         return (string) $this->changeFrequency;
     }
