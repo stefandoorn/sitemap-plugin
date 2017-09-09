@@ -71,7 +71,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $queryBuilder->innerJoin('o.translations', 'translation')->willReturn($queryBuilder);
         $queryBuilder->andWhere(':channel MEMBER OF o.channels')->willReturn($queryBuilder);
         $queryBuilder->andWhere('o.enabled = :enabled')->willReturn($queryBuilder);
-        $queryBuilder->setParameter('channel', null)->willReturn($queryBuilder);
+        $queryBuilder->setParameter('channel', $channel)->willReturn($queryBuilder);
         $queryBuilder->setParameter('enabled', true)->willReturn($queryBuilder);
         $queryBuilder->getQuery()->willReturn($query);
         $query->getResult()->willReturn($products);
