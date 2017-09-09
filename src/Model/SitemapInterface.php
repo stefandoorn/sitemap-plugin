@@ -38,7 +38,7 @@ interface SitemapInterface
     /**
      * @param string $localization
      */
-    public function setLocalization($localization): void;
+    public function setLocalization(?string $localization): void;
 
     /**
      * @return DateTimeInterface
