@@ -54,10 +54,4 @@ final class SitemapUrlSpec extends ObjectBehavior
         $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array(2));
         $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array(1.1));
     }
-
-    function it_throws_invalid_argument_exception_if_priority_will_be_not_a_number(): void
-    {
-        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array('Mike'));
-        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array(true));
-    }
 }

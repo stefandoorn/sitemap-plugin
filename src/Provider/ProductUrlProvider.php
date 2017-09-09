@@ -2,6 +2,7 @@
 
 namespace SitemapPlugin\Provider;
 
+use Doctrine\Common\Collections\Collection;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -110,9 +111,9 @@ final class ProductUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * @return array|ProductInterface[]
+     * @return array|Collection|ProductInterface[]
      */
-    private function getProducts(): array
+    private function getProducts(): iterable
     {
         return $this->productRepository->createQueryBuilder('o')
             ->addSelect('translation')

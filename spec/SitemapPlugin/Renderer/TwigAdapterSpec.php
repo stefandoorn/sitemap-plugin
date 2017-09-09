@@ -33,7 +33,12 @@ final class TwigAdapterSpec extends ObjectBehavior
     function it_renders_sitemap($twig, SitemapInterface $sitemap, SitemapUrlInterface $productUrl): void
     {
         $sitemap->getUrls()->willReturn([$productUrl]);
-        $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', ['url_set' => [$productUrl], 'absolute_url' => false, 'hreflang' => true])->shouldBeCalled();
+
+        $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', [
+            'url_set' => [$productUrl],
+            'absolute_url' => false,
+            'hreflang' => true
+        ])->shouldBeCalled()->willReturn('');
 
         $this->render($sitemap);
     }
