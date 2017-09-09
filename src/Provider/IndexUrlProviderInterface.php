@@ -10,5 +10,10 @@ interface IndexUrlProviderInterface
     /**
      * @return array
      */
-    public function generate();
+    public function generate(): array;
+
+    /**
+     * @param UrlProviderInterface $provider
+     */
+    public function addProvider(UrlProviderInterface $provider): void;
 }

@@ -2,6 +2,8 @@
  
 namespace SitemapPlugin\Model;
 
+use DateTimeInterface;
+
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
@@ -13,14 +15,14 @@ class SitemapIndexUrl implements SitemapIndexUrlInterface
     private $localization;
 
     /**
-     * @var \DateTime
+     * @var DateTimeInterface
      */
     private $lastModification;
 
     /**
      * {@inheritdoc}
      */
-    public function getLocalization()
+    public function getLocalization(): ?string
     {
         return $this->localization;
     }
@@ -28,7 +30,7 @@ class SitemapIndexUrl implements SitemapIndexUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLocalization($localization)
+    public function setLocalization(?string $localization): void
     {
         $this->localization = $localization;
     }
@@ -36,7 +38,7 @@ class SitemapIndexUrl implements SitemapIndexUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getLastModification()
+    public function getLastModification(): ?DateTimeInterface
     {
         return $this->lastModification;
     }
@@ -44,7 +46,7 @@ class SitemapIndexUrl implements SitemapIndexUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLastModification(\DateTime $lastModification)
+    public function setLastModification(?DateTimeInterface $lastModification)
     {
         $this->lastModification = $lastModification;
     }

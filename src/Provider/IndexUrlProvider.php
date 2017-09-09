@@ -45,7 +45,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function addProvider(UrlProviderInterface $provider)
+    public function addProvider(UrlProviderInterface $provider): void
     {
         $this->providers[] = $provider;
     }
@@ -53,7 +53,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function generate(): array
     {
         foreach ($this->providers as $provider) {
             /** @var UrlProviderInterface $provider */

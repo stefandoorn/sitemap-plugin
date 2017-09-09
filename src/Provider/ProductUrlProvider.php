@@ -73,7 +73,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'products';
     }
@@ -81,7 +81,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function generate(): array
     {
         foreach ($this->getProducts() as $product) {
             $productUrl = $this->sitemapUrlFactory->createNew();
@@ -112,7 +112,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * @return array|ProductInterface[]
      */
-    private function getProducts()
+    private function getProducts(): array
     {
         return $this->productRepository->createQueryBuilder('o')
             ->addSelect('translation')

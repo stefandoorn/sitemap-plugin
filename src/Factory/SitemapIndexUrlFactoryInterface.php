@@ -12,5 +12,5 @@ interface SitemapIndexUrlFactoryInterface
     /**
      * @return SitemapIndexUrlInterface
      */
-    public function createNew();
+    public function createNew(): SitemapIndexUrlInterface;
 }

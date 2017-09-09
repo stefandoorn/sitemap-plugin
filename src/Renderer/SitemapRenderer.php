@@ -26,7 +26,7 @@ final class SitemapRenderer implements SitemapRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function render(SitemapInterface $sitemap)
+    public function render(SitemapInterface $sitemap): string
     {
         return $this->adapter->render($sitemap);
     }

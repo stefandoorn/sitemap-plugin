@@ -1,7 +1,8 @@
 <?php
- 
+
 namespace SitemapPlugin\Model;
 
+use DateTimeInterface;
 use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 
 /**
@@ -20,14 +21,14 @@ class SitemapIndex implements SitemapInterface
     private $localization;
 
     /**
-     * @var \DateTime
+     * @var DateTimeInterface
      */
     private $lastModification;
 
     /**
      * {@inheritdoc}
      */
-    public function setUrls(array $urls)
+    public function setUrls(array $urls): void
     {
         $this->urls = $urls;
     }
@@ -35,7 +36,7 @@ class SitemapIndex implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function getUrls()
+    public function getUrls(): array
     {
         return $this->urls;
     }
@@ -43,7 +44,7 @@ class SitemapIndex implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function addUrl(SitemapUrlInterface $url)
+    public function addUrl(SitemapUrlInterface $url): void
     {
         $this->urls[] = $url;
     }
@@ -51,7 +52,7 @@ class SitemapIndex implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function removeUrl(SitemapUrlInterface $url)
+    public function removeUrl(SitemapUrlInterface $url): void
     {
         $key = array_search($url, $this->urls, true);
         if (false === $key) {
@@ -64,7 +65,7 @@ class SitemapIndex implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function setLocalization($localization)
+    public function setLocalization(string $localization): void
     {
         $this->localization = $localization;
     }
@@ -72,7 +73,7 @@ class SitemapIndex implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocalization()
+    public function getLocalization(): ?string
     {
         return $this->localization;
     }
@@ -80,7 +81,7 @@ class SitemapIndex implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function setLastModification(\DateTime $lastModification)
+    public function setLastModification(?DateTimeInterface $lastModification)
     {
         $this->lastModification = $lastModification;
     }
@@ -88,7 +89,7 @@ class SitemapIndex implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function getLastModification()
+    public function getLastModification(): ?DateTimeInterface
     {
         return $this->lastModification;
     }

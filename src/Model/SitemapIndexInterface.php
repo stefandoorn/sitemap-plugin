@@ -2,6 +2,8 @@
 
 namespace SitemapPlugin\Model;
 
+use DateTimeInterface;
+
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
@@ -10,30 +12,40 @@ interface SitemapIndexInterface
     /**
      * @return SitemapUrlInterface[]
      */
-    public function getUrls();
+    public function getUrls(): array;
 
     /**
      * @param SitemapUrlInterface[] $urlSet
      */
-    public function setUrls(array $urlSet);
+    public function setUrls(array $urlSet): void;
 
     /**
      * @param SitemapUrlInterface $url
      */
-    public function addUrl(SitemapUrlInterface $url);
+    public function addUrl(SitemapUrlInterface $url): void;
 
     /**
      * @param SitemapUrlInterface $url
      */
-    public function removeUrl(SitemapUrlInterface $url);
+    public function removeUrl(SitemapUrlInterface $url): void;
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
-    public function getLastModification();
+    public function setLocalization(string $localization): void;
 
     /**
-     * @param \DateTime $lastModification
+     * {@inheritdoc}
      */
-    public function setLastModification(\DateTime $lastModification);
+    public function getLocalization(): ?string;
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getLastModification(): ?DateTimeInterface;
+
+    /**
+     * @param DateTimeInterface $lastModification
+     */
+    public function setLastModification(?DateTimeInterface $lastModification);
 }

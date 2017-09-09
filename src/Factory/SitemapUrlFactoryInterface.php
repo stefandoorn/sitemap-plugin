@@ -6,11 +6,12 @@ use SitemapPlugin\Model\SitemapUrlInterface;
 
 /**
  * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
+ * @author Stefan Doorn <stefan@efectos.nl>
  */
 interface SitemapUrlFactoryInterface
 {
     /**
      * @return SitemapUrlInterface
      */
-    public function createNew();
+    public function createNew(): SitemapUrlInterface;
 }

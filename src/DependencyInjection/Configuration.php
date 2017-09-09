@@ -27,7 +27,7 @@ final class Configuration implements ConfigurationInterface
     /**
      * @param ArrayNodeDefinition $node
      */
-    private function addSitemapSection(ArrayNodeDefinition $node)
+    private function addSitemapSection(ArrayNodeDefinition $node): void
     {
         $node
             ->children()

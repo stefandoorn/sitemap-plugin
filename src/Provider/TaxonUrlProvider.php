@@ -71,7 +71,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'taxons';
     }
@@ -79,7 +79,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function generate(): array
     {
         foreach ($this->getTaxons() as $taxon) {
             /** @var TaxonInterface $taxon */
@@ -114,7 +114,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /**
      * @return array|TaxonInterface[]
      */
-    private function getTaxons()
+    private function getTaxons(): array
     {
         return $this->taxonRepository->findAll();
     }
