@@ -82,7 +82,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate(): array
+    public function generate(): iterable
     {
         foreach ($this->getProducts() as $product) {
             $productUrl = $this->sitemapUrlFactory->createNew();

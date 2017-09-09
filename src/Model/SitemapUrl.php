@@ -54,7 +54,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getAlternatives(): array
+    public function getAlternatives(): iterable
     {
         return $this->alternatives;
     }

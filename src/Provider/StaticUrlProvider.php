@@ -67,7 +67,7 @@ final class StaticUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate(): array
+    public function generate(): iterable
     {
         if (empty($this->routes)) {
             return $this->urls;

@@ -13,7 +13,7 @@ interface SitemapInterface
     /**
      * @return SitemapUrlInterface[]
      */
-    public function getUrls(): array;
+    public function getUrls(): iterable;
 
     /**
      * @param SitemapUrlInterface[] $urlSet

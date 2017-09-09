@@ -53,7 +53,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate(): array
+    public function generate(): iterable
     {
         foreach ($this->providers as $provider) {
             /** @var UrlProviderInterface $provider */

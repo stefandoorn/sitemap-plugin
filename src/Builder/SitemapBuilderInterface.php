@@ -18,5 +18,5 @@ interface SitemapBuilderInterface extends BuilderInterface
     /**
      * @return array
      */
-    public function getProviders(): array;
+    public function getProviders(): iterable;
 }

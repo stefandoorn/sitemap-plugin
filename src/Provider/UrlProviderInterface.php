@@ -11,7 +11,7 @@ interface UrlProviderInterface
     /**
      * @return array
      */
-    public function generate(): array;
+    public function generate(): iterable;
 
     /**
      * @return string

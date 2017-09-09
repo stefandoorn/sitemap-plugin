@@ -41,7 +41,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
     /**
      * @return array
      */
-    public function getProviders(): array
+    public function getProviders(): iterable
     {
         return $this->providers;
     }

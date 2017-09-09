@@ -33,7 +33,7 @@ interface SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function getAlternatives(): array;
+    public function getAlternatives(): iterable;
 
     /**
      * @return DateTimeInterface

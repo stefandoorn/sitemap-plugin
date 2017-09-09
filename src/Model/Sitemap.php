@@ -37,7 +37,7 @@ class Sitemap implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function getUrls(): array
+    public function getUrls(): iterable
     {
         return $this->urls;
     }

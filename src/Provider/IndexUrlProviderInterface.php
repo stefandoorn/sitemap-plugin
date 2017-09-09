@@ -10,7 +10,7 @@ interface IndexUrlProviderInterface
     /**
      * @return array
      */
-    public function generate(): array;
+    public function generate(): iterable;
 
     /**
      * @param UrlProviderInterface $provider
