@@ -62,8 +62,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
                 'sylius_sitemap_' . $provider->getName(),
                 [
                     '_format' => 'xml'
-                ],
-                true
+                ]
             );
 
             $indexUrl->setLocalization($localization);
