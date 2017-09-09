@@ -2,7 +2,7 @@
 
 namespace SitemapPlugin\Factory;
 
-use SitemapPlugin\Model\SitemapIndexInterface;
+use SitemapPlugin\Model\SitemapInterface;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
@@ -10,7 +10,7 @@ use SitemapPlugin\Model\SitemapIndexInterface;
 interface SitemapIndexFactoryInterface
 {
     /**
-     * @return SitemapIndexInterface
+     * @return SitemapInterface
      */
-    public function createNew(): SitemapIndexInterface;
+    public function createNew(): SitemapInterface;
 }

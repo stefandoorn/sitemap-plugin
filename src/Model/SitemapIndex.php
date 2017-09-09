@@ -8,7 +8,7 @@ use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapIndex implements SitemapIndexInterface
+class SitemapIndex implements SitemapInterface
 {
     /**
      * @var array
