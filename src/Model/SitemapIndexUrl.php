@@ -30,7 +30,7 @@ class SitemapIndexUrl implements SitemapIndexUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLocalization(?string $localization): void
+    public function setLocalization(string $localization): void
     {
         $this->localization = $localization;
     }
@@ -46,7 +46,7 @@ class SitemapIndexUrl implements SitemapIndexUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLastModification(?DateTimeInterface $lastModification)
+    public function setLastModification(DateTimeInterface $lastModification)
     {
         $this->lastModification = $lastModification;
     }

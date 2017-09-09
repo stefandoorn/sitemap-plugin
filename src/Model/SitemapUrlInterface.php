@@ -18,7 +18,7 @@ interface SitemapUrlInterface
     /**
      * @param string $localization
      */
-    public function setLocalization(?string $localization): void;
+    public function setLocalization(string $localization): void;
 
     /**
      * {@inheritdoc}
@@ -53,7 +53,7 @@ interface SitemapUrlInterface
     /**
      * @param ChangeFrequency $changeFrequency
      */
-    public function setChangeFrequency(?ChangeFrequency $changeFrequency): void;
+    public function setChangeFrequency(ChangeFrequency $changeFrequency): void;
 
     /**
      * @return float
@@ -63,5 +63,5 @@ interface SitemapUrlInterface
     /**
      * @param float $priority
      */
-    public function setPriority(?float $priority): void;
+    public function setPriority(float $priority): void;
 }

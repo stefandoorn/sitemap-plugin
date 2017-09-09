@@ -70,7 +70,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLocalization(?string $localization): void
+    public function setLocalization(string $localization): void
     {
         $this->localization = $localization;
     }
@@ -86,7 +86,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setLastModification(?DateTimeInterface $lastModification): void
+    public function setLastModification(DateTimeInterface $lastModification): void
     {
         $this->lastModification = $lastModification;
     }
@@ -118,7 +118,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setPriority(?float $priority): void
+    public function setPriority(float $priority): void
     {
         if (!is_numeric($priority) || 0 > $priority || 1 < $priority) {
             throw new \InvalidArgumentException(sprintf(

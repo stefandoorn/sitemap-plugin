@@ -47,5 +47,5 @@ interface SitemapIndexInterface
     /**
      * @param DateTimeInterface $lastModification
      */
-    public function setLastModification(?DateTimeInterface $lastModification);
+    public function setLastModification(DateTimeInterface $lastModification);
 }
