@@ -11,7 +11,7 @@
         "phpspec/phpspec": "^3.2",
         "phpunit/phpunit": "^5.0",
         "lakion/api-test-case": "^1.1",
-        "raveren/kint": "^1.1",
+        "kint-php/kint": "^2.2",
         "matthiasnoback/symfony-dependency-injection-test": "^1.1"
     },
     "autoload": {
