@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.1",
-        "sylius/sylius": "^1.0@beta|dev-master"
+        "sylius/sylius": "^1.0|^1.0@rc|^1.0@beta|dev-master"
     },
     "require-dev": {
         "phpspec/phpspec": "^3.2",
