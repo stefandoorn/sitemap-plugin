@@ -21,17 +21,18 @@ interface SitemapUrlInterface
     public function setLocalization(string $localization): void;
 
     /**
-     * {@inheritdoc}
+     * @param string $location
+     * @param string $locale
      */
-    public function addAlternative($location, $locale): void;
+    public function addAlternative(string $location, string $locale): void;
 
     /**
-     * {@inheritdoc}
+     * @param iterable $alternatives
      */
-    public function setAlternatives(array $alternatives): void;
+    public function setAlternatives(iterable $alternatives): void;
 
     /**
-     * {@inheritdoc}
+     * @return iterable
      */
     public function getAlternatives(): iterable;
 
@@ -46,7 +47,7 @@ interface SitemapUrlInterface
     public function setLastModification(DateTimeInterface $lastModification): void;
 
     /**
-     * @return ChangeFrequency
+     * @return string
      */
     public function getChangeFrequency(): string;
 

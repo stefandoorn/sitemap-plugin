@@ -38,7 +38,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function addAlternative($location, $locale): void
+    public function addAlternative(string $location, string $locale): void
     {
         $this->alternatives[$locale] = $location;
     }
@@ -46,7 +46,7 @@ class SitemapUrl implements SitemapUrlInterface
     /**
      * {@inheritdoc}
      */
-    public function setAlternatives(array $alternatives): void
+    public function setAlternatives(iterable $alternatives): void
     {
         $this->alternatives = $alternatives;
     }
