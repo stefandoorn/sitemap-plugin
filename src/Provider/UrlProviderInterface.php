@@ -9,7 +9,7 @@ namespace SitemapPlugin\Provider;
 interface UrlProviderInterface
 {
     /**
-     * @return array
+     * @return iterable
      */
     public function generate(): iterable;
 
