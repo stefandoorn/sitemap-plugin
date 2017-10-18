@@ -102,4 +102,16 @@ class SitemapProviderPassTest extends AbstractCompilerPassTestCase
             new \PHPUnit_Framework_Constraint_Not(new DefinitionHasMethodCallConstraint($method))
         );
     }
+
+    /**
+     * @return array
+     */
+    public function providers(): array
+    {
+        return [
+            ['products'],
+            ['taxons'],
+            ['static'],
+        ];
+    }
 }
