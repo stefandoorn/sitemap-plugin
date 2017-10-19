@@ -31,6 +31,14 @@ final class Configuration implements ConfigurationInterface
     {
         $node
             ->children()
+                ->arrayNode('providers')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('products')->defaultTrue()->end()
+                        ->booleanNode('taxons')->defaultTrue()->end()
+                        ->booleanNode('static')->defaultTrue()->end()
+                    ->end()
+                ->end()
                 ->scalarNode('template')
                     ->defaultValue('@SitemapPlugin/show.xml.twig')
                 ->end()
