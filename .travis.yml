@@ -17,14 +17,20 @@ install:
     - composer update --prefer-dist
 
 before_script:
+    - mkdir -p build/logs
     - (cd tests/Application && bin/console doctrine:schema:create --env=test --no-interaction)
     - (cd tests/Application && bin/console doctrine:schema:create --env=test_relative --no-interaction)
 
 script:
     - composer validate --strict --no-check-all
     - vendor/bin/phpspec run
-    - vendor/bin/phpunit --coverage-clover coverage.clover --stderr --verbose
+    - vendor/bin/phpunit --coverage-clover build/logs/clover.xml --stderr --verbose
 
 after_script:
     - wget https://scrutinizer-ci.com/ocular.phar
-    - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+    - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
+
+after_success:
+    - wget https://github.com/php-coveralls/php-coveralls/releases/download/v1.0.0/coveralls.phar
+    - chmod +x coveralls.phar
+    - travis_retry php coveralls.phar -v
