@@ -2,11 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost/en_US/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://localhost/nl_NL/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/"/>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>http://localhost/en_US/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/contact/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://localhost/nl_NL/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/contact/"/>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>

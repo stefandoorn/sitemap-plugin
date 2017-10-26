@@ -4,7 +4,8 @@ namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
-use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -23,11 +24,6 @@ final class StaticUrlProvider implements UrlProviderInterface
     private $sitemapUrlFactory;
 
     /**
-     * @var LocaleContextInterface
-     */
-    private $localeContext;
-
-    /**
      * @var array
      */
     private $urls = [];
@@ -38,21 +34,26 @@ final class StaticUrlProvider implements UrlProviderInterface
     private $routes;
 
     /**
+     * @var ChannelContextInterface
+     */
+    private $channelContext;
+
+    /**
      * StaticUrlProvider constructor.
      * @param RouterInterface $router
      * @param SitemapUrlFactoryInterface $sitemapUrlFactory
-     * @param LocaleContextInterface $localeContext
+     * @param ChannelContextInterface $channelContext
      * @param array $routes
      */
     public function __construct(
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory,
-        LocaleContextInterface $localeContext,
+        ChannelContextInterface $channelContext,
         array $routes
     ) {
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
-        $this->localeContext = $localeContext;
+        $this->channelContext = $channelContext;
         $this->routes = $routes;
     }
 
@@ -73,33 +74,55 @@ final class StaticUrlProvider implements UrlProviderInterface
             return $this->urls;
         }
 
+        /** @var ChannelInterface $channel */
+        $channel = $this->channelContext->getChannel();
+
         foreach ($this->routes as $route) {
             $staticUrl = $this->sitemapUrlFactory->createNew();
             $staticUrl->setChangeFrequency(ChangeFrequency::weekly());
             $staticUrl->setPriority(0.3);
 
+            // Populate locales array by other enabled locales for current channel if no locales are specified
             if (!isset($route['locales']) || empty($route['locales'])) {
-                $route['locales'] = [$this->localeContext->getLocaleCode()];
+                $route['locales'] = $this->getAlternativeLocales($channel);
             }
 
-            foreach ($route['locales'] as $localeCode) {
-                // Add localeCode to parameters if not set
-                if (!array_key_exists('_locale', $route['parameters'])) {
-                    $route['parameters']['_locale'] = $localeCode;
-                }
-
-                $location = $this->router->generate($route['route'], $route['parameters']);
-
-                if ($localeCode === $this->localeContext->getLocaleCode()) {
-                    $staticUrl->setLocalization($location);
-                } else {
-                    $staticUrl->addAlternative($location, $localeCode);
-                }
-
-                $this->urls[] = $staticUrl;
+            if (!array_key_exists('_locale', $route['parameters'])) {
+                $route['parameters']['_locale'] = $channel->getDefaultLocale()->getCode();
             }
+            $location = $this->router->generate($route['route'], $route['parameters']);
+            $staticUrl->setLocalization($location);
+
+            foreach ($route['locales'] as $alternativeLocaleCode) {
+                $route['parameters']['_locale'] = $alternativeLocaleCode;
+                $alternativeLocation = $this->router->generate($route['route'], $route['parameters']);
+                $staticUrl->addAlternative($alternativeLocation, $alternativeLocaleCode);
+            }
+
+            $this->urls[] = $staticUrl;
         }
 
         return $this->urls;
     }
+
+    /**
+     * @param ChannelInterface $channel
+     *
+     * @return string[]
+     */
+    private function getAlternativeLocales(ChannelInterface $channel): array
+    {
+        $locales = [];
+
+        foreach ($channel->getLocales() as $locale) {
+            if ($locale === $channel->getDefaultLocale()) {
+                continue;
+            }
+
+            $locales[] = $locale->getCode();
+        }
+
+        return $locales;
+    }
+
 }

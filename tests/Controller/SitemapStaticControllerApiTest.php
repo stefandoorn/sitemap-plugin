@@ -2,8 +2,6 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
-use Sylius\Component\Core\Model\Taxon;
-
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */

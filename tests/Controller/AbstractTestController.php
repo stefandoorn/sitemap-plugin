@@ -60,6 +60,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         $this->channel->setTaxCalculationStrategy('order_items_based');
 
         $this->channel->addLocale($this->locale);
+        $this->channel->addLocale($locale);
 
         $this->getEntityManager()->persist($this->channel);
         $this->getEntityManager()->flush();

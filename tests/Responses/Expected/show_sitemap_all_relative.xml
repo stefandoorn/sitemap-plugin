@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/en_US/products/test</loc>
     <lastmod>@string@.isDateTime()</lastmod>
@@ -13,11 +13,29 @@
   </url>
   <url>
     <loc>/en_US/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en_US/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="/nl_NL/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>/nl_NL/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en_US/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="/nl_NL/"/>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>/en_US/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en_US/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="/nl_NL/contact/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>/nl_NL/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en_US/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="/nl_NL/contact/"/>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
