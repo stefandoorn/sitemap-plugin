@@ -1,4 +1,4 @@
 sitemap:
     static_routes:
         - { route: sylius_shop_homepage }
-        - { route: sylius_shop_login }
+        - { route: sylius_shop_contact_request }
