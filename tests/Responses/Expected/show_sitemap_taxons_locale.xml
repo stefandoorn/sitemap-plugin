@@ -7,8 +7,20 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost/nl_NL/taxons/test</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/taxons/test"/>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost/en_US/taxons/mock</loc>
     <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/taxons/mock"/>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost/nl_NL/taxons/mock</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/taxons/mock"/>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
