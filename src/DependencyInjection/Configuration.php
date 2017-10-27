@@ -68,25 +68,15 @@ final class Configuration implements ConfigurationInterface
                                 ->cannotBeEmpty()
                             ->end()
                             ->arrayNode('parameters')
+                                ->prototype('array')->end()
                                 ->info('Add optional parameters to the route.')
                             ->end()
                             ->arrayNode('locales')
+                                ->prototype('scalar')
                                 ->info('Define which locales to add. If empty, it uses the default locale context supplied')
                             ->end()
                         ->end()
                     ->end()
-                    ->defaultValue([
-                        [
-                            'route' => 'sylius_shop_homepage',
-                            'parameters' => [],
-                            'locales' => [],
-                        ],
-                        [
-                            'route' => 'sylius_shop_contact_request',
-                            'parameters' => [],
-                            'locales' => [],
-                        ]
-                    ])
                 ->end()
             ->end();
     }
