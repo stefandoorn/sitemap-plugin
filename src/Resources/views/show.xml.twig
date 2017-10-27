@@ -6,7 +6,8 @@
     {% for url in url_set %}
         <url>
             <loc>{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}</loc>
-            {% if hreflang is not same as(false) %}
+            {% if hreflang is not same as(false) and url.alternatives is not empty %}
+                <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(sylius.localeCode) }}" href="{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}"/>
                 {% for locale, location in url.alternatives %}
                     <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(locale) }}" href="{{ url_helper.absolute_or_relative(location, absolute_url) }}"/>
                 {% endfor %}
@@ -15,5 +16,19 @@
             {{ xml_helper.change_frequency(url) }}
             {{ xml_helper.priority(url) }}
         </url>
+        {% if hreflang is not same as(false) and url.alternatives is not empty %}
+            {% for locale, location in url.alternatives %}
+                <url>
+                    <loc>{{ url_helper.absolute_or_relative(location, absolute_url) }}</loc>
+                    <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(sylius.localeCode) }}" href="{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}"/>
+                    {% for localeSub, locationSub in url.alternatives %}
+                        <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(localeSub) }}" href="{{ url_helper.absolute_or_relative(locationSub, absolute_url) }}"/>
+                    {% endfor %}
+                    {{ xml_helper.last_modification(url) }}
+                    {{ xml_helper.change_frequency(url) }}
+                    {{ xml_helper.priority(url) }}
+                </url>
+            {% endfor %}
+        {% endif %}
     {% endfor %}
 </urlset>
