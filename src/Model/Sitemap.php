@@ -82,7 +82,7 @@ class Sitemap implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function setLastModification(DateTimeInterface $lastModification)
+    public function setLastModification(DateTimeInterface $lastModification): void
     {
         $this->lastModification = $lastModification;
     }
