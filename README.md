@@ -42,6 +42,18 @@ sylius_sitemap:
      resource: "@SitemapPlugin/Resources/config/routing.yml"
 ```
 
+## Usage
+
+The plugin defines three default URI's:
+
+* `sitemap.{_format}`: redirects to `sitemap_index.{_format}`
+* `sitemap_index.{_format}`: renders the sitemap index file (with links to the provider xml files)
+* `sitemap/all.{_format}`: renders all the URI's from all providers in a single response
+
+Next to this, each provider registeres it's own URI. Take a look in the sitemap index file for the correct URI's.
+
+NB: Currently only the `xml` format is supported.
+
 ## Default configuration
 
 Get a full list of configuration: `bin/console config:dump-reference sitemap`
