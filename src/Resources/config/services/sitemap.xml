@@ -45,6 +45,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+            <argument type="service" id="sylius.sitemap_builder" />
             <tag name="routing.loader" />
         </service>
 
