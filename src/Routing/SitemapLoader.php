@@ -2,12 +2,12 @@
 
 namespace SitemapPlugin\Routing;
 
+use SitemapPlugin\Builder\SitemapBuilderInterface;
 use SitemapPlugin\Exception\RouteExistsException;
 use SitemapPlugin\Provider\UrlProviderInterface;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -19,16 +19,30 @@ use Symfony\Component\Routing\RouteCollection;
 class SitemapLoader extends Loader implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-    
+
     /**
      * @var bool
      */
     private $loaded = false;
 
     /**
+     * @var SitemapBuilderInterface
+     */
+    private $sitemapBuilder;
+
+    /**
+     * @param SitemapBuilderInterface $sitemapBuilder
+     */
+    public function __construct(SitemapBuilderInterface $sitemapBuilder)
+    {
+        $this->sitemapBuilder = $sitemapBuilder;
+    }
+
+    /**
      * @param mixed $resource
      * @param null $type
      * @return RouteCollection
+     * @throws RouteExistsException
      */
     public function load($resource, $type = null): RouteCollection
     {
@@ -38,9 +52,7 @@ class SitemapLoader extends Loader implements ContainerAwareInterface
 
         $routes = new RouteCollection();
 
-        $providers = $this->container->get('sylius.sitemap_builder')->getProviders();
-
-        foreach ($providers as $provider) {
+        foreach ($this->sitemapBuilder->getProviders() as $provider) {
             /** @var UrlProviderInterface $provider */
             $name = 'sylius_sitemap_' . $provider->getName();
 
