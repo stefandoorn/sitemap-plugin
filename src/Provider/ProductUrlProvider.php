@@ -7,6 +7,7 @@ use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
@@ -84,6 +85,19 @@ final class ProductUrlProvider implements UrlProviderInterface
      */
     public function generate(): iterable
     {
+        /** @var ChannelInterface $channel */
+        $channel = $this->channelContext->getChannel();
+
+        $locales = $channel->getLocales();
+
+        $localeCodes = $locales->map(function ($locale) {
+            return $locale->getCode();
+        })->toArray();
+
+        $productTranslationsFilter = function ($translation) use ($localeCodes) {
+            return in_array($translation->getLocale(), $localeCodes);
+        };
+
         foreach ($this->getProducts() as $product) {
             $productUrl = $this->sitemapUrlFactory->createNew();
             $productUrl->setChangeFrequency(ChangeFrequency::always());
@@ -92,8 +106,10 @@ final class ProductUrlProvider implements UrlProviderInterface
                 $productUrl->setLastModification($product->getUpdatedAt());
             }
 
+            $translations = $product->getTranslations()->filter($productTranslationsFilter);
+
             /** @var ProductTranslationInterface $translation */
-            foreach ($product->getTranslations() as $translation) {
+            foreach ($translations as $translation) {
                 $location = $this->router->generate('sylius_shop_product_show', [
                     'slug' => $translation->getSlug(),
                     '_locale' => $translation->getLocale(),
