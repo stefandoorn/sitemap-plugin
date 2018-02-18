@@ -3,12 +3,14 @@
   <url>
     <loc>http://localhost/en_US/products/test</loc>
     <lastmod>@string@.isDateTime()</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/products/test"/>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://localhost/en_US/products/mock</loc>
     <lastmod>@string@.isDateTime()</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/products/mock"/>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
