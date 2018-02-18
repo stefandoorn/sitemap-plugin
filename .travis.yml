@@ -23,6 +23,7 @@ before_script:
 
 script:
     - composer validate --strict --no-check-all
+    - vendor/bin/phpstan analyse src --level max -c phpstan.neon
     - vendor/bin/phpspec run
     - vendor/bin/phpunit --coverage-clover build/logs/clover.xml --stderr --verbose
 

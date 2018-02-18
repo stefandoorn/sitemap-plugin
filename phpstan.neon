@@ -1,0 +1,8 @@
+parameters:
+    excludes_analyse:
+        # Makes PHPStan crash
+        - '**/DependencyInjection/Configuration.php'
+        # Behat
+        - '**/Behat/*'
+    ignoreErrors:
+        - '/Call to an undefined method Sylius\\Bundle\\ResourceBundle\\Doctrine\\ORM\\EntityRepository|Sylius\\Component\\Core\\Repository\\ProductRepositoryInterface::createQueryBuilder()/'

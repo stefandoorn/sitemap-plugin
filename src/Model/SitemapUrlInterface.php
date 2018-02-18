@@ -32,7 +32,7 @@ interface SitemapUrlInterface
     public function setAlternatives(iterable $alternatives): void;
 
     /**
-     * @return iterable
+     * @return iterable|array
      */
     public function getAlternatives(): iterable;
 

@@ -91,6 +91,6 @@ class SitemapLoader extends Loader implements ContainerAwareInterface
      */
     public function supports($resource, $type = null): bool
     {
-        return 'sitemap' === $type;
+        return $type && 'sitemap' === $type;
     }
 }

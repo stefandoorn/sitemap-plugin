@@ -17,7 +17,12 @@ final class SitemapExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
+        $configuration = $this->getConfiguration([], $container);
+        if (!$configuration) {
+            throw new \Exception('Configuration did not provide proper object');
+        }
+        $config = $this->processConfiguration($configuration, $config);
+
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
