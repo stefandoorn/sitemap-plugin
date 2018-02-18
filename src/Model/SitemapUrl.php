@@ -31,7 +31,7 @@ class SitemapUrl implements SitemapUrlInterface
     private $priority;
 
     /**
-     * @var array
+     * @var iterable|array
      */
     private $alternatives = [];
 
