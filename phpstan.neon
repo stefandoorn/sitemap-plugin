@@ -1,0 +1,6 @@
+parameters:
+    excludes_analyse:
+        # Makes PHPStan crash
+        - '**/DependencyInjection/Configuration.php'
+        # Behat
+        - '**/Behat/*'
