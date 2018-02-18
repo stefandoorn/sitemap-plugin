@@ -88,10 +88,12 @@ final class ProductUrlProvider implements UrlProviderInterface
             $productUrl = $this->sitemapUrlFactory->createNew();
             $productUrl->setChangeFrequency(ChangeFrequency::always());
             $productUrl->setPriority(0.5);
-            $productUrl->setLastModification($product->getUpdatedAt());
+            if ($product->getUpdatedAt()) {
+                $productUrl->setLastModification($product->getUpdatedAt());
+            }
 
+            /** @var ProductTranslationInterface $translation */
             foreach ($product->getTranslations() as $translation) {
-                /** @var ProductTranslationInterface|TranslationInterface $translation */
                 $location = $this->router->generate('sylius_shop_product_show', [
                     'slug' => $translation->getSlug(),
                     '_locale' => $translation->getLocale(),
@@ -99,7 +101,10 @@ final class ProductUrlProvider implements UrlProviderInterface
 
                 if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
                     $productUrl->setLocalization($location);
-                } else {
+                    continue;
+                }
+
+                if ($translation->getLocale()) {
                     $productUrl->addAlternative($location, $translation->getLocale());
                 }
             }

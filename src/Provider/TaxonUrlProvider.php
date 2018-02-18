@@ -91,8 +91,8 @@ final class TaxonUrlProvider implements UrlProviderInterface
             $taxonUrl->setChangeFrequency(ChangeFrequency::always());
             $taxonUrl->setPriority(0.5);
 
+            /** @var TaxonTranslationInterface $translation */
             foreach ($taxon->getTranslations() as $translation) {
-                /** @var TranslationInterface|TaxonTranslationInterface $translation */
                 $location = $this->router->generate('sylius_shop_product_index', [
                     'slug' => $translation->getSlug(),
                     '_locale' => $translation->getLocale(),
@@ -100,7 +100,10 @@ final class TaxonUrlProvider implements UrlProviderInterface
 
                 if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
                     $taxonUrl->setLocalization($location);
-                } else {
+                    continue;
+                }
+
+                if ($translation->getLocale()) {
                     $taxonUrl->addAlternative($location, $translation->getLocale());
                 }
             }

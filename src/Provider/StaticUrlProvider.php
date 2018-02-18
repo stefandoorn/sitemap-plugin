@@ -88,7 +88,9 @@ final class StaticUrlProvider implements UrlProviderInterface
             }
 
             if (!array_key_exists('_locale', $route['parameters'])) {
-                $route['parameters']['_locale'] = $channel->getDefaultLocale()->getCode();
+                if ($channel->getDefaultLocale()) {
+                    $route['parameters']['_locale'] = $channel->getDefaultLocale()->getCode();
+                }
             }
             $location = $this->router->generate($route['route'], $route['parameters']);
             $staticUrl->setLocalization($location);
