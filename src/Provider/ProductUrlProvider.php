@@ -5,12 +5,15 @@ namespace SitemapPlugin\Provider;
 use Doctrine\Common\Collections\Collection;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Model\SitemapUrlInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -51,6 +54,11 @@ final class ProductUrlProvider implements UrlProviderInterface
     private $urls = [];
 
     /**
+     * @var array
+     */
+    private $channelLocaleCodes;
+
+    /**
      * @param ProductRepositoryInterface $productRepository
      * @param RouterInterface $router
      * @param SitemapUrlFactoryInterface $sitemapUrlFactory
@@ -85,34 +93,30 @@ final class ProductUrlProvider implements UrlProviderInterface
     public function generate(): iterable
     {
         foreach ($this->getProducts() as $product) {
-            $productUrl = $this->sitemapUrlFactory->createNew();
-            $productUrl->setChangeFrequency(ChangeFrequency::always());
-            $productUrl->setPriority(0.5);
-            if ($product->getUpdatedAt()) {
-                $productUrl->setLastModification($product->getUpdatedAt());
-            }
-
-            /** @var ProductTranslationInterface $translation */
-            foreach ($product->getTranslations() as $translation) {
-                $location = $this->router->generate('sylius_shop_product_show', [
-                    'slug' => $translation->getSlug(),
-                    '_locale' => $translation->getLocale(),
-                ]);
-
-                if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
-                    $productUrl->setLocalization($location);
-                    continue;
-                }
-
-                if ($translation->getLocale()) {
-                    $productUrl->addAlternative($location, $translation->getLocale());
-                }
-            }
-
-            $this->urls[] = $productUrl;
+            $this->urls[] = $this->createProductUrl($product);
         }
 
         return $this->urls;
+    }
+
+    /**
+     * @param ProductInterface $product
+     * @return Collection|ProductTranslationInterface[]
+     */
+    private function getTranslations(ProductInterface $product): Collection
+    {
+        return $product->getTranslations()->filter(function (TranslationInterface $translation) {
+            return $this->localeInLocaleCodes($translation);
+        });
+    }
+
+    /**
+     * @param TranslationInterface $translation
+     * @return bool
+     */
+    private function localeInLocaleCodes(TranslationInterface $translation): bool
+    {
+        return in_array($translation->getLocale(), $this->getLocaleCodes());
     }
 
     /**
@@ -129,5 +133,61 @@ final class ProductUrlProvider implements UrlProviderInterface
             ->setParameter('enabled', true)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return array
+     */
+    private function getLocaleCodes(): array
+    {
+        if ($this->channelLocaleCodes === null) {
+            /** @var ChannelInterface $channel */
+            $channel = $this->channelContext->getChannel();
+
+            $this->channelLocaleCodes = $channel->getLocales()->map(function (LocaleInterface $locale) {
+                return $locale->getCode();
+            })->toArray();
+        }
+
+        return $this->channelLocaleCodes;
+    }
+
+    /**
+     * @param ProductInterface $product
+     * @return SitemapUrlInterface
+     */
+    private function createProductUrl(ProductInterface $product): SitemapUrlInterface
+    {
+        $productUrl = $this->sitemapUrlFactory->createNew();
+        $productUrl->setChangeFrequency(ChangeFrequency::always());
+        $productUrl->setPriority(0.5);
+        if ($product->getUpdatedAt()) {
+            $productUrl->setLastModification($product->getUpdatedAt());
+        }
+
+        /** @var ProductTranslationInterface $translation */
+        foreach ($this->getTranslations($product) as $translation) {
+            if (!$translation->getLocale()) {
+                continue;
+            }
+
+            if (!$this->localeInLocaleCodes($translation)) {
+                continue;
+            }
+
+            $location = $this->router->generate('sylius_shop_product_show', [
+                'slug' => $translation->getSlug(),
+                '_locale' => $translation->getLocale(),
+            ]);
+
+            if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
+                $productUrl->setLocalization($location);
+                continue;
+            }
+
+            $productUrl->addAlternative($location, $translation->getLocale());
+        }
+
+        return $productUrl;
     }
 }
