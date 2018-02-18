@@ -17,9 +17,11 @@ class SitemapProductControllerApiUniqueLocaleChannelTest extends AbstractTestCon
     /**
      * @before
      */
-    public function setUpDatabase()
+    public function setupDatabase()
     {
-        parent::setUpDatabase();
+        parent::setupDatabase();
+
+        $this->channel->removeLocale($this->locale2);
 
         $product = new Product();
         $product->setCurrentLocale('en_US');

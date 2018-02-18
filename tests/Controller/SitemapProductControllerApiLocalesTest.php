@@ -2,12 +2,15 @@
 
 namespace Tests\SitemapPlugin\Controller;
 
+use Sylius\Component\Core\Model\Channel;
+use Sylius\Component\Core\Model\Product;
+use Sylius\Component\Core\Model\ProductTranslation;
 use Sylius\Component\Locale\Model\Locale;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapProductControllerApiLocalesTest extends SitemapProductControllerApiUniqueLocaleChannelTest
+class SitemapProductControllerApiLocalesTest extends AbstractTestController
 {
     use TearDownTrait;
 
@@ -18,11 +21,54 @@ class SitemapProductControllerApiLocalesTest extends SitemapProductControllerApi
     {
         parent::setUpDatabase();
 
-        $localeRepository = $this->getEntityManager()->getRepository(Locale::class);
+        $product = new Product();
+        $product->setCurrentLocale('en_US');
+        $product->setName('Test');
+        $product->setCode('test-code');
+        $product->setSlug('test');
+        $product->setCurrentLocale('nl_NL');
+        $product->setName('Test');
+        $product->setCode('test-code');
+        $product->setSlug('test');
+        $product->addChannel($this->channel);
+        $this->getEntityManager()->persist($product);
 
-        $locale = $localeRepository->findOneBy(['code' => 'nl_NL']);
+        $product = new Product();
+        $product->setCurrentLocale('en_US');
+        $product->setName('Mock');
+        $product->setCode('mock-code');
+        $product->setSlug('mock');
+        $product->setCurrentLocale('nl_NL');
+        $product->setName('Mock');
+        $product->setCode('mock-code');
+        $product->setSlug('mock');
+        $product->addChannel($this->channel);
+        $this->getEntityManager()->persist($product);
 
-        $this->channel->addLocale($locale);
+        $product = new Product();
+        $product->setCurrentLocale('en_US');
+        $product->setName('Test 2');
+        $product->setCode('test-code-3');
+        $product->setSlug('test 2');
+        $product->setCurrentLocale('nl_NL');
+        $product->setName('Test 2');
+        $product->setCode('test-code-3');
+        $product->setSlug('test 2');
+        $product->setEnabled(false);
+        $product->addChannel($this->channel);
+        $this->getEntityManager()->persist($product);
+
+        $product = new Product();
+        $product->setCurrentLocale('en_US');
+        $product->setName('Test 3');
+        $product->setCode('test-code-4');
+        $product->setSlug('test 3');
+        $product->setCurrentLocale('nl_NL');
+        $product->setName('Test 3');
+        $product->setCode('test-code-4');
+        $product->setSlug('test 3');
+        $product->setEnabled(false);
+        $this->getEntityManager()->persist($product);
 
         $this->getEntityManager()->flush();
     }
