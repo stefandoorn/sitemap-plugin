@@ -12,6 +12,10 @@ imports:
 
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
 
+sitemap:
+    static_routes:
+        - { route: sylius_shop_order_show, parameters: { tokenValue: fooToken } }
+
 framework:
     translator: { fallbacks: ["%locale%"] }
     secret: "%secret"

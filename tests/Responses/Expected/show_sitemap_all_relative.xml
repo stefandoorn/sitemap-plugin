@@ -39,4 +39,18 @@
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>/en_US/order/fooToken</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en_US/order/fooToken"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="/nl_NL/order/fooToken"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>/nl_NL/order/fooToken</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en_US/order/fooToken"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="/nl_NL/order/fooToken"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
