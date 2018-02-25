@@ -68,7 +68,7 @@ final class Configuration implements ConfigurationInterface
                                 ->cannotBeEmpty()
                             ->end()
                             ->arrayNode('parameters')
-                                ->prototype('array')->end()
+                                ->prototype('variable')->end()
                                 ->info('Add optional parameters to the route.')
                             ->end()
                             ->arrayNode('locales')
