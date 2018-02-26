@@ -73,7 +73,7 @@ final class Configuration implements ConfigurationInterface
                             ->end()
                             ->arrayNode('locales')
                                 ->prototype('scalar')
-                                ->info('Define which locales to add. If empty, it uses the default locale context supplied')
+                                ->info('Define which locales to add. If empty, it uses the default locales for channel context supplied')
                             ->end()
                         ->end()
                     ->end()

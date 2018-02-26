@@ -42,4 +42,18 @@
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>http://localhost/en_US/login</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/login"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/login"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://localhost/nl_NL/login</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/login"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/login"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

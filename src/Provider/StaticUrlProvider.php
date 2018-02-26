@@ -82,16 +82,21 @@ final class StaticUrlProvider implements UrlProviderInterface
             $staticUrl->setChangeFrequency(ChangeFrequency::weekly());
             $staticUrl->setPriority(0.3);
 
-            // Populate locales array by other enabled locales for current channel if no locales are specified
-            if (!isset($route['locales']) || empty($route['locales'])) {
-                $route['locales'] = $this->getAlternativeLocales($channel);
-            }
-
+            // Add default locale to route if not set
             if (!array_key_exists('_locale', $route['parameters'])) {
                 if ($channel->getDefaultLocale()) {
                     $route['parameters']['_locale'] = $channel->getDefaultLocale()->getCode();
                 }
             }
+
+            // Populate locales array by other enabled locales for current channel if no locales are specified
+            if (!isset($route['locales']) || empty($route['locales'])) {
+                $route['locales'] = $this->getAlternativeLocales($channel);
+            }
+
+            // Remove the locale that is on the main route from the alternatives to prevent duplicates
+            $route = $this->excludeMainRouteLocaleFromAlternativeLocales($route);
+
             $location = $this->router->generate($route['route'], $route['parameters']);
             $staticUrl->setLocalization($location);
 
@@ -105,6 +110,24 @@ final class StaticUrlProvider implements UrlProviderInterface
         }
 
         return $this->urls;
+    }
+
+    /**
+     * @param array $route
+     * @return array
+     */
+    private function excludeMainRouteLocaleFromAlternativeLocales(array $route): array
+    {
+        $locales = $route['locales'];
+        $locale = $route['parameters']['_locale'];
+
+        $key = array_search($locale, $locales);
+
+        if ($key !== false) {
+            unset($route['locales'][$key]);
+        }
+
+        return $route;
     }
 
     /**
