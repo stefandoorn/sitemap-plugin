@@ -6,8 +6,9 @@ php:
     - nightly
 
 env:
-    - SYLIUS_VERSION="1.0.*"
-    - SYLIUS_VERSION="1.1.*"
+    - DEPENDENCY_VERSIONS="sylius/sylius:1.0.* symfony/symfony:3.3.*"
+    - DEPENDENCY_VERSIONS="sylius/sylius:1.0.* symfony/symfony:3.4.*"
+    - DEPENDENCY_VERSIONS="sylius/sylius:1.1.* symfony/symfony:3.4.*"
 
 cache:
     yarn: true
@@ -18,7 +19,7 @@ before_install:
     - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 install:
-    - composer require sylius/sylius:${SYLIUS_VERSION} --no-update
+    - composer require ${DEPENDENCY_VERSIONS} --no-update
     - composer update --prefer-dist
 
 before_script:
