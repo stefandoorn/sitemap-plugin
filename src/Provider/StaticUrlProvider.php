@@ -74,28 +74,10 @@ final class StaticUrlProvider implements UrlProviderInterface
             return $this->urls;
         }
 
-        /** @var ChannelInterface $channel */
-        $channel = $this->channelContext->getChannel();
-
-        foreach ($this->routes as $route) {
+        foreach ($this->transformAndYieldRoutes() as $route) {
             $staticUrl = $this->sitemapUrlFactory->createNew();
             $staticUrl->setChangeFrequency(ChangeFrequency::weekly());
             $staticUrl->setPriority(0.3);
-
-            // Add default locale to route if not set
-            if (!array_key_exists('_locale', $route['parameters'])) {
-                if ($channel->getDefaultLocale()) {
-                    $route['parameters']['_locale'] = $channel->getDefaultLocale()->getCode();
-                }
-            }
-
-            // Populate locales array by other enabled locales for current channel if no locales are specified
-            if (!isset($route['locales']) || empty($route['locales'])) {
-                $route['locales'] = $this->getAlternativeLocales($channel);
-            }
-
-            // Remove the locale that is on the main route from the alternatives to prevent duplicates
-            $route = $this->excludeMainRouteLocaleFromAlternativeLocales($route);
 
             $location = $this->router->generate($route['route'], $route['parameters']);
             $staticUrl->setLocalization($location);
@@ -110,6 +92,56 @@ final class StaticUrlProvider implements UrlProviderInterface
         }
 
         return $this->urls;
+    }
+
+    /**
+     * @return \Generator
+     */
+    private function transformAndYieldRoutes(): \Generator
+    {
+        foreach($this->routes as $route) {
+            yield $this->transformRoute($route);
+        }
+    }
+
+    /**
+     * @param array $route
+     * @return array
+     */
+    private function transformRoute(array $route): array
+    {
+        // Add default locale to route if not set
+        $route = $this->addDefaultRoute($route);
+
+        // Populate locales array by other enabled locales for current channel if no locales are specified
+        if (!isset($route['locales']) || empty($route['locales'])) {
+            $route['locales'] = $this->getAlternativeLocales();
+        }
+
+        // Remove the locale that is on the main route from the alternatives to prevent duplicates
+        $route = $this->excludeMainRouteLocaleFromAlternativeLocales($route);
+
+        return $route;
+    }
+
+    /**
+     * @param array $route
+     * @return array
+     */
+    private function addDefaultRoute(array $route): array
+    {
+        if (isset($route['parameters']['_locale'])) {
+            return $route;
+        }
+
+        /** @var ChannelInterface $channel */
+        $channel = $this->channelContext->getChannel();
+
+        if ($channel->getDefaultLocale()) {
+            $route['parameters']['_locale'] = $channel->getDefaultLocale()->getCode();
+        }
+
+        return $route;
     }
 
     /**
@@ -131,12 +163,13 @@ final class StaticUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * @param ChannelInterface $channel
-     *
      * @return string[]
      */
-    private function getAlternativeLocales(ChannelInterface $channel): array
+    private function getAlternativeLocales(): array
     {
+        /** @var ChannelInterface $channel */
+        $channel = $this->channelContext->getChannel();
+
         $locales = [];
 
         foreach ($channel->getLocales() as $locale) {
