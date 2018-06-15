@@ -2,6 +2,7 @@
 
 namespace Tests\SitemapPlugin\Model;
 
+use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Model\Sitemap;
 use SitemapPlugin\Model\SitemapUrl;
 
@@ -9,7 +10,7 @@ use SitemapPlugin\Model\SitemapUrl;
  * Class SitemapTest
  * @package Tests\SitemapPlugin\Model
  */
-class SitemapTest extends \PHPUnit_Framework_TestCase
+class SitemapTest extends TestCase
 {
     public function testInit()
     {

@@ -2,12 +2,13 @@
 
 namespace Tests\SitemapPlugin\Exception;
 
+use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Exception\RouteExistsException;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class RouteExistsExceptionTest extends \PHPUnit_Framework_TestCase
+class RouteExistsExceptionTest extends TestCase
 {
     /**
      *

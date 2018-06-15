@@ -2,14 +2,14 @@
 
 namespace Tests\SitemapPlugin\Exception;
 
-use SitemapPlugin\Exception\RouteExistsException;
+use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 use SitemapPlugin\Model\SitemapUrl;
 
 /**
  * @author Stefan Doorn <stefan@efectos.nl>
  */
-class SitemapUrlNotFoundExceptionTest extends \PHPUnit_Framework_TestCase
+class SitemapUrlNotFoundExceptionTest extends TestCase
 {
     /**
      *
