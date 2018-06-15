@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
+        <defaults autowire="false" autoconfigure="false" public="false" />
+
         <service id="sylius.sitemap_provider.taxon" class="SitemapPlugin\Provider\TaxonUrlProvider">
             <argument type="service" id="sylius.repository.taxon" />
             <argument type="service" id="router" />

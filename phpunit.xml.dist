@@ -17,6 +17,7 @@
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_DIR" value="tests/Application/app/" />
         <server name="IS_DOCTRINE_ORM_SUPPORTED" value="1"/>
+        <server name="KERNEL_CLASS" value="AppKernel" />
     </php>
 
     <testsuites>
