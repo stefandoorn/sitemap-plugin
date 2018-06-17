@@ -60,11 +60,12 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
         SitemapUrlInterface $sitemapUrl,
-        \DateTime $now,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel
     ): void {
+        $now = new \DateTime();
+
         $channelContext->getChannel()->willReturn($channel);
         $localeContext->getLocaleCode()->willReturn('en_US');
 
@@ -135,11 +136,12 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
         SitemapUrlInterface $sitemapUrl,
-        \DateTime $now,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel
     ): void {
+        $now = new \DateTime();
+
         $channelContext->getChannel()->willReturn($channel);
         $localeContext->getLocaleCode()->willReturn('en_US');
 

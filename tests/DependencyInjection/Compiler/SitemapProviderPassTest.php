@@ -99,7 +99,7 @@ class SitemapProviderPassTest extends AbstractCompilerPassTestCase
 
         self::assertThat(
             $definition,
-            new \PHPUnit_Framework_Constraint_Not(new DefinitionHasMethodCallConstraint($method))
+            new \PHPUnit\Framework\Constraint\LogicalNot(new DefinitionHasMethodCallConstraint($method))
         );
     }
 }
