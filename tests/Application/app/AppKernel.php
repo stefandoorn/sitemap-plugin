@@ -11,7 +11,7 @@ final class AppKernel extends Kernel
      */
     public function registerBundles(): array
     {
-        return array_merge(parent::registerBundles(), [
+        $bundles = array_merge(parent::registerBundles(), [
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
 
@@ -20,6 +20,13 @@ final class AppKernel extends Kernel
 
             new SitemapPlugin(),
         ]);
+
+        if (version_compare(Kernel::VERSION, '1.2', 'lt')) {
+            $bundles[] = new \Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle();
+            $bundles[] = new \Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle();
+        }
+
+        return $bundles;
     }
 
     /**
