@@ -7,7 +7,7 @@ namespace Tests\SitemapPlugin\Controller;
  */
 trait TearDownTrait
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         if (null !== $this->client && null !== $this->client->getContainer()) {
             if (method_exists($this->client->getContainer(), 'getMockedServices')) {
