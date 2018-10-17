@@ -115,10 +115,13 @@ final class TaxonUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * @return array|TaxonInterface[]
+     * @return TaxonInterface[]
      */
     private function getTaxons(): iterable
     {
-        return $this->taxonRepository->findAll();
+        /** @var TaxonInterface[] $taxons */
+        $taxons = $this->taxonRepository->findAll();
+
+        return $taxons;
     }
 }
