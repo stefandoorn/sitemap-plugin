@@ -24,6 +24,15 @@
             <image:image>
                 <image:loc>{{ image.localization }}</image:loc>
                 <image:title>{{ image.title }}</image:title>
+                {% if image.caption is not empty %}
+                    <image:caption>{{ image.caption }}</image:caption>
+                {% endif %}
+                {% if image.geoLocation is not empty %}
+                    <image:geo_location>{{ image.geoLocation }}</image:geo_location>
+                {% endif %}
+                {% if image.license is not empty %}
+                    <image:license>{{ image.license }}</image:license>
+                {% endif %}
             </image:image>
         {%- endfor -%}
     {%- endif -%}
