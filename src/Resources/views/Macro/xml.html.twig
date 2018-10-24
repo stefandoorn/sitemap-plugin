@@ -17,3 +17,14 @@
         <priority>{{ url.priority }}</priority>
     {% endif %}
 {%- endmacro %}
+
+{%- macro images(url) -%}
+    {% if url.getImages is not empty %}
+        {% for image in url.getImages %}
+            <image:image>
+                <image:loc>{{ image.localization }}</image:loc>
+                <image:title>{{ image.title }}</image:title>
+            </image:image>
+        {% endfor %}
+    {% endif %}
+{%- endmacro %}

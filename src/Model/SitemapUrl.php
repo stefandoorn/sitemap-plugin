@@ -22,6 +22,11 @@ class SitemapUrl implements SitemapUrlInterface
 
     /** @var iterable|array */
     private $alternatives = [];
+    
+    /**
+     * @var SitemapImageUrlInterface[]|array
+     */
+    private $images = [];
 
     /**
      * {@inheritdoc}
@@ -115,5 +120,29 @@ class SitemapUrl implements SitemapUrlInterface
         }
 
         $this->priority = $priority;
+    }
+    
+    /**
+     * @return array|SitemapImageUrlInterface[]
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+    
+    /**
+     * @param array|SitemapImageUrlInterface[] $images
+     */
+    public function setImages($images): void
+    {
+        $this->images = $images;
+    }
+    
+    /**
+     * @param SitemapImageUrlInterface $image
+     */
+    public function addImage(SitemapImageUrlInterface $image): void
+    {
+        $this->images[] = $image;
     }
 }
