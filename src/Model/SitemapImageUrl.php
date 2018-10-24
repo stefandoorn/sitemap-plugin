@@ -37,7 +37,7 @@ class SitemapImageUrl implements SitemapImageUrlInterface
      */
     public function getLocalization(): string
     {
-        return $this->localization;
+        return $this->localization ?? '';
     }
     
     /**
@@ -53,7 +53,7 @@ class SitemapImageUrl implements SitemapImageUrlInterface
      */
     public function getTitle(): string
     {
-        return $this->title;
+        return $this->title ?? '';
     }
     
     /**
@@ -69,7 +69,7 @@ class SitemapImageUrl implements SitemapImageUrlInterface
      */
     public function getCaption(): string
     {
-        return $this->caption;
+        return $this->caption ?? '';
     }
     
     /**
@@ -85,7 +85,7 @@ class SitemapImageUrl implements SitemapImageUrlInterface
      */
     public function getGeoLocation(): string
     {
-        return $this->geo_location;
+        return $this->geo_location ?? '';
     }
     
     /**
@@ -101,7 +101,7 @@ class SitemapImageUrl implements SitemapImageUrlInterface
      */
     public function getLicense(): string
     {
-        return $this->license;
+        return $this->license ?? '';
     }
     
     /**
