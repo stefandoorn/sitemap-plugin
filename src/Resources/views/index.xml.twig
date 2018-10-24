@@ -1,3 +1,4 @@
+{% spaceless %}
 {% import 'SitemapPlugin::Macro/url.html.twig' as url_helper %}
 {% import 'SitemapPlugin::Macro/xml.html.twig' as xml_helper %}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -9,3 +10,4 @@
         </sitemap>
     {% endfor %}
 </sitemapindex>
+{% endspaceless %}
