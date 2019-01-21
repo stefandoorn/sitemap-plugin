@@ -107,9 +107,10 @@ final class StaticUrlProvider implements UrlProviderInterface
 
         /** @var ChannelInterface $channel */
         $channel = $this->channelContext->getChannel();
+        $defaultLocale = $channel->getDefaultLocale();
 
-        if ($channel->getDefaultLocale()) {
-            $route['parameters']['_locale'] = $channel->getDefaultLocale()->getCode();
+        if ($defaultLocale) {
+            $route['parameters']['_locale'] = $defaultLocale->getCode();
         }
 
         return $route;
@@ -130,7 +131,7 @@ final class StaticUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * @return string[]
+     * @return array<int, string|null>
      */
     private function getAlternativeLocales(): array
     {

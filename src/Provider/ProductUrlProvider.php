@@ -123,13 +123,16 @@ final class ProductUrlProvider implements UrlProviderInterface
         $productUrl = $this->sitemapUrlFactory->createNew();
         $productUrl->setChangeFrequency(ChangeFrequency::always());
         $productUrl->setPriority(0.5);
-        if ($product->getUpdatedAt()) {
-            $productUrl->setLastModification($product->getUpdatedAt());
+        $updatedAt = $product->getUpdatedAt();
+        if ($updatedAt) {
+            $productUrl->setLastModification($updatedAt);
         }
 
         /** @var ProductTranslationInterface $translation */
         foreach ($this->getTranslations($product) as $translation) {
-            if (!$translation->getLocale()) {
+            $locale = $translation->getLocale();
+
+            if (!$locale) {
                 continue;
             }
 
@@ -142,13 +145,13 @@ final class ProductUrlProvider implements UrlProviderInterface
                 '_locale' => $translation->getLocale(),
             ]);
 
-            if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
+            if ($locale === $this->localeContext->getLocaleCode()) {
                 $productUrl->setLocalization($location);
 
                 continue;
             }
 
-            $productUrl->addAlternative($location, $translation->getLocale());
+            $productUrl->addAlternative($location, $locale);
         }
 
         return $productUrl;
