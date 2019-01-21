@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Controller;
 
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\Taxon;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapIndexControllerApiRelativeTest extends AbstractTestController
 {
     use RelativeClientTrait;
@@ -45,6 +44,4 @@ class SitemapIndexControllerApiRelativeTest extends AbstractTestController
 
         $this->assertResponse($response, 'show_sitemap_index_relative');
     }
-
-
 }

@@ -1,22 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\DefinitionHasMethodCallConstraint;
+use SitemapPlugin\Builder\SitemapBuilder;
 use SitemapPlugin\Builder\SitemapIndexBuilder;
 use SitemapPlugin\DependencyInjection\Compiler\SitemapProviderPass;
-use SitemapPlugin\Builder\SitemapBuilder;
 use SitemapPlugin\Provider\IndexUrlProvider;
 use SitemapPlugin\Provider\ProductUrlProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapProviderPassTest extends AbstractCompilerPassTestCase
 {
     /**

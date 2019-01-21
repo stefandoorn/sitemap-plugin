@@ -1,10 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Controller;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 trait RelativeClientTrait
 {
     /**
@@ -21,6 +20,6 @@ trait RelativeClientTrait
      */
     public function setUpClient()
     {
-        $this->client = static::createClient(array('environment' => 'test_relative'), []);
+        $this->client = static::createClient(['environment' => 'test_relative'], []);
     }
 }

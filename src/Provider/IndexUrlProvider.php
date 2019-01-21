@@ -1,39 +1,26 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\SitemapIndexUrlFactoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class IndexUrlProvider implements IndexUrlProviderInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $providers = [];
 
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
-    /**
-     * @var SitemapIndexUrlFactoryInterface
-     */
+    /** @var SitemapIndexUrlFactoryInterface */
     private $sitemapIndexUrlFactory;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $urls = [];
 
-    /**
-     * @param RouterInterface $router
-     * @param SitemapIndexUrlFactoryInterface $sitemapIndexUrlFactory
-     */
     public function __construct(
         RouterInterface $router,
         SitemapIndexUrlFactoryInterface $sitemapIndexUrlFactory
@@ -61,7 +48,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
             $localization = $this->router->generate(
                 'sylius_sitemap_' . $provider->getName(),
                 [
-                    '_format' => 'xml'
+                    '_format' => 'xml',
                 ]
             );
 

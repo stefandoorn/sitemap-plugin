@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Model;
 
 use PHPUnit\Framework\TestCase;
@@ -8,7 +10,6 @@ use SitemapPlugin\Model\SitemapUrl;
 
 /**
  * Class SitemapTest
- * @package Tests\SitemapPlugin\Model
  */
 class SitemapTest extends TestCase
 {
@@ -20,7 +21,7 @@ class SitemapTest extends TestCase
         $this->assertNull($obj->getLocalization());
         $this->assertNull($obj->getLastModification());
     }
-    
+
     public function testUrls()
     {
         $obj = new Sitemap();

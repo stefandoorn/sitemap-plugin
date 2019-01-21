@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Builder;
 
@@ -6,25 +8,14 @@ use SitemapPlugin\Factory\SitemapFactoryInterface;
 use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapBuilder implements SitemapBuilderInterface
 {
-    /**
-     * @var SitemapFactoryInterface
-     */
+    /** @var SitemapFactoryInterface */
     private $sitemapFactory;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $providers = [];
 
-    /**
-     * @param SitemapFactoryInterface $sitemapFactory
-     */
     public function __construct(SitemapFactoryInterface $sitemapFactory)
     {
         $this->sitemapFactory = $sitemapFactory;
@@ -63,17 +54,13 @@ final class SitemapBuilder implements SitemapBuilderInterface
         return $sitemap;
     }
 
-    /**
-     * @param array $filter
-     * @return array
-     */
     private function filter(array $filter): array
     {
         if (empty($filter)) {
             return $this->providers;
         }
 
-        return array_filter($this->providers, function(UrlProviderInterface $provider) use ($filter) {
+        return array_filter($this->providers, function (UrlProviderInterface $provider) use ($filter) {
             return in_array($provider->getName(), $filter);
         });
     }

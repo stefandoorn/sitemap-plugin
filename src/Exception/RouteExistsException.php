@@ -1,10 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Exception;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class RouteExistsException extends \Exception
 {
     /**

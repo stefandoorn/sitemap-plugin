@@ -1,15 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Controller;
 
-use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\Product;
-use Sylius\Component\Core\Model\ProductTranslation;
-use Sylius\Component\Locale\Model\Locale;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapProductControllerApiUniqueLocaleChannelTest extends AbstractTestController
 {
     use TearDownTrait;
