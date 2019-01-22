@@ -41,19 +41,16 @@ interface SitemapUrlInterface
     public function getPriority(): ?float;
 
     public function setPriority(float $priority): void;
-    
+
     /**
      * @return array|SitemapImageUrlInterface[]
      */
     public function getImages();
-    
+
     /**
      * @param array|SitemapImageUrlInterface[] $images
      */
     public function setImages($images): void;
-    
-    /**
-     * @param SitemapImageUrlInterface $image
-     */
+
     public function addImage(SitemapImageUrlInterface $image): void;
 }

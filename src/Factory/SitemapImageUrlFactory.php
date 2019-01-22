@@ -1,13 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Factory;
 
 use SitemapPlugin\Model\SitemapImageUrl;
 use SitemapPlugin\Model\SitemapImageUrlInterface;
 
-/**
- * @author Stéphane DECOCK <s.decock@behappycom.com>
- */
 final class SitemapImageUrlFactory implements SitemapImageUrlFactoryInterface
 {
     /**

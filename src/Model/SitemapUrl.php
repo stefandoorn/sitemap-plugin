@@ -22,10 +22,8 @@ class SitemapUrl implements SitemapUrlInterface
 
     /** @var iterable|array */
     private $alternatives = [];
-    
-    /**
-     * @var SitemapImageUrlInterface[]|array
-     */
+
+    /** @var SitemapImageUrlInterface[]|array */
     private $images = [];
 
     /**
@@ -121,7 +119,7 @@ class SitemapUrl implements SitemapUrlInterface
 
         $this->priority = $priority;
     }
-    
+
     /**
      * @return array|SitemapImageUrlInterface[]
      */
@@ -129,7 +127,7 @@ class SitemapUrl implements SitemapUrlInterface
     {
         return $this->images;
     }
-    
+
     /**
      * @param array|SitemapImageUrlInterface[] $images
      */
@@ -137,10 +135,7 @@ class SitemapUrl implements SitemapUrlInterface
     {
         $this->images = $images;
     }
-    
-    /**
-     * @param SitemapImageUrlInterface $image
-     */
+
     public function addImage(SitemapImageUrlInterface $image): void
     {
         $this->images[] = $image;
