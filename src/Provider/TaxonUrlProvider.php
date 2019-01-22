@@ -84,8 +84,9 @@ final class TaxonUrlProvider implements UrlProviderInterface
                     continue;
                 }
 
-                if ($translation->getLocale()) {
-                    $taxonUrl->addAlternative($location, $translation->getLocale());
+                $locale = $translation->getLocale();
+                if ($locale) {
+                    $taxonUrl->addAlternative($location, $locale);
                 }
             }
 
