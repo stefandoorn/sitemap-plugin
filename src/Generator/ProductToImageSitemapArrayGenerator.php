@@ -36,7 +36,7 @@ final class ProductToImageSitemapArrayGenerator
 
         /** @var ProductImageInterface $image */
         foreach ($product->getImages() as $image) {
-            if (!$image->hasFile() || !$image->getPath()) {
+            if (!$image->getPath()) {
                 continue;
             }
 
