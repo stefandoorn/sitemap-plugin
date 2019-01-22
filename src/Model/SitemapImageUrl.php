@@ -7,33 +7,33 @@ namespace SitemapPlugin\Model;
 class SitemapImageUrl implements SitemapImageUrlInterface
 {
     /** @var string */
-    private $localization;
+    private $location;
 
-    /** @var string */
+    /** @var string|null */
     private $title;
 
-    /** @var string */
+    /** @var string|null */
     private $caption;
 
-    /** @var string */
-    private $geo_location;
+    /** @var string|null */
+    private $geoLocation;
 
-    /** @var string */
+    /** @var string|null */
     private $license;
 
-    public function getLocalization(): string
+    public function getLocation(): string
     {
-        return $this->localization ?? '';
+        return $this->location;
     }
 
-    public function setLocalization(string $localization): void
+    public function setLocation(string $localization): void
     {
-        $this->localization = $localization;
+        $this->location = $localization;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
-        return $this->title ?? '';
+        return $this->title;
     }
 
     public function setTitle(string $title): void
@@ -41,9 +41,9 @@ class SitemapImageUrl implements SitemapImageUrlInterface
         $this->title = $title;
     }
 
-    public function getCaption(): string
+    public function getCaption(): ?string
     {
-        return $this->caption ?? '';
+        return $this->caption;
     }
 
     public function setCaption(string $caption): void
@@ -51,19 +51,19 @@ class SitemapImageUrl implements SitemapImageUrlInterface
         $this->caption = $caption;
     }
 
-    public function getGeoLocation(): string
+    public function getGeoLocation(): ?string
     {
-        return $this->geo_location ?? '';
+        return $this->geoLocation;
     }
 
-    public function setGeoLocation(string $geo_location): void
+    public function setGeoLocation(string $geoLocation): void
     {
-        $this->geo_location = $geo_location;
+        $this->geoLocation = $geoLocation;
     }
 
-    public function getLicense(): string
+    public function getLicense(): ?string
     {
-        return $this->license ?? '';
+        return $this->license;
     }
 
     public function setLicense(string $license): void

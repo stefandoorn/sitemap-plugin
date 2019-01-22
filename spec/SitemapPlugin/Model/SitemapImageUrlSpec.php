@@ -22,10 +22,10 @@ final class SitemapImageUrlSpec extends ObjectBehavior
         $this->shouldImplement(SitemapImageUrlInterface::class);
     }
 
-    function it_has_localization(): void
+    function it_has_location(): void
     {
-        $this->setLocalization('http://sylius.org/');
-        $this->getLocalization()->shouldReturn('http://sylius.org/');
+        $this->setLocation('http://sylius.org/');
+        $this->getLocation()->shouldReturn('http://sylius.org/');
     }
 
     function it_has_title(): void

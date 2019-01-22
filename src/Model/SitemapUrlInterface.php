@@ -45,7 +45,7 @@ interface SitemapUrlInterface
     /**
      * @return array|SitemapImageUrlInterface[]
      */
-    public function getImages();
+    public function getImages(): array;
 
     /**
      * @param array|SitemapImageUrlInterface[] $images

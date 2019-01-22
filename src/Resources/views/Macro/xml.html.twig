@@ -22,8 +22,10 @@
     {%- if url.getImages is not empty -%}
         {%- for image in url.getImages -%}
             <image:image>
-                <image:loc>{{ image.localization }}</image:loc>
-                <image:title>{{ image.title }}</image:title>
+                <image:loc>{{ image.location }}</image:loc>
+                {% if image.title is not empty %}
+                    <image:title>{{ image.title }}</image:title>
+                {% endif %}
                 {% if image.caption is not empty %}
                     <image:caption>{{ image.caption }}</image:caption>
                 {% endif %}

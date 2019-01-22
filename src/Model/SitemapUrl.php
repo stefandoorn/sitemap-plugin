@@ -23,7 +23,7 @@ class SitemapUrl implements SitemapUrlInterface
     /** @var iterable|array */
     private $alternatives = [];
 
-    /** @var SitemapImageUrlInterface[]|array */
+    /** @var SitemapImageUrlInterface[] */
     private $images = [];
 
     /**
@@ -121,9 +121,9 @@ class SitemapUrl implements SitemapUrlInterface
     }
 
     /**
-     * @return array|SitemapImageUrlInterface[]
+     * @return SitemapImageUrlInterface[]
      */
-    public function getImages()
+    public function getImages(): array
     {
         return $this->images;
     }
