@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\SitemapPlugin\Controller;
 
 use Sylius\Component\Core\Model\Product;
+use Sylius\Component\Core\Model\ProductImage;
 
 class SitemapProductControllerApiLocalesImagesTest extends AbstractTestController
 {
@@ -46,7 +47,7 @@ class SitemapProductControllerApiLocalesImagesTest extends AbstractTestControlle
         $product->setCode('mock-code');
         $product->setSlug('mock');
         $product->addChannel($this->channel);
-        $product->addImage($image;)
+        $product->addImage($image);
         $this->getEntityManager()->persist($product);
 
         $this->getEntityManager()->flush();

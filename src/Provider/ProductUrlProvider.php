@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
-use SitemapPlugin\Converter\ProductToImageSitemapArrayConverter;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Generator\ProductToImageSitemapArrayGenerator;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\SitemapUrlInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -128,7 +128,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         if ($updatedAt) {
             $productUrl->setLastModification($updatedAt);
         }
-        $productUrl->setImages(ProductToImageSitemapArrayConverter::generate($product));
+        $productUrl->setImages(ProductToImageSitemapArrayGenerator::generate($product));
 
         /** @var ProductTranslationInterface $translation */
         foreach ($this->getTranslations($product) as $translation) {
