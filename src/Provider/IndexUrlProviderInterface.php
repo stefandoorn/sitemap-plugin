@@ -1,10 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 interface IndexUrlProviderInterface
 {
     /**
@@ -12,8 +11,5 @@ interface IndexUrlProviderInterface
      */
     public function generate(): iterable;
 
-    /**
-     * @param UrlProviderInterface $provider
-     */
     public function addProvider(UrlProviderInterface $provider): void;
 }

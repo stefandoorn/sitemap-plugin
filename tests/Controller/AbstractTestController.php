@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Controller;
 
 use Lakion\ApiTestCase\XmlApiTestCase;
@@ -10,31 +12,20 @@ use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\Locale;
 use Sylius\Component\Locale\Model\LocaleInterface;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 abstract class AbstractTestController extends XmlApiTestCase
 {
-    /**
-     * @var ChannelInterface
-     */
+    /** @var ChannelInterface */
     protected $channel;
 
-    /**
-     * @var LocaleInterface
-     */
+    /** @var LocaleInterface */
     protected $locale;
 
-    /**
-     * @var LocaleInterface
-     */
+    /** @var LocaleInterface */
     protected $locale2;
 
-    /**
-     * @var CurrencyInterface
-     */
+    /** @var CurrencyInterface */
     protected $currency;
-    
+
     /**
      * @before
      */

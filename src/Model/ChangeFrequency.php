@@ -1,16 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class ChangeFrequency
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $value;
 
     /**
@@ -21,9 +17,6 @@ final class ChangeFrequency
         $this->value = $changeFrequency;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->value;

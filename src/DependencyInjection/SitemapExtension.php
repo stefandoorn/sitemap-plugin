@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\DependencyInjection;
 
@@ -7,9 +9,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapExtension extends Extension
 {
     /**
@@ -22,7 +21,6 @@ final class SitemapExtension extends Extension
             throw new \Exception('Configuration did not provide proper object');
         }
         $config = $this->processConfiguration($configuration, $config);
-
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');

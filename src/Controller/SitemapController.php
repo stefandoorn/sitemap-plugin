@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
@@ -7,21 +9,11 @@ use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapController extends AbstractController
 {
-    /**
-     * @var SitemapBuilderInterface
-     */
+    /** @var SitemapBuilderInterface */
     protected $sitemapBuilder;
 
-    /**
-     * @param SitemapRendererInterface $sitemapRenderer
-     * @param SitemapBuilderInterface $sitemapBuilder
-     */
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
         SitemapBuilderInterface $sitemapBuilder
@@ -30,9 +22,6 @@ class SitemapController extends AbstractController
         $this->sitemapBuilder = $sitemapBuilder;
     }
 
-    /**
-     * @return Response
-     */
     public function showAction(Request $request): Response
     {
         $filter = [];

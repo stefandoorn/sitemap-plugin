@@ -1,29 +1,21 @@
-<?php declare(strict_types=1);
- 
+<?php
+
+declare(strict_types=1);
+
 namespace SitemapPlugin\Model;
 
-use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 use DateTimeInterface;
+use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class Sitemap implements SitemapInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $urls = [];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $localization;
 
-    /**
-     * @var DateTimeInterface
-     */
+    /** @var DateTimeInterface */
     private $lastModification;
 
     /**

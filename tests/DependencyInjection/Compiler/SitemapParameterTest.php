@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use SitemapPlugin\DependencyInjection\SitemapExtension;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapParameterTest extends AbstractExtensionTestCase
 {
     /**
@@ -29,33 +28,25 @@ class SitemapParameterTest extends AbstractExtensionTestCase
         if ($products) {
             $this->assertContainerBuilderHasService('sylius.sitemap_provider.product', \SitemapPlugin\Provider\ProductUrlProvider::class);
             $this->assertContainerBuilderHasServiceDefinitionWithTag('sylius.sitemap_provider.product', 'sylius.sitemap_provider');
-        }
-        else {
+        } else {
             $this->assertContainerBuilderNotHasService('sylius.sitemap_provider.product');
         }
 
         if ($taxons) {
             $this->assertContainerBuilderHasService('sylius.sitemap_provider.taxon', \SitemapPlugin\Provider\TaxonUrlProvider::class);
             $this->assertContainerBuilderHasServiceDefinitionWithTag('sylius.sitemap_provider.taxon', 'sylius.sitemap_provider');
-
-        }
-        else {
+        } else {
             $this->assertContainerBuilderNotHasService('sylius.sitemap_provider.taxon');
         }
 
         if ($static) {
             $this->assertContainerBuilderHasService('sylius.sitemap_provider.static', \SitemapPlugin\Provider\StaticUrlProvider::class);
             $this->assertContainerBuilderHasServiceDefinitionWithTag('sylius.sitemap_provider.static', 'sylius.sitemap_provider');
-
-        }
-        else {
+        } else {
             $this->assertContainerBuilderNotHasService('sylius.sitemap_provider.static');
         }
     }
 
-    /**
-     * @return array
-     */
     public function providers(): array
     {
         return [
@@ -67,7 +58,7 @@ class SitemapParameterTest extends AbstractExtensionTestCase
                 ]],
                 true,
                 true,
-                true
+                true,
             ],
             [
                 ['providers' => []],
@@ -83,7 +74,7 @@ class SitemapParameterTest extends AbstractExtensionTestCase
                 ]],
                 false,
                 false,
-                false
+                false,
             ],
             [
                 ['providers' => [
@@ -103,8 +94,8 @@ class SitemapParameterTest extends AbstractExtensionTestCase
      */
     protected function getContainerExtensions()
     {
-        return array(
-            new SitemapExtension()
-        );
+        return [
+            new SitemapExtension(),
+        ];
     }
 }

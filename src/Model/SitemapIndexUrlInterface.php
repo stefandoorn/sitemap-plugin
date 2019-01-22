@@ -1,12 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 interface SitemapIndexUrlInterface
 {
     /**
@@ -14,9 +13,6 @@ interface SitemapIndexUrlInterface
      */
     public function getLocalization(): ?string;
 
-    /**
-     * @param string $localization
-     */
     public function setLocalization(string $localization): void;
 
     /**
@@ -24,8 +20,5 @@ interface SitemapIndexUrlInterface
      */
     public function getLastModification(): ?DateTimeInterface;
 
-    /**
-     * @param DateTimeInterface $lastModification
-     */
     public function setLastModification(DateTimeInterface $lastModification);
 }

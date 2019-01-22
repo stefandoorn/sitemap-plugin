@@ -1,10 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Controller;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapStaticControllerApiTest extends AbstractTestController
 {
     use TearDownTrait;

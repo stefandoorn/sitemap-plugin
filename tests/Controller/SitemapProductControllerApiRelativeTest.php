@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Controller;
 
 use Sylius\Component\Core\Model\Product;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapProductControllerApiRelativeTest extends AbstractTestController
 {
     use RelativeClientTrait;

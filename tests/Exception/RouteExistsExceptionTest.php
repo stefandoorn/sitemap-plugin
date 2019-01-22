@@ -1,18 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SitemapPlugin\Exception;
 
 use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Exception\RouteExistsException;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class RouteExistsExceptionTest extends TestCase
 {
-    /**
-     *
-     */
     public function testException()
     {
         $exception = new RouteExistsException('test');

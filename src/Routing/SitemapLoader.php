@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Routing;
 
@@ -13,35 +15,23 @@ use Symfony\Component\Routing\RouteCollection;
 
 /**
  * Class SitemapLoader
- * @package SitemapPlugin\Routing
- * @author Stefan Doorn <stefan@efectos.nl>
  */
 class SitemapLoader extends Loader implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $loaded = false;
 
-    /**
-     * @var SitemapBuilderInterface
-     */
+    /** @var SitemapBuilderInterface */
     private $sitemapBuilder;
 
-    /**
-     * @param SitemapBuilderInterface $sitemapBuilder
-     */
     public function __construct(SitemapBuilderInterface $sitemapBuilder)
     {
         $this->sitemapBuilder = $sitemapBuilder;
     }
 
     /**
-     * @param mixed $resource
-     * @param null $type
-     * @return RouteCollection
      * @throws RouteExistsException
      */
     public function load($resource, $type = null): RouteCollection
@@ -84,11 +74,6 @@ class SitemapLoader extends Loader implements ContainerAwareInterface
         return $routes;
     }
 
-    /**
-     * @param mixed $resource
-     * @param null $type
-     * @return bool
-     */
     public function supports($resource, $type = null): bool
     {
         return $type && 'sitemap' === $type;

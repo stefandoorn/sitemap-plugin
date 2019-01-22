@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
@@ -17,54 +19,29 @@ use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class ProductUrlProvider implements UrlProviderInterface
 {
-    /**
-     * @var ProductRepositoryInterface|EntityRepository
-     */
+    /** @var ProductRepositoryInterface|EntityRepository */
     private $productRepository;
 
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
-    /**
-     * @var SitemapUrlFactoryInterface
-     */
+    /** @var SitemapUrlFactoryInterface */
     private $sitemapUrlFactory;
 
-    /**
-     * @var LocaleContextInterface
-     */
+    /** @var LocaleContextInterface */
     private $localeContext;
 
-    /**
-     * @var ChannelContextInterface
-     */
+    /** @var ChannelContextInterface */
     private $channelContext;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $urls = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $channelLocaleCodes;
 
-    /**
-     * @param ProductRepositoryInterface $productRepository
-     * @param RouterInterface $router
-     * @param SitemapUrlFactoryInterface $sitemapUrlFactory
-     * @param LocaleContextInterface $localeContext
-     * @param ChannelContextInterface $channelContext
-     */
     public function __construct(
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
@@ -79,9 +56,6 @@ final class ProductUrlProvider implements UrlProviderInterface
         $this->channelContext = $channelContext;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'products';
@@ -100,7 +74,6 @@ final class ProductUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * @param ProductInterface $product
      * @return Collection|ProductTranslationInterface[]
      */
     private function getTranslations(ProductInterface $product): Collection
@@ -110,10 +83,6 @@ final class ProductUrlProvider implements UrlProviderInterface
         });
     }
 
-    /**
-     * @param TranslationInterface $translation
-     * @return bool
-     */
     private function localeInLocaleCodes(TranslationInterface $translation): bool
     {
         return in_array($translation->getLocale(), $this->getLocaleCodes());
@@ -135,9 +104,6 @@ final class ProductUrlProvider implements UrlProviderInterface
             ->getResult();
     }
 
-    /**
-     * @return array
-     */
     private function getLocaleCodes(): array
     {
         if ($this->channelLocaleCodes === null) {
@@ -152,10 +118,6 @@ final class ProductUrlProvider implements UrlProviderInterface
         return $this->channelLocaleCodes;
     }
 
-    /**
-     * @param ProductInterface $product
-     * @return SitemapUrlInterface
-     */
     private function createProductUrl(ProductInterface $product): SitemapUrlInterface
     {
         $productUrl = $this->sitemapUrlFactory->createNew();
@@ -182,6 +144,7 @@ final class ProductUrlProvider implements UrlProviderInterface
 
             if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
                 $productUrl->setLocalization($location);
+
                 continue;
             }
 

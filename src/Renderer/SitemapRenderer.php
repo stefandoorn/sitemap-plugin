@@ -1,23 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Renderer;
 
 use SitemapPlugin\Model\SitemapInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapRenderer implements SitemapRendererInterface
 {
-    /**
-     * @var RendererAdapterInterface
-     */
+    /** @var RendererAdapterInterface */
     private $adapter;
 
-    /**
-     * @param RendererAdapterInterface $adapter
-     */
     public function __construct(RendererAdapterInterface $adapter)
     {
         $this->adapter = $adapter;

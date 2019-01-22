@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
@@ -6,52 +8,33 @@ use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
-use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Taxonomy\Model\TaxonTranslationInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class TaxonUrlProvider implements UrlProviderInterface
 {
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     private $taxonRepository;
 
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
-    /**
-     * @var SitemapUrlFactoryInterface
-     */
+    /** @var SitemapUrlFactoryInterface */
     private $sitemapUrlFactory;
 
-    /**
-     * @var LocaleContextInterface
-     */
+    /** @var LocaleContextInterface */
     private $localeContext;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $urls = [];
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $excludeTaxonRoot = true;
 
     /**
      * TaxonUrlProvider constructor.
-     * @param RepositoryInterface $taxonRepository
-     * @param RouterInterface $router
-     * @param SitemapUrlFactoryInterface $sitemapUrlFactory
-     * @param LocaleContextInterface $localeContext
+     *
      * @param bool $excludeTaxonRoot
      */
     public function __construct(
@@ -68,9 +51,6 @@ final class TaxonUrlProvider implements UrlProviderInterface
         $this->excludeTaxonRoot = $excludeTaxonRoot;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'taxons';
@@ -100,6 +80,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
 
                 if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
                     $taxonUrl->setLocalization($location);
+
                     continue;
                 }
 

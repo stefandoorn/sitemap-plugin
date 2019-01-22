@@ -1,39 +1,27 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Renderer;
 
-use SitemapPlugin\Exception\TemplateNotFoundException;
 use SitemapPlugin\Model\SitemapInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class TwigAdapter implements RendererAdapterInterface
 {
-    /**
-     * @var EngineInterface
-     */
+    /** @var EngineInterface */
     private $twig;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $template;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $absoluteUrl;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $hreflang;
 
     /**
-     * @param EngineInterface $twig
      * @param string $template
      */
     public function __construct(EngineInterface $twig, $template, $absoluteUrl, $hreflang = true)

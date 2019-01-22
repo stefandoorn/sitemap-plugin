@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Builder;
 
@@ -7,29 +9,17 @@ use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\IndexUrlProviderInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
 {
-    /**
-     * @var SitemapIndexFactoryInterface
-     */
+    /** @var SitemapIndexFactoryInterface */
     private $sitemapIndexFactory;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $providers = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $indexProviders = [];
 
-    /**
-     * @param SitemapIndexFactoryInterface $sitemapIndexFactory
-     */
     public function __construct(SitemapIndexFactoryInterface $sitemapIndexFactory)
     {
         $this->sitemapIndexFactory = $sitemapIndexFactory;

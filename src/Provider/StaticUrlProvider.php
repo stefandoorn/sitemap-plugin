@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
@@ -8,42 +10,25 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class StaticUrlProvider implements UrlProviderInterface
 {
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
-    /**
-     * @var SitemapUrlFactoryInterface
-     */
+    /** @var SitemapUrlFactoryInterface */
     private $sitemapUrlFactory;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $urls = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $routes;
 
-    /**
-     * @var ChannelContextInterface
-     */
+    /** @var ChannelContextInterface */
     private $channelContext;
 
     /**
      * StaticUrlProvider constructor.
-     * @param RouterInterface $router
-     * @param SitemapUrlFactoryInterface $sitemapUrlFactory
-     * @param ChannelContextInterface $channelContext
-     * @param array $routes
      */
     public function __construct(
         RouterInterface $router,
@@ -57,9 +42,6 @@ final class StaticUrlProvider implements UrlProviderInterface
         $this->routes = $routes;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'static';
@@ -94,20 +76,13 @@ final class StaticUrlProvider implements UrlProviderInterface
         return $this->urls;
     }
 
-    /**
-     * @return \Generator
-     */
     private function transformAndYieldRoutes(): \Generator
     {
-        foreach($this->routes as $route) {
+        foreach ($this->routes as $route) {
             yield $this->transformRoute($route);
         }
     }
 
-    /**
-     * @param array $route
-     * @return array
-     */
     private function transformRoute(array $route): array
     {
         // Add default locale to route if not set
@@ -124,10 +99,6 @@ final class StaticUrlProvider implements UrlProviderInterface
         return $route;
     }
 
-    /**
-     * @param array $route
-     * @return array
-     */
     private function addDefaultRoute(array $route): array
     {
         if (isset($route['parameters']['_locale'])) {
@@ -144,10 +115,6 @@ final class StaticUrlProvider implements UrlProviderInterface
         return $route;
     }
 
-    /**
-     * @param array $route
-     * @return array
-     */
     private function excludeMainRouteLocaleFromAlternativeLocales(array $route): array
     {
         $locales = $route['locales'];
@@ -182,5 +149,4 @@ final class StaticUrlProvider implements UrlProviderInterface
 
         return $locales;
     }
-
 }

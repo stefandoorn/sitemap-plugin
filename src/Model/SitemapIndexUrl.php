@@ -1,22 +1,17 @@
-<?php declare(strict_types=1);
- 
+<?php
+
+declare(strict_types=1);
+
 namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
 
-/**
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 class SitemapIndexUrl implements SitemapIndexUrlInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $localization;
 
-    /**
-     * @var DateTimeInterface
-     */
+    /** @var DateTimeInterface */
     private $lastModification;
 
     /**

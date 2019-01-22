@@ -1,13 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 interface SitemapInterface
 {
     /**
@@ -20,14 +18,8 @@ interface SitemapInterface
      */
     public function setUrls(array $urlSet): void;
 
-    /**
-     * @param SitemapUrlInterface $url
-     */
     public function addUrl(SitemapUrlInterface $url): void;
 
-    /**
-     * @param SitemapUrlInterface $url
-     */
     public function removeUrl(SitemapUrlInterface $url): void;
 
     /**
@@ -35,9 +27,6 @@ interface SitemapInterface
      */
     public function getLocalization(): ?string;
 
-    /**
-     * @param string $localization
-     */
     public function setLocalization(string $localization): void;
 
     /**
@@ -45,8 +34,5 @@ interface SitemapInterface
      */
     public function getLastModification(): ?DateTimeInterface;
 
-    /**
-     * @param DateTimeInterface $lastModification
-     */
     public function setLastModification(DateTimeInterface $lastModification): void;
 }
