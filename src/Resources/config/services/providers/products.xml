@@ -9,6 +9,7 @@
             <argument type="service" id="sylius.sitemap_url_factory" />
             <argument type="service" id="sylius.context.locale" />
             <argument type="service" id="sylius.context.channel" />
+            <argument type="service" id="sylius.sitemap.generator.product_to_image_sitemap_array" />
             <tag name="sylius.sitemap_provider" />
         </service>
     </services>
