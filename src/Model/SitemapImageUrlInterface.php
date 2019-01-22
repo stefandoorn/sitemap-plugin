@@ -20,7 +20,7 @@ interface SitemapImageUrlInterface
 
     public function getGeoLocation(): ?string;
 
-    public function setGeoLocation(string $geo_location): void;
+    public function setGeoLocation(string $geoLocation): void;
 
     public function getLicense(): ?string;
 

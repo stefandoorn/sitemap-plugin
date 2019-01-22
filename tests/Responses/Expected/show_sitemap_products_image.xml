@@ -6,7 +6,7 @@
     <changefreq>always</changefreq>
     <priority>0.5</priority>
     <image:image>
-      <image:loc>test.jpg</image:loc>
+      <image:loc>http://localhost/media/cache/resolve/sylius_shop_product_original/test.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -15,7 +15,7 @@
     <changefreq>always</changefreq>
     <priority>0.5</priority>
     <image:image>
-      <image:loc>mock.jpg</image:loc>
+      <image:loc>http://localhost/media/cache/resolve/sylius_shop_product_original/mock.jpg</image:loc>
     </image:image>
   </url>
 </urlset>
