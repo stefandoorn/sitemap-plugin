@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Generator;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use SitemapPlugin\Factory\SitemapImageUrlFactoryInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
@@ -30,9 +32,9 @@ final class ProductToImageSitemapArrayGenerator implements ProductToImageSitemap
         $this->imagePreset = $imagePreset;
     }
 
-    public function generate(ProductInterface $product): array
+    public function generate(ProductInterface $product): Collection
     {
-        $images = [];
+        $images = new ArrayCollection();
 
         /** @var ProductImageInterface $image */
         foreach ($product->getImages() as $image) {
@@ -44,7 +46,7 @@ final class ProductToImageSitemapArrayGenerator implements ProductToImageSitemap
             $sitemapImage->setLocation($this->imagineCacheManager->getBrowserPath($image->getPath(),
                 $this->imagePreset));
 
-            $images[] = $sitemapImage;
+            $images->add($sitemapImage);
         }
 
         return $images;
