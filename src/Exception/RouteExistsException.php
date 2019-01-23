@@ -13,6 +13,6 @@ class RouteExistsException extends \Exception
     {
         $template = 'Sitemap route "%s" already exists, probably a provider with a non-unique name';
 
-        parent::__construct(sprintf($template, $routeName), 0, $previousException);
+        parent::__construct(\sprintf($template, $routeName), 0, $previousException);
     }
 }

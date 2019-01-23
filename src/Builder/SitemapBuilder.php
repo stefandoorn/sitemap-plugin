@@ -46,7 +46,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
         $urls = [];
 
         foreach ($this->filter($filter) as $provider) {
-            $urls = array_merge($urls, $provider->generate());
+            $urls = \array_merge($urls, $provider->generate());
         }
 
         $sitemap->setUrls($urls);
@@ -60,8 +60,8 @@ final class SitemapBuilder implements SitemapBuilderInterface
             return $this->providers;
         }
 
-        return array_filter($this->providers, function (UrlProviderInterface $provider) use ($filter) {
-            return in_array($provider->getName(), $filter);
+        return \array_filter($this->providers, function (UrlProviderInterface $provider) use ($filter) {
+            return \in_array($provider->getName(), $filter);
         });
     }
 }

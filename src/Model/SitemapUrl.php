@@ -118,8 +118,8 @@ class SitemapUrl implements SitemapUrlInterface
      */
     public function setPriority(float $priority): void
     {
-        if (!is_numeric($priority) || 0 > $priority || 1 < $priority) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\is_numeric($priority) || 0 > $priority || 1 < $priority) {
+            throw new \InvalidArgumentException(\sprintf(
                 'The value %s is not supported by the option priority, it must be a numeric between 0.0 and 1.0.', $priority
             ));
         }

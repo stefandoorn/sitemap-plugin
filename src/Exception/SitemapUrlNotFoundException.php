@@ -15,6 +15,6 @@ class SitemapUrlNotFoundException extends \Exception
     {
         $template = 'Sitemap url "%s" not found';
 
-        parent::__construct(sprintf($template, $sitemapUrl->getLocalization()), 0, $previousException);
+        parent::__construct(\sprintf($template, $sitemapUrl->getLocalization()), 0, $previousException);
     }
 }

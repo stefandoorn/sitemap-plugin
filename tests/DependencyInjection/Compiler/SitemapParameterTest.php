@@ -21,9 +21,9 @@ class SitemapParameterTest extends AbstractExtensionTestCase
     ) {
         $this->load($config);
 
-        $this->assertContainerBuilderHasParameter(sprintf('sylius.provider.%s', 'products'), $products);
-        $this->assertContainerBuilderHasParameter(sprintf('sylius.provider.%s', 'taxons'), $taxons);
-        $this->assertContainerBuilderHasParameter(sprintf('sylius.provider.%s', 'static'), $static);
+        $this->assertContainerBuilderHasParameter(\sprintf('sylius.provider.%s', 'products'), $products);
+        $this->assertContainerBuilderHasParameter(\sprintf('sylius.provider.%s', 'taxons'), $taxons);
+        $this->assertContainerBuilderHasParameter(\sprintf('sylius.provider.%s', 'static'), $static);
 
         if ($products) {
             $this->assertContainerBuilderHasService('sylius.sitemap_provider.product', \SitemapPlugin\Provider\ProductUrlProvider::class);
