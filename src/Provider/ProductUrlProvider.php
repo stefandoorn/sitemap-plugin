@@ -6,7 +6,7 @@ namespace SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
-use SitemapPlugin\Generator\ProductToImageSitemapArrayGenerator;
+use SitemapPlugin\Generator\ProductToImageSitemapArrayGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\SitemapUrlInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -43,7 +43,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /** @var array */
     private $channelLocaleCodes;
 
-    /** @var ProductToImageSitemapArrayGenerator */
+    /** @var ProductToImageSitemapArrayGeneratorInterface */
     private $productToImageSitemapArrayGenerator;
 
     public function __construct(
@@ -52,7 +52,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         SitemapUrlFactoryInterface $sitemapUrlFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext,
-        ProductToImageSitemapArrayGenerator $productToImageSitemapArrayGenerator
+        ProductToImageSitemapArrayGeneratorInterface $productToImageSitemapArrayGenerator
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;

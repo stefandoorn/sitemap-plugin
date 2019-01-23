@@ -9,7 +9,7 @@ use SitemapPlugin\Factory\SitemapImageUrlFactoryInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 
-final class ProductToImageSitemapArrayGenerator
+final class ProductToImageSitemapArrayGenerator implements ProductToImageSitemapArrayGeneratorInterface
 {
     /** @var CacheManager */
     private $imagineCacheManager;
