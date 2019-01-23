@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace spec\SitemapPlugin\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Model\SitemapImageUrlInterface;
 use SitemapPlugin\Model\SitemapUrl;
 use SitemapPlugin\Model\SitemapUrlInterface;
 
@@ -51,5 +54,31 @@ final class SitemapUrlSpec extends ObjectBehavior
         $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', [-0.5]);
         $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', [2]);
         $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', [1.1]);
+    }
+
+    function it_initializes_image_collection_by_default(): void
+    {
+        $this->getImages()->shouldHaveType(Collection::class);
+    }
+
+    function it_adds_an_image(SitemapImageUrlInterface $image): void
+    {
+        $this->addImage($image);
+        $this->hasImages()->shouldReturn(true);
+        $this->hasImage($image)->shouldReturn(true);
+    }
+
+    function it_removes_an_image(SitemapImageUrlInterface $image): void
+    {
+        $this->addImage($image);
+        $this->removeImage($image);
+        $this->hasImages()->shouldReturn(false);
+        $this->hasImage($image)->shouldReturn(false);
+    }
+
+    function it_returns_images(SitemapImageUrlInterface $image): void
+    {
+        $this->addImage($image);
+        $this->getImages()->shouldBeLike(new ArrayCollection([$image->getWrappedObject()]));
     }
 }

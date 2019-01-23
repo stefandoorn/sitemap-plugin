@@ -31,6 +31,7 @@ final class SitemapExtension extends Extension
         $container->setParameter('sylius.sitemap_absolute_url', $config['absolute_url']);
         $container->setParameter('sylius.sitemap_hreflang', $config['hreflang']);
         $container->setParameter('sylius.sitemap_static', $config['static_routes']);
+        $container->setParameter('sylius.sitemap_images', $config['images']);
 
         foreach ($config['providers'] as $provider => $setting) {
             $parameter = sprintf('sylius.provider.%s', $provider);

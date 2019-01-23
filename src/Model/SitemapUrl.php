@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class SitemapUrl implements SitemapUrlInterface
 {
@@ -22,6 +24,14 @@ class SitemapUrl implements SitemapUrlInterface
 
     /** @var iterable|array */
     private $alternatives = [];
+
+    /** @var Collection|SitemapImageUrlInterface[] */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     /**
      * {@inheritdoc}
@@ -115,5 +125,43 @@ class SitemapUrl implements SitemapUrlInterface
         }
 
         $this->priority = $priority;
+    }
+
+    /**
+     * @return Collection|SitemapImageUrlInterface[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Collection|SitemapImageUrlInterface[] $images
+     */
+    public function setImages(Collection $images): void
+    {
+        $this->images = $images;
+    }
+
+    public function addImage(SitemapImageUrlInterface $image): void
+    {
+        $this->images->add($image);
+    }
+
+    public function hasImage(SitemapImageUrlInterface $image): bool
+    {
+        return $this->images->contains($image);
+    }
+
+    public function removeImage(SitemapImageUrlInterface $image): void
+    {
+        if ($this->hasImage($image)) {
+            $this->images->removeElement($image);
+        }
+    }
+
+    public function hasImages(): bool
+    {
+        return !$this->images->isEmpty();
     }
 }

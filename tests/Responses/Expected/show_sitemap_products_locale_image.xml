@@ -7,6 +7,9 @@
     <lastmod>@string@.isDateTime()</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>http://localhost/media/cache/resolve/sylius_shop_product_original/test.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>http://localhost/nl_NL/products/test</loc>
@@ -15,6 +18,9 @@
     <lastmod>@string@.isDateTime()</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>http://localhost/media/cache/resolve/sylius_shop_product_original/test.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>http://localhost/en_US/products/mock</loc>
@@ -23,6 +29,9 @@
     <lastmod>@string@.isDateTime()</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>http://localhost/media/cache/resolve/sylius_shop_product_original/mock.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>http://localhost/nl_NL/products/mock</loc>
@@ -31,5 +40,8 @@
     <lastmod>@string@.isDateTime()</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>http://localhost/media/cache/resolve/sylius_shop_product_original/mock.jpg</image:loc>
+    </image:image>
   </url>
 </urlset>

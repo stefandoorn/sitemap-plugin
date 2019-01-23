@@ -10,6 +10,7 @@ use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\SitemapUrlInterface;
 use SitemapPlugin\Provider\ProductUrlProvider;
@@ -17,6 +18,7 @@ use SitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslation;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -30,9 +32,10 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory,
         LocaleContextInterface $localeContext,
-        ChannelContextInterface $channelContext
+        ChannelContextInterface $channelContext,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
-        $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext, $channelContext);
+        $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext, $channelContext, $productToImageSitemapArrayGenerator);
     }
 
     function it_is_initializable(): void
@@ -55,12 +58,14 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         Collection $products,
         \Iterator $iterator,
         ProductInterface $product,
+        ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
         SitemapUrlInterface $sitemapUrl,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
-        ChannelInterface $channel
+        ChannelInterface $channel,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $now = new \DateTime();
 
@@ -89,7 +94,17 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $iterator->rewind()->shouldBeCalled();
 
         $iterator->current()->willReturn($product);
+
+        $productImage->getPath()->willReturn(null);
+
         $product->getUpdatedAt()->willReturn($now);
+        $product->getImages()->willReturn(new ArrayCollection([
+            $productImage->getWrappedObject(),
+        ]));
+
+        $sitemapImageCollection = new ArrayCollection([]);
+
+        $productToImageSitemapArrayGenerator->generate($product)->willReturn($sitemapImageCollection);
 
         $productEnUSTranslation->getLocale()->willReturn('en_US');
         $productEnUSTranslation->getSlug()->willReturn('t-shirt');
@@ -109,6 +124,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
 
         $sitemapUrlFactory->createNew()->willReturn($sitemapUrl);
 
+        $sitemapUrl->setImages($sitemapImageCollection)->shouldBeCalled();
         $sitemapUrl->setLocalization('http://sylius.org/en_US/products/t-shirt')->shouldBeCalled();
         $sitemapUrl->setLocalization('http://sylius.org/nl_NL/products/t-shirt')->shouldNotBeCalled();
         $sitemapUrl->setLastModification($now)->shouldBeCalled();
@@ -131,12 +147,14 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         Collection $products,
         \Iterator $iterator,
         ProductInterface $product,
+        ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
         SitemapUrlInterface $sitemapUrl,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
-        ChannelInterface $channel
+        ChannelInterface $channel,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $now = new \DateTime();
 
@@ -167,7 +185,17 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $iterator->rewind()->shouldBeCalled();
 
         $iterator->current()->willReturn($product);
+
+        $productImage->getPath()->willReturn(null);
+
         $product->getUpdatedAt()->willReturn($now);
+        $product->getImages()->willReturn(new ArrayCollection([
+            $productImage->getWrappedObject(),
+        ]));
+
+        $sitemapImageCollection = new ArrayCollection([]);
+
+        $productToImageSitemapArrayGenerator->generate($product)->willReturn($sitemapImageCollection);
 
         $productEnUSTranslation->getLocale()->willReturn('en_US');
         $productEnUSTranslation->getSlug()->willReturn('t-shirt');
@@ -192,6 +220,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
 
         $sitemapUrlFactory->createNew()->willReturn($sitemapUrl);
 
+        $sitemapUrl->setImages($sitemapImageCollection)->shouldBeCalled();
         $sitemapUrl->setLocalization('http://sylius.org/en_US/products/t-shirt')->shouldBeCalled();
         $sitemapUrl->setLocalization('http://sylius.org/nl_NL/products/t-shirt')->shouldNotBeCalled();
         $sitemapUrl->setLastModification($now)->shouldBeCalled();

@@ -6,6 +6,7 @@ namespace SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\SitemapUrlInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -42,18 +43,23 @@ final class ProductUrlProvider implements UrlProviderInterface
     /** @var array */
     private $channelLocaleCodes;
 
+    /** @var ProductImagesToSitemapImagesCollectionGeneratorInterface */
+    private $productToImageSitemapArrayGenerator;
+
     public function __construct(
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
         SitemapUrlFactoryInterface $sitemapUrlFactory,
         LocaleContextInterface $localeContext,
-        ChannelContextInterface $channelContext
+        ChannelContextInterface $channelContext,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
         $this->localeContext = $localeContext;
         $this->channelContext = $channelContext;
+        $this->productToImageSitemapArrayGenerator = $productToImageSitemapArrayGenerator;
     }
 
     public function getName(): string
@@ -127,6 +133,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         if ($updatedAt) {
             $productUrl->setLastModification($updatedAt);
         }
+        $productUrl->setImages($this->productToImageSitemapArrayGenerator->generate($product));
 
         /** @var ProductTranslationInterface $translation */
         foreach ($this->getTranslations($product) as $translation) {

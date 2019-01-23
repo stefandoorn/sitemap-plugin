@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\Collection;
 
 interface SitemapUrlInterface
 {
-    /**
-     * @return string
-     */
     public function getLocalization(): ?string;
 
     public function setLocalization(string $localization): void;
@@ -19,14 +17,8 @@ interface SitemapUrlInterface
 
     public function setAlternatives(iterable $alternatives): void;
 
-    /**
-     * @return iterable|array
-     */
     public function getAlternatives(): iterable;
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getLastModification(): ?DateTimeInterface;
 
     public function setLastModification(DateTimeInterface $lastModification): void;
@@ -35,10 +27,25 @@ interface SitemapUrlInterface
 
     public function setChangeFrequency(ChangeFrequency $changeFrequency): void;
 
-    /**
-     * @return float
-     */
     public function getPriority(): ?float;
 
     public function setPriority(float $priority): void;
+
+    /**
+     * @return Collection|SitemapImageUrlInterface[]
+     */
+    public function getImages(): Collection;
+
+    /**
+     * @param Collection|SitemapImageUrlInterface[] $images
+     */
+    public function setImages(Collection $images): void;
+
+    public function addImage(SitemapImageUrlInterface $image): void;
+
+    public function hasImage(SitemapImageUrlInterface $image): bool;
+
+    public function removeImage(SitemapImageUrlInterface $image): void;
+
+    public function hasImages(): bool;
 }

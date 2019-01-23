@@ -17,6 +17,7 @@
             <argument>%sylius.sitemap_template%</argument>
             <argument>%sylius.sitemap_absolute_url%</argument>
             <argument>%sylius.sitemap_hreflang%</argument>
+            <argument>%sylius.sitemap_images%</argument>
         </service>
         <service id="sylius.sitemap_index_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">
             <argument type="service" id="templating" />
@@ -34,6 +35,7 @@
         <service id="sylius.sitemap_factory" class="SitemapPlugin\Factory\SitemapFactory" />
         <service id="sylius.sitemap_index_factory" class="SitemapPlugin\Factory\SitemapIndexFactory" />
         <service id="sylius.sitemap_url_factory" class="SitemapPlugin\Factory\SitemapUrlFactory" />
+        <service id="sylius.sitemap_image_url_factory" class="SitemapPlugin\Factory\SitemapImageUrlFactory" />
         <service id="sylius.sitemap_index_url_factory" class="SitemapPlugin\Factory\SitemapIndexUrlFactory" />
 
         <service id="sylius.sitemap_builder" class="SitemapPlugin\Builder\SitemapBuilder">
@@ -55,6 +57,12 @@
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_index_url_factory" />
             <tag name="sylius.sitemap_index_provider" />
+        </service>
+
+        <service id="sylius.sitemap.generator.product_images_to_sitemap_images_collection" class="SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGenerator">
+            <argument type="service" id="sylius.sitemap_image_url_factory" />
+            <argument type="service" id="liip_imagine.cache.manager" />
+            <argument>sylius_shop_product_original</argument>
         </service>
     </services>
 </container>

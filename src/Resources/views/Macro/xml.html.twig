@@ -1,19 +1,41 @@
 {%- macro last_modification(url) -%}
     {# @var url \SitemapPlugin\Model\SitemapUrlInterface #}
-    {% if url.lastModification is not same as(null) %}
+    {%- if url.lastModification is not same as(null) -%}
         <lastmod>{{ url.lastModification|date('c') }}</lastmod>
-    {% endif %}
-{%- endmacro %}
+    {%- endif -%}
+{%- endmacro -%}
 
 {%- macro change_frequency(url) -%}
     {# @var url \SitemapPlugin\Model\SitemapUrlInterface #}
-    {% if url.changeFrequency is not same as(null) %}
+    {%- if url.changeFrequency is not same as(null) -%}
         <changefreq>{{ url.changeFrequency }}</changefreq>
-    {% endif %}
-{%- endmacro %}
+    {%- endif -%}
+{%- endmacro -%}
 
 {%- macro priority(url) -%}
-    {% if url.priority is not same as(null) %}
+    {%- if url.priority is not same as(null) -%}
         <priority>{{ url.priority }}</priority>
-    {% endif %}
-{%- endmacro %}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro images(url) -%}
+    {%- if url.getImages is not empty -%}
+        {%- for image in url.getImages -%}
+            <image:image>
+                <image:loc>{{ image.location }}</image:loc>
+                {%- if image.title is not empty -%}
+                    <image:title>{{ image.title }}</image:title>
+                {%- endif -%}
+                {%- if image.caption is not empty -%}
+                    <image:caption>{{ image.caption }}</image:caption>
+                {%- endif -%}
+                {%- if image.geoLocation is not empty -%}
+                    <image:geo_location>{{ image.geoLocation }}</image:geo_location>
+                {%- endif -%}
+                {%- if image.license is not empty -%}
+                    <image:license>{{ image.license }}</image:license>
+                {%- endif -%}
+            </image:image>
+        {%- endfor -%}
+    {%- endif -%}
+{%- endmacro -%}
