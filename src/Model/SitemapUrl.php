@@ -8,7 +8,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-class SitemapUrl implements SitemapUrlInterface
+final class SitemapUrl implements SitemapUrlInterface
 {
     /** @var string */
     private $localization;

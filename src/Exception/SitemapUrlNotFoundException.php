@@ -6,7 +6,7 @@ namespace SitemapPlugin\Exception;
 
 use SitemapPlugin\Model\SitemapUrlInterface;
 
-class SitemapUrlNotFoundException extends \Exception
+final class SitemapUrlNotFoundException extends \Exception
 {
     /**
      * {@inheritdoc}

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 use SitemapPlugin\Model\SitemapUrl;
 
-class SitemapUrlNotFoundExceptionTest extends TestCase
+final class SitemapUrlNotFoundExceptionTest extends TestCase
 {
     public function testException()
     {

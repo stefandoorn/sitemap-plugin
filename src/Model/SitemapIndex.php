@@ -7,7 +7,7 @@ namespace SitemapPlugin\Model;
 use DateTimeInterface;
 use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 
-class SitemapIndex implements SitemapInterface
+final class SitemapIndex implements SitemapInterface
 {
     /** @var array */
     private $urls = [];

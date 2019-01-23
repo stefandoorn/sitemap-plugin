@@ -8,10 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Model\Sitemap;
 use SitemapPlugin\Model\SitemapUrl;
 
-/**
- * Class SitemapTest
- */
-class SitemapTest extends TestCase
+final class SitemapTest extends TestCase
 {
     public function testInit()
     {

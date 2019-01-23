@@ -7,7 +7,7 @@ namespace Tests\SitemapPlugin\DependencyInjection\Compiler;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use SitemapPlugin\DependencyInjection\SitemapExtension;
 
-class SitemapParameterTest extends AbstractExtensionTestCase
+final class SitemapParameterTest extends AbstractExtensionTestCase
 {
     /**
      * @test

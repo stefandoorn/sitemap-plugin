@@ -7,10 +7,7 @@ namespace Tests\SitemapPlugin\Model;
 use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Model\ChangeFrequency;
 
-/**
- * Class ChangeFrequencyTest
- */
-class ChangeFrequencyTest extends TestCase
+final class ChangeFrequencyTest extends TestCase
 {
     /**
      * @param $interval

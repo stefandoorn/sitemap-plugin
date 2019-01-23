@@ -6,7 +6,7 @@ namespace Tests\SitemapPlugin\Controller;
 
 use Sylius\Component\Core\Model\Product;
 
-class SitemapProductControllerApiRelativeTest extends AbstractTestController
+final class SitemapProductControllerApiRelativeTest extends AbstractTestController
 {
     use RelativeClientTrait;
     use TearDownTrait;

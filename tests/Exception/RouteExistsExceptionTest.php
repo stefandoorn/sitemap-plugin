@@ -7,7 +7,7 @@ namespace Tests\SitemapPlugin\Exception;
 use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Exception\RouteExistsException;
 
-class RouteExistsExceptionTest extends TestCase
+final class RouteExistsExceptionTest extends TestCase
 {
     public function testException()
     {

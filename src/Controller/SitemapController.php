@@ -9,7 +9,7 @@ use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SitemapController extends AbstractController
+final class SitemapController extends AbstractController
 {
     /** @var SitemapBuilderInterface */
     protected $sitemapBuilder;

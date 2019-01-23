@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\SitemapPlugin\Controller;
 
-class SitemapStaticControllerApiTest extends AbstractTestController
+final class SitemapStaticControllerApiTest extends AbstractTestController
 {
     use TearDownTrait;
 

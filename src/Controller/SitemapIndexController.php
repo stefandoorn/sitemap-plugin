@@ -8,7 +8,7 @@ use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class SitemapIndexController extends AbstractController
+final class SitemapIndexController extends AbstractController
 {
     /** @var SitemapIndexBuilderInterface */
     protected $sitemapBuilder;

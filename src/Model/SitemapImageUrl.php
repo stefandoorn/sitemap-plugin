@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
-class SitemapImageUrl implements SitemapImageUrlInterface
+final class SitemapImageUrl implements SitemapImageUrlInterface
 {
     /** @var string */
     private $location;

@@ -13,10 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-/**
- * Class SitemapLoader
- */
-class SitemapLoader extends Loader implements ContainerAwareInterface
+final class SitemapLoader extends Loader implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
