@@ -91,7 +91,7 @@ final class ProductUrlProvider implements UrlProviderInterface
 
     private function localeInLocaleCodes(TranslationInterface $translation): bool
     {
-        return in_array($translation->getLocale(), $this->getLocaleCodes());
+        return \in_array($translation->getLocale(), $this->getLocaleCodes());
     }
 
     /**

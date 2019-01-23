@@ -35,19 +35,19 @@ class SitemapTest extends TestCase
         $this->assertNull($obj->addUrl($sitemapUrl));
 
         $this->assertCount(1, $obj->getUrls());
-        $this->assertTrue(is_iterable($obj->getUrls()));
+        $this->assertTrue(\is_iterable($obj->getUrls()));
         $this->assertEquals([$sitemapUrl], $obj->getUrls());
 
         $this->assertNull($obj->setUrls([$sitemapUrl, $sitemapUrlTwo]));
 
         $this->assertCount(2, $obj->getUrls());
-        $this->assertTrue(is_iterable($obj->getUrls()));
+        $this->assertTrue(\is_iterable($obj->getUrls()));
         $this->assertEquals([$sitemapUrl, $sitemapUrlTwo], $obj->getUrls());
 
         $this->assertNull($obj->removeUrl($sitemapUrlTwo));
 
         $this->assertCount(1, $obj->getUrls());
-        $this->assertTrue(is_iterable($obj->getUrls()));
+        $this->assertTrue(\is_iterable($obj->getUrls()));
         $this->assertEquals([$sitemapUrl], $obj->getUrls());
     }
 

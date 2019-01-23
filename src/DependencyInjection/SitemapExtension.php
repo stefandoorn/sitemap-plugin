@@ -34,11 +34,11 @@ final class SitemapExtension extends Extension
         $container->setParameter('sylius.sitemap_images', $config['images']);
 
         foreach ($config['providers'] as $provider => $setting) {
-            $parameter = sprintf('sylius.provider.%s', $provider);
+            $parameter = \sprintf('sylius.provider.%s', $provider);
             $container->setParameter($parameter, $setting);
 
             if ($setting === true) {
-                $loader->load(sprintf('services/providers/%s.xml', $provider));
+                $loader->load(\sprintf('services/providers/%s.xml', $provider));
             }
         }
     }

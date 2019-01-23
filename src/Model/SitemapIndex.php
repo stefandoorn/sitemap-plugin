@@ -47,7 +47,7 @@ class SitemapIndex implements SitemapInterface
      */
     public function removeUrl(SitemapUrlInterface $url): void
     {
-        $key = array_search($url, $this->urls, true);
+        $key = \array_search($url, $this->urls, true);
         if (false === $key) {
             throw new SitemapUrlNotFoundException($url);
         }

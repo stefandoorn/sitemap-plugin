@@ -1,6 +1,10 @@
 imports:
     - { resource: 'vendor/sylius-labs/coding-standard/easy-coding-standard.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/symfony-risky.yml' }
 
 parameters:
     exclude_files:
         - 'tests/Application/*'
+
+services:
+    PhpCsFixer\Fixer\FunctionNotation\NativeFunctionInvocationFixer: ~

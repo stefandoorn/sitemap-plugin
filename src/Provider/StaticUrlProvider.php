@@ -121,7 +121,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         $locales = $route['locales'];
         $locale = $route['parameters']['_locale'];
 
-        $key = array_search($locale, $locales);
+        $key = \array_search($locale, $locales);
 
         if ($key !== false) {
             unset($route['locales'][$key]);
