@@ -4,6 +4,10 @@
 
 * Sitemap URLs now support adding images. The default providers do this where possible. It can be disabled using the `images` configuration key.
 
+## Class changes
+
+* Several classes have been marked `final`.
+
 ## Interface changes
 
 * Interface `SitemapUrlInterface` has new methods:

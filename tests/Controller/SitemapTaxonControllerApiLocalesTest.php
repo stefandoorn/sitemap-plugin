@@ -6,7 +6,7 @@ namespace Tests\SitemapPlugin\Controller;
 
 use Sylius\Component\Core\Model\Taxon;
 
-class SitemapTaxonControllerApiLocalesTest extends AbstractTestController
+final class SitemapTaxonControllerApiLocalesTest extends AbstractTestController
 {
     use TearDownTrait;
 

@@ -7,7 +7,7 @@ namespace Tests\SitemapPlugin\Controller;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\Taxon;
 
-class SitemapAllControllerApiTest extends AbstractTestController
+final class SitemapAllControllerApiTest extends AbstractTestController
 {
     use TearDownTrait;
 

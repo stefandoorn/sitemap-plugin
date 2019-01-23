@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Exception;
 
-class RouteExistsException extends \Exception
+final class RouteExistsException extends \Exception
 {
     /**
      * {@inheritdoc}

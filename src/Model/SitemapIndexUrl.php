@@ -6,7 +6,7 @@ namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
 
-class SitemapIndexUrl implements SitemapIndexUrlInterface
+final class SitemapIndexUrl implements SitemapIndexUrlInterface
 {
     /** @var string */
     private $localization;
