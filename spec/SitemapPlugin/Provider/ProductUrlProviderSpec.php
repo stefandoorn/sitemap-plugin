@@ -10,7 +10,7 @@ use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
-use SitemapPlugin\Generator\ProductToImageSitemapArrayGeneratorInterface;
+use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\SitemapImageUrlInterface;
 use SitemapPlugin\Model\SitemapUrlInterface;
@@ -34,7 +34,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         SitemapUrlFactoryInterface $sitemapUrlFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext,
-        ProductToImageSitemapArrayGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext, $channelContext, $productToImageSitemapArrayGenerator);
     }
@@ -66,7 +66,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,
-        ProductToImageSitemapArrayGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $now = new \DateTime();
 
@@ -155,7 +155,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,
-        ProductToImageSitemapArrayGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $now = new \DateTime();
 
