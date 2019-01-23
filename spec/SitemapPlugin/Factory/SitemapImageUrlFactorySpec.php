@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Factory;
 
 use PhpSpec\ObjectBehavior;
@@ -7,10 +9,6 @@ use SitemapPlugin\Factory\SitemapImageUrlFactory;
 use SitemapPlugin\Factory\SitemapImageUrlFactoryInterface;
 use SitemapPlugin\Model\SitemapImageUrl;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapImageUrlFactorySpec extends ObjectBehavior
 {
     function it_is_initializable(): void

@@ -12,7 +12,6 @@ use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
-use SitemapPlugin\Model\SitemapImageUrlInterface;
 use SitemapPlugin\Model\SitemapUrlInterface;
 use SitemapPlugin\Provider\ProductUrlProvider;
 use SitemapPlugin\Provider\UrlProviderInterface;

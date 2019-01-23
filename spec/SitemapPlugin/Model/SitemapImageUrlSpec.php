@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Model\SitemapImageUrl;
 use SitemapPlugin\Model\SitemapImageUrlInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapImageUrlSpec extends ObjectBehavior
 {
     function it_is_initializable(): void

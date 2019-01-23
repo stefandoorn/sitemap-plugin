@@ -81,5 +81,4 @@ final class SitemapUrlSpec extends ObjectBehavior
         $this->addImage($image);
         $this->getImages()->shouldBeLike(new ArrayCollection([$image->getWrappedObject()]));
     }
-
 }
