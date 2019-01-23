@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,10 +23,6 @@ use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class ProductUrlProviderSpec extends ObjectBehavior
 {
     function let(
@@ -106,7 +104,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
 
         $router->generate('sylius_shop_product_show', [
             'slug' => 't-shirt',
-            '_locale' => 'en_US'
+            '_locale' => 'en_US',
         ])->willReturn('http://sylius.org/en_US/products/t-shirt');
 
         $sitemapUrlFactory->createNew()->willReturn($sitemapUrl);
@@ -184,12 +182,12 @@ final class ProductUrlProviderSpec extends ObjectBehavior
 
         $router->generate('sylius_shop_product_show', [
             'slug' => 't-shirt',
-            '_locale' => 'en_US'
+            '_locale' => 'en_US',
         ])->willReturn('http://sylius.org/en_US/products/t-shirt');
 
         $router->generate('sylius_shop_product_show', [
             'slug' => 't-shirt',
-            '_locale' => 'nl_NL'
+            '_locale' => 'nl_NL',
         ])->shouldBeCalled()->willReturn('http://sylius.org/nl_NL/products/t-shirt');
 
         $sitemapUrlFactory->createNew()->willReturn($sitemapUrl);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Renderer;
 
 use PhpSpec\ObjectBehavior;
@@ -9,10 +11,6 @@ use SitemapPlugin\Renderer\RendererAdapterInterface;
 use SitemapPlugin\Renderer\TwigAdapter;
 use Symfony\Component\Templating\EngineInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class TwigAdapterSpec extends ObjectBehavior
 {
     function let(EngineInterface $twig): void
@@ -37,7 +35,7 @@ final class TwigAdapterSpec extends ObjectBehavior
         $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', [
             'url_set' => [$productUrl],
             'absolute_url' => false,
-            'hreflang' => true
+            'hreflang' => true,
         ])->shouldBeCalled()->willReturn('');
 
         $this->render($sitemap);

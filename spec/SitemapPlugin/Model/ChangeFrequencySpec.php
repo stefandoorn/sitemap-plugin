@@ -1,14 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Model\ChangeFrequency;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class ChangeFrequencySpec extends ObjectBehavior
 {
     function it_initialize_with_always_value(): void

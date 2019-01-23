@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
@@ -7,10 +9,6 @@ use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\SitemapUrl;
 use SitemapPlugin\Model\SitemapUrlInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapUrlSpec extends ObjectBehavior
 {
     function it_is_initializable(): void
@@ -49,9 +47,9 @@ final class SitemapUrlSpec extends ObjectBehavior
 
     function it_throws_invalid_argument_exception_if_priority_wont_be_between_zero_and_one(): void
     {
-        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array(-1));
-        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array(-0.5));
-        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array(2));
-        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', array(1.1));
+        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', [-1]);
+        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', [-0.5]);
+        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', [2]);
+        $this->shouldThrow(\InvalidArgumentException::class)->during('setPriority', [1.1]);
     }
 }

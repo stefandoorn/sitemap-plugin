@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Renderer;
 
 use PhpSpec\ObjectBehavior;
@@ -8,10 +10,6 @@ use SitemapPlugin\Renderer\RendererAdapterInterface;
 use SitemapPlugin\Renderer\SitemapRenderer;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapRendererSpec extends ObjectBehavior
 {
     function let(RendererAdapterInterface $adapter): void

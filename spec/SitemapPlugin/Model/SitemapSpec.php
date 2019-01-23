@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
@@ -8,10 +10,6 @@ use SitemapPlugin\Model\Sitemap;
 use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Model\SitemapUrlInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapSpec extends ObjectBehavior
 {
     function it_is_initializable(): void

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Builder;
 
 use PhpSpec\ObjectBehavior;
@@ -10,10 +12,6 @@ use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Model\SitemapUrlInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapBuilderSpec extends ObjectBehavior
 {
     function let(SitemapFactoryInterface $sitemapFactory): void

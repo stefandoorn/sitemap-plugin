@@ -1,17 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\SitemapPlugin\Factory;
 
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Factory\SitemapFactory;
 use SitemapPlugin\Factory\SitemapFactoryInterface;
 use SitemapPlugin\Model\Sitemap;
-use SitemapPlugin\Model\SitemapInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Stefan Doorn <stefan@efectos.nl>
- */
 final class SitemapFactorySpec extends ObjectBehavior
 {
     function it_is_initializable(): void
