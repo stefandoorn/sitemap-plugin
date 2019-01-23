@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class SitemapUrl implements SitemapUrlInterface
 {
@@ -23,8 +25,13 @@ class SitemapUrl implements SitemapUrlInterface
     /** @var iterable|array */
     private $alternatives = [];
 
-    /** @var SitemapImageUrlInterface[] */
-    private $images = [];
+    /** @var Collection|SitemapImageUrlInterface[] */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     /**
      * {@inheritdoc}
@@ -121,23 +128,23 @@ class SitemapUrl implements SitemapUrlInterface
     }
 
     /**
-     * @return SitemapImageUrlInterface[]
+     * @return Collection|SitemapImageUrlInterface[]
      */
-    public function getImages(): array
+    public function getImages(): Collection
     {
         return $this->images;
     }
 
     /**
-     * @param array|SitemapImageUrlInterface[] $images
+     * @param Collection|SitemapImageUrlInterface[] $images
      */
-    public function setImages($images): void
+    public function setImages(Collection $images): void
     {
         $this->images = $images;
     }
 
     public function addImage(SitemapImageUrlInterface $image): void
     {
-        $this->images[] = $image;
+        $this->images->add($image);
     }
 }
