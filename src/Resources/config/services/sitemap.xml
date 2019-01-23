@@ -17,6 +17,7 @@
             <argument>%sylius.sitemap_template%</argument>
             <argument>%sylius.sitemap_absolute_url%</argument>
             <argument>%sylius.sitemap_hreflang%</argument>
+            <argument>%sylius.sitemap_images%</argument>
         </service>
         <service id="sylius.sitemap_index_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">
             <argument type="service" id="templating" />

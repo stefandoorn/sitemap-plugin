@@ -16,7 +16,9 @@
             {{ xml_helper.last_modification(url) }}
             {{ xml_helper.change_frequency(url) }}
             {{ xml_helper.priority(url) }}
-            {{ xml_helper.images(url) }}
+            {%- if images -%}
+                {{ xml_helper.images(url) }}
+            {%- endif -%}
         </url>
         {% if hreflang is not same as(false) and url.alternatives is not empty %}
             {% for locale, location in url.alternatives %}
@@ -29,7 +31,9 @@
                     {{ xml_helper.last_modification(url) }}
                     {{ xml_helper.change_frequency(url) }}
                     {{ xml_helper.priority(url) }}
-                    {{ xml_helper.images(url) }}
+                    {%- if images -%}
+                        {{ xml_helper.images(url) }}
+                    {%- endif -%}
                 </url>
             {% endfor %}
         {% endif %}
