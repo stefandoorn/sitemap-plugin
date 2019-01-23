@@ -38,13 +38,15 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
 
         /** @var ProductImageInterface $image */
         foreach ($product->getImages() as $image) {
-            if (!$image->getPath()) {
+            /** @var string $path */
+            $path = $image->getPath();
+
+            if (!$path) {
                 continue;
             }
 
             $sitemapImage = $this->sitemapImageUrlFactory->createNew();
-            $sitemapImage->setLocation($this->imagineCacheManager->getBrowserPath($image->getPath(),
-                $this->imagePreset));
+            $sitemapImage->setLocation($this->imagineCacheManager->getBrowserPath($path, $this->imagePreset));
 
             $images->add($sitemapImage);
         }
