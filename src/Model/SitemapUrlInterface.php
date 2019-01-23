@@ -42,4 +42,10 @@ interface SitemapUrlInterface
     public function setImages(Collection $images): void;
 
     public function addImage(SitemapImageUrlInterface $image): void;
+
+    public function hasImage(SitemapImageUrlInterface $image): bool;
+
+    public function removeImage(SitemapImageUrlInterface $image): void;
+
+    public function hasImages(): bool;
 }

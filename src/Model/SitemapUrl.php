@@ -147,4 +147,21 @@ class SitemapUrl implements SitemapUrlInterface
     {
         $this->images->add($image);
     }
+
+    public function hasImage(SitemapImageUrlInterface $image): bool
+    {
+        return $this->images->contains($image);
+    }
+
+    public function removeImage(SitemapImageUrlInterface $image): void
+    {
+        if ($this->hasImage($image)) {
+            $this->images->removeElement($image);
+        }
+    }
+
+    public function hasImages(): bool
+    {
+        return !$this->images->isEmpty();
+    }
 }
