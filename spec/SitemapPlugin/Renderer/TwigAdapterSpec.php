@@ -36,6 +36,7 @@ final class TwigAdapterSpec extends ObjectBehavior
             'url_set' => [$productUrl],
             'absolute_url' => false,
             'hreflang' => true,
+            'images' => true,
         ])->shouldBeCalled()->willReturn('');
 
         $this->render($sitemap);
