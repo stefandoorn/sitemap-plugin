@@ -28,5 +28,4 @@ script:
     - vendor/bin/phpstan analyse src --level max -c phpstan.neon
     - vendor/bin/phpspec run
 
-    # todo outcomment this in v2
-    #- vendor/bin/phpunit
+    - vendor/bin/phpunit
