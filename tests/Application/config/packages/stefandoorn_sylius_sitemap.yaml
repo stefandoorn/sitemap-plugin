@@ -1,0 +1,4 @@
+sitemap:
+    static_routes:
+        - { route: sylius_shop_order_show, parameters: { tokenValue: fooToken } }
+        - { route: sylius_shop_login, locales: [nl_NL, en_US] }

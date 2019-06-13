@@ -1,7 +1,0 @@
-sylius:
-    resource: "../../../../vendor/sylius/sylius/app/config/routing.yml"
-
-# Put your own routes here
-
-sitemap:
-    resource: "@SitemapPlugin/Resources/config/routing.yml"

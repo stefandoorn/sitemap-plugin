@@ -1,54 +1,32 @@
 language: php
 
+dist: trusty
+
+sudo: false
+
 php:
-    - "7.1"
-    - "7.2"
-    - "7.3"
-
-env:
-    - DEPENDENCY_VERSIONS="sylius/sylius:1.3.* symfony/symfony:4.1.*"
-    - DEPENDENCY_VERSIONS="sylius/sylius:1.3.* symfony/symfony:3.4.*"
-    - DEPENDENCY_VERSIONS="sylius/sylius:1.2.* symfony/symfony:4.1.*"
-    - DEPENDENCY_VERSIONS="sylius/sylius:1.2.* symfony/symfony:3.4.*"
-    - DEPENDENCY_VERSIONS="sylius/sylius:1.1.* symfony/symfony:3.4.*"
-    - DEPENDENCY_VERSIONS="sylius/sylius:1.0.* symfony/symfony:3.4.*"
-
-matrix:
-    exclude:
-        - php: "7.1"
-          env: DEPENDENCY_VERSIONS="sylius/sylius:1.3.* symfony/symfony:4.1.*"
-        - php: "7.1"
-          env: DEPENDENCY_VERSIONS="sylius/sylius:1.3.* symfony/symfony:3.4.*"
+    - '7.2'
+    - '7.3'
 
 cache:
-    yarn: true
     directories:
         - ~/.composer/cache/files
 
 before_install:
+    - phpenv config-rm xdebug.ini
     - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 install:
-    - composer require ${DEPENDENCY_VERSIONS} --no-update
-    - composer update --prefer-dist
+    - composer install --no-interaction --prefer-dist
 
 before_script:
-    - mkdir -p build/logs
     - (cd tests/Application && bin/console doctrine:schema:create --env=test --no-interaction)
-    - (cd tests/Application && bin/console doctrine:schema:create --env=test_relative --no-interaction)
 
 script:
-    - composer validate --strict --no-check-all
+    - composer validate --strict
     - vendor/bin/ecs check src/ tests/ spec/
     - vendor/bin/phpstan analyse src --level max -c phpstan.neon
     - vendor/bin/phpspec run
-    - vendor/bin/phpunit --coverage-clover build/logs/clover.xml --stderr --verbose
 
-after_script:
-    - wget https://scrutinizer-ci.com/ocular.phar
-    - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
-
-after_success:
-    - wget https://github.com/php-coveralls/php-coveralls/releases/download/v1.0.0/coveralls.phar
-    - chmod +x coveralls.phar
-    - travis_retry php coveralls.phar -v
+    # todo outcomment this in v2
+    #- vendor/bin/phpunit

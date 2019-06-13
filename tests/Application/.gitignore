@@ -1,7 +1,22 @@
-/node_modules/
+/public/assets
+/public/css
+/public/js
+/public/media/*
+!/public/media/image/
+/public/media/image/*
+!/public/media/image/.gitignore
 
+/node_modules
+
+###> symfony/framework-bundle ###
+/.env.*.local
+/.env.local
+/.env.local.php
+/public/bundles
 /var/
-!/var/.gitkeep
+/vendor/
+###< symfony/framework-bundle ###
 
-!/web/app_test.php
-/web/
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###

@@ -1,8 +1,18 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-webmozart-assert/extension.neon
+
 parameters:
+    reportUnmatchedIgnoredErrors: true
+
     excludes_analyse:
         # Makes PHPStan crash
-        - '**/DependencyInjection/Configuration.php'
-        # Behat
-        - '**/Behat/*'
-    ignoreErrors:
-        - '/Call to an undefined method Sylius\\Bundle\\ResourceBundle\\Doctrine\\ORM\\EntityRepository|Sylius\\Component\\Core\\Repository\\ProductRepositoryInterface::createQueryBuilder()/'
+        - 'src/DependencyInjection/Configuration.php'
+
+        # todo remove this in v2
+        - 'src/Provider/ProductUrlProvider.php'
+
+        # Test dependencies
+        - 'tests/Application/app/**.php'
+        - 'tests/Application/src/**.php'
