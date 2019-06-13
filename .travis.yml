@@ -12,6 +12,10 @@ cache:
     directories:
         - ~/.composer/cache/files
 
+env:
+    global:
+        - APP_ENV=test
+
 before_install:
     - phpenv config-rm xdebug.ini
     - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
@@ -20,7 +24,8 @@ install:
     - composer install --no-interaction --prefer-dist
 
 before_script:
-    - (cd tests/Application && bin/console doctrine:schema:create --env=test --no-interaction)
+    - (cd tests/Application && bin/console doctrine:database:create -vvv)
+    - (cd tests/Application && bin/console doctrine:schema:create -vvv)
 
 script:
     - composer validate --strict
