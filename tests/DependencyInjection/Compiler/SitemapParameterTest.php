@@ -89,10 +89,7 @@ final class SitemapParameterTest extends AbstractExtensionTestCase
         ];
     }
 
-    /**
-     * @return array
-     */
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new SitemapExtension(),

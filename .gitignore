@@ -1,5 +1,12 @@
-/composer.lock
 /vendor/
+/node_modules/
+/composer.lock
+
 /etc/build/*
-!/etc/build/.gitkeep
-.idea/
+!/etc/build/.gitignore
+
+/tests/Application/yarn.lock
+
+/behat.yml
+/phpspec.yml
+/.phpunit.result.cache
