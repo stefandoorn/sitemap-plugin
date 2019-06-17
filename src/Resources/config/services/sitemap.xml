@@ -3,6 +3,21 @@
     <services>
         <defaults autowire="false" autoconfigure="false" public="false" />
 
+        <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Command\GenerateSitemapCommand" public="false">
+            <argument type="service" id="sylius.sitemap_renderer"/>
+            <argument type="service" id="sylius.sitemap_builder" />
+            <argument>%kernel.project_dir%/public/</argument>
+
+            <tag name="console.command" command="sylius:sitemap:generate" />
+        </service>
+        <service id="sylius.command.generate_sitemap_index" class="SitemapPlugin\Command\GenerateSitemapIndexCommand" public="false">
+            <argument type="service" id="sylius.sitemap_index_renderer"/>
+            <argument type="service" id="sylius.sitemap_index_builder" />
+            <argument>%kernel.project_dir%/public/</argument>
+
+            <tag name="console.command" command="sylius:sitemap:generate-index" />
+        </service>
+
         <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController" public="true">
             <argument type="service" id="sylius.sitemap_renderer"/>
             <argument type="service" id="sylius.sitemap_builder" />
