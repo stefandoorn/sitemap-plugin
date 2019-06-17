@@ -1,5 +1,9 @@
 # Upgrade 1.1 to 2.0
 
+## TL-DR
+
+* Plugin structure upgraded to PluginSkeleton:^1.3
+
 ## New features
 
 * Sitemap URLs now support adding images. The default providers do this where possible. It can be disabled using the `images` configuration key.
