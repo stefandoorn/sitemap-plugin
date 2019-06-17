@@ -3,13 +3,42 @@
     <services>
         <defaults autowire="false" autoconfigure="false" public="false" />
 
-        <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController" public="true">
-            <argument type="service" id="sylius.sitemap_renderer"/>
+        <service id="sylius.sitemap_writer" class="SitemapPlugin\Filesystem\Writer">
+            <argument type="service">
+                <service class="Gaufrette\Filesystem">
+                    <argument>%sylius.sitemap.filesystem%</argument>
+                    <factory service="knp_gaufrette.filesystem_map" method="get" />
+                </service>
+            </argument>
+        </service>
+
+        <service id="sylius.sitemap_reader" class="SitemapPlugin\Filesystem\Reader">
+            <argument type="service">
+                <service class="Gaufrette\Filesystem">
+                    <argument>%sylius.sitemap.filesystem%</argument>
+                    <factory service="knp_gaufrette.filesystem_map" method="get" />
+                </service>
+            </argument>
+        </service>
+
+        <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Command\GenerateSitemapCommand" public="false">
+            <argument type="service" id="sylius.sitemap_renderer" />
+            <argument type="service" id="sylius.sitemap_index_renderer"/>
             <argument type="service" id="sylius.sitemap_builder" />
+            <argument type="service" id="sylius.sitemap_index_builder" />
+            <argument type="service" id="sylius.sitemap_writer" />
+            <argument type="service" id="sylius.repository.channel" />
+
+            <tag name="console.command" />
+        </service>
+
+        <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController" public="true">
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.sitemap_reader" />
         </service>
         <service id="sylius.controller.sitemap_index" class="SitemapPlugin\Controller\SitemapIndexController" public="true">
-            <argument type="service" id="sylius.sitemap_index_renderer"/>
-            <argument type="service" id="sylius.sitemap_index_builder" />
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.sitemap_reader" />
         </service>
 
         <service id="sylius.sitemap_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">

@@ -49,7 +49,9 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
         $sitemap = $this->sitemapIndexFactory->createNew();
         $urls = [];
 
+        /** @var IndexUrlProviderInterface $indexProvider */
         foreach ($this->indexProviders as $indexProvider) {
+            /** @var UrlProviderInterface $provider */
             foreach ($this->providers as $provider) {
                 $indexProvider->addProvider($provider);
             }

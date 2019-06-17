@@ -18,7 +18,6 @@ use SitemapPlugin\Model\UrlInterface;
 use SitemapPlugin\Provider\ProductUrlProvider;
 use SitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
-use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -35,10 +34,9 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
-        ChannelContextInterface $channelContext,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
-        $this->beConstructedWith($repository, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $channelContext, $productToImageSitemapArrayGenerator);
+        $this->beConstructedWith($repository, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $productToImageSitemapArrayGenerator);
     }
 
     function it_is_initializable(): void
@@ -57,7 +55,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
-        ChannelContextInterface $channelContext,
         LocaleInterface $locale,
         Collection $products,
         \Iterator $iterator,
@@ -74,7 +71,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
     ): void {
         $now = new \DateTime();
 
-        $channelContext->getChannel()->willReturn($channel);
         $localeContext->getLocaleCode()->willReturn('en_US');
 
         $locale->getCode()->willReturn('en_US');
@@ -139,7 +135,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
 
         $url->addAlternative($alternativeUrl)->shouldNotBeCalled();
 
-        $this->generate();
+        $this->generate($channel);
     }
 
     function it_generates_urls_for_all_channel_locales(
@@ -148,7 +144,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
-        ChannelContextInterface $channelContext,
         LocaleInterface $enUSLocale,
         LocaleInterface $nlNLLocale,
         Collection $products,
@@ -166,7 +161,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
     ): void {
         $now = new \DateTime();
 
-        $channelContext->getChannel()->willReturn($channel);
         $localeContext->getLocaleCode()->willReturn('en_US');
 
         $enUSLocale->getCode()->willReturn('en_US');
@@ -238,6 +232,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
 
         $url->addAlternative($alternativeUrl)->shouldBeCalled();
 
-        $this->generate();
+        $this->generate($channel);
     }
 }

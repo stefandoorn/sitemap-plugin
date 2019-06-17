@@ -39,6 +39,8 @@ final class SitemapTaxonControllerApiTest extends AbstractTestController
 
         $this->getEntityManager()->persist($root);
         $this->getEntityManager()->flush();
+
+        $this->generateSitemaps();
     }
 
     public function testShowActionResponse()

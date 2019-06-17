@@ -4,18 +4,29 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
-use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Renderer\SitemapRendererInterface;
+use SitemapPlugin\Filesystem\Reader;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class AbstractController
 {
-    /** @var SitemapRendererInterface */
-    protected $sitemapRenderer;
+    /** @var Reader */
+    protected $reader;
 
-    protected function createResponse(SitemapInterface $sitemap): Response
+    public function __construct(Reader $reader)
     {
-        $response = new Response($this->sitemapRenderer->render($sitemap));
+        $this->reader = $reader;
+    }
+
+    protected function createResponse(string $path): Response
+    {
+        if (!$this->reader->has($path)) {
+            throw new NotFoundHttpException(\sprintf('File "%s" not found', $path));
+        }
+
+        $xml = $this->reader->get($path);
+
+        $response = new Response($xml);
         $response->headers->set('Content-Type', 'application/xml');
 
         return $response;

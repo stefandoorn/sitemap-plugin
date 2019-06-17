@@ -4,25 +4,28 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
-use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
-use SitemapPlugin\Renderer\SitemapRendererInterface;
+use SitemapPlugin\Filesystem\Reader;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 final class SitemapIndexController extends AbstractController
 {
-    /** @var SitemapIndexBuilderInterface */
-    protected $sitemapBuilder;
+    /** @var ChannelContextInterface */
+    private $channelContext;
 
     public function __construct(
-        SitemapRendererInterface $sitemapRenderer,
-        SitemapIndexBuilderInterface $sitemapIndexBuilder
+        ChannelContextInterface $channelContext,
+        Reader $reader
     ) {
-        $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapBuilder = $sitemapIndexBuilder;
+        $this->channelContext = $channelContext;
+
+        parent::__construct($reader);
     }
 
     public function showAction(): Response
     {
-        return $this->createResponse($this->sitemapBuilder->build());
+        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), 'sitemap_index.xml');
+
+        return $this->createResponse($path);
     }
 }

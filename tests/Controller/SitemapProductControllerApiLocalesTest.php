@@ -67,6 +67,8 @@ final class SitemapProductControllerApiLocalesTest extends AbstractTestControlle
         $this->getEntityManager()->persist($product);
 
         $this->getEntityManager()->flush();
+
+        $this->generateSitemaps();
     }
 
     public function testShowActionResponse()

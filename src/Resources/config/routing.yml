@@ -11,12 +11,6 @@ sylius_sitemap_no_index:
         route: sylius_sitemap_index
         permanent: true
 
-sylius_sitemap_all:
-    path: /sitemap/all.xml
-    methods: [GET]
-    defaults:
-        _controller: sylius.controller.sitemap:showAction
-
 sylius_sitemap_providers:
     resource: .
     type: sitemap
