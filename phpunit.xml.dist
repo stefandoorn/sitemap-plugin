@@ -3,11 +3,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/8.0/phpunit.xsd"
          bootstrap="tests/Application/config/bootstrap.php"
-         stopOnError="true"
-         stopOnFailure="true"
-         stopOnIncomplete="true"
-         stopOnSkipped="true"
-         stopOnRisky="true"
+         colors="true"
 >
     <php>
         <ini name="error_reporting" value="-1" />
@@ -19,6 +15,8 @@
     <testsuites>
         <testsuite name="tests">
             <directory>tests</directory>
+            <!-- Excluded these tests because they probably will be obsolete in v2 -->
+            <exclude>tests/Controller</exclude>
         </testsuite>
     </testsuites>
 
