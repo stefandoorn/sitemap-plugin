@@ -47,7 +47,7 @@ final class GenerateSitemapIndexCommand extends Command
         $xml = $this->sitemapRenderer->render($sitemap);
 
         file_put_contents(
-            sprintf('%s/sitemap_index.xml', $this->publicDir),
+            sprintf('%ssitemap_index.xml', $this->publicDir),
             $xml
         );
     }
