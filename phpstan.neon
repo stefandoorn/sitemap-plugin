@@ -10,9 +10,6 @@ parameters:
         # Makes PHPStan crash
         - 'src/DependencyInjection/Configuration.php'
 
-        # todo remove this in v2
-        - 'src/Provider/ProductUrlProvider.php'
-
         # Test dependencies
         - 'tests/Application/app/**.php'
         - 'tests/Application/src/**.php'
