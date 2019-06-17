@@ -54,10 +54,10 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
                 $indexProvider->addProvider($provider);
             }
 
-            $urls = \array_merge($urls, $indexProvider->generate());
+            $urls[] = $indexProvider->generate();
         }
 
-        $sitemap->setUrls($urls);
+        $sitemap->setUrls(\array_merge(...$urls));
 
         return $sitemap;
     }
