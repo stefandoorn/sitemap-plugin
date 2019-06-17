@@ -3,10 +3,19 @@
     <services>
         <defaults autowire="false" autoconfigure="false" public="false" />
 
+        <service id="sylius.sitemap_writer" class="SitemapPlugin\Writer\FilesystemWriter">
+            <argument type="service">
+                <service class="Gaufrette\Filesystem">
+                    <argument>%sylius.sitemap.filesystem%</argument>
+                    <factory service="knp_gaufrette.filesystem_map" method="get" />
+                </service>
+            </argument>
+        </service>
+
         <service id="sylius.command.generate_sitemap_index" class="SitemapPlugin\Command\GenerateSitemapIndexCommand" public="false">
             <argument type="service" id="sylius.sitemap_index_renderer"/>
             <argument type="service" id="sylius.sitemap_index_builder" />
-            <argument>%kernel.project_dir%/public/</argument>
+            <argument type="service" id="sylius.sitemap_writer" />
 
             <tag name="console.command" command="sylius:sitemap:generate-index" />
         </service>

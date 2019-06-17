@@ -6,6 +6,7 @@ namespace SitemapPlugin\Command;
 
 use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
+use SitemapPlugin\Writer\FilesystemWriter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,18 +20,17 @@ final class GenerateSitemapIndexCommand extends Command
     /** @var SitemapRendererInterface */
     protected $sitemapRenderer;
 
-    /** @var string */
-    private $publicDir;
+    /** @var FilesystemWriter */
+    protected $writer;
 
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
         SitemapIndexBuilderInterface $sitemapBuilder,
-        string $publicDir
+        FilesystemWriter $writer
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
         $this->sitemapBuilder = $sitemapBuilder;
-        /** @TODO replace this with a writer class - check how sylius does this */
-        $this->publicDir = $publicDir;
+        $this->writer = $writer;
 
         parent::__construct();
     }
@@ -46,7 +46,7 @@ final class GenerateSitemapIndexCommand extends Command
         $sitemap = $this->sitemapBuilder->build();
         $xml = $this->sitemapRenderer->render($sitemap);
 
-        file_put_contents(
+        $this->writer->write(
             sprintf('%ssitemap_index.xml', $this->publicDir),
             $xml
         );

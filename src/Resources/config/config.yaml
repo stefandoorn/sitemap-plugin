@@ -2,3 +2,17 @@ sitemap:
     static_routes:
         - { route: sylius_shop_homepage }
         - { route: sylius_shop_contact_request }
+
+parameters:
+    sylius.sitemap.filesystem: sylius_sitemap
+    sylius.sitemap.path: "%kernel.project_dir%/web/sitemap"
+
+knp_gaufrette:
+    adapters:
+        sylius_sitemap:
+            local:
+                directory: "%sylius.sitemap.path%"
+                create: true
+    filesystems:
+        sylius_sitemap:
+            adapter: "%sylius.sitemap.filesystem%"
