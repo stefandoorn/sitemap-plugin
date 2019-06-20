@@ -32,8 +32,3 @@ script:
     - composer check-style
     - composer analyse
     - composer test
-    - vendor/bin/ecs check src/ tests/ spec/
-    - vendor/bin/phpstan analyse src --level max -c phpstan.neon
-    - vendor/bin/phpspec run
-
-    - vendor/bin/phpunit
