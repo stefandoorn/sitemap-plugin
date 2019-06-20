@@ -7,7 +7,7 @@ namespace SitemapPlugin\Generator;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use SitemapPlugin\Factory\SitemapImageUrlFactoryInterface;
+use SitemapPlugin\Factory\ImageFactoryInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 
@@ -16,14 +16,14 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
     /** @var CacheManager */
     private $imagineCacheManager;
 
-    /** @var SitemapImageUrlFactoryInterface */
+    /** @var ImageFactoryInterface */
     private $sitemapImageUrlFactory;
 
     /** @var string */
     private $imagePreset;
 
     public function __construct(
-        SitemapImageUrlFactoryInterface $sitemapImageUrlFactory,
+        ImageFactoryInterface $sitemapImageUrlFactory,
         CacheManager $imagineCacheManager,
         string $imagePreset = 'sylius_shop_product_original'
     ) {
@@ -45,8 +45,7 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
                 continue;
             }
 
-            $sitemapImage = $this->sitemapImageUrlFactory->createNew();
-            $sitemapImage->setLocation($this->imagineCacheManager->getBrowserPath($path, $this->imagePreset));
+            $sitemapImage = $this->sitemapImageUrlFactory->createNew($this->imagineCacheManager->getBrowserPath($path, $this->imagePreset));
 
             $images->add($sitemapImage);
         }

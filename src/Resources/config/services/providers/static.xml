@@ -6,6 +6,7 @@
         <service id="sylius.sitemap_provider.static" class="SitemapPlugin\Provider\StaticUrlProvider">
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
+            <argument type="service" id="sylius.sitemap_url_alternative_factory" />
             <argument type="service" id="sylius.context.channel" />
             <argument>%sylius.sitemap_static%</argument>
             <tag name="sylius.sitemap_provider" />

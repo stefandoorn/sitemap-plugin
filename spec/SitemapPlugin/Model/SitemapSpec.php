@@ -8,7 +8,7 @@ use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 use SitemapPlugin\Model\Sitemap;
 use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 
 final class SitemapSpec extends ObjectBehavior
 {
@@ -28,16 +28,16 @@ final class SitemapSpec extends ObjectBehavior
         $this->getUrls()->shouldReturn([]);
     }
 
-    function it_adds_url(SitemapUrlInterface $sitemapUrl): void
+    function it_adds_url(UrlInterface $sitemapUrl): void
     {
         $this->addUrl($sitemapUrl);
         $this->getUrls()->shouldReturn([$sitemapUrl]);
     }
 
     function it_removes_url(
-        SitemapUrlInterface $sitemapUrl,
-        SitemapUrlInterface $productUrl,
-        SitemapUrlInterface $staticUrl
+        UrlInterface $sitemapUrl,
+        UrlInterface $productUrl,
+        UrlInterface $staticUrl
     ): void {
         $this->addUrl($sitemapUrl);
         $this->addUrl($staticUrl);
@@ -60,8 +60,8 @@ final class SitemapSpec extends ObjectBehavior
     }
 
     function it_throws_sitemap_url_not_found_exception_if_cannot_find_url_to_remove(
-        SitemapUrlInterface $productUrl,
-        SitemapUrlInterface $staticUrl
+        UrlInterface $productUrl,
+        UrlInterface $staticUrl
     ): void {
         $this->addUrl($productUrl);
 

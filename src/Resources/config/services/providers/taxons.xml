@@ -7,6 +7,7 @@
             <argument type="service" id="sylius.repository.taxon" />
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
+            <argument type="service" id="sylius.sitemap_url_alternative_factory" />
             <argument type="service" id="sylius.context.locale" />
             <argument>%sylius.sitemap_exclude_taxon_root%</argument>
             <tag name="sylius.sitemap_provider" />

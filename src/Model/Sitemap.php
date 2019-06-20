@@ -37,7 +37,7 @@ final class Sitemap implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function addUrl(SitemapUrlInterface $url): void
+    public function addUrl(UrlInterface $url): void
     {
         $this->urls[] = $url;
     }
@@ -45,7 +45,7 @@ final class Sitemap implements SitemapInterface
     /**
      * {@inheritdoc}
      */
-    public function removeUrl(SitemapUrlInterface $url): void
+    public function removeUrl(UrlInterface $url): void
     {
         $key = \array_search($url, $this->urls, true);
         if (false === $key) {
