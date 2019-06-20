@@ -8,6 +8,10 @@
 
 * Sitemap URLs now support adding images. The default providers do this where possible. It can be disabled using the `images` configuration key.
 
+## Config changes
+
+* Config file extensions changed from `yml` to `yaml`
+
 ## Class changes
 
 * Several classes have been marked `final`.
