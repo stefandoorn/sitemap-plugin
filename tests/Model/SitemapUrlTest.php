@@ -7,15 +7,15 @@ namespace Tests\SitemapPlugin\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
-use SitemapPlugin\Model\SitemapImageUrl;
-use SitemapPlugin\Model\SitemapUrl;
+use SitemapPlugin\Model\Image;
+use SitemapPlugin\Model\Url;
 
 final class SitemapUrlTest extends TestCase
 {
     public function testHasImage(): void
     {
-        $obj = new SitemapUrl();
-        $image = new SitemapImageUrl();
+        $obj = new Url('location');
+        $image = new Image('location');
 
         $this->assertFalse($obj->hasImage($image));
 
@@ -26,8 +26,8 @@ final class SitemapUrlTest extends TestCase
 
     public function testSetImages(): void
     {
-        $obj = new SitemapUrl();
-        $image = new SitemapImageUrl();
+        $obj = new Url('location');
+        $image = new Image('location');
         $collection = new ArrayCollection([$image]);
         $obj->setImages($collection);
 
@@ -40,8 +40,8 @@ final class SitemapUrlTest extends TestCase
 
     public function testHasImages(): void
     {
-        $obj = new SitemapUrl();
-        $image = new SitemapImageUrl();
+        $obj = new Url('location');
+        $image = new Image('location');
 
         $this->assertFalse($obj->hasImages());
 
@@ -52,8 +52,8 @@ final class SitemapUrlTest extends TestCase
 
     public function testGetImages(): void
     {
-        $obj = new SitemapUrl();
-        $image = new SitemapImageUrl();
+        $obj = new Url('location');
+        $image = new Image('location');
 
         $obj->addImage($image);
 
@@ -64,8 +64,8 @@ final class SitemapUrlTest extends TestCase
 
     public function testAddImage(): void
     {
-        $obj = new SitemapUrl();
-        $image = new SitemapImageUrl();
+        $obj = new Url('location');
+        $image = new Image('location');
 
         $obj->addImage($image);
         $this->assertTrue($obj->hasImages());
@@ -73,8 +73,8 @@ final class SitemapUrlTest extends TestCase
 
     public function testRemoveImage(): void
     {
-        $obj = new SitemapUrl();
-        $image = new SitemapImageUrl();
+        $obj = new Url('location');
+        $image = new Image('location');
 
         $this->assertFalse($obj->hasImages());
 

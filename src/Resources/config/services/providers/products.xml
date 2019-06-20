@@ -7,6 +7,7 @@
             <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
+            <argument type="service" id="sylius.sitemap_url_alternative_factory" />
             <argument type="service" id="sylius.context.locale" />
             <argument type="service" id="sylius.context.channel" />
             <argument type="service" id="sylius.sitemap.generator.product_images_to_sitemap_images_collection" />

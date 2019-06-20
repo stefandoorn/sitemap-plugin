@@ -9,10 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 use SitemapPlugin\Provider\ProductUrlProvider;
 use SitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
@@ -30,7 +30,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
     function let(
         ProductRepository $repository,
         RouterInterface $router,
-        SitemapUrlFactoryInterface $sitemapUrlFactory,
+        UrlFactoryInterface $sitemapUrlFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
@@ -61,7 +61,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
-        SitemapUrlInterface $sitemapUrl,
+        UrlInterface $sitemapUrl,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,
@@ -150,7 +150,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
-        SitemapUrlInterface $sitemapUrl,
+        UrlInterface $sitemapUrl,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,

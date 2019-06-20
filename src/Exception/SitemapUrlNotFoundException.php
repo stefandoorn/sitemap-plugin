@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Exception;
 
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 
 final class SitemapUrlNotFoundException extends \Exception
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct(SitemapUrlInterface $sitemapUrl, \Exception $previousException = null)
+    public function __construct(UrlInterface $sitemapUrl, \Exception $previousException = null)
     {
         $template = 'Sitemap url "%s" not found';
 
-        parent::__construct(\sprintf($template, $sitemapUrl->getLocalization()), 0, $previousException);
+        parent::__construct(\sprintf($template, $sitemapUrl->getLocation()), 0, $previousException);
     }
 }

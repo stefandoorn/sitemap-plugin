@@ -9,7 +9,7 @@ use SitemapPlugin\Builder\SitemapBuilder;
 use SitemapPlugin\Builder\SitemapBuilderInterface;
 use SitemapPlugin\Factory\SitemapFactoryInterface;
 use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
 
 final class SitemapBuilderSpec extends ObjectBehavior
@@ -34,8 +34,8 @@ final class SitemapBuilderSpec extends ObjectBehavior
         UrlProviderInterface $productUrlProvider,
         UrlProviderInterface $staticUrlProvider,
         SitemapInterface $sitemap,
-        SitemapUrlInterface $bookUrl,
-        SitemapUrlInterface $homePage
+        UrlInterface $bookUrl,
+        UrlInterface $homePage
     ): void {
         $sitemapFactory->createNew()->willReturn($sitemap);
         $this->addProvider($productUrlProvider);

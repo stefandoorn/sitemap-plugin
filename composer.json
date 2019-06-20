@@ -52,5 +52,20 @@
         "branch-alias": {
             "dev-master": "2.0-dev"
         }
+    },
+    "scripts": {
+        "analyse": [
+            "@ensure-test-container-exists",
+            "./vendor/bin/phpstan analyse -c phpstan.neon -l max src"
+        ],
+        "check-style": "vendor/bin/ecs check --ansi src/ tests/ spec/",
+        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/ApplicationTests_SitemapPlugin_Application_KernelTestDebugContainer.xml ]] || (cd tests/Application && php -d memory_limit=-1 bin/console cache:clear --env=test)",
+        "fix-style": "vendor/bin/ecs check --ansi src/ tests/ spec/ --fix",
+        "phpspec": "vendor/bin/phpspec run --ansi",
+        "phpunit": "vendor/bin/phpunit",
+        "test": [
+            "@phpunit",
+            "@phpspec"
+        ]
     }
 }

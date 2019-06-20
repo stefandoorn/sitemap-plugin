@@ -6,11 +6,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     {%- for url in url_set -%}
         <url>
-            <loc>{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}</loc>
+            <loc>{{ url_helper.absolute_or_relative(url.location, absolute_url) }}</loc>
             {% if hreflang is not same as(false) and url.alternatives is not empty %}
-                <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(sylius.localeCode) }}" href="{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}"/>
-                {% for locale, location in url.alternatives %}
-                    <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(locale) }}" href="{{ url_helper.absolute_or_relative(location, absolute_url) }}"/>
+                <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(sylius.localeCode) }}" href="{{ url_helper.absolute_or_relative(url.location, absolute_url) }}"/>
+                {% for alternative in url.alternatives %}
+                    <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(alternative.locale) }}" href="{{ url_helper.absolute_or_relative(alternative.location, absolute_url) }}"/>
                 {% endfor %}
             {% endif %}
             {{ xml_helper.last_modification(url) }}
@@ -21,12 +21,12 @@
             {%- endif -%}
         </url>
         {% if hreflang is not same as(false) and url.alternatives is not empty %}
-            {% for locale, location in url.alternatives %}
+            {% for alternative in url.alternatives %}
                 <url>
-                    <loc>{{ url_helper.absolute_or_relative(location, absolute_url) }}</loc>
-                    <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(sylius.localeCode) }}" href="{{ url_helper.absolute_or_relative(url.localization, absolute_url) }}"/>
-                    {% for localeSub, locationSub in url.alternatives %}
-                        <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(localeSub) }}" href="{{ url_helper.absolute_or_relative(locationSub, absolute_url) }}"/>
+                    <loc>{{ url_helper.absolute_or_relative(alternative.location, absolute_url) }}</loc>
+                    <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(sylius.localeCode) }}" href="{{ url_helper.absolute_or_relative(url.location, absolute_url) }}"/>
+                    {% for alternativeSub in url.alternatives %}
+                        <xhtml:link rel="alternate" hreflang="{{ language_helper.localeToCode(alternativeSub.locale) }}" href="{{ url_helper.absolute_or_relative(alternativeSub.location, absolute_url) }}"/>
                     {% endfor %}
                     {{ xml_helper.last_modification(url) }}
                     {{ xml_helper.change_frequency(url) }}

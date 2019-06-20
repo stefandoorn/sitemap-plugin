@@ -6,7 +6,7 @@ namespace spec\SitemapPlugin\Renderer;
 
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 use SitemapPlugin\Renderer\RendererAdapterInterface;
 use SitemapPlugin\Renderer\TwigAdapter;
 use Symfony\Component\Templating\EngineInterface;
@@ -28,7 +28,7 @@ final class TwigAdapterSpec extends ObjectBehavior
         $this->shouldImplement(RendererAdapterInterface::class);
     }
 
-    function it_renders_sitemap($twig, SitemapInterface $sitemap, SitemapUrlInterface $productUrl): void
+    function it_renders_sitemap($twig, SitemapInterface $sitemap, UrlInterface $productUrl): void
     {
         $sitemap->getUrls()->willReturn([$productUrl]);
 

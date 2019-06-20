@@ -9,18 +9,18 @@ use DateTimeInterface;
 interface SitemapInterface
 {
     /**
-     * @return SitemapUrlInterface[]
+     * @return UrlInterface[]
      */
     public function getUrls(): iterable;
 
     /**
-     * @param SitemapUrlInterface[] $urlSet
+     * @param UrlInterface[] $urlSet
      */
     public function setUrls(array $urlSet): void;
 
-    public function addUrl(SitemapUrlInterface $url): void;
+    public function addUrl(UrlInterface $url): void;
 
-    public function removeUrl(SitemapUrlInterface $url): void;
+    public function removeUrl(UrlInterface $url): void;
 
     /**
      * @return string
