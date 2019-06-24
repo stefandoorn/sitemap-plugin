@@ -48,7 +48,7 @@ final class GenerateSitemapIndexCommand extends Command
         $this->addArgument('channel', InputArgument::IS_ARRAY, 'Channel codes to render. If none supplied, all channels will generated.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach ($this->channels($input) as $channel) {
             $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
