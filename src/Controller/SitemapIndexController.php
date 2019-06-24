@@ -10,11 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class SitemapIndexController extends AbstractController
 {
-
     /** @var ChannelContextInterface */
     private $channelContext;
 
-    /** @var Reader  */
+    /** @var Reader */
     private $reader;
 
     public function __construct(
@@ -27,8 +26,8 @@ final class SitemapIndexController extends AbstractController
 
     public function showAction(): Response
     {
-        $data = $this->reader->get(sprintf('%s/%s', $this->channelContext->getCode(), 'sitemap_index.xml')); // @todo put this in a service - its duplicated now
-        
+        $data = $this->reader->get(\sprintf('%s/%s', $this->channelContext->getCode(), 'sitemap_index.xml')); // @todo put this in a service - its duplicated now
+
         return $this->createXmlResponse($data);
     }
 }

@@ -15,7 +15,7 @@ final class Reader
     {
         $this->filesystem = $filesystem;
     }
-    
+
     public function get(string $path): string
     {
         $this->filesystem->read($path);

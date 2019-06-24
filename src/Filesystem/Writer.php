@@ -15,7 +15,7 @@ final class Writer
     {
         $this->filesystem = $filesystem;
     }
-    
+
     public function write(string $path, string $contents): void
     {
         $this->filesystem->write($path, $contents, $overwrite = true);

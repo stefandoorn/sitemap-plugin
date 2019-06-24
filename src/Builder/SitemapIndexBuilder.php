@@ -8,7 +8,6 @@ use SitemapPlugin\Factory\SitemapIndexFactoryInterface;
 use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\IndexUrlProviderInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
-use Sylius\Component\Core\Model\ChannelInterface;
 
 final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
 {

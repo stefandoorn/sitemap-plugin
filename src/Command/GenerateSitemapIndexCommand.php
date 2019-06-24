@@ -5,19 +5,17 @@ declare(strict_types=1);
 namespace SitemapPlugin\Command;
 
 use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
-use SitemapPlugin\Renderer\SitemapRendererInterface;
 use SitemapPlugin\Filesystem\Writer;
-use Sylius\Bundle\ChannelBundle\Doctrine\ORM\ChannelRepository;
+use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
 final class GenerateSitemapIndexCommand extends Command
 {
-
     /** @var SitemapIndexBuilderInterface */
     private $sitemapIndexBuilder;
 
@@ -52,8 +50,8 @@ final class GenerateSitemapIndexCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        foreach($this->channels($input) as $channel) {
-            $output->writeln(sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
+        foreach ($this->channels($input) as $channel) {
+            $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
             $sitemap = $this->sitemapIndexBuilder->build(); // @todo does sitemap index need to know about channels?
             $xml = $this->sitemapRenderer->render($sitemap);
@@ -64,13 +62,13 @@ final class GenerateSitemapIndexCommand extends Command
                 $xml
             );
 
-            $output->writeln(sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
+            $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
         }
     }
 
     private function path(ChannelInterface $channel, string $path): string
     {
-        return sprintf('%s/%s', $channel->getCode(), $path);
+        return \sprintf('%s/%s', $channel->getCode(), $path);
     }
 
     /**
