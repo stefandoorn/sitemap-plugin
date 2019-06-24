@@ -16,22 +16,15 @@ final class TwigAdapter implements RendererAdapterInterface
     private $template;
 
     /** @var bool */
-    private $absoluteUrl;
-
-    /** @var bool */
     private $hreflang;
 
     /** @var bool */
     private $images;
 
-    /**
-     * @param string $template
-     */
-    public function __construct(EngineInterface $twig, $template, $absoluteUrl, $hreflang = true, $images = true)
+    public function __construct(EngineInterface $twig, $template, $hreflang = true, $images = true)
     {
         $this->twig = $twig;
         $this->template = $template;
-        $this->absoluteUrl = $absoluteUrl;
         $this->hreflang = $hreflang;
         $this->images = $images;
     }
@@ -43,7 +36,6 @@ final class TwigAdapter implements RendererAdapterInterface
     {
         return $this->twig->render($this->template, [
             'url_set' => $sitemap->getUrls(),
-            'absolute_url' => $this->absoluteUrl,
             'hreflang' => $this->hreflang,
             'images' => $this->images,
         ]);
