@@ -15,8 +15,6 @@
     <testsuites>
         <testsuite name="tests">
             <directory>tests</directory>
-            <!-- Excluded these tests because they probably will be obsolete in v2 -->
-            <exclude>tests/Controller</exclude>
         </testsuite>
     </testsuites>
 
