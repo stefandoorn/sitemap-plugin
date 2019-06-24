@@ -15,7 +15,14 @@ abstract class AbstractController
 
     protected function createResponse(SitemapInterface $sitemap): Response
     {
-        $response = new Response($this->sitemapRenderer->render($sitemap));
+        @trigger_error('createResponse will be removed in 2.0', E_USER_DEPRECATED);
+
+        return $this->createXmlResponse($this->sitemapRenderer->render($sitemap));
+    }
+
+    protected function createXmlResponse(string $xml): Response
+    {
+        $response = new Response($xml);
         $response->headers->set('Content-Type', 'application/xml');
 
         return $response;

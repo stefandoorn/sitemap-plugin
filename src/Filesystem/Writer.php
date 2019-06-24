@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Writer;
+namespace SitemapPlugin\Filesystem;
 
-use \Gaufrette\FilesystemInterface;
+use Gaufrette\FilesystemInterface;
 
-final class FilesystemWriter
+final class Writer
 {
     /** @var FilesystemInterface */
     private $filesystem;
@@ -18,6 +18,6 @@ final class FilesystemWriter
     
     public function write(string $path, string $contents): void
     {
-        $this->filesystem->write($path, $contents);
+        $this->filesystem->write($path, $contents, $overwrite = true);
     }
 }

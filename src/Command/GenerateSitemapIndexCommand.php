@@ -6,31 +6,40 @@ namespace SitemapPlugin\Command;
 
 use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
-use SitemapPlugin\Writer\FilesystemWriter;
+use SitemapPlugin\Filesystem\Writer;
+use Sylius\Bundle\ChannelBundle\Doctrine\ORM\ChannelRepository;
+use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputArgument;
 
 final class GenerateSitemapIndexCommand extends Command
 {
 
     /** @var SitemapIndexBuilderInterface */
-    protected $sitemapBuilder;
+    private $sitemapIndexBuilder;
 
     /** @var SitemapRendererInterface */
-    protected $sitemapRenderer;
+    private $sitemapRenderer;
 
-    /** @var FilesystemWriter */
-    protected $writer;
+    /** @var Writer */
+    private $writer;
+
+    /** @var ChannelRepositoryInterface */
+    private $channelRepository;
 
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
-        SitemapIndexBuilderInterface $sitemapBuilder,
-        FilesystemWriter $writer
+        SitemapIndexBuilderInterface $sitemapIndexBuilder,
+        Writer $writer,
+        ChannelRepositoryInterface $channelRepository
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapBuilder = $sitemapBuilder;
+        $this->sitemapIndexBuilder = $sitemapIndexBuilder;
         $this->writer = $writer;
+        $this->channelRepository = $channelRepository;
 
         parent::__construct();
     }
@@ -38,17 +47,42 @@ final class GenerateSitemapIndexCommand extends Command
     /** @TODO */
     protected function configure(): void
     {
-
+        $this->addArgument('channel', InputArgument::IS_ARRAY, 'Channel codes to render. If none supplied, all channels will generated.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $sitemap = $this->sitemapBuilder->build();
-        $xml = $this->sitemapRenderer->render($sitemap);
+        foreach($this->channels($input) as $channel) {
+            $output->writeln(sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
-        $this->writer->write(
-            'sitemap_index.xml',
-            $xml
-        );
+            $sitemap = $this->sitemapIndexBuilder->build(); // @todo does sitemap index need to know about channels?
+            $xml = $this->sitemapRenderer->render($sitemap);
+            $path = $this->path($channel, 'sitemap_index.xml');
+
+            $this->writer->write(
+                $path,
+                $xml
+            );
+
+            $output->writeln(sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
+        }
+    }
+
+    private function path(ChannelInterface $channel, string $path): string
+    {
+        return sprintf('%s/%s', $channel->getCode(), $path);
+    }
+
+    /**
+     * @return ChannelInterface[]
+     */
+    private function channels(InputInterface $input): array
+    {
+        if (!empty($input->getArgument('channel'))) {
+            return $this->channelRepository->findBy(['code' => $input->getArgument('channel')]);
+        }
+
+        // return all (@todo only active)
+        return $this->channelRepository->findBy(['enabled' => true]);
     }
 }

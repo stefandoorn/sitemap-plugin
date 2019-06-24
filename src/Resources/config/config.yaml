@@ -5,7 +5,7 @@ sitemap:
 
 parameters:
     sylius.sitemap.filesystem: sylius_sitemap
-    sylius.sitemap.path: "%kernel.project_dir%/web/sitemap"
+    sylius.sitemap.path: "%kernel.project_dir%/data/sitemap"
 
 knp_gaufrette:
     adapters:
