@@ -26,7 +26,7 @@ final class SitemapIndexController extends AbstractController
 
     public function showAction(): Response
     {
-        $data = $this->reader->get(\sprintf('%s/%s', $this->channelContext->getCode(), 'sitemap_index.xml')); // @todo put this in a service - its duplicated now
+        $data = $this->reader->get(\sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), 'sitemap_index.xml')); // @todo put this in a service - its duplicated now
 
         return $this->createXmlResponse($data);
     }
