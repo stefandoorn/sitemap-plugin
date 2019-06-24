@@ -18,6 +18,6 @@ final class Reader
 
     public function get(string $path): string
     {
-        $this->filesystem->read($path);
+        return $this->filesystem->read($path);
     }
 }

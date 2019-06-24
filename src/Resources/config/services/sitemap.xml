@@ -35,8 +35,8 @@
             <argument type="service" id="sylius.sitemap_builder" />
         </service>
         <service id="sylius.controller.sitemap_index" class="SitemapPlugin\Controller\SitemapIndexController" public="true">
-            <argument type="service" id="sylius.sitemap_index_renderer"/>
-            <argument type="service" id="sylius.sitemap_index_builder" />
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.sitemap_reader" />
         </service>
 
         <service id="sylius.sitemap_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">
