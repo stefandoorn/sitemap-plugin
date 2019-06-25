@@ -24,10 +24,7 @@ final class TwigAdapter implements RendererAdapterInterface
     /** @var bool */
     private $images;
 
-    /**
-     * @param string $template
-     */
-    public function __construct(EngineInterface $twig, $template, $absoluteUrl, $hreflang = true, $images = true)
+    public function __construct(EngineInterface $twig, string $template, bool $absoluteUrl, bool $hreflang = true, bool $images = true)
     {
         $this->twig = $twig;
         $this->template = $template;
