@@ -34,7 +34,6 @@ final class TwigAdapterSpec extends ObjectBehavior
 
         $twig->render('@SyliusCore/Sitemap/url_set.xml.twig', [
             'url_set' => [$productUrl],
-            'absolute_url' => false,
             'hreflang' => true,
             'images' => true,
         ])->shouldBeCalled()->willReturn('');
