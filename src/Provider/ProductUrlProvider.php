@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
-use SitemapPlugin\Factory\UrlAlternativeFactoryInterface;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
@@ -32,7 +32,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /** @var UrlFactoryInterface */
     private $sitemapUrlFactory;
 
-    /** @var UrlAlternativeFactoryInterface */
+    /** @var AlternativeUrlFactoryInterface */
     private $urlAlternativeFactory;
 
     /** @var LocaleContextInterface */
@@ -54,7 +54,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
         UrlFactoryInterface $sitemapUrlFactory,
-        UrlAlternativeFactoryInterface $urlAlternativeFactory,
+        AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator

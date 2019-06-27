@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
-final class UrlAlternative implements UrlAlternativeInterface
+final class AlternativeUrl implements AlternativeUrlInterface
 {
     /** @var string */
     private $location;

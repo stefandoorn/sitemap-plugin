@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
-use SitemapPlugin\Factory\UrlAlternativeFactoryInterface;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\TaxonInterface;
@@ -24,7 +24,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /** @var UrlFactoryInterface */
     private $sitemapUrlFactory;
 
-    /** @var UrlAlternativeFactoryInterface */
+    /** @var AlternativeUrlFactoryInterface */
     private $urlAlternativeFactory;
 
     /** @var LocaleContextInterface */
@@ -45,7 +45,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
         UrlFactoryInterface $sitemapUrlFactory,
-        UrlAlternativeFactoryInterface $urlAlternativeFactory,
+        AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
         $excludeTaxonRoot
     ) {

@@ -82,7 +82,7 @@ final class Url implements UrlInterface
     }
 
     /**
-     * @return Collection|UrlAlternativeInterface[]
+     * @return Collection|AlternativeUrlInterface[]
      */
     public function getAlternatives(): Collection
     {
@@ -90,7 +90,7 @@ final class Url implements UrlInterface
     }
 
     /**
-     * @param UrlAlternativeInterface[] $alternatives
+     * @param AlternativeUrlInterface[] $alternatives
      */
     public function setAlternatives(iterable $alternatives): void
     {
@@ -99,17 +99,17 @@ final class Url implements UrlInterface
         }
     }
 
-    public function addAlternative(UrlAlternativeInterface $alternative): void
+    public function addAlternative(AlternativeUrlInterface $alternative): void
     {
         $this->alternatives->add($alternative);
     }
 
-    public function hasAlternative(UrlAlternativeInterface $alternative): bool
+    public function hasAlternative(AlternativeUrlInterface $alternative): bool
     {
         return $this->alternatives->contains($alternative);
     }
 
-    public function removeAlternative(UrlAlternativeInterface $alternative): void
+    public function removeAlternative(AlternativeUrlInterface $alternative): void
     {
         if ($this->hasAlternative($alternative)) {
             $this->alternatives->removeElement($alternative);
