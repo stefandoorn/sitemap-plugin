@@ -4,7 +4,7 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {%- for url in url_set -%}
         <sitemap>
-            <loc>{{ absolute_url(url.localization) }}</loc>
+            <loc>{{ absolute_url(url.location) }}</loc>
             {{- xml_helper.last_modification(url) -}}
         </sitemap>
     {% endfor %}
