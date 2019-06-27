@@ -94,6 +94,8 @@ final class Url implements UrlInterface
      */
     public function setAlternatives(iterable $alternatives): void
     {
+        $this->alternatives->clear();
+
         foreach ($alternatives as $alternative) {
             $this->addAlternative($alternative);
         }
@@ -134,6 +136,8 @@ final class Url implements UrlInterface
      */
     public function setImages(iterable $images): void
     {
+        $this->images->clear();
+
         foreach ($images as $image) {
             $this->addImage($image);
         }
