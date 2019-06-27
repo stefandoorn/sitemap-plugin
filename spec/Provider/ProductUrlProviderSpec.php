@@ -9,8 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
+use SitemapPlugin\Model\AlternativeUrlInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\UrlInterface;
 use SitemapPlugin\Provider\ProductUrlProvider;
@@ -30,12 +32,13 @@ final class ProductUrlProviderSpec extends ObjectBehavior
     function let(
         ProductRepository $repository,
         RouterInterface $router,
-        UrlFactoryInterface $sitemapUrlFactory,
+        UrlFactoryInterface $urlFactory,
+        AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
-        $this->beConstructedWith($repository, $router, $sitemapUrlFactory, $localeContext, $channelContext, $productToImageSitemapArrayGenerator);
+        $this->beConstructedWith($repository, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $channelContext, $productToImageSitemapArrayGenerator);
     }
 
     function it_is_initializable(): void
@@ -49,11 +52,12 @@ final class ProductUrlProviderSpec extends ObjectBehavior
     }
 
     function it_generates_urls_for_the_unique_channel_locale(
-        $repository,
-        $router,
-        $sitemapUrlFactory,
-        $localeContext,
-        $channelContext,
+        ProductRepository $repository,
+        RouterInterface $router,
+        UrlFactoryInterface $urlFactory,
+        AlternativeUrlFactoryInterface $alternativeUrlFactory,
+        LocaleContextInterface $localeContext,
+        ChannelContextInterface $channelContext,
         LocaleInterface $locale,
         Collection $products,
         \Iterator $iterator,
@@ -61,7 +65,8 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
-        UrlInterface $sitemapUrl,
+        UrlInterface $url,
+        AlternativeUrlInterface $alternativeUrl,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,
@@ -122,26 +127,28 @@ final class ProductUrlProviderSpec extends ObjectBehavior
             '_locale' => 'en_US',
         ])->willReturn('http://sylius.org/en_US/products/t-shirt');
 
-        $sitemapUrlFactory->createNew()->willReturn($sitemapUrl);
+        $urlFactory->createNew('')->willReturn($url);
+        $alternativeUrlFactory->createNew('')->willReturn($alternativeUrl);
 
-        $sitemapUrl->setImages($sitemapImageCollection)->shouldBeCalled();
-        $sitemapUrl->setLocalization('http://sylius.org/en_US/products/t-shirt')->shouldBeCalled();
-        $sitemapUrl->setLocalization('http://sylius.org/nl_NL/products/t-shirt')->shouldNotBeCalled();
-        $sitemapUrl->setLastModification($now)->shouldBeCalled();
-        $sitemapUrl->setChangeFrequency(ChangeFrequency::always())->shouldBeCalled();
-        $sitemapUrl->setPriority(0.5)->shouldBeCalled();
+        $url->setImages($sitemapImageCollection)->shouldBeCalled();
+        $url->setLocation('http://sylius.org/en_US/products/t-shirt')->shouldBeCalled();
+        $url->setLocation('http://sylius.org/nl_NL/products/t-shirt')->shouldNotBeCalled();
+        $url->setLastModification($now)->shouldBeCalled();
+        $url->setChangeFrequency(ChangeFrequency::always())->shouldBeCalled();
+        $url->setPriority(0.5)->shouldBeCalled();
 
-        $sitemapUrl->addAlternative('http://sylius.org/nl_NL/products/t-shirt', 'nl_NL')->shouldNotBeCalled();
+        $url->addAlternative($alternativeUrl)->shouldNotBeCalled();
 
         $this->generate();
     }
 
     function it_generates_urls_for_all_channel_locales(
-        $repository,
-        $router,
-        $sitemapUrlFactory,
-        $localeContext,
-        $channelContext,
+        ProductRepository $repository,
+        RouterInterface $router,
+        UrlFactoryInterface $urlFactory,
+        AlternativeUrlFactoryInterface $alternativeUrlFactory,
+        LocaleContextInterface $localeContext,
+        ChannelContextInterface $channelContext,
         LocaleInterface $enUSLocale,
         LocaleInterface $nlNLLocale,
         Collection $products,
@@ -150,7 +157,8 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
         ProductTranslation $productNlNLTranslation,
-        UrlInterface $sitemapUrl,
+        UrlInterface $url,
+        AlternativeUrlInterface $alternativeUrl,
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,
@@ -218,16 +226,17 @@ final class ProductUrlProviderSpec extends ObjectBehavior
             '_locale' => 'nl_NL',
         ])->shouldBeCalled()->willReturn('http://sylius.org/nl_NL/products/t-shirt');
 
-        $sitemapUrlFactory->createNew()->willReturn($sitemapUrl);
+        $urlFactory->createNew('')->willReturn($url);
+        $alternativeUrlFactory->createNew('http://sylius.org/nl_NL/products/t-shirt', 'nl_NL')->willReturn($alternativeUrl);
 
-        $sitemapUrl->setImages($sitemapImageCollection)->shouldBeCalled();
-        $sitemapUrl->setLocalization('http://sylius.org/en_US/products/t-shirt')->shouldBeCalled();
-        $sitemapUrl->setLocalization('http://sylius.org/nl_NL/products/t-shirt')->shouldNotBeCalled();
-        $sitemapUrl->setLastModification($now)->shouldBeCalled();
-        $sitemapUrl->setChangeFrequency(ChangeFrequency::always())->shouldBeCalled();
-        $sitemapUrl->setPriority(0.5)->shouldBeCalled();
+        $url->setImages($sitemapImageCollection)->shouldBeCalled();
+        $url->setLocation('http://sylius.org/en_US/products/t-shirt')->shouldBeCalled();
+        $url->setLocation('http://sylius.org/nl_NL/products/t-shirt')->shouldNotBeCalled();
+        $url->setLastModification($now)->shouldBeCalled();
+        $url->setChangeFrequency(ChangeFrequency::always())->shouldBeCalled();
+        $url->setPriority(0.5)->shouldBeCalled();
 
-        $sitemapUrl->addAlternative('http://sylius.org/nl_NL/products/t-shirt', 'nl_NL')->shouldBeCalled();
+        $url->addAlternative($alternativeUrl)->shouldBeCalled();
 
         $this->generate();
     }

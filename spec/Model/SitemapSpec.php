@@ -65,7 +65,7 @@ final class SitemapSpec extends ObjectBehavior
     ): void {
         $this->addUrl($productUrl);
 
-        $staticUrl->getLocalization()->willReturn('http://sylius.org');
+        $staticUrl->getLocation()->willReturn('http://sylius.org');
 
         $this->shouldThrow(SitemapUrlNotFoundException::class)->during('removeUrl', [$staticUrl]);
     }

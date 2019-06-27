@@ -10,10 +10,10 @@ use SitemapPlugin\Model\UrlInterface;
 
 final class SitemapUrlNotFoundExceptionSpec extends ObjectBehavior
 {
-    function let(UrlInterface $sitemapUrl): void
+    function let(UrlInterface $url): void
     {
-        $sitemapUrl->getLocalization()->willReturn('http://sylius.org');
-        $this->beConstructedWith($sitemapUrl, null);
+        $url->getLocation()->willReturn('http://sylius.org');
+        $this->beConstructedWith($url, null);
     }
 
     function it_is_an_exception(): void
