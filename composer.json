@@ -18,7 +18,7 @@
         "phpstan/phpstan-webmozart-assert": "^0.11",
         "phpunit/phpunit": "^8.0",
         "roave/security-advisories": "dev-master",
-        "sensiolabs/security-checker": "^5.0",
+        "sensiolabs/security-checker": "^6.0",
         "sylius-labs/coding-standard": "^3.0",
         "symfony/debug-bundle": "^3.4|^4.1",
         "symfony/dotenv": "^4.2",
@@ -52,5 +52,21 @@
         "branch-alias": {
             "dev-master": "2.0-dev"
         }
+    },
+    "scripts": {
+        "analyse": [
+            "@ensure-test-container-exists",
+            "./vendor/bin/phpstan analyse -c phpstan.neon -l max src"
+        ],
+        "check-style": "vendor/bin/ecs check --ansi src/ tests/ spec/",
+        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/ApplicationTests_SitemapPlugin_Application_KernelTestDebugContainer.xml ]] || (cd tests/Application && php -d memory_limit=-1 bin/console cache:clear --env=test)",
+        "fix-style": "vendor/bin/ecs check --ansi src/ tests/ spec/ --fix",
+        "phpspec": "vendor/bin/phpspec run --ansi",
+        "phpunit": "vendor/bin/phpunit",
+        "test": [
+            "@phpunit",
+            "@phpspec"
+        ],
+        "security": "vendor/bin/security-checker security:check"
     }
 }

@@ -29,8 +29,7 @@ before_script:
 
 script:
     - composer validate --strict
-    - vendor/bin/ecs check src/ tests/ spec/
-    - vendor/bin/phpstan analyse src --level max -c phpstan.neon
-    - vendor/bin/phpspec run
-
-    - vendor/bin/phpunit
+    - composer security
+    - composer check-style
+    - composer analyse
+    - composer test
