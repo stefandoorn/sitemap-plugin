@@ -26,20 +26,20 @@ interface UrlInterface
     public function setPriority(float $priority): void;
 
     /**
-     * @return Collection|UrlAlternativeInterface[]
+     * @return Collection|AlternativeUrlInterface[]
      */
     public function getAlternatives(): Collection;
 
     /**
-     * @param UrlAlternativeInterface[] $alternatives
+     * @param AlternativeUrlInterface[] $alternatives
      */
     public function setAlternatives(iterable $alternatives): void;
 
-    public function addAlternative(UrlAlternativeInterface $image): void;
+    public function addAlternative(AlternativeUrlInterface $image): void;
 
-    public function hasAlternative(UrlAlternativeInterface $image): bool;
+    public function hasAlternative(AlternativeUrlInterface $image): bool;
 
-    public function removeAlternative(UrlAlternativeInterface $image): void;
+    public function removeAlternative(AlternativeUrlInterface $image): void;
 
     public function hasAlternatives(): bool;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
-use SitemapPlugin\Factory\UrlAlternativeFactoryInterface;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
@@ -19,7 +19,7 @@ final class StaticUrlProvider implements UrlProviderInterface
     /** @var UrlFactoryInterface */
     private $sitemapUrlFactory;
 
-    /** @var UrlAlternativeFactoryInterface */
+    /** @var AlternativeUrlFactoryInterface */
     private $urlAlternativeFactory;
 
     /** @var array */
@@ -37,7 +37,7 @@ final class StaticUrlProvider implements UrlProviderInterface
     public function __construct(
         RouterInterface $router,
         UrlFactoryInterface $sitemapUrlFactory,
-        UrlAlternativeFactoryInterface $urlAlternativeFactory,
+        AlternativeUrlFactoryInterface $urlAlternativeFactory,
         ChannelContextInterface $channelContext,
         array $routes
     ) {

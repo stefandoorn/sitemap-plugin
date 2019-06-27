@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
-interface UrlAlternativeInterface
+interface AlternativeUrlInterface
 {
     public function getLocation(): string;
 
