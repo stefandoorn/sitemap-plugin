@@ -54,6 +54,6 @@ final class SitemapIndexControllerApiTest extends AbstractTestController
         $this->assertTrue($response->isRedirect());
 
         $location = $response->headers->get('Location');
-        $this->assertContains('sitemap_index.xml', $location);
+        $this->assertStringContainsString('sitemap_index.xml', $location);
     }
 }
