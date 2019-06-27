@@ -66,6 +66,7 @@
         "test": [
             "@phpunit",
             "@phpspec"
-        ]
+        ],
+        "security": "vendor/bin/security-checker security:check"
     }
 }
