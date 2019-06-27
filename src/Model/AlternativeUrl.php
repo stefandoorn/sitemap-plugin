@@ -14,8 +14,8 @@ final class AlternativeUrl implements AlternativeUrlInterface
 
     public function __construct(string $location, string $locale)
     {
-        $this->location = $location;
-        $this->locale = $locale;
+        $this->setLocation($location);
+        $this->setLocale($locale);
     }
 
     public function getLocation(): string

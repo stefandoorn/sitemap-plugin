@@ -30,7 +30,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     private $router;
 
     /** @var UrlFactoryInterface */
-    private $sitemapUrlFactory;
+    private $urlFactory;
 
     /** @var AlternativeUrlFactoryInterface */
     private $urlAlternativeFactory;
@@ -53,7 +53,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     public function __construct(
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
-        UrlFactoryInterface $sitemapUrlFactory,
+        UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext,
@@ -61,7 +61,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
-        $this->sitemapUrlFactory = $sitemapUrlFactory;
+        $this->urlFactory = $urlFactory;
         $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->localeContext = $localeContext;
         $this->channelContext = $channelContext;
@@ -132,7 +132,7 @@ final class ProductUrlProvider implements UrlProviderInterface
 
     private function createProductUrl(ProductInterface $product): UrlInterface
     {
-        $productUrl = $this->sitemapUrlFactory->createNew(''); // todo bypassing this new constructor right now
+        $productUrl = $this->urlFactory->createNew(''); // todo bypassing this new constructor right now
         $productUrl->setChangeFrequency(ChangeFrequency::always());
         $productUrl->setPriority(0.5);
         $updatedAt = $product->getUpdatedAt();

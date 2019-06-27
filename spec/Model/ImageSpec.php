@@ -8,14 +8,19 @@ use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Model\Image;
 use SitemapPlugin\Model\ImageInterface;
 
-final class SitemapImageUrlSpec extends ObjectBehavior
+final class ImageSpec extends ObjectBehavior
 {
+    function let(): void
+    {
+        $this->beConstructedWith('location');
+    }
+
     function it_is_initializable(): void
     {
         $this->shouldHaveType(Image::class);
     }
 
-    function it_implements_sitemap_url_interface(): void
+    function it_implements_image_interface(): void
     {
         $this->shouldImplement(ImageInterface::class);
     }

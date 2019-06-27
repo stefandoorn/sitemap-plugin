@@ -12,8 +12,13 @@ use SitemapPlugin\Model\ImageInterface;
 use SitemapPlugin\Model\Url;
 use SitemapPlugin\Model\UrlInterface;
 
-final class SitemapUrlSpec extends ObjectBehavior
+final class UrlSpec extends ObjectBehavior
 {
+    function let(): void
+    {
+        $this->beConstructedWith('location');
+    }
+
     function it_is_initializable(): void
     {
         $this->shouldHaveType(Url::class);
@@ -26,8 +31,8 @@ final class SitemapUrlSpec extends ObjectBehavior
 
     function it_has_localization(): void
     {
-        $this->setLocalization('http://sylius.org/');
-        $this->getLocalization()->shouldReturn('http://sylius.org/');
+        $this->setLocation('http://sylius.org/');
+        $this->getLocation()->shouldReturn('http://sylius.org/');
     }
 
     function it_has_last_modification(\DateTime $now): void
