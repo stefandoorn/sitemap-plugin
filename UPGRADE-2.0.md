@@ -20,10 +20,11 @@
 ## Class changes
 
 * Several classes have been marked `final`.
+* Models were renamed. Basically 'Sitemap' was removed from the names where relevant (i.e. where the model is not a sitemap, but part of a sitemap)
 
 ## Interface changes
 
-* Interface `SitemapUrlInterface` has new methods:
+* Interface `UrlInterface` has new methods:
     * `getImages(): Collection`
     * `setImages(Collection $images): void`
     * `addImage(SitemapImageUrlInterface $image): void`
