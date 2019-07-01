@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
-final class SitemapImageUrl implements SitemapImageUrlInterface
+final class Image implements ImageInterface
 {
     /** @var string */
     private $location;
@@ -21,14 +21,19 @@ final class SitemapImageUrl implements SitemapImageUrlInterface
     /** @var string|null */
     private $license;
 
+    public function __construct(string $location)
+    {
+        $this->setLocation($location);
+    }
+
     public function getLocation(): string
     {
         return $this->location;
     }
 
-    public function setLocation(string $localization): void
+    public function setLocation(string $location): void
     {
-        $this->location = $localization;
+        $this->location = $location;
     }
 
     public function getTitle(): ?string

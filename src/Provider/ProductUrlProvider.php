@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
-use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -28,8 +29,11 @@ final class ProductUrlProvider implements UrlProviderInterface
     /** @var RouterInterface */
     private $router;
 
-    /** @var SitemapUrlFactoryInterface */
-    private $sitemapUrlFactory;
+    /** @var UrlFactoryInterface */
+    private $urlFactory;
+
+    /** @var AlternativeUrlFactoryInterface */
+    private $urlAlternativeFactory;
 
     /** @var LocaleContextInterface */
     private $localeContext;
@@ -49,14 +53,16 @@ final class ProductUrlProvider implements UrlProviderInterface
     public function __construct(
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
-        SitemapUrlFactoryInterface $sitemapUrlFactory,
+        UrlFactoryInterface $urlFactory,
+        AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
         ChannelContextInterface $channelContext,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
-        $this->sitemapUrlFactory = $sitemapUrlFactory;
+        $this->urlFactory = $urlFactory;
+        $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->localeContext = $localeContext;
         $this->channelContext = $channelContext;
         $this->productToImageSitemapArrayGenerator = $productToImageSitemapArrayGenerator;
@@ -124,9 +130,9 @@ final class ProductUrlProvider implements UrlProviderInterface
         return $this->channelLocaleCodes;
     }
 
-    private function createProductUrl(ProductInterface $product): SitemapUrlInterface
+    private function createProductUrl(ProductInterface $product): UrlInterface
     {
-        $productUrl = $this->sitemapUrlFactory->createNew();
+        $productUrl = $this->urlFactory->createNew(''); // todo bypassing this new constructor right now
         $productUrl->setChangeFrequency(ChangeFrequency::always());
         $productUrl->setPriority(0.5);
         $updatedAt = $product->getUpdatedAt();
@@ -153,12 +159,12 @@ final class ProductUrlProvider implements UrlProviderInterface
             ]);
 
             if ($locale === $this->localeContext->getLocaleCode()) {
-                $productUrl->setLocalization($location);
+                $productUrl->setLocation($location);
 
                 continue;
             }
 
-            $productUrl->addAlternative($location, $locale);
+            $productUrl->addAlternative($this->urlAlternativeFactory->createNew($location, $locale));
         }
 
         return $productUrl;

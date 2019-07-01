@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
-use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -20,8 +21,11 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /** @var RouterInterface */
     private $router;
 
-    /** @var SitemapUrlFactoryInterface */
+    /** @var UrlFactoryInterface */
     private $sitemapUrlFactory;
+
+    /** @var AlternativeUrlFactoryInterface */
+    private $urlAlternativeFactory;
 
     /** @var LocaleContextInterface */
     private $localeContext;
@@ -40,13 +44,15 @@ final class TaxonUrlProvider implements UrlProviderInterface
     public function __construct(
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
-        SitemapUrlFactoryInterface $sitemapUrlFactory,
+        UrlFactoryInterface $sitemapUrlFactory,
+        AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
         $excludeTaxonRoot
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
+        $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->localeContext = $localeContext;
         $this->excludeTaxonRoot = $excludeTaxonRoot;
     }
@@ -67,7 +73,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
                 continue;
             }
 
-            $taxonUrl = $this->sitemapUrlFactory->createNew();
+            $taxonUrl = $this->sitemapUrlFactory->createNew(''); // todo bypassing this new constructor right now
             $taxonUrl->setChangeFrequency(ChangeFrequency::always());
             $taxonUrl->setPriority(0.5);
 
@@ -79,14 +85,14 @@ final class TaxonUrlProvider implements UrlProviderInterface
                 ]);
 
                 if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
-                    $taxonUrl->setLocalization($location);
+                    $taxonUrl->setLocation($location);
 
                     continue;
                 }
 
                 $locale = $translation->getLocale();
                 if ($locale) {
-                    $taxonUrl->addAlternative($location, $locale);
+                    $taxonUrl->addAlternative($this->urlAlternativeFactory->createNew($location, $locale));
                 }
             }
 

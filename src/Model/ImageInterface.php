@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Model;
 
-interface SitemapImageUrlInterface
+interface ImageInterface
 {
     public function getLocation(): string;
 
-    public function setLocation(string $localization): void;
+    public function setLocation(string $location): void;
 
     public function getTitle(): ?string;
 

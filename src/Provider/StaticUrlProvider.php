@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Provider;
 
-use SitemapPlugin\Factory\SitemapUrlFactoryInterface;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -15,8 +16,11 @@ final class StaticUrlProvider implements UrlProviderInterface
     /** @var RouterInterface */
     private $router;
 
-    /** @var SitemapUrlFactoryInterface */
+    /** @var UrlFactoryInterface */
     private $sitemapUrlFactory;
+
+    /** @var AlternativeUrlFactoryInterface */
+    private $urlAlternativeFactory;
 
     /** @var array */
     private $urls = [];
@@ -32,12 +36,14 @@ final class StaticUrlProvider implements UrlProviderInterface
      */
     public function __construct(
         RouterInterface $router,
-        SitemapUrlFactoryInterface $sitemapUrlFactory,
+        UrlFactoryInterface $sitemapUrlFactory,
+        AlternativeUrlFactoryInterface $urlAlternativeFactory,
         ChannelContextInterface $channelContext,
         array $routes
     ) {
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
+        $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->channelContext = $channelContext;
         $this->routes = $routes;
     }
@@ -57,17 +63,16 @@ final class StaticUrlProvider implements UrlProviderInterface
         }
 
         foreach ($this->transformAndYieldRoutes() as $route) {
-            $staticUrl = $this->sitemapUrlFactory->createNew();
+            $location = $this->router->generate($route['route'], $route['parameters']);
+
+            $staticUrl = $this->sitemapUrlFactory->createNew($location);
             $staticUrl->setChangeFrequency(ChangeFrequency::weekly());
             $staticUrl->setPriority(0.3);
-
-            $location = $this->router->generate($route['route'], $route['parameters']);
-            $staticUrl->setLocalization($location);
 
             foreach ($route['locales'] as $alternativeLocaleCode) {
                 $route['parameters']['_locale'] = $alternativeLocaleCode;
                 $alternativeLocation = $this->router->generate($route['route'], $route['parameters']);
-                $staticUrl->addAlternative($alternativeLocation, $alternativeLocaleCode);
+                $staticUrl->addAlternative($this->urlAlternativeFactory->createNew($alternativeLocation, $alternativeLocaleCode));
             }
 
             $this->urls[] = $staticUrl;

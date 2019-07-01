@@ -6,14 +6,14 @@ namespace spec\SitemapPlugin\Exception;
 
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Exception\SitemapUrlNotFoundException;
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 
 final class SitemapUrlNotFoundExceptionSpec extends ObjectBehavior
 {
-    function let(SitemapUrlInterface $sitemapUrl): void
+    function let(UrlInterface $url): void
     {
-        $sitemapUrl->getLocalization()->willReturn('http://sylius.org');
-        $this->beConstructedWith($sitemapUrl, null);
+        $url->getLocation()->willReturn('http://sylius.org');
+        $this->beConstructedWith($url, null);
     }
 
     function it_is_an_exception(): void

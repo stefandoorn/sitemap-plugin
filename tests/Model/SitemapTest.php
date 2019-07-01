@@ -6,7 +6,7 @@ namespace Tests\SitemapPlugin\Model;
 
 use PHPUnit\Framework\TestCase;
 use SitemapPlugin\Model\Sitemap;
-use SitemapPlugin\Model\SitemapUrl;
+use SitemapPlugin\Model\Url;
 
 final class SitemapTest extends TestCase
 {
@@ -23,25 +23,25 @@ final class SitemapTest extends TestCase
     {
         $obj = new Sitemap();
 
-        $sitemapUrl = new SitemapUrl();
-        $sitemapUrl->setLocalization('url');
+        $sitemapUrl = new Url('location');
+        $sitemapUrl->setLocation('url');
 
-        $sitemapUrlTwo = new SitemapUrl();
-        $sitemapUrlTwo->setLocalization('url2');
+        $sitemapUrlTwo = new Url('location');
+        $sitemapUrlTwo->setLocation('url2');
 
-        $this->assertNull($obj->addUrl($sitemapUrl));
+        $obj->addUrl($sitemapUrl);
 
         $this->assertCount(1, $obj->getUrls());
         $this->assertTrue(\is_iterable($obj->getUrls()));
         $this->assertEquals([$sitemapUrl], $obj->getUrls());
 
-        $this->assertNull($obj->setUrls([$sitemapUrl, $sitemapUrlTwo]));
+        $obj->setUrls([$sitemapUrl, $sitemapUrlTwo]);
 
         $this->assertCount(2, $obj->getUrls());
         $this->assertTrue(\is_iterable($obj->getUrls()));
         $this->assertEquals([$sitemapUrl, $sitemapUrlTwo], $obj->getUrls());
 
-        $this->assertNull($obj->removeUrl($sitemapUrlTwo));
+        $obj->removeUrl($sitemapUrlTwo);
 
         $this->assertCount(1, $obj->getUrls());
         $this->assertTrue(\is_iterable($obj->getUrls()));
@@ -52,7 +52,7 @@ final class SitemapTest extends TestCase
     {
         $obj = new Sitemap();
 
-        $this->assertNull($obj->setLocalization('test'));
+        $obj->setLocalization('test');
         $this->assertEquals('test', $obj->getLocalization());
     }
 
@@ -61,7 +61,7 @@ final class SitemapTest extends TestCase
         $obj = new Sitemap();
         $date = new \DateTimeImmutable();
 
-        $this->assertNull($obj->setLastModification($date));
+        $obj->setLastModification($date);
         $this->assertEquals($date, $obj->getLastModification());
     }
 }

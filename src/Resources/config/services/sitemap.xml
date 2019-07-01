@@ -32,9 +32,10 @@
 
         <service id="sylius.sitemap_factory" class="SitemapPlugin\Factory\SitemapFactory" />
         <service id="sylius.sitemap_index_factory" class="SitemapPlugin\Factory\SitemapIndexFactory" />
-        <service id="sylius.sitemap_url_factory" class="SitemapPlugin\Factory\SitemapUrlFactory" />
-        <service id="sylius.sitemap_image_url_factory" class="SitemapPlugin\Factory\SitemapImageUrlFactory" />
-        <service id="sylius.sitemap_index_url_factory" class="SitemapPlugin\Factory\SitemapIndexUrlFactory" />
+        <service id="sylius.sitemap_url_factory" class="SitemapPlugin\Factory\UrlFactory" />
+        <service id="sylius.sitemap_url_alternative_factory" class="SitemapPlugin\Factory\AlternativeUrlFactory" />
+        <service id="sylius.sitemap_image_url_factory" class="SitemapPlugin\Factory\ImageFactory" />
+        <service id="sylius.sitemap_index_url_factory" class="SitemapPlugin\Factory\IndexUrlFactory" />
 
         <service id="sylius.sitemap_builder" class="SitemapPlugin\Builder\SitemapBuilder">
             <argument type="service" id="sylius.sitemap_factory" />

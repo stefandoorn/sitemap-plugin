@@ -5,19 +5,24 @@ declare(strict_types=1);
 namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Model\SitemapImageUrl;
-use SitemapPlugin\Model\SitemapImageUrlInterface;
+use SitemapPlugin\Model\Image;
+use SitemapPlugin\Model\ImageInterface;
 
-final class SitemapImageUrlSpec extends ObjectBehavior
+final class ImageSpec extends ObjectBehavior
 {
-    function it_is_initializable(): void
+    function let(): void
     {
-        $this->shouldHaveType(SitemapImageUrl::class);
+        $this->beConstructedWith('location');
     }
 
-    function it_implements_sitemap_url_interface(): void
+    function it_is_initializable(): void
     {
-        $this->shouldImplement(SitemapImageUrlInterface::class);
+        $this->shouldHaveType(Image::class);
+    }
+
+    function it_implements_image_interface(): void
+    {
+        $this->shouldImplement(ImageInterface::class);
     }
 
     function it_has_location(): void

@@ -8,26 +8,31 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Model\ChangeFrequency;
-use SitemapPlugin\Model\SitemapImageUrlInterface;
-use SitemapPlugin\Model\SitemapUrl;
-use SitemapPlugin\Model\SitemapUrlInterface;
+use SitemapPlugin\Model\ImageInterface;
+use SitemapPlugin\Model\Url;
+use SitemapPlugin\Model\UrlInterface;
 
-final class SitemapUrlSpec extends ObjectBehavior
+final class UrlSpec extends ObjectBehavior
 {
+    function let(): void
+    {
+        $this->beConstructedWith('location');
+    }
+
     function it_is_initializable(): void
     {
-        $this->shouldHaveType(SitemapUrl::class);
+        $this->shouldHaveType(Url::class);
     }
 
     function it_implements_sitemap_url_interface(): void
     {
-        $this->shouldImplement(SitemapUrlInterface::class);
+        $this->shouldImplement(UrlInterface::class);
     }
 
     function it_has_localization(): void
     {
-        $this->setLocalization('http://sylius.org/');
-        $this->getLocalization()->shouldReturn('http://sylius.org/');
+        $this->setLocation('http://sylius.org/');
+        $this->getLocation()->shouldReturn('http://sylius.org/');
     }
 
     function it_has_last_modification(\DateTime $now): void
@@ -61,14 +66,14 @@ final class SitemapUrlSpec extends ObjectBehavior
         $this->getImages()->shouldHaveType(Collection::class);
     }
 
-    function it_adds_an_image(SitemapImageUrlInterface $image): void
+    function it_adds_an_image(ImageInterface $image): void
     {
         $this->addImage($image);
         $this->hasImages()->shouldReturn(true);
         $this->hasImage($image)->shouldReturn(true);
     }
 
-    function it_removes_an_image(SitemapImageUrlInterface $image): void
+    function it_removes_an_image(ImageInterface $image): void
     {
         $this->addImage($image);
         $this->removeImage($image);
@@ -76,7 +81,7 @@ final class SitemapUrlSpec extends ObjectBehavior
         $this->hasImage($image)->shouldReturn(false);
     }
 
-    function it_returns_images(SitemapImageUrlInterface $image): void
+    function it_returns_images(ImageInterface $image): void
     {
         $this->addImage($image);
         $this->getImages()->shouldBeLike(new ArrayCollection([$image->getWrappedObject()]));
