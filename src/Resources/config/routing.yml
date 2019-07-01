@@ -1,25 +1,21 @@
 sylius_sitemap_index:
-    path: /sitemap_index.{_format}
+    path: /sitemap_index.xml
     methods: [GET]
     defaults:
         _controller: sylius.controller.sitemap_index:showAction
-    requirements:
-        _format: xml
 
 sylius_sitemap_no_index:
-    path: /sitemap.{_format}
+    path: /sitemap.xml
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
         route: sylius_sitemap_index
         permanent: true
 
 sylius_sitemap_all:
-    path: /sitemap/all.{_format}
+    path: /sitemap/all.xml
     methods: [GET]
     defaults:
         _controller: sylius.controller.sitemap:showAction
-    requirements:
-        _format: xml
 
 sylius_sitemap_providers:
     resource: .
