@@ -4,6 +4,7 @@
 
 * Plugin structure upgraded to PluginSkeleton:^1.3
 * Dropped support for relative URL's
+* Models (& their interfaces) renamed
 
 ## New features
 
@@ -20,7 +21,7 @@
 ## Class changes
 
 * Several classes have been marked `final`.
-* Models were renamed. Basically 'Sitemap' was removed from the names where relevant (i.e. where the model is not a sitemap, but part of a sitemap)
+* Models (& their interface) were renamed. Basically 'Sitemap' was removed from the names where relevant (i.e. where the model is not a sitemap, but part of a sitemap)
 
 ## Interface changes
 
