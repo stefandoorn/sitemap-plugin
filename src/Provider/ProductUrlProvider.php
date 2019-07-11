@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
+use Safe\Exceptions\StringsException;
+use Setono\DoctrineORMBatcher\Batcher\Collection\ObjectCollectionBatcher;
 use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
@@ -71,7 +73,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @throws StringsException
      */
     public function generate(ChannelInterface $channel): iterable
     {
@@ -102,19 +104,26 @@ final class ProductUrlProvider implements UrlProviderInterface
     }
 
     /**
+     * @throws StringsException
+     *
      * @return array|Collection|ProductInterface[]
      */
     private function getProducts(): iterable
     {
-        return $this->productRepository->createQueryBuilder('o')
+        $qb = $this->productRepository->createQueryBuilder('o')
             ->addSelect('translation')
             ->innerJoin('o.translations', 'translation')
             ->andWhere(':channel MEMBER OF o.channels')
             ->andWhere('o.enabled = :enabled')
             ->setParameter('channel', $this->channel)
             ->setParameter('enabled', true)
-            ->getQuery()
-            ->getResult();
+        ;
+
+        $batcher = new ObjectCollectionBatcher($qb);
+
+        foreach ($batcher->getBatches() as $batch) {
+            yield from $batch->getCollection();
+        }
     }
 
     private function getLocaleCodes(): array
