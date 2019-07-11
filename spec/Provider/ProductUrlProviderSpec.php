@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace spec\SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
+use Setono\DoctrineORMBatcher\Batch\CollectionBatchInterface;
+use Setono\DoctrineORMBatcher\Batcher\Collection\CollectionBatcherInterface;
+use Setono\DoctrineORMBatcher\Factory\BatcherFactoryInterface;
 use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
@@ -34,9 +35,10 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        BatcherFactoryInterface $batcherFactory
     ): void {
-        $this->beConstructedWith($repository, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $productToImageSitemapArrayGenerator);
+        $this->beConstructedWith($repository, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $productToImageSitemapArrayGenerator, $batcherFactory);
     }
 
     function it_is_initializable(): void
@@ -56,8 +58,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
         LocaleInterface $locale,
-        Collection $products,
-        \Iterator $iterator,
         ProductInterface $product,
         ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
@@ -65,9 +65,11 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         UrlInterface $url,
         AlternativeUrlInterface $alternativeUrl,
         QueryBuilder $queryBuilder,
-        AbstractQuery $query,
         ChannelInterface $channel,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        BatcherFactoryInterface $batcherFactory,
+        CollectionBatcherInterface $batcher,
+        CollectionBatchInterface $collectionBatch
     ): void {
         $now = new \DateTime();
 
@@ -86,15 +88,10 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $queryBuilder->andWhere('o.enabled = :enabled')->willReturn($queryBuilder);
         $queryBuilder->setParameter('channel', $channel)->willReturn($queryBuilder);
         $queryBuilder->setParameter('enabled', true)->willReturn($queryBuilder);
-        $queryBuilder->getQuery()->willReturn($query);
-        $query->getResult()->willReturn($products);
 
-        $products->getIterator()->willReturn($iterator);
-        $iterator->valid()->willReturn(true, false);
-        $iterator->next()->shouldBeCalled();
-        $iterator->rewind()->shouldBeCalled();
-
-        $iterator->current()->willReturn($product);
+        $batcherFactory->createObjectCollectionBatcher($queryBuilder)->willReturn($batcher);
+        $batcher->getBatches()->willReturn([$collectionBatch]);
+        $collectionBatch->getCollection()->willReturn([$product]);
 
         $productImage->getPath()->willReturn(null);
 
@@ -146,8 +143,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         LocaleContextInterface $localeContext,
         LocaleInterface $enUSLocale,
         LocaleInterface $nlNLLocale,
-        Collection $products,
-        \Iterator $iterator,
         ProductInterface $product,
         ProductImageInterface $productImage,
         ProductTranslation $productEnUSTranslation,
@@ -155,9 +150,11 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         UrlInterface $url,
         AlternativeUrlInterface $alternativeUrl,
         QueryBuilder $queryBuilder,
-        AbstractQuery $query,
         ChannelInterface $channel,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        BatcherFactoryInterface $batcherFactory,
+        CollectionBatcherInterface $batcher,
+        CollectionBatchInterface $collectionBatch
     ): void {
         $now = new \DateTime();
 
@@ -178,15 +175,10 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         $queryBuilder->andWhere('o.enabled = :enabled')->willReturn($queryBuilder);
         $queryBuilder->setParameter('channel', $channel)->willReturn($queryBuilder);
         $queryBuilder->setParameter('enabled', true)->willReturn($queryBuilder);
-        $queryBuilder->getQuery()->willReturn($query);
-        $query->getResult()->willReturn($products);
 
-        $products->getIterator()->willReturn($iterator);
-        $iterator->valid()->willReturn(true, false);
-        $iterator->next()->shouldBeCalled();
-        $iterator->rewind()->shouldBeCalled();
-
-        $iterator->current()->willReturn($product);
+        $batcherFactory->createObjectCollectionBatcher($queryBuilder)->willReturn($batcher);
+        $batcher->getBatches()->willReturn([$collectionBatch]);
+        $collectionBatch->getCollection()->willReturn([$product]);
 
         $productImage->getPath()->willReturn(null);
 

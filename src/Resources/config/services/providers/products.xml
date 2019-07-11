@@ -10,6 +10,7 @@
             <argument type="service" id="sylius.sitemap_url_alternative_factory" />
             <argument type="service" id="sylius.context.locale" />
             <argument type="service" id="sylius.sitemap.generator.product_images_to_sitemap_images_collection" />
+            <argument type="service" id="setono_doctrine_orm_batcher.factory.batcher" />
             <tag name="sylius.sitemap_provider" />
         </service>
     </services>
