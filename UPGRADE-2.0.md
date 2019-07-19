@@ -14,7 +14,7 @@
 ## Removed features
 
 * Dropped support for relative URL's; Google advises to [use fully qualified URL's](https://support.google.com/webmasters/answer/183668?hl=en). 
-* Unintionally the plugin could suggest that other formats than XML were allowed. This never was properly supported and therefore removed.
+* Unintentionally the plugin could suggest that other formats than XML were allowed. This was never properly supported and therefore removed.
 
 ## Config changes
 
