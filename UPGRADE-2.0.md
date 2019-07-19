@@ -5,6 +5,7 @@
 * Plugin structure upgraded to PluginSkeleton:^1.3
 * Dropped support for relative URL's
 * Models (& their interfaces) renamed
+* Drop suggestion that other formats than XML were supported
 
 ## New features
 
@@ -13,6 +14,7 @@
 ## Removed features
 
 * Dropped support for relative URL's; Google advises to [use fully qualified URL's](https://support.google.com/webmasters/answer/183668?hl=en). 
+* Unintentionally the plugin could suggest that other formats than XML were allowed. This was never properly supported and therefore removed.
 
 ## Config changes
 
