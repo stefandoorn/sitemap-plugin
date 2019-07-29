@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\SitemapPlugin\Controller;
 
+use FilesystemIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+
 trait TearDownTrait
 {
     public function tearDown(): void
@@ -20,5 +24,17 @@ trait TearDownTrait
         $this->client = null;
         $this->entityManager = null;
         $this->fixtureLoader = null;
+
+        $it = new RecursiveDirectoryIterator($this->client->getParameter('sylius.sitemap.path'), FilesystemIterator::SKIP_DOTS);
+        $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
+        foreach($it as $file) {
+            if ($file->isDir()) {
+                rmdir($file->getPathname());
+            }
+            else {
+                unlink($file->getPathname());
+            }
+        }
+        rmdir($this->client->getParameter('sylius.sitemap.path'));
     }
 }

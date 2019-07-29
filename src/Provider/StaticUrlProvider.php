@@ -6,7 +6,7 @@ namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
-use SitemapPlugin\Model\ChangeFrequency;;
+use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Routing\RouterInterface;
 

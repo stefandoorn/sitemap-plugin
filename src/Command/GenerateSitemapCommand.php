@@ -23,7 +23,7 @@ final class GenerateSitemapCommand extends Command
     /** @var SitemapIndexBuilderInterface */
     private $sitemapIndexBuilder;
 
-    /** @var SitemapRendererInterface  */
+    /** @var SitemapRendererInterface */
     private $sitemapRenderer;
 
     /** @var SitemapRendererInterface */
