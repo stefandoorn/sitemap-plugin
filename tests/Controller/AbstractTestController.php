@@ -74,17 +74,18 @@ abstract class AbstractTestController extends XmlApiTestCase
         echo 'Generating sitemaps';
 
         $application = new Application(self::getKernelClass());
-        /*$application->addCommands([new GenerateSitemapCommand(
-            $this->get('sylius.sitemap_index_renderer'),
-            $this->get('sylius.sitemap_builder'),
-            $this->get('sylius.sitemap_index_builder'),
-            $this->get('sylius.sitemap_writer'),
-            $this->get('sylius.repository.channel')
+
+        $application->addCommands([new GenerateSitemapCommand(
+            self::$container->get('sylius.sitemap_index_renderer'),
+            self::$container->get('sylius.sitemap_builder'),
+            self::$container->get('sylius.sitemap_index_builder'),
+            self::$container->get('sylius.sitemap_writer'),
+            self::$container->get('sylius.repository.channel')
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
-*/
+
 
         /**
          *  <argument type="service" id="sylius.sitemap_index_renderer"/>
@@ -92,7 +93,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         <argument type="service" id="sylius.sitemap_index_builder" />
         <argument type="service" id="sylius.sitemap_writer" />
         <argument type="service" id="sylius.repository.channel" />
-         */
+
         $application->setAutoExit(false);
 
         echo $application->getName();
@@ -106,5 +107,6 @@ abstract class AbstractTestController extends XmlApiTestCase
 
 
         echo $output->fetch();
+         * */
     }
 }
