@@ -34,6 +34,8 @@ abstract class AbstractTestController extends XmlApiTestCase
      */
     public function setupDatabase()
     {
+        echo 'Setting up database in abstract';
+
         parent::setUpDatabase();
 
         $this->locale = new Locale();
@@ -67,6 +69,8 @@ abstract class AbstractTestController extends XmlApiTestCase
 
     public function generateSitemaps(): void
     {
+        echo 'Generating sitemaps';
+
         $application = new Application(self::getKernelClass());
         $application->setAutoExit(false);
 
@@ -77,6 +81,6 @@ abstract class AbstractTestController extends XmlApiTestCase
         $output = new BufferedOutput();
         $application->run($input, $output);
 
-        dump($output->fetch());
+        echo $output->fetch();
     }
 }

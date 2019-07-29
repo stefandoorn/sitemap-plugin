@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SitemapPlugin\Controller;
 
 use SitemapPlugin\Filesystem\Reader;
-use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
