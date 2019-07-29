@@ -7,6 +7,7 @@ namespace SitemapPlugin\Provider;
 use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
