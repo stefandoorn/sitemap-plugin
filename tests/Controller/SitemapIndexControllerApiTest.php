@@ -16,8 +16,6 @@ final class SitemapIndexControllerApiTest extends AbstractTestController
      */
     public function setUpDatabase()
     {
-        echo 'Setting up database in test';
-
         parent::setUpDatabase();
 
         $product = new Product();

@@ -25,16 +25,17 @@ trait TearDownTrait
         $this->entityManager = null;
         $this->fixtureLoader = null;
 
-        $it = new RecursiveDirectoryIterator($this->client->getParameter('sylius.sitemap.path'), FilesystemIterator::SKIP_DOTS);
+        $dir = $this->client->getParameter('sylius.sitemap.path');
+        $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
         $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
-        foreach($it as $file) {
+        foreach ($it as $file) {
             if ($file->isDir()) {
-                rmdir($file->getPathname());
+                \rmdir($file->getPathname());
+                continue;
             }
-            else {
-                unlink($file->getPathname());
-            }
+
+            \unlink($file->getPathname());
         }
-        rmdir($this->client->getParameter('sylius.sitemap.path'));
+        \rmdir($dir);
     }
 }

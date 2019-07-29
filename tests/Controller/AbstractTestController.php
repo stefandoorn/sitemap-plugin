@@ -36,8 +36,6 @@ abstract class AbstractTestController extends XmlApiTestCase
      */
     public function setupDatabase()
     {
-        echo 'Setting up database in abstract';
-
         parent::setUpDatabase();
 
         $this->locale = new Locale();
@@ -71,8 +69,6 @@ abstract class AbstractTestController extends XmlApiTestCase
 
     public function generateSitemaps(): void
     {
-        echo 'Generating sitemaps';
-
         $application = new Application(self::getKernelClass());
 
         $application->addCommands([new GenerateSitemapCommand(
@@ -85,6 +81,6 @@ abstract class AbstractTestController extends XmlApiTestCase
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
-        $commandTester->execute(['command' => $command->getName()];
+        $commandTester->execute(['command' => $command->getName()]);
     }
 }

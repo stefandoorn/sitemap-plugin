@@ -161,7 +161,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $now = new \DateTime();
-        
+
         $localeContext->getLocaleCode()->willReturn('en_US');
 
         $enUSLocale->getCode()->willReturn('en_US');
