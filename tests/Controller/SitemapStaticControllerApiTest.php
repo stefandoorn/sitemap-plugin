@@ -10,6 +10,8 @@ final class SitemapStaticControllerApiTest extends AbstractTestController
 
     public function testShowActionResponse()
     {
+        $this->generateSitemaps();
+
         $this->client->request('GET', '/sitemap/static.xml');
 
         $response = $this->client->getResponse();

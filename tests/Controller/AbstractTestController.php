@@ -11,6 +11,9 @@ use Sylius\Component\Currency\Model\Currency;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\Locale;
 use Sylius\Component\Locale\Model\LocaleInterface;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 abstract class AbstractTestController extends XmlApiTestCase
 {
@@ -60,5 +63,20 @@ abstract class AbstractTestController extends XmlApiTestCase
 
         $this->getEntityManager()->persist($this->channel);
         $this->getEntityManager()->flush();
+    }
+
+    public function generateSitemaps(): void
+    {
+        $application = new Application(self::getKernelClass());
+        $application->setAutoExit(false);
+
+        $input = new ArrayInput(array(
+            'command' => 'sylius:sitemap:generate',
+        ));
+
+        $output = new BufferedOutput();
+        $application->run($input, $output);
+
+        dump($output->fetch());
     }
 }

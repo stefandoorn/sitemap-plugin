@@ -51,6 +51,8 @@ final class SitemapTaxonControllerApiLocalesTest extends AbstractTestController
 
         $this->getEntityManager()->persist($root);
         $this->getEntityManager()->flush();
+
+        $this->generateSitemaps();
     }
 
     public function testShowActionResponse()
