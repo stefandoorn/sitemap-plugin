@@ -23,8 +23,11 @@ final class GenerateSitemapCommand extends Command
     /** @var SitemapIndexBuilderInterface */
     private $sitemapIndexBuilder;
 
-    /** @var SitemapRendererInterface */
+    /** @var SitemapRendererInterface  */
     private $sitemapRenderer;
+
+    /** @var SitemapRendererInterface */
+    private $sitemapIndexRenderer;
 
     /** @var Writer */
     private $writer;
@@ -34,12 +37,14 @@ final class GenerateSitemapCommand extends Command
 
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
+        SitemapRendererInterface $sitemapIndexRenderer,
         SitemapBuilderInterface $sitemapBuilder,
         SitemapIndexBuilderInterface $sitemapIndexBuilder,
         Writer $writer,
         ChannelRepositoryInterface $channelRepository
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
+        $this->sitemapIndexRenderer = $sitemapIndexRenderer;
         $this->sitemapBuilder = $sitemapBuilder;
         $this->sitemapIndexBuilder = $sitemapIndexBuilder;
         $this->writer = $writer;
@@ -75,7 +80,7 @@ final class GenerateSitemapCommand extends Command
             $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
             $sitemap = $this->sitemapIndexBuilder->build();
-            $xml = $this->sitemapRenderer->render($sitemap);
+            $xml = $this->sitemapIndexRenderer->render($sitemap);
             $path = $this->path($channel, 'sitemap_index.xml');
 
             $this->writer->write(
