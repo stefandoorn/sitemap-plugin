@@ -11,7 +11,6 @@ use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInter
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\UrlInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
@@ -112,7 +111,7 @@ final class ProductUrlProvider implements UrlProviderInterface
             ->innerJoin('o.translations', 'translation')
             ->andWhere(':channel MEMBER OF o.channels')
             ->andWhere('o.enabled = :enabled')
-            ->setParameter('channel', $this->channelContext->getChannel())
+            ->setParameter('channel', $this->channel)
             ->setParameter('enabled', true)
             ->getQuery()
             ->getResult();
