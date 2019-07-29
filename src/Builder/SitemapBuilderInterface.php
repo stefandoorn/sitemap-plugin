@@ -6,10 +6,11 @@ namespace SitemapPlugin\Builder;
 
 use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 
 interface SitemapBuilderInterface extends BuilderInterface
 {
-    public function build(array $filter = []): SitemapInterface;
+    public function build(string $providerName, ChannelInterface $channel): SitemapInterface;
 
     /**
      * @return UrlProviderInterface[]

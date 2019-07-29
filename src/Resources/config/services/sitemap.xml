@@ -23,6 +23,7 @@
 
         <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Command\GenerateSitemapCommand" public="false">
             <argument type="service" id="sylius.sitemap_index_renderer"/>
+            <argument type="service" id="sylius.sitemap_builder" />
             <argument type="service" id="sylius.sitemap_index_builder" />
             <argument type="service" id="sylius.sitemap_writer" />
             <argument type="service" id="sylius.repository.channel" />

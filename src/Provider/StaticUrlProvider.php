@@ -28,12 +28,9 @@ final class StaticUrlProvider implements UrlProviderInterface
     /** @var array */
     private $routes;
 
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    /** @var ChannelInterface */
+    private $channel;
 
-    /**
-     * StaticUrlProvider constructor.
-     */
     public function __construct(
         RouterInterface $router,
         UrlFactoryInterface $sitemapUrlFactory,
@@ -44,7 +41,6 @@ final class StaticUrlProvider implements UrlProviderInterface
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
         $this->urlAlternativeFactory = $urlAlternativeFactory;
-        $this->channelContext = $channelContext;
         $this->routes = $routes;
     }
 
@@ -53,11 +49,11 @@ final class StaticUrlProvider implements UrlProviderInterface
         return 'static';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function generate(): iterable
+    public function generate(ChannelInterface $channel): iterable
     {
+        $this->channel = $channel;
+        $this->urls = [];
+
         if (empty($this->routes)) {
             return $this->urls;
         }
@@ -110,9 +106,7 @@ final class StaticUrlProvider implements UrlProviderInterface
             return $route;
         }
 
-        /** @var ChannelInterface $channel */
-        $channel = $this->channelContext->getChannel();
-        $defaultLocale = $channel->getDefaultLocale();
+        $defaultLocale = $this->channel->getDefaultLocale();
 
         if ($defaultLocale) {
             $route['parameters']['_locale'] = $defaultLocale->getCode();
@@ -140,13 +134,10 @@ final class StaticUrlProvider implements UrlProviderInterface
      */
     private function getAlternativeLocales(): array
     {
-        /** @var ChannelInterface $channel */
-        $channel = $this->channelContext->getChannel();
-
         $locales = [];
 
-        foreach ($channel->getLocales() as $locale) {
-            if ($locale === $channel->getDefaultLocale()) {
+        foreach ($this->channel->getLocales() as $locale) {
+            if ($locale === $this->channel->getDefaultLocale()) {
                 continue;
             }
 

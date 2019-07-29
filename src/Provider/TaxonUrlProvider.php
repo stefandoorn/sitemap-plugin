@@ -36,18 +36,13 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /** @var bool */
     private $excludeTaxonRoot = true;
 
-    /**
-     * TaxonUrlProvider constructor.
-     *
-     * @param bool $excludeTaxonRoot
-     */
     public function __construct(
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
         UrlFactoryInterface $sitemapUrlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        $excludeTaxonRoot
+        bool $excludeTaxonRoot
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;
@@ -62,11 +57,10 @@ final class TaxonUrlProvider implements UrlProviderInterface
         return 'taxons';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function generate(): iterable
+    public function generate(ChannelInterface $channel): iterable
     {
+        $this->urls = [];
+
         foreach ($this->getTaxons() as $taxon) {
             /** @var TaxonInterface $taxon */
             if ($this->excludeTaxonRoot && $taxon->isRoot()) {

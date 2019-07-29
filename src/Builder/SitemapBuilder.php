@@ -7,6 +7,7 @@ namespace SitemapPlugin\Builder;
 use SitemapPlugin\Factory\SitemapFactoryInterface;
 use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 
 final class SitemapBuilder implements SitemapBuilderInterface
 {
@@ -31,13 +32,14 @@ final class SitemapBuilder implements SitemapBuilderInterface
         return $this->providers;
     }
 
-    public function build(array $filter = []): SitemapInterface
+    // TODO improve
+    public function build(string $providerName, ChannelInterface $channel): SitemapInterface
     {
         $sitemap = $this->sitemapFactory->createNew();
         $urls = [];
 
         foreach ($this->filter($filter) as $provider) {
-            $urls[] = $provider->generate();
+            $urls[] = $provider->generate($channel);
         }
 
         $sitemap->setUrls(\array_merge(...$urls));

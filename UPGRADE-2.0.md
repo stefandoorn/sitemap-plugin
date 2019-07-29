@@ -39,3 +39,4 @@
     * `hasImage(SitemapImageUrlInterface $image): bool`
     * `removeImage(SitemapImageUrlInterface $image): void`
     * `public function hasImages(): bool`
+* Providers now need to have a ChannelContext supplied.

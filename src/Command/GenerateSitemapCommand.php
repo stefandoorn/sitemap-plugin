@@ -56,10 +56,11 @@ final class GenerateSitemapCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach ($this->channels($input) as $channel) {
+            // TODO make sure providers are every time emptied (reset call or smth?)
             foreach($this->sitemapBuilder->getProviders() as $provider) {
                 $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
-                $sitemap = $this->sitemapBuilder->build([$provider->getName()]); // TODO remove this..
+                $sitemap = $this->sitemapBuilder->build($provider->getName(), $channel); // TODO use provider instance, not the name
                 $xml = $this->sitemapRenderer->render($sitemap);
                 $path = $path = $this->path($channel, sprintf('%s.xml', $provider->getName()));
 
