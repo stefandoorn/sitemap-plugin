@@ -49,7 +49,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
 
     private function filter(string $providerName): array
     {
-        return \array_filter($this->providers, function (UrlProviderInterface $provider) use (string $providerName) {
+        return \array_filter($this->providers, function (UrlProviderInterface $provider) use ($providerName) {
             return $provider->getName() === $providerName;
         });
     }
