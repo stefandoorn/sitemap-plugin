@@ -71,8 +71,15 @@ abstract class AbstractTestController extends XmlApiTestCase
     {
         echo 'Generating sitemaps';
 
-        $application = new Application(\Tests\SitemapPlugin\Application\Kernel::class);
+        $application = new Application(static::$sharedKernel);
         $application->setAutoExit(false);
+
+        $input = new ArrayInput([]);
+
+        $output = new BufferedOutput();
+        $application->run($input, $output);
+
+        echo $output->fetch();
 
         $input = new ArrayInput(array(
             'command' => 'sylius:sitemap:generate',
