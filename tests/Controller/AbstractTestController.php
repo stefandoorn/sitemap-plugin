@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\SitemapPlugin\Controller;
 
 use ApiTestCase\XmlApiTestCase;
+use SitemapPlugin\Command\GenerateSitemapCommand;
 use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Currency\Model\Currency;
@@ -14,6 +15,7 @@ use Sylius\Component\Locale\Model\LocaleInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Tester\CommandTester;
 
 abstract class AbstractTestController extends XmlApiTestCase
 {
@@ -72,7 +74,28 @@ abstract class AbstractTestController extends XmlApiTestCase
         echo 'Generating sitemaps';
 
         $application = new Application(self::getKernelClass());
-        $application->setAutoExit(false);
+        $application->addCommands([new GenerateSitemapCommand(
+            $this->get('sylius.sitemap_index_renderer'),
+            $this->get('sylius.sitemap_builder'),
+            $this->get('sylius.sitemap_index_builder'),
+            $this->get('sylius.sitemap_writer'),
+            $this->get('sylius.repository.channel')
+        )]);
+        $command = $application->find('sylius:sitemap:generate');
+        $commandTester = new CommandTester($command);
+        $commandTester->execute(array('command' => $command->getName()));
+
+
+        /**
+         *  <argument type="service" id="sylius.sitemap_index_renderer"/>
+        <argument type="service" id="sylius.sitemap_builder" />
+        <argument type="service" id="sylius.sitemap_index_builder" />
+        <argument type="service" id="sylius.sitemap_writer" />
+        <argument type="service" id="sylius.repository.channel" />
+         */
+        /*$application->setAutoExit(false);
+
+        echo $application->getName();
 
         $input = new ArrayInput(array(
             'command' => 'sylius:sitemap:generate',
@@ -80,6 +103,7 @@ abstract class AbstractTestController extends XmlApiTestCase
 
         $output = new BufferedOutput();
         $application->doRun($input, $output);
+        */
 
         echo $output->fetch();
     }
