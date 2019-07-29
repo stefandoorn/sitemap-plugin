@@ -71,7 +71,7 @@ final class GenerateSitemapCommand extends Command
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
             $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
-            $sitemap = $this->sitemapBuilder->build($provider->getName(), $channel); // TODO use provider instance, not the name
+            $sitemap = $this->sitemapBuilder->build($provider, $channel); // TODO use provider instance, not the name
             $xml = $this->sitemapRenderer->render($sitemap);
             $path = $path = $this->path($channel, \sprintf('%s.xml', $provider->getName()));
 
