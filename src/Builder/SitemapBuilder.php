@@ -38,7 +38,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
         $sitemap = $this->sitemapFactory->createNew();
         $urls = [];
 
-        foreach ($this->filter($filter) as $provider) {
+        foreach ($this->filter($providerName) as $provider) {
             $urls[] = $provider->generate($channel);
         }
 
@@ -47,14 +47,10 @@ final class SitemapBuilder implements SitemapBuilderInterface
         return $sitemap;
     }
 
-    private function filter(array $filter): array
+    private function filter(string $providerName): array
     {
-        if (empty($filter)) {
-            return $this->providers;
-        }
-
-        return \array_filter($this->providers, function (UrlProviderInterface $provider) use ($filter) {
-            return \in_array($provider->getName(), $filter);
+        return \array_filter($this->providers, function (UrlProviderInterface $provider) use (string $providerName) {
+            return $provider->getName() === $providerName;
         });
     }
 }
