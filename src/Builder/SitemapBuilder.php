@@ -32,25 +32,13 @@ final class SitemapBuilder implements SitemapBuilderInterface
         return $this->providers;
     }
 
-    // TODO improve
-    public function build(string $providerName, ChannelInterface $channel): SitemapInterface
+    public function build(UrlProviderInterface $provider, ChannelInterface $channel): SitemapInterface
     {
         $sitemap = $this->sitemapFactory->createNew();
-        $urls = [];
-
-        foreach ($this->filter($providerName) as $provider) {
-            $urls[] = $provider->generate($channel);
-        }
+        $urls[] = $provider->generate($channel);
 
         $sitemap->setUrls(\array_merge(...$urls));
 
         return $sitemap;
-    }
-
-    private function filter(string $providerName): array
-    {
-        return \array_filter($this->providers, function (UrlProviderInterface $provider) use ($providerName) {
-            return $provider->getName() === $providerName;
-        });
     }
 }

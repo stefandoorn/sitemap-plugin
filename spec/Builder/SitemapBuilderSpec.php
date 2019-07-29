@@ -41,10 +41,9 @@ final class SitemapBuilderSpec extends ObjectBehavior
         $this->addProvider($productUrlProvider);
 
         $productUrlProvider->generate($channel)->willReturn([$bookUrl]);
-        $productUrlProvider->getName()->willReturn('products');
 
         $sitemap->setUrls([$bookUrl])->shouldBeCalled();
 
-        $this->build('products', $channel)->shouldReturn($sitemap);
+        $this->build($productUrlProvider, $channel)->shouldReturn($sitemap);
     }
 }

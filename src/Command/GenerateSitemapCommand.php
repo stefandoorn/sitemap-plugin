@@ -61,35 +61,40 @@ final class GenerateSitemapCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach ($this->channels($input) as $channel) {
-            // TODO make sure providers are every time emptied (reset call or smth?)
-            foreach ($this->sitemapBuilder->getProviders() as $provider) {
-                $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
+            $this->executeChannel($channel, $output);
+        }
+    }
 
-                $sitemap = $this->sitemapBuilder->build($provider->getName(), $channel); // TODO use provider instance, not the name
-                $xml = $this->sitemapRenderer->render($sitemap);
-                $path = $path = $this->path($channel, \sprintf('%s.xml', $provider->getName()));
+    private function executeChannel(ChannelInterface $channel, OutputInterface $output)
+    {
+        // TODO make sure providers are every time emptied (reset call or smth?)
+        foreach ($this->sitemapBuilder->getProviders() as $provider) {
+            $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
-                $this->writer->write(
-                    $path,
-                    $xml
-                );
-
-                $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
-            }
-
-            $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
-
-            $sitemap = $this->sitemapIndexBuilder->build();
-            $xml = $this->sitemapIndexRenderer->render($sitemap);
-            $path = $this->path($channel, 'sitemap_index.xml');
+            $sitemap = $this->sitemapBuilder->build($provider->getName(), $channel); // TODO use provider instance, not the name
+            $xml = $this->sitemapRenderer->render($sitemap);
+            $path = $path = $this->path($channel, \sprintf('%s.xml', $provider->getName()));
 
             $this->writer->write(
                 $path,
                 $xml
             );
 
-            $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
+            $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
         }
+
+        $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
+
+        $sitemap = $this->sitemapIndexBuilder->build();
+        $xml = $this->sitemapIndexRenderer->render($sitemap);
+        $path = $this->path($channel, 'sitemap_index.xml');
+
+        $this->writer->write(
+            $path,
+            $xml
+        );
+
+        $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
     }
 
     private function path(ChannelInterface $channel, string $path): string

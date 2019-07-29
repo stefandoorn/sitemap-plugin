@@ -10,7 +10,7 @@ use Sylius\Component\Core\Model\ChannelInterface;
 
 interface SitemapBuilderInterface extends BuilderInterface
 {
-    public function build(string $providerName, ChannelInterface $channel): SitemapInterface;
+    public function build(UrlProviderInterface $provider, ChannelInterface $channel): SitemapInterface;
 
     /**
      * @return UrlProviderInterface[]
