@@ -71,7 +71,7 @@ abstract class AbstractTestController extends XmlApiTestCase
     {
         echo 'Generating sitemaps';
 
-        $application = new Application(self::getKernelClass());
+        $application = new Application(\Tests\SitemapPlugin\Application\Kernel::class);
         $application->setAutoExit(false);
 
         $input = new ArrayInput(array(
