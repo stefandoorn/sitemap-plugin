@@ -14,6 +14,11 @@ abstract class AbstractController
     /** @var Reader */
     protected $reader;
 
+    public function __construct(Reader $reader)
+    {
+        $this->reader = $reader;
+    }
+
     protected function createResponse(string $path): Response
     {
         if (!$this->reader->has($path)) {
