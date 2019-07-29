@@ -13,7 +13,7 @@ trait TearDownTrait
     public function tearDown(): void
     {
         if (null !== $this->client && null !== $this->client->getContainer()) {
-            $dir = $this->client->getParameter('sylius.sitemap.path');
+            $dir = $this->client->getContainer()->getParameter('sylius.sitemap.path');
             $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
             $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
             foreach ($it as $file) {
