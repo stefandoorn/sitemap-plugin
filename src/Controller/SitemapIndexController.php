@@ -13,21 +13,19 @@ final class SitemapIndexController extends AbstractController
     /** @var ChannelContextInterface */
     private $channelContext;
 
-    /** @var Reader */
-    private $reader;
-
     public function __construct(
         ChannelContextInterface $channelContext,
         Reader $reader
     ) {
         $this->channelContext = $channelContext;
-        $this->reader = $reader;
+
+        parent::__construct($reader);
     }
 
     public function showAction(): Response
     {
-        $data = $this->reader->get(\sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), 'sitemap_index.xml')); // @todo put this in a service - its duplicated now
+        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), 'sitemap_index.xml');
 
-        return $this->createResponse($data);
+        return $this->createResponse($path);
     }
 }

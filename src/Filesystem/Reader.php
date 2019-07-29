@@ -16,6 +16,11 @@ final class Reader
         $this->filesystem = $filesystem;
     }
 
+    public function has(string $path): bool
+    {
+        return $this->filesystem->has($path);
+    }
+
     public function get(string $path): string
     {
         return $this->filesystem->read($path);
