@@ -13,6 +13,20 @@ trait TearDownTrait
     public function tearDown(): void
     {
         if (null !== $this->client && null !== $this->client->getContainer()) {
+            $dir = $this->client->getParameter('sylius.sitemap.path');
+            $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
+            $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
+            foreach ($it as $file) {
+                if ($file->isDir()) {
+                    \rmdir($file->getPathname());
+
+                    continue;
+                }
+
+                \unlink($file->getPathname());
+            }
+            \rmdir($dir);
+
             if (\method_exists($this->client->getContainer(), 'getMockedServices')) {
                 foreach ($this->client->getContainer()->getMockedServices() as $id => $service) {
                     $this->client->getContainer()->unmock($id);
@@ -24,18 +38,5 @@ trait TearDownTrait
         $this->client = null;
         $this->entityManager = null;
         $this->fixtureLoader = null;
-
-        $dir = $this->client->getParameter('sylius.sitemap.path');
-        $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
-        $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
-        foreach ($it as $file) {
-            if ($file->isDir()) {
-                \rmdir($file->getPathname());
-                continue;
-            }
-
-            \unlink($file->getPathname());
-        }
-        \rmdir($dir);
     }
 }
