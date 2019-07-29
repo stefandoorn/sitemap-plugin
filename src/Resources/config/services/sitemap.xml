@@ -21,18 +21,18 @@
             </argument>
         </service>
 
-        <service id="sylius.command.generate_sitemap_index" class="SitemapPlugin\Command\GenerateSitemapIndexCommand" public="false">
+        <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Command\GenerateSitemapCommand" public="false">
             <argument type="service" id="sylius.sitemap_index_renderer"/>
             <argument type="service" id="sylius.sitemap_index_builder" />
             <argument type="service" id="sylius.sitemap_writer" />
             <argument type="service" id="sylius.repository.channel" />
 
-            <tag name="console.command" command="sylius:sitemap:generate-index" />
+            <tag name="console.command" command="sylius:sitemap:generate" />
         </service>
 
         <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController" public="true">
-            <argument type="service" id="sylius.sitemap_renderer"/>
-            <argument type="service" id="sylius.sitemap_builder" />
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.sitemap_reader" />
         </service>
         <service id="sylius.controller.sitemap_index" class="SitemapPlugin\Controller\SitemapIndexController" public="true">
             <argument type="service" id="sylius.context.channel"/>

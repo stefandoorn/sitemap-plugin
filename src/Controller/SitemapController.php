@@ -4,31 +4,30 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
-use SitemapPlugin\Builder\SitemapBuilderInterface;
-use SitemapPlugin\Renderer\SitemapRendererInterface;
-use Symfony\Component\HttpFoundation\Request;
+use SitemapPlugin\Filesystem\Reader;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 final class SitemapController extends AbstractController
 {
-    /** @var SitemapBuilderInterface */
-    protected $sitemapBuilder;
+    /** @var ChannelContextInterface */
+    private $channelContext;
+
+    /** @var Reader */
+    private $reader;
 
     public function __construct(
-        SitemapRendererInterface $sitemapRenderer,
-        SitemapBuilderInterface $sitemapBuilder
+        ChannelContextInterface $channelContext,
+        Reader $reader
     ) {
-        $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapBuilder = $sitemapBuilder;
+        $this->channelContext = $channelContext;
+        $this->reader = $reader;
     }
 
-    public function showAction(Request $request): Response
+    public function showAction(string $name): Response
     {
-        $filter = [];
-        if ($request->attributes->has('name')) {
-            $filter[] = $request->attributes->get('name');
-        }
+        $data = $this->reader->get(\sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), sprintf('sitemap/%s.xml', $name))); // TODO service
 
-        return $this->createResponse($this->sitemapBuilder->build($filter));
+        return $this->createResponse($data);
     }
 }

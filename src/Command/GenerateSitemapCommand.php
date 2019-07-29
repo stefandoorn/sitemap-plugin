@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Command;
 
+use SitemapPlugin\Builder\SitemapBuilderInterface;
 use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
 use SitemapPlugin\Filesystem\Writer;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
@@ -14,8 +15,11 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class GenerateSitemapIndexCommand extends Command
+final class GenerateSitemapCommand extends Command
 {
+    /** @var \SitemapPlugin\Builder\SitemapBuilderInterface */
+    private $sitemapBuilder;
+
     /** @var SitemapIndexBuilderInterface */
     private $sitemapIndexBuilder;
 
@@ -31,10 +35,12 @@ final class GenerateSitemapIndexCommand extends Command
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
         SitemapIndexBuilderInterface $sitemapIndexBuilder,
+        SitemapBuilderInterface $sitemapBuilder,
         Writer $writer,
         ChannelRepositoryInterface $channelRepository
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
+        $this->sitemapBuilder = $sitemapBuilder;
         $this->sitemapIndexBuilder = $sitemapIndexBuilder;
         $this->writer = $writer;
         $this->channelRepository = $channelRepository;
@@ -42,7 +48,6 @@ final class GenerateSitemapIndexCommand extends Command
         parent::__construct();
     }
 
-    /** @TODO */
     protected function configure(): void
     {
         $this->addArgument('channel', InputArgument::IS_ARRAY, 'Channel codes to render. If none supplied, all channels will generated.');
@@ -51,9 +56,24 @@ final class GenerateSitemapIndexCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach ($this->channels($input) as $channel) {
+            foreach($this->sitemapBuilder->getProviders() as $provider) {
+                $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
+
+                $sitemap = $this->sitemapBuilder->build([$provider->getName()]); // TODO remove this..
+                $xml = $this->sitemapRenderer->render($sitemap);
+                $path = $path = $this->path($channel, sprintf('%s.xml', $provider->getName()));
+
+                $this->writer->write(
+                    $path,
+                    $xml
+                );
+
+                $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
+            }
+
             $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
-            $sitemap = $this->sitemapIndexBuilder->build(); // @todo does sitemap index need to know about channels?
+            $sitemap = $this->sitemapIndexBuilder->build();
             $xml = $this->sitemapRenderer->render($sitemap);
             $path = $this->path($channel, 'sitemap_index.xml');
 
@@ -74,13 +94,12 @@ final class GenerateSitemapIndexCommand extends Command
     /**
      * @return ChannelInterface[]
      */
-    private function channels(InputInterface $input): array
+    private function channels(InputInterface $input): iterable
     {
         if (!empty($input->getArgument('channel'))) {
-            return $this->channelRepository->findBy(['code' => $input->getArgument('channel')]);
+            return $this->channelRepository->findBy(['code' => $input->getArgument('channel'), 'enabled' => true]);
         }
 
-        // return all (@todo only active)
         return $this->channelRepository->findBy(['enabled' => true]);
     }
 }

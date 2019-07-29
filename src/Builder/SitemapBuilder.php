@@ -21,25 +21,16 @@ final class SitemapBuilder implements SitemapBuilderInterface
         $this->sitemapFactory = $sitemapFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addProvider(UrlProviderInterface $provider): void
     {
         $this->providers[] = $provider;
     }
 
-    /**
-     * @return array
-     */
     public function getProviders(): iterable
     {
         return $this->providers;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(array $filter = []): SitemapInterface
     {
         $sitemap = $this->sitemapFactory->createNew();

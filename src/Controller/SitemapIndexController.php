@@ -28,6 +28,6 @@ final class SitemapIndexController extends AbstractController
     {
         $data = $this->reader->get(\sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), 'sitemap_index.xml')); // @todo put this in a service - its duplicated now
 
-        return $this->createXmlResponse($data);
+        return $this->createResponse($data);
     }
 }
