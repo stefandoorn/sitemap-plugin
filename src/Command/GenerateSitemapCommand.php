@@ -45,7 +45,7 @@ final class GenerateSitemapCommand extends Command
         $this->writer = $writer;
         $this->channelRepository = $channelRepository;
 
-        parent::__construct();
+        parent::__construct('sylius:sitemap:generate');
     }
 
     protected function configure(): void

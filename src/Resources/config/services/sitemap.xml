@@ -28,7 +28,7 @@
             <argument type="service" id="sylius.sitemap_writer" />
             <argument type="service" id="sylius.repository.channel" />
 
-            <tag name="console.command" command="sylius:sitemap:generate" />
+            <tag name="console.command" />
         </service>
 
         <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController" public="true">
