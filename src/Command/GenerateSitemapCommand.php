@@ -34,8 +34,8 @@ final class GenerateSitemapCommand extends Command
 
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
-        SitemapIndexBuilderInterface $sitemapIndexBuilder,
         SitemapBuilderInterface $sitemapBuilder,
+        SitemapIndexBuilderInterface $sitemapIndexBuilder,
         Writer $writer,
         ChannelRepositoryInterface $channelRepository
     ) {
