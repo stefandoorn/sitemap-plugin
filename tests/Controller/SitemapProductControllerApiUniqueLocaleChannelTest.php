@@ -69,6 +69,8 @@ final class SitemapProductControllerApiUniqueLocaleChannelTest extends AbstractT
         $this->getEntityManager()->persist($product);
 
         $this->getEntityManager()->flush();
+
+        $this->generateSitemaps();
     }
 
     public function testShowActionResponse()

@@ -11,6 +11,7 @@ use SitemapPlugin\Factory\SitemapFactoryInterface;
 use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Model\UrlInterface;
 use SitemapPlugin\Provider\UrlProviderInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 
 final class SitemapBuilderSpec extends ObjectBehavior
 {
@@ -32,19 +33,17 @@ final class SitemapBuilderSpec extends ObjectBehavior
     function it_builds_sitemap(
         $sitemapFactory,
         UrlProviderInterface $productUrlProvider,
-        UrlProviderInterface $staticUrlProvider,
         SitemapInterface $sitemap,
         UrlInterface $bookUrl,
-        UrlInterface $homePage
+        ChannelInterface $channel
     ): void {
         $sitemapFactory->createNew()->willReturn($sitemap);
         $this->addProvider($productUrlProvider);
-        $this->addProvider($staticUrlProvider);
-        $productUrlProvider->generate()->willReturn([$bookUrl]);
-        $staticUrlProvider->generate()->willReturn([$homePage]);
 
-        $sitemap->setUrls([$bookUrl, $homePage])->shouldBeCalled();
+        $productUrlProvider->generate($channel)->willReturn([$bookUrl]);
 
-        $this->build()->shouldReturn($sitemap);
+        $sitemap->setUrls([$bookUrl])->shouldBeCalled();
+
+        $this->build($productUrlProvider, $channel)->shouldReturn($sitemap);
     }
 }

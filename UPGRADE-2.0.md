@@ -3,18 +3,23 @@
 ## TL-DR
 
 * Plugin structure upgraded to PluginSkeleton:^1.3
+* Removed the `all.xml` endpoint - use the sitemap index
+* Sitemaps are now generated via the command line, see below.
 * Dropped support for relative URL's
 * Models (& their interfaces) renamed
 * Drop suggestion that other formats than XML were supported
 
 ## New features
 
+* Generation of sitemaps is done via the CLI, schedule them in a cronjob:
+    * Sitemap Index: `bin/console sylius:sitemap:generate-index`
 * Sitemap URLs now support adding images. The default providers do this where possible. It can be disabled using the `images` configuration key.
 
 ## Removed features
 
 * Dropped support for relative URL's; Google advises to [use fully qualified URL's](https://support.google.com/webmasters/answer/183668?hl=en). 
 * Unintentionally the plugin could suggest that other formats than XML were allowed. This was never properly supported and therefore removed.
+* Removed the `all.xml` endpoint, which put all URL's in a single file. It's better to use the index file.
 
 ## Config changes
 
@@ -34,3 +39,4 @@
     * `hasImage(SitemapImageUrlInterface $image): bool`
     * `removeImage(SitemapImageUrlInterface $image): void`
     * `public function hasImages(): bool`
+* Providers now need to have a ChannelContext supplied.

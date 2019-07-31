@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Tests\SitemapPlugin\Controller;
 
 use ApiTestCase\XmlApiTestCase;
+use SitemapPlugin\Command\GenerateSitemapCommand;
 use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Currency\Model\Currency;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\Locale;
 use Sylius\Component\Locale\Model\LocaleInterface;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Tester\CommandTester;
 
 abstract class AbstractTestController extends XmlApiTestCase
 {
@@ -60,5 +63,22 @@ abstract class AbstractTestController extends XmlApiTestCase
 
         $this->getEntityManager()->persist($this->channel);
         $this->getEntityManager()->flush();
+    }
+
+    public function generateSitemaps(): void
+    {
+        $application = new Application(self::getKernelClass());
+
+        $application->addCommands([new GenerateSitemapCommand(
+            self::$container->get('sylius.sitemap_renderer'),
+            self::$container->get('sylius.sitemap_index_renderer'),
+            self::$container->get('sylius.sitemap_builder'),
+            self::$container->get('sylius.sitemap_index_builder'),
+            self::$container->get('sylius.sitemap_writer'),
+            self::$container->get('sylius.repository.channel')
+        )]);
+        $command = $application->find('sylius:sitemap:generate');
+        $commandTester = new CommandTester($command);
+        $commandTester->execute(['command' => $command->getName()]);
     }
 }

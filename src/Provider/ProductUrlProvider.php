@@ -11,7 +11,6 @@ use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInter
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\UrlInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
@@ -38,8 +37,8 @@ final class ProductUrlProvider implements UrlProviderInterface
     /** @var LocaleContextInterface */
     private $localeContext;
 
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    /** @var ChannelInterface */
+    private $channel;
 
     /** @var array */
     private $urls = [];
@@ -56,7 +55,6 @@ final class ProductUrlProvider implements UrlProviderInterface
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        ChannelContextInterface $channelContext,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ) {
         $this->productRepository = $productRepository;
@@ -64,7 +62,6 @@ final class ProductUrlProvider implements UrlProviderInterface
         $this->urlFactory = $urlFactory;
         $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->localeContext = $localeContext;
-        $this->channelContext = $channelContext;
         $this->productToImageSitemapArrayGenerator = $productToImageSitemapArrayGenerator;
     }
 
@@ -76,8 +73,12 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function generate(): iterable
+    public function generate(ChannelInterface $channel): iterable
     {
+        $this->channel = $channel;
+        $this->urls = [];
+        $this->channelLocaleCodes = null;
+
         foreach ($this->getProducts() as $product) {
             $this->urls[] = $this->createProductUrl($product);
         }
@@ -110,7 +111,7 @@ final class ProductUrlProvider implements UrlProviderInterface
             ->innerJoin('o.translations', 'translation')
             ->andWhere(':channel MEMBER OF o.channels')
             ->andWhere('o.enabled = :enabled')
-            ->setParameter('channel', $this->channelContext->getChannel())
+            ->setParameter('channel', $this->channel)
             ->setParameter('enabled', true)
             ->getQuery()
             ->getResult();
@@ -119,10 +120,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     private function getLocaleCodes(): array
     {
         if ($this->channelLocaleCodes === null) {
-            /** @var ChannelInterface $channel */
-            $channel = $this->channelContext->getChannel();
-
-            $this->channelLocaleCodes = $channel->getLocales()->map(function (LocaleInterface $locale) {
+            $this->channelLocaleCodes = $this->channel->getLocales()->map(function (LocaleInterface $locale) {
                 return $locale->getCode();
             })->toArray();
         }
