@@ -11,8 +11,8 @@ use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class GenerateSitemapCommand extends Command
@@ -55,7 +55,7 @@ final class GenerateSitemapCommand extends Command
 
     protected function configure(): void
     {
-        $this->addArgument('channel', InputArgument::IS_ARRAY, 'Channel codes to render. If none supplied, all channels will generated.');
+        $this->addOption('channel', 'c', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Channel codes to generate. If none supplied, all channels will generated.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -107,8 +107,8 @@ final class GenerateSitemapCommand extends Command
      */
     private function channels(InputInterface $input): iterable
     {
-        if (!empty($input->getArgument('channel'))) {
-            return $this->channelRepository->findBy(['code' => $input->getArgument('channel'), 'enabled' => true]);
+        if (!empty($input->getOption('channel'))) {
+            return $this->channelRepository->findBy(['code' => $input->getOption('channel'), 'enabled' => true]);
         }
 
         return $this->channelRepository->findBy(['enabled' => true]);
