@@ -23,8 +23,7 @@ final class ProductImagesToSitemapImagesCollectionGeneratorSpec extends ObjectBe
 
     function it_implements_product_images_to_sitemap_images_collection_generator_interface(ImageFactoryInterface $imageFactory,
                                                                                            CacheManager $cacheManager
-    )
-    {
+    ) {
         $this->beConstructedWith($imageFactory, $cacheManager);
         $this->shouldImplement(ProductImagesToSitemapImagesCollectionGeneratorInterface::class);
     }
@@ -32,8 +31,7 @@ final class ProductImagesToSitemapImagesCollectionGeneratorSpec extends ObjectBe
     function it_generates_collection_of_images_from_a_product(ImageFactoryInterface $imageFactory,
                                                               CacheManager $cacheManager,
                                                               ProductInterface $product
-    )
-    {
+    ) {
         $this->beConstructedWith($imageFactory, $cacheManager);
         $product->getImages()->willReturn(new ArrayCollection());
         $this->generate($product)->shouldImplement(Collection::class);
