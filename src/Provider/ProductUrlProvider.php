@@ -49,13 +49,17 @@ final class ProductUrlProvider implements UrlProviderInterface
     /** @var ProductImagesToSitemapImagesCollectionGeneratorInterface */
     private $productToImageSitemapArrayGenerator;
 
+    /** @var bool */
+    private $generateImagesUrls;
+
     public function __construct(
         ProductRepositoryInterface $productRepository,
         RouterInterface $router,
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        bool $generateImagesUrls = true
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
@@ -63,6 +67,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->localeContext = $localeContext;
         $this->productToImageSitemapArrayGenerator = $productToImageSitemapArrayGenerator;
+        $this->generateImagesUrls = $generateImagesUrls;
     }
 
     public function getName(): string
@@ -137,7 +142,9 @@ final class ProductUrlProvider implements UrlProviderInterface
         if ($updatedAt) {
             $productUrl->setLastModification($updatedAt);
         }
-        $productUrl->setImages($this->productToImageSitemapArrayGenerator->generate($product));
+        if ($this->generateImagesUrls) {
+            $productUrl->setImages($this->productToImageSitemapArrayGenerator->generate($product));
+        }
 
         /** @var ProductTranslationInterface $translation */
         foreach ($this->getTranslations($product) as $translation) {
