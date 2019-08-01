@@ -21,7 +21,7 @@
             </argument>
         </service>
 
-        <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Command\GenerateSitemapCommand" public="false">
+        <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Command\GenerateSitemapCommand">
             <argument type="service" id="sylius.sitemap_renderer" />
             <argument type="service" id="sylius.sitemap_index_renderer"/>
             <argument type="service" id="sylius.sitemap_builder" />
@@ -32,13 +32,17 @@
             <tag name="console.command" />
         </service>
 
-        <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController" public="true">
+        <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController">
             <argument type="service" id="sylius.context.channel"/>
             <argument type="service" id="sylius.sitemap_reader" />
+
+            <tag name="controller.service_arguments" />
         </service>
-        <service id="sylius.controller.sitemap_index" class="SitemapPlugin\Controller\SitemapIndexController" public="true">
+        <service id="sylius.controller.sitemap_index" class="SitemapPlugin\Controller\SitemapIndexController">
             <argument type="service" id="sylius.context.channel"/>
             <argument type="service" id="sylius.sitemap_reader" />
+
+            <tag name="controller.service_arguments" />
         </service>
 
         <service id="sylius.sitemap_renderer.twig_adapter" class="SitemapPlugin\Renderer\TwigAdapter">
