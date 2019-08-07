@@ -49,9 +49,7 @@ final class SitemapProductControllerApiTest extends AbstractTestController
 
     public function testShowActionResponse()
     {
-        $this->client->request('GET', '/sitemap/products.xml');
-
-        $response = $this->getResponse();
+        $response = $this->getResponse('/sitemap/products.xml');
 
         $this->assertResponse($response, 'show_sitemap_products');
     }

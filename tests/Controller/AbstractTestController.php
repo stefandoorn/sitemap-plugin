@@ -83,9 +83,10 @@ abstract class AbstractTestController extends XmlApiTestCase
         $commandTester->execute(['command' => $command->getName()]);
     }
 
-    protected function getResponse(): Response
+    protected function getResponse(string $uri): Response
     {
         ob_start();
+        $this->client->request('GET', $uri);
         $response = $this->client->getResponse();
         $contents = ob_get_contents();
         ob_end_clean();

@@ -45,9 +45,7 @@ final class SitemapTaxonControllerApiTest extends AbstractTestController
 
     public function testShowActionResponse()
     {
-        $this->client->request('GET', '/sitemap/taxons.xml');
-
-        $response = $this->getResponse();
+        $response = $this->getResponse('/sitemap/taxons.xml');
 
         $this->assertResponse($response, 'show_sitemap_taxons');
     }
