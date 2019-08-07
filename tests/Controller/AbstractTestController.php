@@ -89,6 +89,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         $this->client->request('GET', $uri);
         $response = $this->client->getResponse();
         $contents = \ob_get_contents();
+        var_dump($contents);
         \ob_end_clean();
 
         return new Response($contents);
