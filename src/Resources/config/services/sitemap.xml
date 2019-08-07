@@ -33,12 +33,14 @@
         <service id="sylius.controller.sitemap" class="SitemapPlugin\Controller\SitemapController">
             <argument type="service" id="sylius.context.channel"/>
             <argument type="service" id="sylius.sitemap_reader" />
+            <argument>%sylius.sitemap.path%</argument>
 
             <tag name="controller.service_arguments" />
         </service>
         <service id="sylius.controller.sitemap_index" class="SitemapPlugin\Controller\SitemapIndexController">
             <argument type="service" id="sylius.context.channel"/>
             <argument type="service" id="sylius.sitemap_reader" />
+            <argument>%sylius.sitemap.path%</argument>
 
             <tag name="controller.service_arguments" />
         </service>
