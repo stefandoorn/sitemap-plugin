@@ -8,6 +8,9 @@ final class SitemapStaticControllerApiTest extends AbstractTestController
 {
     use TearDownTrait;
 
+    /**
+     * @before
+     */
     public function setUpDatabase()
     {
         parent::setUpDatabase();
