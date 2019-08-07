@@ -51,7 +51,7 @@ final class SitemapProductControllerApiTest extends AbstractTestController
     {
         $this->client->request('GET', '/sitemap/products.xml');
 
-        $response = $this->client->getResponse();
+        $response = $this->getResponse();
 
         $this->assertResponse($response, 'show_sitemap_products');
     }

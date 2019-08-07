@@ -14,6 +14,7 @@ use Sylius\Component\Locale\Model\Locale;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractTestController extends XmlApiTestCase
 {
@@ -80,5 +81,15 @@ abstract class AbstractTestController extends XmlApiTestCase
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
         $commandTester->execute(['command' => $command->getName()]);
+    }
+
+    protected function getResponse(): Response
+    {
+        ob_start();
+        $response = $this->client->getResponse();
+        $contents = ob_get_contents();
+        ob_end_clean();
+
+        return new Response($contents);
     }
 }

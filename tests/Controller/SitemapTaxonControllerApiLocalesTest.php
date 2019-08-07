@@ -59,7 +59,7 @@ final class SitemapTaxonControllerApiLocalesTest extends AbstractTestController
     {
         $this->client->request('GET', '/sitemap/taxons.xml');
 
-        $response = $this->client->getResponse();
+        $response = $this->getResponse();
 
         $this->assertResponse($response, 'show_sitemap_taxons_locale');
     }
