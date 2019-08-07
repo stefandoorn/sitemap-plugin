@@ -17,13 +17,9 @@ abstract class AbstractController
     /** @var Reader */
     protected $reader;
 
-    /** @var string */
-    private $directory;
-
-    public function __construct(Reader $reader, string $directory)
+    public function __construct(Reader $reader)
     {
         $this->reader = $reader;
-        $this->directory = $directory;
     }
 
     protected function createResponse(string $path): Response
@@ -32,7 +28,7 @@ abstract class AbstractController
             throw new NotFoundHttpException(\sprintf('File "%s" not found', $path));
         }
 
-        $stream = new Stream(sprintf('%s/%s', $this->directory, $path));
+        $stream = new Stream($path);
         $response = new BinaryFileResponse($stream);
         $response->headers->set('Content-Type', 'application/xml');
 
