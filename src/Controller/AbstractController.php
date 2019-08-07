@@ -31,8 +31,6 @@ abstract class AbstractController
             $stream->open(new StreamMode('r'));
             while (!$stream->eof()) {
                 echo $stream->read(100000);
-                \ob_flush();
-                \flush();
             }
             $stream->close();
         });

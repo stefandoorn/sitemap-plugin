@@ -66,7 +66,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         $this->getEntityManager()->flush();
     }
 
-    public function generateSitemaps(): void
+    protected function generateSitemaps(): void
     {
         $application = new Application(self::getKernelClass());
 
@@ -85,11 +85,11 @@ abstract class AbstractTestController extends XmlApiTestCase
 
     protected function getResponse(string $uri): Response
     {
-        ob_start();
+        \ob_start();
         $this->client->request('GET', $uri);
         $response = $this->client->getResponse();
-        $contents = ob_get_contents();
-        ob_end_clean();
+        $contents = \ob_get_contents();
+        \ob_end_clean();
 
         return new Response($contents);
     }
