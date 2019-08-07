@@ -6,6 +6,8 @@ namespace SitemapPlugin\Controller;
 
 use Gaufrette\StreamMode;
 use SitemapPlugin\Filesystem\Reader;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\Stream;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -26,14 +28,8 @@ abstract class AbstractController
             throw new NotFoundHttpException(\sprintf('File "%s" not found', $path));
         }
 
-        $response = new StreamedResponse(function () use ($path) {
-            $stream = $this->reader->getStream($path);
-            $stream->open(new StreamMode('r'));
-            while (!$stream->eof()) {
-                echo $stream->read(100000);
-            }
-            $stream->close();
-        });
+        $stream = new Stream($path);
+        $response = new BinaryFileResponse($stream);
         $response->headers->set('Content-Type', 'application/xml');
 
         return $response;
