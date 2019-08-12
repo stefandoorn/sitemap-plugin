@@ -74,6 +74,11 @@ sitemap:
         - { route: sylius_shop_contact_request, parameters: [], locales: [] }
 ```
 
+## Default storage
+
+By default the sitemaps will be saved in `%kernel.root_dir%/var/sitemap`. You can change this setting 
+by adjusting the parameter `sylius.sitemap.path`.
+
 ### Feature switches
 
 * `providers`: Enable/disable certain providers to be included in the sitemap. Defaults are true.
