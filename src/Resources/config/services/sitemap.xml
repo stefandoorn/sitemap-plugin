@@ -94,5 +94,11 @@
             <argument type="service" id="liip_imagine.cache.manager" />
             <argument>sylius_shop_product_original</argument>
         </service>
+
+        <service id="sylius.sitemap.generator.taxon_images_to_sitemap_images_collection" class="SitemapPlugin\Generator\TaxonImagesToSitemapImagesCollectionGenerator">
+            <argument type="service" id="sylius.sitemap_image_url_factory" />
+            <argument type="service" id="liip_imagine.cache.manager" />
+            <argument>sylius_medium</argument>
+        </service>
     </services>
 </container>

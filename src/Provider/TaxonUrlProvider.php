@@ -6,6 +6,7 @@ namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
+use SitemapPlugin\Generator\TaxonImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
@@ -37,13 +38,21 @@ final class TaxonUrlProvider implements UrlProviderInterface
     /** @var bool */
     private $excludeTaxonRoot = true;
 
+    /** @var TaxonImagesToSitemapImagesCollectionGeneratorInterface */
+    private $taxonImagesToSitemapImagesCollectionGenerator;
+
+    /** @var bool */
+    private $generateImagesUrls = true;
+
     public function __construct(
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
         UrlFactoryInterface $sitemapUrlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        bool $excludeTaxonRoot
+        bool $excludeTaxonRoot,
+        TaxonImagesToSitemapImagesCollectionGeneratorInterface $taxonImagesToSitemapImagesCollectionGenerator,
+        bool $generateImagesUrls = true
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;
@@ -51,6 +60,8 @@ final class TaxonUrlProvider implements UrlProviderInterface
         $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->localeContext = $localeContext;
         $this->excludeTaxonRoot = $excludeTaxonRoot;
+        $this->taxonImagesToSitemapImagesCollectionGenerator = $taxonImagesToSitemapImagesCollectionGenerator;
+        $this->generateImagesUrls = $generateImagesUrls;
     }
 
     public function getName(): string
@@ -71,6 +82,10 @@ final class TaxonUrlProvider implements UrlProviderInterface
             $taxonUrl = $this->sitemapUrlFactory->createNew(''); // todo bypassing this new constructor right now
             $taxonUrl->setChangeFrequency(ChangeFrequency::always());
             $taxonUrl->setPriority(0.5);
+
+            if ($this->generateImagesUrls) {
+                $taxonUrl->setImages($this->taxonImagesToSitemapImagesCollectionGenerator->generate($taxon));
+            }
 
             /** @var TaxonTranslationInterface $translation */
             foreach ($taxon->getTranslations() as $translation) {
