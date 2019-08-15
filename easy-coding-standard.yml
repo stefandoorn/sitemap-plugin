@@ -4,6 +4,3 @@ imports:
 parameters:
     exclude_files:
         - 'tests/Application/*'
-
-services:
-    PhpCsFixer\Fixer\FunctionNotation\NativeFunctionInvocationFixer: ~
