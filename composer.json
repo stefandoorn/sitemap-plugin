@@ -5,7 +5,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.1",
-        "sylius/sylius": "^1.0"
+        "sylius/sylius": "^1.0",
+        "thecodingmachine/safe": "^0.1.16"
     },
     "require-dev": {
         "lchrusciel/api-test-case": "^4.0",
@@ -24,7 +25,8 @@
         "symfony/dotenv": "^4.2",
         "symfony/intl": "^3.4|^4.1",
         "symfony/web-profiler-bundle": "^3.4|^4.1",
-        "symfony/web-server-bundle": "^3.4|^4.1"
+        "symfony/web-server-bundle": "^3.4|^4.1",
+        "thecodingmachine/phpstan-safe-rule": "^0.1.4"
     },
     "autoload": {
         "psr-4": {
