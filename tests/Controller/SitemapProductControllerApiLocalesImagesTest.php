@@ -57,9 +57,7 @@ final class SitemapProductControllerApiLocalesImagesTest extends AbstractTestCon
 
     public function testShowActionResponse()
     {
-        $this->client->request('GET', '/sitemap/products.xml');
-
-        $response = $this->client->getResponse();
+        $response = $this->getResponse('/sitemap/products.xml');
 
         $this->assertResponse($response, 'show_sitemap_products_locale_image');
     }

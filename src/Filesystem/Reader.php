@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SitemapPlugin\Filesystem;
 
 use Gaufrette\FilesystemInterface;
+use Gaufrette\Stream;
 
 final class Reader
 {
@@ -21,8 +22,8 @@ final class Reader
         return $this->filesystem->has($path);
     }
 
-    public function get(string $path): string
+    public function getStream(string $path): Stream
     {
-        return $this->filesystem->read($path);
+        return $this->filesystem->createStream($path);
     }
 }
