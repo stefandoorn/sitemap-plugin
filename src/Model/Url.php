@@ -7,6 +7,7 @@ namespace SitemapPlugin\Model;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use function Safe\sprintf;
 
 final class Url implements UrlInterface
 {
@@ -73,7 +74,7 @@ final class Url implements UrlInterface
     public function setPriority(float $priority): void
     {
         if (0 > $priority || 1 < $priority) {
-            throw new \InvalidArgumentException(\sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'The value %s is not supported by the option priority, it must be a number between 0.0 and 1.0.', $priority
             ));
         }

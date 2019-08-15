@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
+use function Safe\sprintf;
 use SitemapPlugin\Filesystem\Reader;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ final class SitemapController extends AbstractController
 
     public function showAction(string $name): Response
     {
-        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), \sprintf('%s.xml', $name));
+        $path = sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), sprintf('%s.xml', $name));
 
         return $this->createResponse($path);
     }

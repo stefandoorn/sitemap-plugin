@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Command;
 
+use function Safe\sprintf;
 use SitemapPlugin\Builder\SitemapBuilderInterface;
 use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
 use SitemapPlugin\Filesystem\Writer;
@@ -69,21 +70,21 @@ final class GenerateSitemapCommand extends Command
     {
         // TODO make sure providers are every time emptied (reset call or smth?)
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
-            $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
+            $output->writeln(sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
             $sitemap = $this->sitemapBuilder->build($provider, $channel); // TODO use provider instance, not the name
             $xml = $this->sitemapRenderer->render($sitemap);
-            $path = $path = $this->path($channel, \sprintf('%s.xml', $provider->getName()));
+            $path = $path = $this->path($channel, sprintf('%s.xml', $provider->getName()));
 
             $this->writer->write(
                 $path,
                 $xml
             );
 
-            $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
+            $output->writeln(sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
         }
 
-        $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
+        $output->writeln(sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
         $sitemap = $this->sitemapIndexBuilder->build();
         $xml = $this->sitemapIndexRenderer->render($sitemap);
@@ -94,12 +95,12 @@ final class GenerateSitemapCommand extends Command
             $xml
         );
 
-        $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
+        $output->writeln(sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
     }
 
     private function path(ChannelInterface $channel, string $path): string
     {
-        return \sprintf('%s/%s', $channel->getCode(), $path);
+        return sprintf('%s/%s', $channel->getCode(), $path);
     }
 
     /**
