@@ -25,24 +25,35 @@ extraction to a separate bundle.
 ## Installation
 
 1. Run `composer require stefandoorn/sitemap-plugin`.
-2. Add to `app/AppKernel.php`:
 
-```
-  new SitemapPlugin\SitemapPlugin(),
-```
+2. Then, enable the plugin by adding it to the list of registered plugins/bundles in the `config/bundles.php` file of your project:
+   
+   ```php
+   <?php
+   
+   return [
+       // ...
+    
+       Setono\DoctrineORMBatcherBundle\SetonoDoctrineORMBatcherBundle::class => ['all' => true],
+       SitemapPlugin\SitemapPlugin::class => ['all' => true],
+           
+       // ...
+   ];
+   ```
 
-3. Add to `app/config/config.yml`: 
+3. Add to `config/packages/stefandoorn_sylius_sitemap.yaml`: 
 
-```
-  - { resource: "@SitemapPlugin/Resources/config/config.yml" }
-```
+    ```
+    imports:
+        - { resource: "@SitemapPlugin/Resources/config/config.yaml" }
+    ```
 
-4. Add to `app/config/routing.yml`: 
+4. Add to `config/routes.yaml`: 
 
-```
-sylius_sitemap:
-     resource: "@SitemapPlugin/Resources/config/routing.yml"
-```
+    ```
+    stefandoorn_sylius_sitemap:
+        resource: "@SitemapPlugin/Resources/config/routing.yml"
+    ```
 
 ## Usage
 
