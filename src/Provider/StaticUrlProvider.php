@@ -59,7 +59,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         foreach ($this->transformAndYieldRoutes() as $route) {
             $staticUrl = $this->sitemapUrlFactory->createNew();
             $staticUrl->setChangeFrequency(ChangeFrequency::weekly());
-            $staticUrl->setPriority(0.3);
+            $staticUrl->setPriority($route['priority']);
 
             $location = $this->router->generate($route['route'], $route['parameters']);
             $staticUrl->setLocalization($location);
