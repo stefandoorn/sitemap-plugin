@@ -36,11 +36,11 @@ class SitemapLoader extends Loader implements ContainerAwareInterface
      */
     public function load($resource, $type = null): RouteCollection
     {
-        if (true === $this->loaded) {
-            throw new \RuntimeException('Do not add the "sitemap" loader twice');
-        }
-
         $routes = new RouteCollection();
+        
+        if (true === $this->loaded) {
+            return $routes;
+        }
 
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
             /** @var UrlProviderInterface $provider */
