@@ -1,12 +1,16 @@
 language: php
 
-dist: trusty
+os: linux
 
-sudo: false
+dist: bionic
 
 php:
     - '7.2'
     - '7.3'
+    - '7.4'
+
+services:
+    - mysql
 
 cache:
     directories:

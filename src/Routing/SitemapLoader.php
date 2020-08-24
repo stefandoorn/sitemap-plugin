@@ -34,7 +34,7 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
     public function load($resource, $type = null): RouteCollection
     {
         $routes = new RouteCollection();
-        
+
         if (true === $this->loaded) {
             return $routes;
         }
