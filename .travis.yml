@@ -21,9 +21,9 @@ before_install:
     - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 install:
+    # Temporary 'fix' to be compatible with Sylius Plugin Skeleton v1.3
+    - composer require sylius/sylius:~1.3.0 --no-interaction --no-update    
     - composer install --no-interaction --prefer-dist
-# Temporary 'fix' to be compatible with Sylius Plugin Skeleton v1.3
-    - composer require sylius/sylius:~1.3.0 --no-interaction --prefer-dist
 
 before_script:
     - (cd tests/Application && bin/console doctrine:database:create -vvv)
