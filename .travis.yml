@@ -22,6 +22,8 @@ before_install:
 
 install:
     - composer install --no-interaction --prefer-dist
+# Temporary 'fix' to be compatible with Sylius Plugin Skeleton v1.3
+    - composer require sylius/sylius:~1.3.0 --no-interaction --prefer-dist
 
 before_script:
     - (cd tests/Application && bin/console doctrine:database:create -vvv)
