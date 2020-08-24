@@ -11,5 +11,5 @@ interface IndexUrlProviderInterface
      */
     public function generate(): iterable;
 
-    public function addProvider(UrlProviderInterface $provider): void;
+    public function addProvider(UrlProviderInterface $provider, array $paths = []): void;
 }
