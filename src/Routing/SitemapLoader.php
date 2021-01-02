@@ -50,12 +50,14 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
             $routes->add(
                 $name,
                 new Route(
-                    '/sitemap/' . $provider->getName() . '.xml',
+                    '/sitemap/' . $provider->getName() . '/{index}.xml',
                     [
                         '_controller' => 'sylius.controller.sitemap:showAction',
                         'name' => $provider->getName(),
                     ],
-                    [],
+                    [
+                        'index' => '\d+',
+                    ],
                     [],
                     '',
                     [],

@@ -19,8 +19,19 @@ final class SitemapRenderer implements SitemapRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function render(SitemapInterface $sitemap): string
+    public function render(SitemapInterface $sitemap, ?int $limit = null): iterable
     {
-        return $this->adapter->render($sitemap);
+        $urls = $sitemap->getUrls();
+        $total = count($urls);
+
+        if (null === $limit || $limit < 0) {
+            $limit = $total;
+        }
+
+        foreach(array_chunk($urls, $limit) as $slice) {
+            $sitemap->setUrls($slice);
+
+            yield $this->adapter->render($sitemap);
+        }
     }
 }

@@ -56,43 +56,50 @@ final class GenerateSitemapCommand extends Command
     protected function configure(): void
     {
         $this->addOption('channel', 'c', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Channel codes to generate. If none supplied, all channels will generated.');
+        $this->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, 'Limit amount of URLs per sitemap', 50000);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach ($this->channels($input) as $channel) {
-            $this->executeChannel($channel, $output);
+            $this->executeChannel($channel, $input, $output);
         }
     }
 
-    private function executeChannel(ChannelInterface $channel, OutputInterface $output)
+    private function executeChannel(ChannelInterface $channel, InputInterface $input, OutputInterface $output)
     {
-        // TODO make sure providers are every time emptied (reset call or smth?)
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
             $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
             $sitemap = $this->sitemapBuilder->build($provider, $channel); // TODO use provider instance, not the name
-            $xml = $this->sitemapRenderer->render($sitemap);
-            $path = $path = $this->path($channel, \sprintf('%s.xml', $provider->getName()));
+            $xml = $this->sitemapRenderer->render($sitemap, (int)$input->getOption('limit'));
+            foreach($xml as $index => $data) {
+                $path = $path = $this->path($channel, \sprintf('%s_%d.xml', $provider->getName(), $index));
 
-            $this->writer->write(
-                $path,
-                $xml
-            );
+                $this->writer->write(
+                    $path,
+                    $data
+                );
 
-            $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
+                $output->writeln(\sprintf('Finished generating sitemap "%s" (%d) for channel "%s" at path "%s"', $provider->getName(), $index, $channel->getCode(), $path));
+
+                $this->sitemapIndexBuilder->addPath($provider, $path);
+            }
         }
 
         $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
         $sitemap = $this->sitemapIndexBuilder->build();
         $xml = $this->sitemapIndexRenderer->render($sitemap);
-        $path = $this->path($channel, 'sitemap_index.xml');
 
-        $this->writer->write(
-            $path,
-            $xml
-        );
+        foreach($xml as $index => $data) {
+            $path = $this->path($channel, 'sitemap_index.xml');
+
+            $this->writer->write(
+                $path,
+                $data
+            );
+        }
 
         $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
     }

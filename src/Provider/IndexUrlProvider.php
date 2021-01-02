@@ -21,6 +21,9 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     /** @var array */
     private $urls = [];
 
+    /** @var array */
+    private $paths = [];
+
     public function __construct(
         RouterInterface $router,
         IndexUrlFactoryInterface $sitemapIndexUrlFactory
@@ -29,17 +32,24 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
         $this->sitemapIndexUrlFactory = $sitemapIndexUrlFactory;
     }
 
-    public function addProvider(UrlProviderInterface $provider): void
+    public function addProvider(UrlProviderInterface $provider, array $paths = []): void
     {
         $this->providers[] = $provider;
+        $this->paths[$provider->getName()] = $paths;
     }
 
     public function generate(): iterable
     {
         foreach ($this->providers as $provider) {
-            $location = $this->router->generate('sylius_sitemap_' . $provider->getName());
+            $pathCount = count($this->paths[$provider->getName()]);
 
-            $this->urls[] = $this->sitemapIndexUrlFactory->createNew($location);
+            for ($i = 0; $i < $pathCount; $i++) {
+                $params = ['index' => $i];
+
+                $location = $this->router->generate('sylius_sitemap_'.$provider->getName(), $params);
+
+                $this->urls[] = $this->sitemapIndexUrlFactory->createNew($location);
+            }
         }
 
         return $this->urls;
