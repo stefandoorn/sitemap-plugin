@@ -22,10 +22,14 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
     /** @var string */
     private $imagePreset;
 
+    /** @var string */
+    private $imageCacheResolver;
+
     public function __construct(
         ImageFactoryInterface $sitemapImageUrlFactory,
         CacheManager $imagineCacheManager,
-        string $imagePreset = 'sylius_shop_product_original'
+        string $imagePreset = 'sylius_shop_product_original',
+        string $imageCacheResolver = null
     ) {
         $this->sitemapImageUrlFactory = $sitemapImageUrlFactory;
         $this->imagineCacheManager = $imagineCacheManager;
@@ -45,7 +49,7 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
                 continue;
             }
 
-            $sitemapImage = $this->sitemapImageUrlFactory->createNew($this->imagineCacheManager->getBrowserPath($path, $this->imagePreset));
+            $sitemapImage = $this->sitemapImageUrlFactory->createNew($this->imagineCacheManager->getBrowserPath($path, $this->imagePreset, [], $this->imageCacheResolver));
 
             $images->add($sitemapImage);
         }

@@ -74,7 +74,26 @@ sitemap:
         - { route: sylius_shop_contact_request, parameters: [], locales: [] }
 ```
 
-## Default storage
+### Parameters
+```yaml
+parameters:
+    sylius.sitemap.filesystem: 'sylius_sitemap_filesystem'
+    sylius.sitemap.product_image_size: 'sylius_shop_product_original'
+    sylius.sitemap.product_image_resolver: ~
+```
+
+### Filesystem to write the xml files
+```yaml
+knp_gaufrette:
+    adapters:
+        sylius_sitemap_adapter:
+            local:
+                directory: "%kernel.project_dir%/public"
+                create: true
+    filesystems:
+        sylius_sitemap_filesystem:
+            adapter: sylius_sitemap_adapter
+```
 
 By default the sitemaps will be saved in `%kernel.root_dir%/var/sitemap`. You can change this setting 
 by adjusting the parameter `sylius.sitemap.path`.
@@ -97,3 +116,8 @@ by adjusting the parameter `sylius.sitemap.path`.
 * Register & tag your provider service with `sylius.sitemap_provider`
 * Let your provider implement `UrlProviderInterface`
 * Use one of the default providers as an example to implement code
+
+## Generating sitemaps via command line
+`console sylius:sitemap:generate` or
+
+`console sylius:sitemap:generate -l 10000` where `-l` is the numer of items included in one xml file
