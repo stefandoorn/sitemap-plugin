@@ -68,8 +68,9 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
         foreach ($this->indexProviders as $indexProvider) {
             /** @var UrlProviderInterface $provider */
             foreach ($this->providers as $provider) {
-                $indexProvider->addProvider($provider, $this->paths[$provider->getName()]);
-            }
+                if(array_key_exists($provider->getName(), $this->paths)) {
+                    $indexProvider->addProvider($provider, $this->paths[$provider->getName()]);
+                }            }
 
             $urls[] = $indexProvider->generate();
         }
