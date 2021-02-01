@@ -82,7 +82,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
-        $commandTester->getOutput()->setVerbosity(OutputInterface::VERBOSITY_DEBUG);
+        //$commandTester->getOutput()->setVerbosity(OutputInterface::VERBOSITY_DEBUG);
         var_dump('executing command');
         $commandTester->execute(['command' => $command->getName()]);
 
