@@ -85,6 +85,8 @@ abstract class AbstractTestController extends XmlApiTestCase
 
     protected function getBufferedResponse(string $uri): Response
     {
+        var_dump($uri);
+
         \ob_start();
         $this->client->request('GET', $uri);
         /** @var \Symfony\Component\HttpFoundation\Response $response */
