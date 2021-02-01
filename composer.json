@@ -4,8 +4,8 @@
     "description": "Sitemap Plugin for Sylius",
     "license": "MIT",
     "require": {
-        "php": "^7.1",
-        "sylius/sylius": "^1.0"
+        "php": "^7.4",
+        "sylius/sylius": "^1.6.0"
     },
     "require-dev": {
         "lchrusciel/api-test-case": "^4.0",
@@ -16,12 +16,11 @@
         "phpstan/phpstan-strict-rules": "^0.11",
         "phpstan/phpstan-webmozart-assert": "^0.11",
         "phpunit/phpunit": "^8.0",
-        "roave/security-advisories": "dev-master",
-        "sensiolabs/security-checker": "^6.0",
         "sylius-labs/coding-standard": "^3.0",
         "symfony/debug-bundle": "^3.4|^4.1",
         "symfony/dotenv": "^4.2",
         "symfony/intl": "^3.4|^4.1",
+        "symfony/browser-kit": "^3.4|^4.1",
         "symfony/web-profiler-bundle": "^3.4|^4.1",
         "symfony/web-server-bundle": "^3.4|^4.1"
     },
@@ -61,7 +60,6 @@
         "test": [
             "@phpunit",
             "@phpspec"
-        ],
-        "security": "vendor/bin/security-checker security:check"
+        ]
     }
 }

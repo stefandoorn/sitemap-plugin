@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  php-tests:
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
+
+    services:
+      mysql:
+          image: mysql:5.7
+          env:
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_DATABASE: sylius_test
+          ports:
+            - 3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    strategy:
+      matrix:
+        php: [7.4]
+        experimental: [ false ]
+        include:
+          - php: 8.0
+            experimental: true
+
+    name: PHP${{ matrix.php }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Fixate test application to Sylius 1.6
+        run: composer require sylius/sylius:~1.6.0 --no-interaction --no-update
+        
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --ignore-platform-reqs
+
+      - name: Setup database
+        run: (cd tests/Application && bin/console doctrine:schema:create -vvv)
+        env:
+          DATABASE_URL: mysql://root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/sylius_test
+
+      - name: Composer validate
+        run: composer validate --strict
+
+#      - name: Composer check-style
+#        run: composer check-style
+
+#      - name: Composer analyse
+#        run: composer analyse
+
+      - name: Composer test
+        run: composer test
+        env:
+          DATABASE_URL: mysql://root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/sylius_test
