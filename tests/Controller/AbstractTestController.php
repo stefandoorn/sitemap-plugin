@@ -33,7 +33,7 @@ abstract class AbstractTestController extends XmlApiTestCase
     /**
      * @before
      */
-    public function setupDatabase()
+    public function setupDatabase(): void
     {
         parent::setUpDatabase();
 
@@ -83,7 +83,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         $commandTester->execute(['command' => $command->getName()]);
     }
 
-    protected function getResponse(string $uri): Response
+    protected function getBufferedResponse(string $uri): Response
     {
         \ob_start();
         $this->client->request('GET', $uri);

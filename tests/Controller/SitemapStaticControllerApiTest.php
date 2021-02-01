@@ -11,7 +11,7 @@ final class SitemapStaticControllerApiTest extends AbstractTestController
     /**
      * @before
      */
-    public function setUpDatabase()
+    public function setUpDatabase(): void
     {
         parent::setUpDatabase();
 
@@ -20,7 +20,7 @@ final class SitemapStaticControllerApiTest extends AbstractTestController
 
     public function testShowActionResponse()
     {
-        $response = $this->getResponse('/sitemap/static.xml');
+        $response = $this->getBufferedResponse('/sitemap/static.xml');
 
         $this->assertResponse($response, 'show_sitemap_static');
     }

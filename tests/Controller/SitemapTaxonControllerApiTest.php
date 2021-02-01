@@ -13,7 +13,7 @@ final class SitemapTaxonControllerApiTest extends AbstractTestController
     /**
      * @before
      */
-    public function setUpDatabase()
+    public function setUpDatabase(): void
     {
         parent::setUpDatabase();
 
@@ -45,7 +45,7 @@ final class SitemapTaxonControllerApiTest extends AbstractTestController
 
     public function testShowActionResponse()
     {
-        $response = $this->getResponse('/sitemap/taxons.xml');
+        $response = $this->getBufferedResponse('/sitemap/taxons.xml');
 
         $this->assertResponse($response, 'show_sitemap_taxons');
     }
