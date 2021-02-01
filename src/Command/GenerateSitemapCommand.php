@@ -58,14 +58,16 @@ final class GenerateSitemapCommand extends Command
         $this->addOption('channel', 'c', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Channel codes to generate. If none supplied, all channels will generated.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         foreach ($this->channels($input) as $channel) {
             $this->executeChannel($channel, $output);
         }
+
+        return 0;
     }
 
-    private function executeChannel(ChannelInterface $channel, OutputInterface $output)
+    private function executeChannel(ChannelInterface $channel, OutputInterface $output): void
     {
         // TODO make sure providers are every time emptied (reset call or smth?)
         foreach ($this->sitemapBuilder->getProviders() as $provider) {

@@ -41,7 +41,7 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
             /** @var string $path */
             $path = $image->getPath();
 
-            if (!$path) {
+            if (null === $path) {
                 continue;
             }
 

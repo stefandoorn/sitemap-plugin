@@ -43,7 +43,7 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
             /** @var UrlProviderInterface $provider */
             $name = 'sylius_sitemap_' . $provider->getName();
 
-            if ($routes->get($name)) {
+            if (null !== $routes->get($name)) {
                 throw new RouteExistsException($name);
             }
 
@@ -71,6 +71,6 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
 
     public function supports($resource, $type = null): bool
     {
-        return $type && 'sitemap' === $type;
+        return null !== $type && 'sitemap' === $type;
     }
 }
