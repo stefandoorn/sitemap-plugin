@@ -96,6 +96,8 @@ abstract class AbstractTestController extends XmlApiTestCase
         $contents = \ob_get_contents();
         \ob_end_clean();
 
+        var_dump($response);
+
         return new Response($contents, $response->getStatusCode(), $response->headers->all());
     }
 }
