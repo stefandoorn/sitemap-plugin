@@ -71,3 +71,11 @@ jobs:
       - name: show2
         run: ls -lah tests/Application/var/sitemap
         if: ${{ always() }}
+        
+      - name: show3
+        run: ls -lah tests/Application/var/log
+        if: ${{ always() }}     
+           
+      - name: show4
+        run: cat tests/Application/var/log/*
+        if: ${{ always() }}
