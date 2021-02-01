@@ -22,6 +22,8 @@ abstract class AbstractController
 
     protected function createResponse(string $path): Response
     {
+        var_dump($path);
+
         if (!$this->reader->has($path)) {
             throw new NotFoundHttpException(\sprintf('File "%s" not found', $path));
         }
