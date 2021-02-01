@@ -63,3 +63,9 @@ jobs:
         run: composer test
         env:
           DATABASE_URL: mysql://root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/sylius_test
+
+      - name: show
+        run: ls -lah tests/Application/var
+        
+      - name: show2
+        run: ls -lah tests/Application/var/sitemap
