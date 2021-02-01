@@ -12,7 +12,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpspec/phpspec": "^6.0",
         "phpstan/phpstan-doctrine": "^0.11",
-        "phpstan/phpstan-shim": "^0.11",
+        "phpstan/phpstan-shim": "^0.12",
         "phpstan/phpstan-strict-rules": "^0.11",
         "phpstan/phpstan-webmozart-assert": "^0.11",
         "phpunit/phpunit": "^8.0",
