@@ -106,7 +106,7 @@ final class StaticUrlProvider implements UrlProviderInterface
 
         $defaultLocale = $this->channel->getDefaultLocale();
 
-        if ($defaultLocale) {
+        if (null !== $defaultLocale) {
             $route['parameters']['_locale'] = $defaultLocale->getCode();
         }
 

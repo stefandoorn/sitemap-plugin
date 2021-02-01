@@ -17,7 +17,7 @@ final class SitemapExtension extends Extension
     public function load(array $config, ContainerBuilder $container)
     {
         $configuration = $this->getConfiguration([], $container);
-        if (!$configuration) {
+        if (null === $configuration) {
             throw new \Exception('Configuration did not provide proper object');
         }
         $config = $this->processConfiguration($configuration, $config);
