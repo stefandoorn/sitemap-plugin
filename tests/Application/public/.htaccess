@@ -1,4 +1,4 @@
-DirectoryIndex index.php
+DirectoryIndex app.php
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
