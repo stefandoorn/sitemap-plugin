@@ -66,6 +66,8 @@ jobs:
 
       - name: show
         run: ls -lah tests/Application/var
+        if: ${{ always() }}
         
       - name: show2
         run: ls -lah tests/Application/var/sitemap
+        if: ${{ always() }}
