@@ -13,7 +13,7 @@ final class SitemapProductControllerApiTest extends AbstractTestController
     /**
      * @before
      */
-    public function setUpDatabase()
+    public function setUpDatabase(): void
     {
         parent::setUpDatabase();
 
@@ -49,7 +49,7 @@ final class SitemapProductControllerApiTest extends AbstractTestController
 
     public function testShowActionResponse()
     {
-        $response = $this->getResponse('/sitemap/products.xml');
+        $response = $this->getBufferedResponse('/sitemap/products.xml');
 
         $this->assertResponse($response, 'show_sitemap_products');
     }

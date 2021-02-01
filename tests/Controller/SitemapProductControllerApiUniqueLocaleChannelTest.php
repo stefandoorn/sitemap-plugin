@@ -13,7 +13,7 @@ final class SitemapProductControllerApiUniqueLocaleChannelTest extends AbstractT
     /**
      * @before
      */
-    public function setupDatabase()
+    public function setupDatabase(): void
     {
         parent::setupDatabase();
 
@@ -75,7 +75,7 @@ final class SitemapProductControllerApiUniqueLocaleChannelTest extends AbstractT
 
     public function testShowActionResponse()
     {
-        $response = $this->getResponse('/sitemap/products.xml');
+        $response = $this->getBufferedResponse('/sitemap/products.xml');
 
         $this->assertResponse($response, 'show_sitemap_products_unique_channel_locale');
     }

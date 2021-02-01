@@ -14,7 +14,7 @@ final class SitemapIndexControllerApiTest extends AbstractTestController
     /**
      * @before
      */
-    public function setUpDatabase()
+    public function setUpDatabase(): void
     {
         parent::setUpDatabase();
 
@@ -39,14 +39,14 @@ final class SitemapIndexControllerApiTest extends AbstractTestController
 
     public function testShowActionResponse()
     {
-        $response = $this->getResponse('/sitemap_index.xml');
+        $response = $this->getBufferedResponse('/sitemap_index.xml');
 
         $this->assertResponse($response, 'show_sitemap_index');
     }
 
     public function testRedirectResponse()
     {
-        $response = $this->getResponse('/sitemap.xml');
+        $response = $this->getBufferedResponse('/sitemap.xml');
 
         $this->assertResponseCode($response, 301);
         $this->assertTrue($response->isRedirect());
