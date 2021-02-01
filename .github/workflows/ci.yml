@@ -57,7 +57,7 @@ jobs:
         run: composer analyse
 
       - name: show routes
-        run: bin/console debug:router
+        run: vendor/bin/console debug:router
 
       - name: Composer test
         run: composer test
