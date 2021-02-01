@@ -68,6 +68,7 @@ abstract class AbstractTestController extends XmlApiTestCase
 
     protected function generateSitemaps(): void
     {
+        var_dump('generating sitemaps');
         $application = new Application(self::getKernelClass());
 
         $application->addCommands([new GenerateSitemapCommand(
@@ -80,6 +81,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
+        var_dump('executing command');
         $commandTester->execute(['command' => $command->getName()]);
     }
 
