@@ -34,6 +34,8 @@ final class SitemapBuilder implements SitemapBuilderInterface
 
     public function build(UrlProviderInterface $provider, ChannelInterface $channel): SitemapInterface
     {
+        $urls = [];
+
         $sitemap = $this->sitemapFactory->createNew();
         $urls[] = $provider->generate($channel);
 

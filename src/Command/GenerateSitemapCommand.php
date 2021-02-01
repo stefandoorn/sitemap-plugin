@@ -107,7 +107,7 @@ final class GenerateSitemapCommand extends Command
      */
     private function channels(InputInterface $input): iterable
     {
-        if (!empty($input->getOption('channel'))) {
+        if (null !== $input->getOption('channel')) {
             return $this->channelRepository->findBy(['code' => $input->getOption('channel'), 'enabled' => true]);
         }
 
