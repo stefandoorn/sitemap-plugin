@@ -84,7 +84,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         var_dump('executing command');
         $commandTester->execute(['command' => $command->getName()]);
 
-        echo $commandTester->getDisplay();
+        var_dump($commandTester->getDisplay());
     }
 
     protected function getBufferedResponse(string $uri): Response
