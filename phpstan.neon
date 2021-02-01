@@ -1,12 +1,16 @@
 includes:
-    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-webmozart-assert/extension.neon
 
 parameters:
     reportUnmatchedIgnoredErrors: true
 
+    checkGenericClassInNonGenericObjectType: false
+
+    checkMissingIterableValueType: false
+
     ignoreErrors:
-        - '#Method SitemapPlugin\\Command\\GenerateSitemapCommand::channels\(\) should return iterable<Sylius\\Component\\Core\\Model\\ChannelInterface> but returns array<object>.#'
+        #- '#Method SitemapPlugin\\Command\\GenerateSitemapCommand::channels\(\) should return iterable<Sylius\\Component\\Core\\Model\\ChannelInterface> but returns array<object>.#'
 
     excludes_analyse:
         # Makes PHPStan crash

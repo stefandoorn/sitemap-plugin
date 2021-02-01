@@ -53,8 +53,8 @@ jobs:
 #      - name: Composer check-style
 #        run: composer check-style
 
-#      - name: Composer analyse
-#        run: composer analyse
+      - name: Composer analyse
+        run: composer analyse
 
       - name: Composer test
         run: composer test
