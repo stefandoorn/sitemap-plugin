@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace SitemapPlugin\Renderer;
 
 use SitemapPlugin\Model\SitemapInterface;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 final class TwigAdapter implements RendererAdapterInterface
 {
-    /** @var EngineInterface */
+    /** @var Environment */
     private $twig;
 
     /** @var string */
@@ -21,7 +21,7 @@ final class TwigAdapter implements RendererAdapterInterface
     /** @var bool */
     private $images;
 
-    public function __construct(EngineInterface $twig, string $template, bool $hreflang = true, bool $images = true)
+    public function __construct(Environment $twig, string $template, bool $hreflang = true, bool $images = true)
     {
         $this->twig = $twig;
         $this->template = $template;
