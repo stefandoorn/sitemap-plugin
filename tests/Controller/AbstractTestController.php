@@ -84,6 +84,8 @@ abstract class AbstractTestController extends XmlApiTestCase
         $channelRepository = self::$container->get('sylius.repository.channel');
         var_dump($channelRepository->findOneBy(['code' => 'US_WEB']));
 
+        return;
+
         $application->addCommands([new GenerateSitemapCommand(
             self::$container->get('sylius.sitemap_renderer'),
             self::$container->get('sylius.sitemap_index_renderer'),
