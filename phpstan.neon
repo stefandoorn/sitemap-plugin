@@ -9,16 +9,7 @@ parameters:
 
     checkMissingIterableValueType: false
 
-    ignoreErrors:
-        #- '#Method SitemapPlugin\\Command\\GenerateSitemapCommand::channels\(\) should return iterable<Sylius\\Component\\Core\\Model\\ChannelInterface> but returns array<object>.#'
-
     excludes_analyse:
-        # Makes PHPStan crash
-        - 'src/DependencyInjection/Configuration.php'
-
-        # todo remove this in v2
-        - 'src/Provider/ProductUrlProvider.php'
-
         # Test dependencies
         - 'tests/Application/app/**.php'
         - 'tests/Application/src/**.php'

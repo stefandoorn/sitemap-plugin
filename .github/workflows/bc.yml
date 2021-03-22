@@ -1,0 +1,47 @@
+name: BC Check
+
+on: [push, pull_request]
+
+jobs:
+    php-tests:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                php: [7.4]
+
+        name: PHP${{ matrix.php }}
+
+        steps:
+            - name: Get Composer Cache Directory
+              id: composer-cache
+              run: |
+                  echo "::set-output name=dir::$(composer config cache-files-dir)"
+            - uses: actions/cache@v2
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-composer-
+
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
+                fetch-depth: 0
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+
+            - name: Fixate test application to Sylius 1.6
+              run: composer require sylius/sylius:~1.6.0 --no-interaction --no-update
+              
+            - name: Load BC tool
+              run: composer require --dev roave/backward-compatibility-check:^4.0 --no-interaction --no-update
+
+            - name: Install dependencies
+              run: composer install --no-interaction --prefer-dist --ignore-platform-reqs
+              
+            - name: Run tool
+              run: vendor/bin/roave-backward-compatibility-check
