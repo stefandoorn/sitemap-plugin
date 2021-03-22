@@ -72,7 +72,7 @@ final class GenerateSitemapCommand extends Command
         $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName()));
 
         // TODO make sure providers are every time emptied (reset call or smth?)
-         foreach ($this->sitemapBuilder->getProviders() as $provider) {
+        foreach ($this->sitemapBuilder->getProviders() as $provider) {
             $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
             $sitemap = $this->sitemapBuilder->build($provider, $channel); // TODO use provider instance, not the name

@@ -52,7 +52,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         $this->channel = $channel;
         $this->urls = [];
 
-        if (0 === count($this->routes)) {
+        if (0 === \count($this->routes)) {
             return $this->urls;
         }
 
@@ -88,7 +88,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         $route = $this->addDefaultRoute($route);
 
         // Populate locales array by other enabled locales for current channel if no locales are specified
-        if (!isset($route['locales']) || 0 === count($route['locales'])) {
+        if (!isset($route['locales']) || 0 === \count($route['locales'])) {
             $route['locales'] = $this->getAlternativeLocales();
         }
 
