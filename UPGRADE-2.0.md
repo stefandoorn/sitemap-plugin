@@ -2,7 +2,7 @@
 
 ## TL-DR
 
-* Plugin structure upgraded to PluginSkeleton:^1.3
+* Plugin structure upgraded to PluginSkeleton:^1.6
 * Removed the `all.xml` endpoint - use the sitemap index
 * Sitemaps are now generated via the command line, see below.
 * Dropped support for relative URL's
