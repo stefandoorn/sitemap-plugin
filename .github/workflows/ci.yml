@@ -58,14 +58,14 @@ jobs:
         env:
           DATABASE_URL: mysql://root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/sylius_test
 
-      - name: Composer validate
-        run: composer validate --strict
+#      - name: Composer validate
+#        run: composer validate --strict
 
 #      - name: Composer check-style
 #        run: composer check-style
 
-      - name: Composer analyse
-        run: composer analyse
+#      - name: Composer analyse
+#        run: composer analyse
 
       - name: show routes
         run: tests/Application/bin/console debug:router
