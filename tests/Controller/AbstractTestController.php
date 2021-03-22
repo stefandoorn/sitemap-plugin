@@ -86,7 +86,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         $commandTester = new CommandTester($command);
         //$commandTester->getOutput()->setVerbosity(OutputInterface::VERBOSITY_DEBUG);
         var_dump('executing command');
-        $commandTester->execute(['command' => $command->getName()]);
+        $commandTester->execute(['command' => $command->getName()], ['capture_stderr_separately' => true]);
         var_dump($commandTester->getErrorOutput());
         var_dump($commandTester->getDisplay());
         var_dump($commandTester);
