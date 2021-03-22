@@ -11,7 +11,7 @@
         "lchrusciel/api-test-case": "^5.0",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpspec/phpspec": "^6.0",
-        "phpstan/phpstan": "^0.12.71",
+        "phpstan/phpstan": "^0.12.82",
         "phpstan/phpstan-strict-rules": "^0.12.9",
         "phpstan/phpstan-webmozart-assert": "^0.12.11",
         "phpunit/phpunit": "^8.0",
