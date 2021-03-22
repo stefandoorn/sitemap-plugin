@@ -37,7 +37,10 @@ abstract class AbstractTestController extends XmlApiTestCase
      */
     public function setupDatabase(): void
     {
+        var_dump($_SERVER['IS_DOCTRINE_ORM_SUPPORTED']);
         parent::setUpDatabase();
+
+        var_dump('start fixtures');
 
         $this->locale = new Locale();
         $this->locale->setCode('en_US');
@@ -64,8 +67,12 @@ abstract class AbstractTestController extends XmlApiTestCase
         $this->channel->addLocale($this->locale);
         $this->channel->addLocale($this->locale2);
 
+        var_dump('save fixtures');
+
         $this->getEntityManager()->persist($this->channel);
         $this->getEntityManager()->flush();
+
+        var_dump('done saving fixtures');
     }
 
     protected function generateSitemaps(): void
