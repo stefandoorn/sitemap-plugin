@@ -6,6 +6,7 @@ namespace Tests\SitemapPlugin\Controller;
 
 use ApiTestCase\XmlApiTestCase;
 use SitemapPlugin\Command\GenerateSitemapCommand;
+use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Currency\Model\Currency;
@@ -72,7 +73,9 @@ abstract class AbstractTestController extends XmlApiTestCase
         var_dump('generating sitemaps');
         $application = new Application(self::getKernelClass());
 
-        var_dump(self::$container->get('sylius.repository.channel')->findAll());
+        /** @var ChannelRepositoryInterface $channelRepository */
+        $channelRepository = self::$container->get('sylius.repository.channel');
+        var_dump($channelRepository->findOneBy(['code' => 'US_WEB']));
 
         $application->addCommands([new GenerateSitemapCommand(
             self::$container->get('sylius.sitemap_renderer'),
