@@ -82,9 +82,6 @@ abstract class AbstractTestController extends XmlApiTestCase
 
         /** @var ChannelRepositoryInterface $channelRepository */
         $channelRepository = self::$container->get('sylius.repository.channel');
-        var_dump($channelRepository->findOneBy(['code' => 'US_WEB']));
-
-        return;
 
         $application->addCommands([new GenerateSitemapCommand(
             self::$container->get('sylius.sitemap_renderer'),
@@ -92,7 +89,7 @@ abstract class AbstractTestController extends XmlApiTestCase
             self::$container->get('sylius.sitemap_builder'),
             self::$container->get('sylius.sitemap_index_builder'),
             self::$container->get('sylius.sitemap_writer'),
-            self::$container->get('sylius.repository.channel')
+            $channelRepository,
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
