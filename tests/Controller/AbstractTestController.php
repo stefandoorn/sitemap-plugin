@@ -37,10 +37,7 @@ abstract class AbstractTestController extends XmlApiTestCase
      */
     public function setupDatabase(): void
     {
-        var_dump($_SERVER['IS_DOCTRINE_ORM_SUPPORTED']);
         parent::setUpDatabase();
-
-        var_dump('start fixtures');
 
         $this->locale = new Locale();
         $this->locale->setCode('en_US');
@@ -67,17 +64,12 @@ abstract class AbstractTestController extends XmlApiTestCase
         $this->channel->addLocale($this->locale);
         $this->channel->addLocale($this->locale2);
 
-        var_dump('save fixtures');
-
         $this->getEntityManager()->persist($this->channel);
         $this->getEntityManager()->flush();
-
-        var_dump('done saving fixtures');
     }
 
     protected function generateSitemaps(): void
     {
-        var_dump('generating sitemaps');
         $application = new Application(self::getKernelClass());
 
         /** @var ChannelRepositoryInterface $channelRepository */
@@ -93,26 +85,17 @@ abstract class AbstractTestController extends XmlApiTestCase
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
-        //$commandTester->getOutput()->setVerbosity(OutputInterface::VERBOSITY_DEBUG);
-        var_dump('executing command');
         $commandTester->execute(['command' => $command->getName()], ['capture_stderr_separately' => true]);
-        var_dump($commandTester->getErrorOutput());
-        var_dump($commandTester->getDisplay());
-        //var_dump($commandTester);
     }
 
     protected function getBufferedResponse(string $uri): Response
     {
-        var_dump($uri);
-
         \ob_start();
         $this->client->request('GET', $uri);
         /** @var \Symfony\Component\HttpFoundation\Response $response */
         $response = $this->client->getResponse();
         $contents = \ob_get_contents();
         \ob_end_clean();
-
-        var_dump($contents);
 
         return new Response($contents, $response->getStatusCode(), $response->headers->all());
     }

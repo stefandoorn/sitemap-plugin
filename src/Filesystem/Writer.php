@@ -18,6 +18,6 @@ final class Writer
 
     public function write(string $path, string $contents): void
     {
-        var_dump($this->filesystem->write($path, $contents, $overwrite = true));
+        $this->filesystem->write($path, $contents, $overwrite = true);
     }
 }

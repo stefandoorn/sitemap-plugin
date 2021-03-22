@@ -55,7 +55,7 @@
         "check-style": "vendor/bin/ecs check --ansi src/ tests/ spec/",
         "fix-style": "vendor/bin/ecs check --ansi src/ tests/ spec/ --fix",
         "phpspec": "vendor/bin/phpspec run --ansi",
-        "phpunit": "vendor/bin/phpunit --debug",
+        "phpunit": "vendor/bin/phpunit",
         "test": [
             "@phpunit",
             "@phpspec"

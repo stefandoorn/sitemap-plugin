@@ -16,8 +16,6 @@ final class SitemapIndexControllerApiTest extends AbstractTestController
      */
     public function setUpDatabase(): void
     {
-        var_dump('start setup database');
-
         parent::setUpDatabase();
 
         $product = new Product();
@@ -33,10 +31,9 @@ final class SitemapIndexControllerApiTest extends AbstractTestController
         $taxon->setCode('mock-code');
         $taxon->setSlug('mock');
         $this->getEntityManager()->persist($taxon);
-        var_dump('saving data');
+
         $this->getEntityManager()->flush();
 
-        var_dump('generate sitemap');
         $this->generateSitemaps();
     }
 
