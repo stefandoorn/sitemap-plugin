@@ -35,11 +35,11 @@ interface UrlInterface
      */
     public function setAlternatives(iterable $alternatives): void;
 
-    public function addAlternative(AlternativeUrlInterface $image): void;
+    public function addAlternative(AlternativeUrlInterface $alternative): void;
 
-    public function hasAlternative(AlternativeUrlInterface $image): bool;
+    public function hasAlternative(AlternativeUrlInterface $alternative): bool;
 
-    public function removeAlternative(AlternativeUrlInterface $image): void;
+    public function removeAlternative(AlternativeUrlInterface $alternative): void;
 
     public function hasAlternatives(): bool;
 
