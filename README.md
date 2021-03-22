@@ -79,7 +79,6 @@ The plugin defines three default URI's:
 
 * `sitemap.xml`: redirects to `sitemap_index.xml`
 * `sitemap_index.xml`: renders the sitemap index file (with links to the provider xml files)
-* `sitemap/all.xml`: renders all the URI's from all providers in a single response
 
 Next to this, each provider registeres it's own URI. Take a look in the sitemap index file for the correct URI's.
 

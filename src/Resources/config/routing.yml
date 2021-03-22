@@ -1,9 +1,11 @@
+# Index file holding references to all generated sitemaps (per provider)
 sylius_sitemap_index:
     path: /sitemap_index.xml
     methods: [GET]
     defaults:
         _controller: sylius.controller.sitemap_index:showAction
 
+# Redirect always to the index, as this is the preferred way
 sylius_sitemap_no_index:
     path: /sitemap.xml
     defaults:
@@ -11,6 +13,7 @@ sylius_sitemap_no_index:
         route: sylius_sitemap_index
         permanent: true
 
+# Registering routes for each provider
 sylius_sitemap_providers:
     resource: .
     type: sitemap
