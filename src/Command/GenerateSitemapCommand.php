@@ -70,6 +70,7 @@ final class GenerateSitemapCommand extends Command
     private function executeChannel(ChannelInterface $channel, OutputInterface $output): void
     {
         // TODO make sure providers are every time emptied (reset call or smth?)
+        var_dump('Providers count: ' . count($this->sitemapBuilder->getProviders()));
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
             $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
