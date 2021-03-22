@@ -61,6 +61,20 @@ sylius_sitemap:
 
 ## Usage
 
+Generate your sitemap from the CLI:
+
+```bash
+ $ bin/console sylius:sitemap:generate-index
+```
+
+*Add this command to your cronjob to regularly generate a new sitemap, e.g. once a day.*
+
+If you only want to generate the sitemap for a specific channel, use:
+
+```bash
+ $ bin/console sylius:sitemap:generate-index --channel=US_WEB
+```
+
 The plugin defines three default URI's:
 
 * `sitemap.xml`: redirects to `sitemap_index.xml`
