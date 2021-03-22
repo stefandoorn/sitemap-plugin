@@ -67,9 +67,6 @@ jobs:
       - name: Composer analyse
         run: composer analyse
 
-      - name: show routes
-        run: tests/Application/bin/console debug:router
-
       - name: Composer test
         run: composer test
         env:
