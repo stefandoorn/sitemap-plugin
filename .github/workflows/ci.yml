@@ -28,6 +28,17 @@ jobs:
     name: PHP${{ matrix.php }}
 
     steps:
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+            echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        with:
+            path: ${{ steps.composer-cache.outputs.dir }}
+            key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+            restore-keys: |
+                ${{ runner.os }}-composer-
+            
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -50,8 +61,8 @@ jobs:
       - name: Composer validate
         run: composer validate --strict
 
-#      - name: Composer check-style
-#        run: composer check-style
+      - name: Composer check-style
+        run: composer check-style
 
       - name: Composer analyse
         run: composer analyse

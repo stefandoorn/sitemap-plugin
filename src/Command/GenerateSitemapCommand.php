@@ -69,6 +69,8 @@ final class GenerateSitemapCommand extends Command
 
     private function executeChannel(ChannelInterface $channel, OutputInterface $output): void
     {
+        $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName()));
+
         // TODO make sure providers are every time emptied (reset call or smth?)
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
             $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
@@ -109,10 +111,21 @@ final class GenerateSitemapCommand extends Command
      */
     private function channels(InputInterface $input): iterable
     {
-        if (null !== $input->getOption('channel')) {
+        if (self::hasChannelInput($input)) {
             return $this->channelRepository->findBy(['code' => $input->getOption('channel'), 'enabled' => true]);
         }
 
         return $this->channelRepository->findBy(['enabled' => true]);
+    }
+
+    private static function hasChannelInput(InputInterface $input): bool
+    {
+        $inputValue = $input->getOption('channel');
+
+        if (\is_array($inputValue) && 0 === \count($inputValue)) {
+            return false;
+        }
+
+        return null !== $inputValue;
     }
 }
