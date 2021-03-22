@@ -9,12 +9,11 @@ use SitemapPlugin\Model\SitemapInterface;
 use SitemapPlugin\Model\UrlInterface;
 use SitemapPlugin\Renderer\RendererAdapterInterface;
 use SitemapPlugin\Renderer\TwigAdapter;
-use Symfony\Component\Templating\EngineInterface;
 use Twig\Environment;
 
 final class TwigAdapterSpec extends ObjectBehavior
 {
-    function let(EngineInterface $twig): void
+    function let(Environment $twig): void
     {
         $this->beConstructedWith($twig, '@SyliusCore/Sitemap/url_set.xml.twig', true);
     }
