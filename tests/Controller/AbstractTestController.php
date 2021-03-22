@@ -85,7 +85,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
-        $commandTester->execute(['command' => $command->getName()], ['capture_stderr_separately' => true]);
+        $commandTester->execute(['command' => $command->getName()]);
     }
 
     protected function getBufferedResponse(string $uri): Response

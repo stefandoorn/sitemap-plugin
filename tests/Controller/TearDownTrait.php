@@ -12,8 +12,6 @@ trait TearDownTrait
 {
     public function tearDown(): void
     {
-        return;
-
         if (null !== $this->client && null !== $this->client->getContainer()) {
             $dir = $this->client->getContainer()->getParameter('sylius.sitemap.path');
 
