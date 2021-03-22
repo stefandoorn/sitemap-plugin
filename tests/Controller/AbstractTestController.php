@@ -89,7 +89,7 @@ abstract class AbstractTestController extends XmlApiTestCase
         $commandTester->execute(['command' => $command->getName()], ['capture_stderr_separately' => true]);
         var_dump($commandTester->getErrorOutput());
         var_dump($commandTester->getDisplay());
-        var_dump($commandTester);
+        //var_dump($commandTester);
     }
 
     protected function getBufferedResponse(string $uri): Response
