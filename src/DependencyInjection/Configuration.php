@@ -12,14 +12,8 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        if (\method_exists(TreeBuilder::class, 'getRootNode')) {
-            $treeBuilder = new TreeBuilder('stefandoorn_sylius_sitemap');
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            // BC layer for symfony/config 4.1 and older
-            $treeBuilder = new TreeBuilder();
-            $rootNode = $treeBuilder->root('stefandoorn_sylius_sitemap');
-        }
+        $treeBuilder = new TreeBuilder('stefandoorn_sylius_sitemap');
+        $rootNode = $treeBuilder->getRootNode();
 
         $this->addSitemapSection($rootNode);
 
