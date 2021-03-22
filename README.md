@@ -44,6 +44,21 @@ sylius_sitemap:
      resource: "@SitemapPlugin/Resources/config/routing.yml"
 ```
 
+### Installation from Sylius 1.7:
+
+1. Run `composer require stefandoorn/sitemap-plugin`.
+
+2. Add to `app/config/packages/sylius_sitemap.yaml`: 
+
+   -  [Default configuration](#default-configuration)
+
+3. Add to `app/config/routes/sylius_sitemap.yml`: 
+
+```
+sylius_sitemap:
+     resource: "@SitemapPlugin/Resources/config/routing.yml"
+```
+
 ## Usage
 
 The plugin defines three default URI's:
@@ -54,7 +69,7 @@ The plugin defines three default URI's:
 
 Next to this, each provider registeres it's own URI. Take a look in the sitemap index file for the correct URI's.
 
-## Default configuration
+## Default Configuration
 
 Get a full list of configuration: `bin/console config:dump-reference sitemap`
 
