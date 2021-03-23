@@ -12,23 +12,16 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class StaticUrlProvider implements UrlProviderInterface
 {
-    /** @var RouterInterface */
-    private $router;
+    private RouterInterface $router;
 
-    /** @var UrlFactoryInterface */
-    private $sitemapUrlFactory;
+    private UrlFactoryInterface $sitemapUrlFactory;
 
-    /** @var AlternativeUrlFactoryInterface */
-    private $urlAlternativeFactory;
+    private AlternativeUrlFactoryInterface $urlAlternativeFactory;
 
-    /** @var array */
-    private $urls = [];
+    /** @var string[] */
+    private array $routes;
 
-    /** @var array */
-    private $routes;
-
-    /** @var ChannelInterface */
-    private $channel;
+    private ChannelInterface $channel;
 
     public function __construct(
         RouterInterface $router,
@@ -50,10 +43,10 @@ final class StaticUrlProvider implements UrlProviderInterface
     public function generate(ChannelInterface $channel): iterable
     {
         $this->channel = $channel;
-        $this->urls = [];
+        $urls = [];
 
         if (0 === \count($this->routes)) {
-            return $this->urls;
+            return $urls;
         }
 
         foreach ($this->transformAndYieldRoutes() as $route) {
@@ -69,10 +62,10 @@ final class StaticUrlProvider implements UrlProviderInterface
                 $staticUrl->addAlternative($this->urlAlternativeFactory->createNew($alternativeLocation, $alternativeLocaleCode));
             }
 
-            $this->urls[] = $staticUrl;
+            $urls[] = $staticUrl;
         }
 
-        return $this->urls;
+        return $urls;
     }
 
     private function transformAndYieldRoutes(): \Generator

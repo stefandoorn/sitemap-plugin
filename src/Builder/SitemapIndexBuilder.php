@@ -11,47 +11,35 @@ use SitemapPlugin\Provider\UrlProviderInterface;
 
 final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
 {
-    /** @var SitemapIndexFactoryInterface */
-    private $sitemapIndexFactory;
+    private SitemapIndexFactoryInterface $sitemapIndexFactory;
 
-    /** @var array */
-    private $providers = [];
+    /** @var UrlProviderInterface[] */
+    private array $providers = [];
 
-    /** @var array */
-    private $indexProviders = [];
+    /** @var IndexUrlProviderInterface[] */
+    private array $indexProviders = [];
 
     public function __construct(SitemapIndexFactoryInterface $sitemapIndexFactory)
     {
         $this->sitemapIndexFactory = $sitemapIndexFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addProvider(UrlProviderInterface $provider): void
     {
         $this->providers[] = $provider;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addIndexProvider(IndexUrlProviderInterface $provider): void
     {
         $this->indexProviders[] = $provider;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(): SitemapInterface
     {
         $sitemap = $this->sitemapIndexFactory->createNew();
         $urls = [];
 
-        /** @var IndexUrlProviderInterface $indexProvider */
         foreach ($this->indexProviders as $indexProvider) {
-            /** @var UrlProviderInterface $provider */
             foreach ($this->providers as $provider) {
                 $indexProvider->addProvider($provider);
             }

@@ -8,11 +8,9 @@ use DateTimeInterface;
 
 final class IndexUrl implements IndexUrlInterface
 {
-    /** @var string */
-    private $location;
+    private string $location;
 
-    /** @var DateTimeInterface|null */
-    private $lastModification;
+    private ?DateTimeInterface $lastModification = null;
 
     public function __construct(string $location)
     {

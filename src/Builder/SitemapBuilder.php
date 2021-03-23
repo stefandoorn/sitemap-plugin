@@ -11,11 +11,10 @@ use Sylius\Component\Core\Model\ChannelInterface;
 
 final class SitemapBuilder implements SitemapBuilderInterface
 {
-    /** @var SitemapFactoryInterface */
-    private $sitemapFactory;
+    private SitemapFactoryInterface $sitemapFactory;
 
-    /** @var array */
-    private $providers = [];
+    /** @var UrlProviderInterface[] */
+    private array $providers = [];
 
     public function __construct(SitemapFactoryInterface $sitemapFactory)
     {

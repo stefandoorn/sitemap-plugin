@@ -10,23 +10,19 @@ use Doctrine\Common\Collections\Collection;
 
 final class Url implements UrlInterface
 {
-    /** @var string */
-    private $location;
+    private string $location;
 
-    /** @var DateTimeInterface */
-    private $lastModification;
+    private ?DateTimeInterface $lastModification = null;
 
-    /** @var string */
-    private $changeFrequency;
+    private ?string $changeFrequency = null;
 
-    /** @var float */
-    private $priority;
+    private ?float $priority = null;
 
-    /** @var Collection */
-    private $alternatives;
+    /** @var Collection|AlternativeUrlInterface[] */
+    private Collection $alternatives;
 
     /** @var Collection|ImageInterface[] */
-    private $images;
+    private Collection $images;
 
     public function __construct(string $location)
     {
@@ -55,7 +51,7 @@ final class Url implements UrlInterface
         $this->lastModification = $lastModification;
     }
 
-    public function getChangeFrequency(): string
+    public function getChangeFrequency(): ?string
     {
         return $this->changeFrequency;
     }

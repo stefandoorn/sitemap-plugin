@@ -6,11 +6,9 @@ namespace SitemapPlugin\Model;
 
 final class AlternativeUrl implements AlternativeUrlInterface
 {
-    /** @var string */
-    private $location;
+    private string $location;
 
-    /** @var string */
-    private $locale;
+    private string $locale;
 
     public function __construct(string $location, string $locale)
     {

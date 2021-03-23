@@ -10,7 +10,6 @@ use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\UrlInterface;
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
@@ -22,32 +21,22 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class ProductUrlProvider implements UrlProviderInterface
 {
-    /** @var ProductRepositoryInterface|EntityRepository */
-    private $productRepository;
+    private ProductRepositoryInterface $productRepository;
 
-    /** @var RouterInterface */
-    private $router;
+    private RouterInterface $router;
 
-    /** @var UrlFactoryInterface */
-    private $urlFactory;
+    private UrlFactoryInterface $urlFactory;
 
-    /** @var AlternativeUrlFactoryInterface */
-    private $urlAlternativeFactory;
+    private AlternativeUrlFactoryInterface $urlAlternativeFactory;
 
-    /** @var LocaleContextInterface */
-    private $localeContext;
+    private LocaleContextInterface $localeContext;
 
-    /** @var ChannelInterface */
-    private $channel;
+    private ChannelInterface $channel;
 
-    /** @var array */
-    private $urls = [];
+    /** @var string[] */
+    private ?array $channelLocaleCodes;
 
-    /** @var array */
-    private $channelLocaleCodes;
-
-    /** @var ProductImagesToSitemapImagesCollectionGeneratorInterface */
-    private $productToImageSitemapArrayGenerator;
+    private ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator;
 
     public function __construct(
         ProductRepositoryInterface $productRepository,
@@ -76,14 +65,14 @@ final class ProductUrlProvider implements UrlProviderInterface
     public function generate(ChannelInterface $channel): iterable
     {
         $this->channel = $channel;
-        $this->urls = [];
+        $urls = [];
         $this->channelLocaleCodes = null;
 
         foreach ($this->getProducts() as $product) {
-            $this->urls[] = $this->createProductUrl($product);
+            $urls[] = $this->createProductUrl($product);
         }
 
-        return $this->urls;
+        return $urls;
     }
 
     /**

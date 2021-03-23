@@ -6,20 +6,15 @@ namespace SitemapPlugin\Model;
 
 final class Image implements ImageInterface
 {
-    /** @var string */
-    private $location;
+    private string $location;
 
-    /** @var string|null */
-    private $title;
+    private ?string $title = null;
 
-    /** @var string|null */
-    private $caption;
+    private ?string $caption = null;
 
-    /** @var string|null */
-    private $geoLocation;
+    private ?string $geoLocation = null;
 
-    /** @var string|null */
-    private $license;
+    private ?string $license = null;
 
     public function __construct(string $location)
     {

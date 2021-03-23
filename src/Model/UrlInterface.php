@@ -17,7 +17,7 @@ interface UrlInterface
 
     public function setLastModification(DateTimeInterface $lastModification): void;
 
-    public function getChangeFrequency(): string;
+    public function getChangeFrequency(): ?string;
 
     public function setChangeFrequency(ChangeFrequency $changeFrequency): void;
 

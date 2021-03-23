@@ -9,8 +9,7 @@ use Gaufrette\Stream;
 
 final class Reader
 {
-    /** @var FilesystemInterface */
-    private $filesystem;
+    private FilesystemInterface $filesystem;
 
     public function __construct(FilesystemInterface $filesystem)
     {

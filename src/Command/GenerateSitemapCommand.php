@@ -17,23 +17,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class GenerateSitemapCommand extends Command
 {
-    /** @var \SitemapPlugin\Builder\SitemapBuilderInterface */
-    private $sitemapBuilder;
+    private SitemapBuilderInterface $sitemapBuilder;
 
-    /** @var SitemapIndexBuilderInterface */
-    private $sitemapIndexBuilder;
+    private SitemapIndexBuilderInterface $sitemapIndexBuilder;
 
-    /** @var SitemapRendererInterface */
-    private $sitemapRenderer;
+    private SitemapRendererInterface $sitemapRenderer;
 
-    /** @var SitemapRendererInterface */
-    private $sitemapIndexRenderer;
+    private SitemapRendererInterface $sitemapIndexRenderer;
 
-    /** @var Writer */
-    private $writer;
+    private Writer $writer;
 
-    /** @var ChannelRepositoryInterface */
-    private $channelRepository;
+    private ChannelRepositoryInterface $channelRepository;
 
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
