@@ -16,7 +16,7 @@
         "phpstan/phpstan-webmozart-assert": "^0.12.12",
         "phpunit/phpunit": "^9",
         "sylius-labs/coding-standard": "^4.0",
-        "symfony/browser-kit": "^4.1",
+        "symfony/browser-kit": "^5.2",
         "symfony/debug-bundle": "^4.1",
         "symfony/dotenv": "^4.2",
         "symfony/intl": "^4.1",
