@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\IndexUrlFactoryInterface;
+use SitemapPlugin\Model\IndexUrlInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 final class IndexUrlProvider implements IndexUrlProviderInterface
 {
     /** @var UrlProviderInterface[] */
-    private $providers = [];
+    private array $providers = [];
 
-    /** @var RouterInterface */
-    private $router;
+    private RouterInterface $router;
 
-    /** @var IndexUrlFactoryInterface */
-    private $sitemapIndexUrlFactory;
+    private IndexUrlFactoryInterface $sitemapIndexUrlFactory;
 
-    /** @var array */
-    private $urls = [];
+    /** @var IndexUrlInterface[] */
+    private array $urls = [];
 
     public function __construct(
         RouterInterface $router,

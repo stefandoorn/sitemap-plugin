@@ -12,8 +12,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class AbstractController
 {
-    /** @var Reader */
-    protected $reader;
+    protected Reader $reader;
 
     public function __construct(Reader $reader)
     {

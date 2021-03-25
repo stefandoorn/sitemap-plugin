@@ -8,8 +8,7 @@ use Gaufrette\FilesystemInterface;
 
 final class Writer
 {
-    /** @var FilesystemInterface */
-    private $filesystem;
+    private FilesystemInterface $filesystem;
 
     public function __construct(FilesystemInterface $filesystem)
     {

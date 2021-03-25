@@ -39,6 +39,7 @@
     * `hasImage(SitemapImageUrlInterface $image): bool`
     * `removeImage(SitemapImageUrlInterface $image): void`
     * `public function hasImages(): bool`
-* `UrlInterface::setLocalization` got renamed into `UrlInterface::setLocation`   
+* `UrlInterface::setLocalization` got renamed into `UrlInterface::setLocation`
+* In several interface several properties became nullable, as the sitemap spec also doesn't require them  
 * Adding alternative URLs has been changed, use the factory & inject it via `addAlternative` into the `Url` model  
 * Providers now need to have a ChannelContext supplied.

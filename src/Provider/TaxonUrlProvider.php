@@ -16,26 +16,17 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class TaxonUrlProvider implements UrlProviderInterface
 {
-    /** @var RepositoryInterface */
-    private $taxonRepository;
+    private RepositoryInterface $taxonRepository;
 
-    /** @var RouterInterface */
-    private $router;
+    private RouterInterface $router;
 
-    /** @var UrlFactoryInterface */
-    private $sitemapUrlFactory;
+    private UrlFactoryInterface $sitemapUrlFactory;
 
-    /** @var AlternativeUrlFactoryInterface */
-    private $urlAlternativeFactory;
+    private AlternativeUrlFactoryInterface $urlAlternativeFactory;
 
-    /** @var LocaleContextInterface */
-    private $localeContext;
+    private LocaleContextInterface $localeContext;
 
-    /** @var array */
-    private $urls = [];
-
-    /** @var bool */
-    private $excludeTaxonRoot = true;
+    private bool $excludeTaxonRoot;
 
     public function __construct(
         RepositoryInterface $taxonRepository,
@@ -43,7 +34,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
         UrlFactoryInterface $sitemapUrlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        bool $excludeTaxonRoot
+        bool $excludeTaxonRoot = true
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;
@@ -60,7 +51,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
 
     public function generate(ChannelInterface $channel): iterable
     {
-        $this->urls = [];
+        $urls = [];
 
         foreach ($this->getTaxons() as $taxon) {
             /** @var TaxonInterface $taxon */
@@ -91,10 +82,10 @@ final class TaxonUrlProvider implements UrlProviderInterface
                 }
             }
 
-            $this->urls[] = $taxonUrl;
+            $urls[] = $taxonUrl;
         }
 
-        return $this->urls;
+        return $urls;
     }
 
     /**

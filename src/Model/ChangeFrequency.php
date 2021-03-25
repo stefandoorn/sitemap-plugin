@@ -6,13 +6,9 @@ namespace SitemapPlugin\Model;
 
 final class ChangeFrequency
 {
-    /** @var string */
-    private $value;
+    private string $value;
 
-    /**
-     * @param string $changeFrequency
-     */
-    private function __construct($changeFrequency)
+    private function __construct(string $changeFrequency)
     {
         $this->value = $changeFrequency;
     }
@@ -22,57 +18,36 @@ final class ChangeFrequency
         return $this->value;
     }
 
-    /**
-     * @return ChangeFrequency
-     */
     public static function always(): self
     {
         return new self('always');
     }
 
-    /**
-     * @return ChangeFrequency
-     */
     public static function hourly(): self
     {
         return new self('hourly');
     }
 
-    /**
-     * @return ChangeFrequency
-     */
     public static function daily(): self
     {
         return new self('daily');
     }
 
-    /**
-     * @return ChangeFrequency
-     */
     public static function weekly(): self
     {
         return new self('weekly');
     }
 
-    /**
-     * @return ChangeFrequency
-     */
     public static function monthly(): self
     {
         return new self('monthly');
     }
 
-    /**
-     * @return ChangeFrequency
-     */
     public static function yearly(): self
     {
         return new self('yearly');
     }
 
-    /**
-     * @return ChangeFrequency
-     */
     public static function never(): self
     {
         return new self('never');

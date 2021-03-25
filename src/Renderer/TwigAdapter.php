@@ -9,17 +9,13 @@ use Twig\Environment;
 
 final class TwigAdapter implements RendererAdapterInterface
 {
-    /** @var Environment */
-    private $twig;
+    private Environment $twig;
 
-    /** @var string */
-    private $template;
+    private string $template;
 
-    /** @var bool */
-    private $hreflang;
+    private bool $hreflang;
 
-    /** @var bool */
-    private $images;
+    private bool $images;
 
     public function __construct(Environment $twig, string $template, bool $hreflang = true, bool $images = true)
     {
@@ -29,9 +25,6 @@ final class TwigAdapter implements RendererAdapterInterface
         $this->images = $images;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function render(SitemapInterface $sitemap): string
     {
         return $this->twig->render($this->template, [

@@ -10,8 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class SitemapController extends AbstractController
 {
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    private ChannelContextInterface $channelContext;
 
     public function __construct(
         ChannelContextInterface $channelContext,
