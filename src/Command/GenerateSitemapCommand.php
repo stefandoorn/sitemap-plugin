@@ -29,6 +29,7 @@ final class GenerateSitemapCommand extends Command
     private Writer $writer;
 
     private ChannelRepositoryInterface $channelRepository;
+
     private RouterInterface $router;
 
     public function __construct(
