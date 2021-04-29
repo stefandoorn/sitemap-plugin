@@ -12,6 +12,7 @@ final class MultiChannelSitemapStaticControllerApiTest extends AbstractTestContr
 
     /** @var ChannelInterface */
     protected $channel2;
+
     /**
      * @before
      */
