@@ -101,6 +101,11 @@ sitemap:
         - { route: sylius_shop_contact_request, parameters: [], locales: [] }
 ```
 
+The request context is also important for generating the URLs inside the sitemap:
+
+* The hostname is defined per channel, if nothing set it defaults to `localhost`
+* Other request context settings can be adjusted as mentioned in the [Symfony docs](https://symfony.com/doc/4.1/console/request_context.html#configuring-the-request-context-globally)
+
 ## Default storage
 
 By default the sitemaps will be saved in `%kernel.root_dir%/var/sitemap`. You can change this setting 
