@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://store.fr/en_US/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://store.fr/nl_NL/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://store.fr/en_US/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/contact/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://store.fr/nl_NL/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/contact/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://store.fr/en_US/order/fooToken</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/order/fooToken"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/order/fooToken"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://store.fr/nl_NL/order/fooToken</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/order/fooToken"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/order/fooToken"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://store.fr/en_US/login</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/login"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/login"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://store.fr/nl_NL/login</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://store.fr/en_US/login"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://store.fr/nl_NL/login"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

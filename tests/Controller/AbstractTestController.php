@@ -81,6 +81,7 @@ abstract class AbstractTestController extends XmlApiTestCase
             self::$container->get('sylius.sitemap_index_builder'),
             self::$container->get('sylius.sitemap_writer'),
             $channelRepository,
+            self::$container->get('router'),
         )]);
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);

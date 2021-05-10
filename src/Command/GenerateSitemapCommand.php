@@ -14,6 +14,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 final class GenerateSitemapCommand extends Command
 {
@@ -29,13 +30,16 @@ final class GenerateSitemapCommand extends Command
 
     private ChannelRepositoryInterface $channelRepository;
 
+    private RouterInterface $router;
+
     public function __construct(
         SitemapRendererInterface $sitemapRenderer,
         SitemapRendererInterface $sitemapIndexRenderer,
         SitemapBuilderInterface $sitemapBuilder,
         SitemapIndexBuilderInterface $sitemapIndexBuilder,
         Writer $writer,
-        ChannelRepositoryInterface $channelRepository
+        ChannelRepositoryInterface $channelRepository,
+        RouterInterface $router
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
         $this->sitemapIndexRenderer = $sitemapIndexRenderer;
@@ -43,6 +47,7 @@ final class GenerateSitemapCommand extends Command
         $this->sitemapIndexBuilder = $sitemapIndexBuilder;
         $this->writer = $writer;
         $this->channelRepository = $channelRepository;
+        $this->router = $router;
 
         parent::__construct('sylius:sitemap:generate');
     }
@@ -65,6 +70,7 @@ final class GenerateSitemapCommand extends Command
     {
         $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName()));
 
+        $this->router->getContext()->setHost($channel->getHostname() ?? 'localhost');
         // TODO make sure providers are every time emptied (reset call or smth?)
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
             $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));

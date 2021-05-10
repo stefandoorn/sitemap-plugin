@@ -26,6 +26,7 @@
             <argument type="service" id="sylius.sitemap_index_builder" />
             <argument type="service" id="sylius.sitemap_writer" />
             <argument type="service" id="sylius.repository.channel" />
+            <argument type="service" id="router" />
 
             <tag name="console.command" />
         </service>
