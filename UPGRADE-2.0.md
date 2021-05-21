@@ -12,7 +12,7 @@
 ## New features
 
 * Generation of sitemaps is done via the CLI, schedule them in a cronjob:
-    * Sitemap Index: `bin/console sylius:sitemap:generate-index`
+    * Sitemap Index: `bin/console sylius:sitemap:generate`
 * Sitemap URLs now support adding images. The default providers do this where possible. It can be disabled using the `images` configuration key.
 
 ## Removed features
