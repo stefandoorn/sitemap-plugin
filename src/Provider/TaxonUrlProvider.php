@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Provider;
+namespace StefanDoorn\SyliusSitemapPlugin\Provider;
 
-use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
-use SitemapPlugin\Factory\UrlFactoryInterface;
-use SitemapPlugin\Model\ChangeFrequency;
+use StefanDoorn\SyliusSitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -49,7 +49,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
         return 'taxons';
     }
 
-    public function generate(ChannelInterface $channel): iterable
+    public function generate(ChannelInterface $channel): array
     {
         $urls = [];
 

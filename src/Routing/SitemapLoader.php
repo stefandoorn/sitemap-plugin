@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Routing;
+namespace StefanDoorn\SyliusSitemapPlugin\Routing;
 
-use SitemapPlugin\Builder\SitemapBuilderInterface;
-use SitemapPlugin\Exception\RouteExistsException;
+use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Exception\RouteExistsException;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -22,10 +22,11 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
 
     public function __construct(SitemapBuilderInterface $sitemapBuilder)
     {
+        parent::__construct();
         $this->sitemapBuilder = $sitemapBuilder;
     }
 
-    public function load($resource, $type = null): RouteCollection
+    public function load($resource, string $type = null): RouteCollection
     {
         $routes = new RouteCollection();
 
@@ -62,8 +63,8 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
         return $routes;
     }
 
-    public function supports($resource, $type = null): bool
+    public function supports($resource, string $type = null): bool
     {
-        return null !== $type && 'sitemap' === $type;
+        return 'sitemap' === $type;
     }
 }

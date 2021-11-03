@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Provider;
+namespace spec\StefanDoorn\SyliusSitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
-use SitemapPlugin\Factory\UrlFactoryInterface;
-use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
-use SitemapPlugin\Model\AlternativeUrlInterface;
-use SitemapPlugin\Model\ChangeFrequency;
-use SitemapPlugin\Model\UrlInterface;
-use SitemapPlugin\Provider\ProductUrlProvider;
-use SitemapPlugin\Provider\UrlProviderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\AlternativeUrlInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\ChangeFrequency;
+use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
+use StefanDoorn\SyliusSitemapPlugin\Provider\ProductUrlProvider;
+use StefanDoorn\SyliusSitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Model;
+namespace Tests\StefanDoorn\SyliusSitemapPlugin\Model;
 
 use PHPUnit\Framework\TestCase;
-use SitemapPlugin\Model\ChangeFrequency;
+use StefanDoorn\SyliusSitemapPlugin\Model\ChangeFrequency;
 
 final class ChangeFrequencyTest extends TestCase
 {

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<psalm
+        errorLevel="3"
+        resolveFromConfigFile="true"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://getpsalm.org/schema/config"
+        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="src" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <PossiblyNullReference>
+            <errorLevel type="suppress">
+                <file name="src/DependencyInjection/Configuration.php" />
+            </errorLevel>
+        </PossiblyNullReference>
+
+        <PossiblyUndefinedMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::arrayNode" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::scalarNode" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::variableNode" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::booleanNode" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::integerNode" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::children" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::addDefaultsIfNotSet" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeParentInterface::end" />
+            </errorLevel>
+        </PossiblyUndefinedMethod>
+    </issueHandlers>
+</psalm>

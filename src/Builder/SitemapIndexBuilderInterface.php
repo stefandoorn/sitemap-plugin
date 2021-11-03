@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder;
+namespace StefanDoorn\SyliusSitemapPlugin\Builder;
 
-use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Provider\IndexUrlProviderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
+use StefanDoorn\SyliusSitemapPlugin\Provider\IndexUrlProviderInterface;
 
 interface SitemapIndexBuilderInterface extends BuilderInterface
 {

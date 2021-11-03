@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Factory;
+namespace StefanDoorn\SyliusSitemapPlugin\Factory;
 
-use SitemapPlugin\Model\Sitemap;
-use SitemapPlugin\Model\SitemapInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\Sitemap;
+use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
 
 final class SitemapFactory implements SitemapFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createNew(): SitemapInterface
     {

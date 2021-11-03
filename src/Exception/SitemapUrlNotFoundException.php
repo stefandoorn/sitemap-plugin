@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Exception;
+namespace StefanDoorn\SyliusSitemapPlugin\Exception;
 
-use SitemapPlugin\Model\UrlInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
 
 final class SitemapUrlNotFoundException extends \Exception
 {

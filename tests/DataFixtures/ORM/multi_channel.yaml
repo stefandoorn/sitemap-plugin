@@ -1,0 +1,35 @@
+Sylius\Component\Core\Model\Channel:
+    us_web_channel:
+        code: "US_WEB"
+        name: "US Web Store"
+        hostname: "localhost"
+        baseCurrency: "@usd"
+        defaultLocale: "@locale_en_us"
+        locales: ["@locale_en_us", "@locale_nl_nl"]
+        color: "black"
+        enabled: true
+        taxCalculationStrategy: "order_items_based"
+        accountVerificationRequired: true
+    fr_web_channel:
+        code: "FR_WEB"
+        name: "FR Web Store"
+        hostname: "store.fr"
+        baseCurrency: "@usd"
+        defaultLocale: "@locale_en_us"
+        locales: [ "@locale_en_us", "@locale_nl_nl" ]
+        color: "white"
+        enabled: true
+        taxCalculationStrategy: "order_items_based"
+        accountVerificationRequired: true
+
+Sylius\Component\Currency\Model\Currency:
+    usd:
+        code: USD
+    euro:
+        code: EUR
+
+Sylius\Component\Locale\Model\Locale:
+    locale_en_us:
+        code: en_US
+    locale_nl_nl:
+        code: nl_NL

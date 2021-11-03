@@ -21,42 +21,32 @@ extraction to a separate bundle.
 * Product provider supports locales (hreflang) & is channel aware
 * Taxon provider supports locales (hreflang)
 
-## Installation
+## Installation from Sylius 1.9
 
 1. Run `composer require stefandoorn/sitemap-plugin`.
-2. Add to `app/AppKernel.php`:
+2. Add to `app/config/bundles.php`:
 
 ```
-  new SitemapPlugin\SitemapPlugin(),
+  StefanDoorn\SyliusSitemapPlugin\StefanDoornSyliusSitemapPlugin::class => ['all' => true],
 ```
 
-3. Add to `app/config/config.yml`: 
+3. Add to `app/config/packages/_sylius.yaml`: 
 
 ```
-  - { resource: "@SitemapPlugin/Resources/config/config.yml" }
+    - { resource: "@StefanDoornSyliusSitemapPlugin/Resources/config/config.yaml" }
 ```
 
-4. Add to `app/config/routing.yml`: 
+4. Add to `app/config/routes.yaml`: 
 
 ```
-sylius_sitemap:
-     resource: "@SitemapPlugin/Resources/config/routing.yml"
+stefandoorn_sylius_sitemap:
+    resource: "@StefanDoornSyliusSitemapPlugin/Resources/config/routing.yml"
 ```
 
-### Installation from Sylius 1.7:
-
-1. Run `composer require stefandoorn/sitemap-plugin`.
-
-2. Add to `app/config/packages/sylius_sitemap.yaml`: 
+5. Add to `app/config/packages/stefandoorn_sylius_sitemap.yaml`: 
 
    -  [Default configuration](#default-configuration)
 
-3. Add to `app/config/routes/sylius_sitemap.yml`: 
-
-```
-sylius_sitemap:
-     resource: "@SitemapPlugin/Resources/config/routing.yml"
-```
 
 ## Usage
 
@@ -83,10 +73,10 @@ Next to this, each provider registeres it's own URI. Take a look in the sitemap 
 
 ## Default Configuration
 
-Get a full list of configuration: `bin/console config:dump-reference sitemap`
+Get a full list of configuration: `bin/console  config:dump-reference stefan_doorn_sylius_sitemap`
 
 ```yaml
-sitemap:
+stefan_doorn_sylius_sitemap:
     providers:
         products: true
         taxons: true
@@ -104,7 +94,7 @@ sitemap:
 The request context is also important for generating the URLs inside the sitemap:
 
 * The hostname is defined per channel, if nothing set it defaults to `localhost`
-* Other request context settings can be adjusted as mentioned in the [Symfony docs](https://symfony.com/doc/4.1/console/request_context.html#configuring-the-request-context-globally)
+* Other request context settings can be adjusted as mentioned in the [Symfony docs](https://symfony.com/doc/current/routing.html#generating-urls-in-commands)
 
 ## Default storage
 

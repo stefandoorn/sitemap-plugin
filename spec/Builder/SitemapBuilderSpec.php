@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Builder;
+namespace spec\StefanDoorn\SyliusSitemapPlugin\Builder;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Builder\SitemapBuilder;
-use SitemapPlugin\Builder\SitemapBuilderInterface;
-use SitemapPlugin\Factory\SitemapFactoryInterface;
-use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Model\UrlInterface;
-use SitemapPlugin\Provider\UrlProviderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilder;
+use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\SitemapFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
+use StefanDoorn\SyliusSitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 
 final class SitemapBuilderSpec extends ObjectBehavior

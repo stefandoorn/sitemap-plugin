@@ -32,4 +32,36 @@
     <changefreq>always</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>http://localhost/en_US/products/test2</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/products/test2"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/products/test2"/>
+    <lastmod>@string@.isDateTime()</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost/nl_NL/products/test2</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/products/test2"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/products/test2"/>
+    <lastmod>@string@.isDateTime()</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost/en_US/products/test3</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/products/test3"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/products/test3"/>
+    <lastmod>@string@.isDateTime()</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost/nl_NL/products/test3</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost/en_US/products/test3"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="http://localhost/nl_NL/products/test3"/>
+    <lastmod>@string@.isDateTime()</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Model;
+namespace StefanDoorn\SyliusSitemapPlugin\Model;
 
 final class AlternativeUrl implements AlternativeUrlInterface
 {

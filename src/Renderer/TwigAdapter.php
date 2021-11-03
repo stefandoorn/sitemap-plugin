@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Renderer;
+namespace StefanDoorn\SyliusSitemapPlugin\Renderer;
 
-use SitemapPlugin\Model\SitemapInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
 use Twig\Environment;
 
 final class TwigAdapter implements RendererAdapterInterface

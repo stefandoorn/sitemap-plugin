@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\DependencyInjection\Compiler;
+namespace Tests\StefanDoorn\SyliusSitemapPlugin\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\DefinitionHasMethodCallConstraint;
-use SitemapPlugin\Builder\SitemapBuilder;
-use SitemapPlugin\Builder\SitemapIndexBuilder;
-use SitemapPlugin\DependencyInjection\Compiler\SitemapProviderPass;
-use SitemapPlugin\Provider\IndexUrlProvider;
-use SitemapPlugin\Provider\ProductUrlProvider;
+use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilder;
+use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapIndexBuilder;
+use StefanDoorn\SyliusSitemapPlugin\DependencyInjection\Compiler\SitemapProviderPass;
+use StefanDoorn\SyliusSitemapPlugin\Provider\IndexUrlProvider;
+use StefanDoorn\SyliusSitemapPlugin\Provider\ProductUrlProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;

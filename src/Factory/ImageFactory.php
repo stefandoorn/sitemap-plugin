@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Factory;
+namespace StefanDoorn\SyliusSitemapPlugin\Factory;
 
-use SitemapPlugin\Model\Image;
-use SitemapPlugin\Model\ImageInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\Image;
+use StefanDoorn\SyliusSitemapPlugin\Model\ImageInterface;
 
 final class ImageFactory implements ImageFactoryInterface
 {

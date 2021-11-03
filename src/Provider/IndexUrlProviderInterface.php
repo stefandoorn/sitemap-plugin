@@ -2,14 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Provider;
+namespace StefanDoorn\SyliusSitemapPlugin\Provider;
 
 interface IndexUrlProviderInterface
 {
-    /**
-     * @return array
-     */
-    public function generate(): iterable;
+    public function generate(): array;
 
     public function addProvider(UrlProviderInterface $provider): void;
 }

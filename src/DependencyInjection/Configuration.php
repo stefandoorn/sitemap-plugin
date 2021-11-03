@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\DependencyInjection;
+namespace StefanDoorn\SyliusSitemapPlugin\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -15,14 +14,7 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('stefandoorn_sylius_sitemap');
         $rootNode = $treeBuilder->getRootNode();
 
-        $this->addSitemapSection($rootNode);
-
-        return $treeBuilder;
-    }
-
-    private function addSitemapSection(ArrayNodeDefinition $node): void
-    {
-        $node
+        $rootNode
             ->children()
                 ->arrayNode('providers')
                     ->addDefaultsIfNotSet()
@@ -33,10 +25,10 @@ final class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->scalarNode('template')
-                    ->defaultValue('@SitemapPlugin/show.xml.twig')
+                    ->defaultValue('@StefanDoornSyliusSitemapPlugin/show.xml.twig')
                 ->end()
                 ->scalarNode('index_template')
-                    ->defaultValue('@SitemapPlugin/index.xml.twig')
+                    ->defaultValue('@StefanDoornSyliusSitemapPlugin/index.xml.twig')
                 ->end()
                 ->scalarNode('exclude_taxon_root')
                     ->info('Often you don\'t want to include the root of your taxon tree as it has a generic name as \'products\'.')
@@ -72,5 +64,7 @@ final class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end();
+
+        return $treeBuilder;
     }
 }

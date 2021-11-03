@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Command;
+namespace StefanDoorn\SyliusSitemapPlugin\Command;
 
-use SitemapPlugin\Builder\SitemapBuilderInterface;
-use SitemapPlugin\Builder\SitemapIndexBuilderInterface;
-use SitemapPlugin\Filesystem\Writer;
-use SitemapPlugin\Renderer\SitemapRendererInterface;
+use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapIndexBuilderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Filesystem\Writer;
+use StefanDoorn\SyliusSitemapPlugin\Renderer\SitemapRendererInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Console\Command\Command;
@@ -68,26 +68,26 @@ final class GenerateSitemapCommand extends Command
 
     private function executeChannel(ChannelInterface $channel, OutputInterface $output): void
     {
-        $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName()));
+        $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName() ?? 'no_name'));
 
         $this->router->getContext()->setHost($channel->getHostname() ?? 'localhost');
         // TODO make sure providers are every time emptied (reset call or smth?)
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
-            $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
+            $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode() ?? 'no_code'));
 
             $sitemap = $this->sitemapBuilder->build($provider, $channel); // TODO use provider instance, not the name
             $xml = $this->sitemapRenderer->render($sitemap);
-            $path = $path = $this->path($channel, \sprintf('%s.xml', $provider->getName()));
+            $path = $this->path($channel, \sprintf('%s.xml', $provider->getName()));
 
             $this->writer->write(
                 $path,
                 $xml
             );
 
-            $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
+            $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode() ?? 'no_code', $path));
         }
 
-        $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
+        $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode() ?? 'no_code'));
 
         $sitemap = $this->sitemapIndexBuilder->build();
         $xml = $this->sitemapIndexRenderer->render($sitemap);
@@ -98,12 +98,12 @@ final class GenerateSitemapCommand extends Command
             $xml
         );
 
-        $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
+        $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode() ?? 'no_code', $path));
     }
 
     private function path(ChannelInterface $channel, string $path): string
     {
-        return \sprintf('%s/%s', $channel->getCode(), $path);
+        return \sprintf('%s/%s', $channel->getCode() ?? 'no_code', $path);
     }
 
     /**

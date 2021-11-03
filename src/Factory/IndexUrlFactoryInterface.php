@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Factory;
+namespace StefanDoorn\SyliusSitemapPlugin\Factory;
 
-use SitemapPlugin\Model\IndexUrlInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\IndexUrlInterface;
 
 interface IndexUrlFactoryInterface
 {

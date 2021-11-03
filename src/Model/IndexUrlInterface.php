@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Model;
+namespace StefanDoorn\SyliusSitemapPlugin\Model;
 
 use DateTimeInterface;
 
@@ -14,5 +14,5 @@ interface IndexUrlInterface
 
     public function getLastModification(): ?DateTimeInterface;
 
-    public function setLastModification(?DateTimeInterface $lastModification);
+    public function setLastModification(?DateTimeInterface $lastModification): void;
 }

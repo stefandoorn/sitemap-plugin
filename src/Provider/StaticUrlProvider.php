@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Provider;
+namespace StefanDoorn\SyliusSitemapPlugin\Provider;
 
-use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
-use SitemapPlugin\Factory\UrlFactoryInterface;
-use SitemapPlugin\Model\ChangeFrequency;
+use StefanDoorn\SyliusSitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -18,7 +18,7 @@ final class StaticUrlProvider implements UrlProviderInterface
 
     private AlternativeUrlFactoryInterface $urlAlternativeFactory;
 
-    /** @var string[] */
+    /** @var array<string, array> */
     private array $routes;
 
     private ChannelInterface $channel;
@@ -40,7 +40,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         return 'static';
     }
 
-    public function generate(ChannelInterface $channel): iterable
+    public function generate(ChannelInterface $channel): array
     {
         $this->channel = $channel;
         $urls = [];

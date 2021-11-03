@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Generator;
+namespace StefanDoorn\SyliusSitemapPlugin\Generator;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use SitemapPlugin\Factory\ImageFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\ImageFactoryInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 
@@ -46,6 +46,9 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
 
             $sitemapImage = $this->sitemapImageUrlFactory->createNew($this->imagineCacheManager->getBrowserPath($path, $this->imagePreset));
 
+            /**
+             * @psalm-suppress InvalidArgument
+             */
             $images->add($sitemapImage);
         }
 

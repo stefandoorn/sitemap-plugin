@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Model;
+namespace Tests\StefanDoorn\SyliusSitemapPlugin\Model;
 
 use PHPUnit\Framework\TestCase;
-use SitemapPlugin\Model\Sitemap;
-use SitemapPlugin\Model\Url;
+use StefanDoorn\SyliusSitemapPlugin\Model\Sitemap;
+use StefanDoorn\SyliusSitemapPlugin\Model\Url;
 
 final class SitemapTest extends TestCase
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Exception;
+namespace Tests\StefanDoorn\SyliusSitemapPlugin\Exception;
 
 use PHPUnit\Framework\TestCase;
-use SitemapPlugin\Exception\RouteExistsException;
+use StefanDoorn\SyliusSitemapPlugin\Exception\RouteExistsException;
 
 final class RouteExistsExceptionTest extends TestCase
 {

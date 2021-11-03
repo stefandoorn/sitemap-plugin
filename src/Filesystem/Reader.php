@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Filesystem;
+namespace StefanDoorn\SyliusSitemapPlugin\Filesystem;
 
 use Gaufrette\FilesystemInterface;
 use Gaufrette\Stream;

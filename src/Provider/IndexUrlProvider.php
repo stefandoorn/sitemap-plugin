@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Provider;
+namespace StefanDoorn\SyliusSitemapPlugin\Provider;
 
-use SitemapPlugin\Factory\IndexUrlFactoryInterface;
-use SitemapPlugin\Model\IndexUrlInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\IndexUrlFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\IndexUrlInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 final class IndexUrlProvider implements IndexUrlProviderInterface
@@ -33,7 +33,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
         $this->providers[] = $provider;
     }
 
-    public function generate(): iterable
+    public function generate(): array
     {
         foreach ($this->providers as $provider) {
             $location = $this->router->generate('sylius_sitemap_' . $provider->getName());

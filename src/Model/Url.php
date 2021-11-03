@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Model;
+namespace StefanDoorn\SyliusSitemapPlugin\Model;
 
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,10 +18,8 @@ final class Url implements UrlInterface
 
     private ?float $priority = null;
 
-    /** @var Collection|AlternativeUrlInterface[] */
     private Collection $alternatives;
 
-    /** @var Collection|ImageInterface[] */
     private Collection $images;
 
     public function __construct(string $location)
@@ -70,24 +68,19 @@ final class Url implements UrlInterface
     {
         if (0 > $priority || 1 < $priority) {
             throw new \InvalidArgumentException(\sprintf(
-                'The value %s is not supported by the option priority, it must be a number between 0.0 and 1.0.', $priority
+                'The value %s is not supported by the option priority, it must be a number between 0.0 and 1.0.',
+                $priority
             ));
         }
 
         $this->priority = $priority;
     }
 
-    /**
-     * @return Collection|AlternativeUrlInterface[]
-     */
     public function getAlternatives(): Collection
     {
         return $this->alternatives;
     }
 
-    /**
-     * @param AlternativeUrlInterface[] $alternatives
-     */
     public function setAlternatives(iterable $alternatives): void
     {
         $this->alternatives->clear();
@@ -119,17 +112,11 @@ final class Url implements UrlInterface
         return !$this->alternatives->isEmpty();
     }
 
-    /**
-     * @return Collection|ImageInterface[]
-     */
     public function getImages(): Collection
     {
         return $this->images;
     }
 
-    /**
-     * @param ImageInterface[] $images
-     */
     public function setImages(iterable $images): void
     {
         $this->images->clear();

@@ -2,11 +2,19 @@
 /node_modules/
 /composer.lock
 
+.idea*
+/bin/*
+!/bin/.gitkeep
+!/bin/create_node_symlink.php
+
 /etc/build/*
 !/etc/build/.gitignore
 
 /tests/Application/yarn.lock
 
-/behat.yml
-/phpspec.yml
 /.phpunit.result.cache
+/behat.yml
+/phpunit.xml
+/phpspec.yml
+
+/node_modules

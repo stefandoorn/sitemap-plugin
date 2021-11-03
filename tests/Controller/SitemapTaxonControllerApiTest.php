@@ -2,51 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Controller;
+namespace Tests\StefanDoorn\SyliusSitemapPlugin\Controller;
 
-use Sylius\Component\Core\Model\Taxon;
-
-final class SitemapTaxonControllerApiTest extends AbstractTestController
+final class SitemapTaxonControllerApiTest extends XmlApiTestCase
 {
-    use TearDownTrait;
-
-    /**
-     * @before
-     */
-    public function setUpDatabase(): void
-    {
-        parent::setUpDatabase();
-
-        $root = new Taxon();
-        $root->setCurrentLocale('en_US');
-        $root->setName('Root');
-        $root->setCode('root');
-        $root->setSlug('root');
-
-        $taxon = new Taxon();
-        $taxon->setCurrentLocale('en_US');
-        $taxon->setName('Test');
-        $taxon->setCode('test-code');
-        $taxon->setSlug('test');
-        $taxon->setParent($root);
-
-        $taxon = new Taxon();
-        $taxon->setCurrentLocale('en_US');
-        $taxon->setName('Mock');
-        $taxon->setCode('mock-code');
-        $taxon->setSlug('mock');
-        $taxon->setParent($root);
-
-        $this->getEntityManager()->persist($root);
-        $this->getEntityManager()->flush();
-
-        $this->generateSitemaps();
-    }
-
     public function testShowActionResponse()
     {
+        $this->loadFixturesFromFiles(['channel.yaml', 'taxon.yaml']);
+        $this->generateSitemaps();
         $response = $this->getBufferedResponse('/sitemap/taxons.xml');
 
         $this->assertResponse($response, 'show_sitemap_taxons');
+        $this->deleteSitemaps();
     }
 }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder;
+namespace StefanDoorn\SyliusSitemapPlugin\Builder;
 
-use SitemapPlugin\Factory\SitemapFactoryInterface;
-use SitemapPlugin\Model\SitemapInterface;
-use SitemapPlugin\Provider\UrlProviderInterface;
+use StefanDoorn\SyliusSitemapPlugin\Factory\SitemapFactoryInterface;
+use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
+use StefanDoorn\SyliusSitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 
 final class SitemapBuilder implements SitemapBuilderInterface

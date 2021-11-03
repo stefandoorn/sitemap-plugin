@@ -2,26 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Controller;
+namespace Tests\StefanDoorn\SyliusSitemapPlugin\Controller;
 
-final class SitemapStaticControllerApiTest extends AbstractTestController
+final class SitemapStaticControllerApiTest extends XmlApiTestCase
 {
-    use TearDownTrait;
-
-    /**
-     * @before
-     */
-    public function setUpDatabase(): void
-    {
-        parent::setUpDatabase();
-
-        $this->generateSitemaps();
-    }
-
     public function testShowActionResponse()
     {
+        $this->loadFixturesFromFiles(['channel.yaml']);
+        $this->generateSitemaps();
         $response = $this->getBufferedResponse('/sitemap/static.xml');
 
         $this->assertResponse($response, 'show_sitemap_static');
+        $this->deleteSitemaps();
     }
 }

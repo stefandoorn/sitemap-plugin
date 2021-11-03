@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Controller;
+namespace StefanDoorn\SyliusSitemapPlugin\Controller;
 
-use SitemapPlugin\Filesystem\Reader;
+use StefanDoorn\SyliusSitemapPlugin\Filesystem\Reader;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,7 +23,7 @@ final class SitemapIndexController extends AbstractController
 
     public function showAction(): Response
     {
-        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), 'sitemap_index.xml');
+        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode() ?? 'no_code', 'sitemap_index.xml');
 
         return $this->createResponse($path);
     }

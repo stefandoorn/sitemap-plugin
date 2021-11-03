@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Exception;
+namespace spec\StefanDoorn\SyliusSitemapPlugin\Exception;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Exception\SitemapUrlNotFoundException;
-use SitemapPlugin\Model\UrlInterface;
+use StefanDoorn\SyliusSitemapPlugin\Exception\SitemapUrlNotFoundException;
+use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
 
 final class SitemapUrlNotFoundExceptionSpec extends ObjectBehavior
 {
