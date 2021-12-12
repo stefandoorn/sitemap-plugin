@@ -9,7 +9,7 @@ use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SitemapPlugin\Command\GenerateSitemapCommand;
-use Symfony\Component\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,17 +25,8 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
 
     protected function generateSitemaps(): void
     {
-        $application = new Application(self::getKernelClass());
-
-        $application->add(new GenerateSitemapCommand(
-            self::getContainer()->get('sylius.sitemap_renderer'),
-            self::getContainer()->get('sylius.sitemap_index_renderer'),
-            self::getContainer()->get('sylius.sitemap_builder'),
-            self::getContainer()->get('sylius.sitemap_index_builder'),
-            self::getContainer()->get('sylius.sitemap_writer'),
-            self::getContainer()->get('sylius.repository.channel'),
-            self::getContainer()->get('router')
-        ));
+        $kernel = self::bootKernel();
+        $application = new Application($kernel);
 
         $command = $application->find('sylius:sitemap:generate');
         $commandTester = new CommandTester($command);
