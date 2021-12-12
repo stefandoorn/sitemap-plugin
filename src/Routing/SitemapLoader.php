@@ -26,7 +26,7 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
         $this->sitemapBuilder = $sitemapBuilder;
     }
 
-    public function load($resource, ?string $type = null)
+    public function load($resource, $type = null)
     {
         $routes = new RouteCollection();
 
