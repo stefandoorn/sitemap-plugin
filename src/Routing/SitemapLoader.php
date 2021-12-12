@@ -20,9 +20,10 @@ final class SitemapLoader extends Loader implements ContainerAwareInterface
 
     private SitemapBuilderInterface $sitemapBuilder;
 
-    public function __construct(SitemapBuilderInterface $sitemapBuilder)
+    public function __construct(SitemapBuilderInterface $sitemapBuilder, string $env = null)
     {
-        parent::__construct();
+        parent::__construct($env);
+
         $this->sitemapBuilder = $sitemapBuilder;
     }
 
