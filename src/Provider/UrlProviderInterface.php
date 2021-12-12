@@ -8,7 +8,7 @@ use Sylius\Component\Core\Model\ChannelInterface;
 
 interface UrlProviderInterface
 {
-    public function generate(ChannelInterface $channel): array;
+    public function generate(ChannelInterface $channel): iterable;
 
     public function getName(): string;
 }

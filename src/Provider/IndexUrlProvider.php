@@ -33,7 +33,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
         $this->providers[] = $provider;
     }
 
-    public function generate(): array
+    public function generate(): iterable
     {
         foreach ($this->providers as $provider) {
             $location = $this->router->generate('sylius_sitemap_' . $provider->getName());

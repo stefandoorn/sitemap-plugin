@@ -62,7 +62,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     /**
      * @inheritdoc
      */
-    public function generate(ChannelInterface $channel): array
+    public function generate(ChannelInterface $channel): iterable
     {
         $this->channel = $channel;
         $urls = [];

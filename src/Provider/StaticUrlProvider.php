@@ -40,7 +40,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         return 'static';
     }
 
-    public function generate(ChannelInterface $channel): array
+    public function generate(ChannelInterface $channel): iterable
     {
         $this->channel = $channel;
         $urls = [];

@@ -49,7 +49,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
         return 'taxons';
     }
 
-    public function generate(ChannelInterface $channel): array
+    public function generate(ChannelInterface $channel): iterable
     {
         $urls = [];
 

@@ -68,7 +68,7 @@ final class GenerateSitemapCommand extends Command
 
     private function executeChannel(ChannelInterface $channel, OutputInterface $output): void
     {
-        $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName() ?? 'no_name'));
+        $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName()));
 
         $this->router->getContext()->setHost($channel->getHostname() ?? 'localhost');
         // TODO make sure providers are every time emptied (reset call or smth?)

@@ -6,7 +6,7 @@ namespace SitemapPlugin\Provider;
 
 interface IndexUrlProviderInterface
 {
-    public function generate(): array;
+    public function generate(): iterable;
 
     public function addProvider(UrlProviderInterface $provider): void;
 }
