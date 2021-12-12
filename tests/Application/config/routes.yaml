@@ -1,2 +1,2 @@
 stefandoorn_sylius_sitemap:
-    resource: "@StefanDoornSyliusSitemapPlugin/Resources/config/routing.yml"
+    resource: "@SitemapPlugin/Resources/config/routing.yml"
