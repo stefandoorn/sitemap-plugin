@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Renderer;
+namespace spec\SitemapPlugin\Builder\Renderer;
 
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
-use StefanDoorn\SyliusSitemapPlugin\Renderer\RendererAdapterInterface;
-use StefanDoorn\SyliusSitemapPlugin\Renderer\SitemapRenderer;
-use StefanDoorn\SyliusSitemapPlugin\Renderer\SitemapRendererInterface;
+use SitemapPlugin\Builder\Model\SitemapInterface;
+use SitemapPlugin\Builder\Renderer\RendererAdapterInterface;
+use SitemapPlugin\Builder\Renderer\SitemapRenderer;
+use SitemapPlugin\Builder\Renderer\SitemapRendererInterface;
 
 final class SitemapRendererSpec extends ObjectBehavior
 {

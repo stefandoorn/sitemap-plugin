@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\StefanDoorn\SyliusSitemapPlugin\Controller;
+namespace Tests\SitemapPlugin\Builder\Controller;
 
 final class SitemapTaxonControllerApiTest extends XmlApiTestCase
 {

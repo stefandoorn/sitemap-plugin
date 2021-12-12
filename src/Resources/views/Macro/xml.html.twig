@@ -1,12 +1,12 @@
 {%- macro last_modification(url) -%}
-    {# @var url \StefanDoorn\SyliusSitemapPlugin\Model\SitemapUrlInterface #}
+    {# @var url \SitemapPlugin\Builder\Model\SitemapUrlInterface #}
     {%- if url.lastModification is not same as(null) -%}
         <lastmod>{{ url.lastModification|date('c') }}</lastmod>
     {%- endif -%}
 {%- endmacro -%}
 
 {%- macro change_frequency(url) -%}
-    {# @var url \StefanDoorn\SyliusSitemapPlugin\Model\SitemapUrlInterface #}
+    {# @var url \SitemapPlugin\Builder\Model\SitemapUrlInterface #}
     {%- if url.changeFrequency is not same as(null) -%}
         <changefreq>{{ url.changeFrequency }}</changefreq>
     {%- endif -%}

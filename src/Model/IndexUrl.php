@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Model;
+namespace SitemapPlugin\Builder\Model;
 
 use DateTimeInterface;
 

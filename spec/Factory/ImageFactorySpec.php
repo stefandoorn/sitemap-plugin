@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Factory;
+namespace spec\SitemapPlugin\Builder\Factory;
 
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Factory\ImageFactory;
-use StefanDoorn\SyliusSitemapPlugin\Factory\ImageFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\Image;
+use SitemapPlugin\Builder\Factory\ImageFactory;
+use SitemapPlugin\Builder\Factory\ImageFactoryInterface;
+use SitemapPlugin\Builder\Model\Image;
 
 final class ImageFactorySpec extends ObjectBehavior
 {

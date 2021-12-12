@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Model;
+namespace spec\SitemapPlugin\Builder\Model;
 
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Model\Image;
-use StefanDoorn\SyliusSitemapPlugin\Model\ImageInterface;
+use SitemapPlugin\Builder\Model\Image;
+use SitemapPlugin\Builder\Model\ImageInterface;
 
 final class ImageSpec extends ObjectBehavior
 {

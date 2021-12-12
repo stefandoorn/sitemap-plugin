@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Factory;
+namespace SitemapPlugin\Builder\Factory;
 
-use StefanDoorn\SyliusSitemapPlugin\Model\IndexUrl;
-use StefanDoorn\SyliusSitemapPlugin\Model\IndexUrlInterface;
+use SitemapPlugin\Builder\Model\IndexUrl;
+use SitemapPlugin\Builder\Model\IndexUrlInterface;
 
 final class IndexUrlFactory implements IndexUrlFactoryInterface
 {

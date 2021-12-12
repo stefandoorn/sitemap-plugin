@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sylius.sitemap_writer" class="StefanDoorn\SyliusSitemapPlugin\Filesystem\Writer">
+        <service id="sylius.sitemap_writer" class="SitemapPlugin\Builder\Filesystem\Writer">
             <argument type="service">
                 <service class="Gaufrette\Filesystem">
                     <argument>%sylius.sitemap.filesystem%</argument>
@@ -10,7 +10,7 @@
             </argument>
         </service>
 
-        <service id="sylius.sitemap_reader" class="StefanDoorn\SyliusSitemapPlugin\Filesystem\Reader">
+        <service id="sylius.sitemap_reader" class="SitemapPlugin\Builder\Filesystem\Reader">
             <argument type="service">
                 <service class="Gaufrette\Filesystem">
                     <argument>%sylius.sitemap.filesystem%</argument>
@@ -19,7 +19,7 @@
             </argument>
         </service>
 
-        <service id="sylius.command.generate_sitemap" class="StefanDoorn\SyliusSitemapPlugin\Command\GenerateSitemapCommand">
+        <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Builder\Command\GenerateSitemapCommand">
             <argument type="service" id="sylius.sitemap_renderer" />
             <argument type="service" id="sylius.sitemap_index_renderer"/>
             <argument type="service" id="sylius.sitemap_builder" />
@@ -31,52 +31,52 @@
             <tag name="console.command" />
         </service>
 
-        <service id="sylius.controller.sitemap" class="StefanDoorn\SyliusSitemapPlugin\Controller\SitemapController">
+        <service id="sylius.controller.sitemap" class="SitemapPlugin\Builder\Controller\SitemapController">
             <argument type="service" id="sylius.context.channel"/>
             <argument type="service" id="sylius.sitemap_reader" />
 
             <tag name="controller.service_arguments" />
         </service>
-        <service id="sylius.controller.sitemap_index" class="StefanDoorn\SyliusSitemapPlugin\Controller\SitemapIndexController">
+        <service id="sylius.controller.sitemap_index" class="SitemapPlugin\Builder\Controller\SitemapIndexController">
             <argument type="service" id="sylius.context.channel"/>
             <argument type="service" id="sylius.sitemap_reader" />
 
             <tag name="controller.service_arguments" />
         </service>
 
-        <service id="sylius.sitemap_renderer.twig_adapter" class="StefanDoorn\SyliusSitemapPlugin\Renderer\TwigAdapter">
+        <service id="sylius.sitemap_renderer.twig_adapter" class="SitemapPlugin\Builder\Renderer\TwigAdapter">
             <argument type="service" id="twig" />
             <argument>%sylius.sitemap_template%</argument>
             <argument>%sylius.sitemap_hreflang%</argument>
             <argument>%sylius.sitemap_images%</argument>
         </service>
-        <service id="sylius.sitemap_index_renderer.twig_adapter" class="StefanDoorn\SyliusSitemapPlugin\Renderer\TwigAdapter">
+        <service id="sylius.sitemap_index_renderer.twig_adapter" class="SitemapPlugin\Builder\Renderer\TwigAdapter">
             <argument type="service" id="twig" />
             <argument>%sylius.sitemap_index_template%</argument>
         </service>
 
-        <service id="sylius.sitemap_renderer" class="StefanDoorn\SyliusSitemapPlugin\Renderer\SitemapRenderer">
+        <service id="sylius.sitemap_renderer" class="SitemapPlugin\Builder\Renderer\SitemapRenderer">
             <argument type="service" id="sylius.sitemap_renderer.twig_adapter" />
         </service>
-        <service id="sylius.sitemap_index_renderer" class="StefanDoorn\SyliusSitemapPlugin\Renderer\SitemapRenderer">
+        <service id="sylius.sitemap_index_renderer" class="SitemapPlugin\Builder\Renderer\SitemapRenderer">
             <argument type="service" id="sylius.sitemap_index_renderer.twig_adapter" />
         </service>
 
-        <service id="sylius.sitemap_factory" class="StefanDoorn\SyliusSitemapPlugin\Factory\SitemapFactory" />
-        <service id="sylius.sitemap_index_factory" class="StefanDoorn\SyliusSitemapPlugin\Factory\SitemapIndexFactory" />
-        <service id="sylius.sitemap_url_factory" class="StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactory" />
-        <service id="sylius.sitemap_url_alternative_factory" class="StefanDoorn\SyliusSitemapPlugin\Factory\AlternativeUrlFactory" />
-        <service id="sylius.sitemap_image_url_factory" class="StefanDoorn\SyliusSitemapPlugin\Factory\ImageFactory" />
-        <service id="sylius.sitemap_index_url_factory" class="StefanDoorn\SyliusSitemapPlugin\Factory\IndexUrlFactory" />
+        <service id="sylius.sitemap_factory" class="SitemapPlugin\Builder\Factory\SitemapFactory" />
+        <service id="sylius.sitemap_index_factory" class="SitemapPlugin\Builder\Factory\SitemapIndexFactory" />
+        <service id="sylius.sitemap_url_factory" class="SitemapPlugin\Builder\Factory\UrlFactory" />
+        <service id="sylius.sitemap_url_alternative_factory" class="SitemapPlugin\Builder\Factory\AlternativeUrlFactory" />
+        <service id="sylius.sitemap_image_url_factory" class="SitemapPlugin\Builder\Factory\ImageFactory" />
+        <service id="sylius.sitemap_index_url_factory" class="SitemapPlugin\Builder\Factory\IndexUrlFactory" />
 
-        <service id="sylius.sitemap_builder" class="StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilder">
+        <service id="sylius.sitemap_builder" class="SitemapPlugin\Builder\Builder\SitemapBuilder">
             <argument type="service" id="sylius.sitemap_factory" />
         </service>
-        <service id="sylius.sitemap_index_builder" class="StefanDoorn\SyliusSitemapPlugin\Builder\SitemapIndexBuilder">
+        <service id="sylius.sitemap_index_builder" class="SitemapPlugin\Builder\Builder\SitemapIndexBuilder">
             <argument type="service" id="sylius.sitemap_index_factory" />
         </service>
 
-        <service id="sylius.sitemap.routing_loader" class="StefanDoorn\SyliusSitemapPlugin\Routing\SitemapLoader">
+        <service id="sylius.sitemap.routing_loader" class="SitemapPlugin\Builder\Routing\SitemapLoader">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
@@ -84,13 +84,13 @@
             <tag name="routing.loader" />
         </service>
 
-        <service id="sylius.sitemap_index_provider.index" class="StefanDoorn\SyliusSitemapPlugin\Provider\IndexUrlProvider">
+        <service id="sylius.sitemap_index_provider.index" class="SitemapPlugin\Builder\Provider\IndexUrlProvider">
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_index_url_factory" />
             <tag name="sylius.sitemap_index_provider" />
         </service>
 
-        <service id="sylius.sitemap.generator.product_images_to_sitemap_images_collection" class="StefanDoorn\SyliusSitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGenerator">
+        <service id="sylius.sitemap.generator.product_images_to_sitemap_images_collection" class="SitemapPlugin\Builder\Generator\ProductImagesToSitemapImagesCollectionGenerator">
             <argument type="service" id="sylius.sitemap_image_url_factory" />
             <argument type="service" id="liip_imagine.cache.manager" />
             <argument>sylius_shop_product_original</argument>

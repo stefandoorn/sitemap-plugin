@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Provider;
+namespace SitemapPlugin\Builder\Provider;
 
-use StefanDoorn\SyliusSitemapPlugin\Factory\IndexUrlFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\IndexUrlInterface;
+use SitemapPlugin\Builder\Factory\IndexUrlFactoryInterface;
+use SitemapPlugin\Builder\Model\IndexUrlInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 final class IndexUrlProvider implements IndexUrlProviderInterface

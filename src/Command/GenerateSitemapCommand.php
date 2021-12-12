@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Command;
+namespace SitemapPlugin\Builder\Command;
 
-use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilderInterface;
-use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapIndexBuilderInterface;
-use StefanDoorn\SyliusSitemapPlugin\Filesystem\Writer;
-use StefanDoorn\SyliusSitemapPlugin\Renderer\SitemapRendererInterface;
+use SitemapPlugin\Builder\Builder\SitemapBuilderInterface;
+use SitemapPlugin\Builder\Builder\SitemapIndexBuilderInterface;
+use SitemapPlugin\Builder\Filesystem\Writer;
+use SitemapPlugin\Builder\Renderer\SitemapRendererInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Console\Command\Command;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\StefanDoorn\SyliusSitemapPlugin\Exception;
+namespace Tests\SitemapPlugin\Builder\Exception;
 
 use PHPUnit\Framework\TestCase;
-use StefanDoorn\SyliusSitemapPlugin\Exception\SitemapUrlNotFoundException;
-use StefanDoorn\SyliusSitemapPlugin\Model\Url;
+use SitemapPlugin\Builder\Exception\SitemapUrlNotFoundException;
+use SitemapPlugin\Builder\Model\Url;
 
 final class SitemapUrlNotFoundExceptionTest extends TestCase
 {

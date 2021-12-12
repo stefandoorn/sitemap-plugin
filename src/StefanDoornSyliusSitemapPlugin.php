@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin;
+namespace SitemapPlugin\Builder;
 
-use StefanDoorn\SyliusSitemapPlugin\DependencyInjection\Compiler\SitemapProviderPass;
+use SitemapPlugin\Builder\DependencyInjection\Compiler\SitemapProviderPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;

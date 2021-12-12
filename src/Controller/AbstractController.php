@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Controller;
+namespace SitemapPlugin\Builder\Controller;
 
 use Gaufrette\StreamMode;
-use StefanDoorn\SyliusSitemapPlugin\Filesystem\Reader;
+use SitemapPlugin\Builder\Filesystem\Reader;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

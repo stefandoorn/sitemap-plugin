@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Provider;
+namespace SitemapPlugin\Builder\Provider;
 
-use StefanDoorn\SyliusSitemapPlugin\Factory\AlternativeUrlFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Builder\Factory\AlternativeUrlFactoryInterface;
+use SitemapPlugin\Builder\Factory\UrlFactoryInterface;
+use SitemapPlugin\Builder\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Generator;
+namespace SitemapPlugin\Builder\Generator;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use StefanDoorn\SyliusSitemapPlugin\Factory\ImageFactoryInterface;
+use SitemapPlugin\Builder\Factory\ImageFactoryInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 

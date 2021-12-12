@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Factory;
+namespace SitemapPlugin\Builder\Factory;
 
-use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Builder\Model\SitemapInterface;
 
 interface SitemapFactoryInterface
 {

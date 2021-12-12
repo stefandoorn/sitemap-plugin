@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\StefanDoorn\SyliusSitemapPlugin\Model;
+namespace Tests\SitemapPlugin\Builder\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
-use StefanDoorn\SyliusSitemapPlugin\Model\Image;
-use StefanDoorn\SyliusSitemapPlugin\Model\Url;
+use SitemapPlugin\Builder\Model\Image;
+use SitemapPlugin\Builder\Model\Url;
 
 final class SitemapUrlTest extends TestCase
 {

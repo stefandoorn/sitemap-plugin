@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Model;
+namespace SitemapPlugin\Builder\Model;
 
 use DateTimeInterface;
-use StefanDoorn\SyliusSitemapPlugin\Exception\SitemapUrlNotFoundException;
+use SitemapPlugin\Builder\Exception\SitemapUrlNotFoundException;
 
 final class Sitemap implements SitemapInterface
 {

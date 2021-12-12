@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Model;
+namespace spec\SitemapPlugin\Builder\Model;
 
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Model\AlternativeUrl;
-use StefanDoorn\SyliusSitemapPlugin\Model\AlternativeUrlInterface;
+use SitemapPlugin\Builder\Model\AlternativeUrl;
+use SitemapPlugin\Builder\Model\AlternativeUrlInterface;
 
 final class AlternativeUrlSpec extends ObjectBehavior
 {

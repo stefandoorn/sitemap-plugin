@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Provider;
+namespace SitemapPlugin\Builder\Provider;
 
 use Doctrine\Common\Collections\Collection;
-use StefanDoorn\SyliusSitemapPlugin\Factory\AlternativeUrlFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\ChangeFrequency;
-use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
+use SitemapPlugin\Builder\Factory\AlternativeUrlFactoryInterface;
+use SitemapPlugin\Builder\Factory\UrlFactoryInterface;
+use SitemapPlugin\Builder\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
+use SitemapPlugin\Builder\Model\ChangeFrequency;
+use SitemapPlugin\Builder\Model\UrlInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;

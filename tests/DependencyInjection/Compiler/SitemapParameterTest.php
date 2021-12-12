@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\StefanDoorn\SyliusSitemapPlugin\DependencyInjection\Compiler;
+namespace Tests\SitemapPlugin\Builder\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use StefanDoorn\SyliusSitemapPlugin\DependencyInjection\StefanDoornSyliusSitemapExtension;
+use SitemapPlugin\Builder\DependencyInjection\StefanDoornSyliusSitemapExtension;
 
 final class SitemapParameterTest extends AbstractExtensionTestCase
 {
@@ -26,21 +26,21 @@ final class SitemapParameterTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasParameter(\sprintf('sylius.provider.%s', 'static'), $static);
 
         if ($products) {
-            $this->assertContainerBuilderHasService('sylius.sitemap_provider.product', \StefanDoorn\SyliusSitemapPlugin\Provider\ProductUrlProvider::class);
+            $this->assertContainerBuilderHasService('sylius.sitemap_provider.product', \SitemapPlugin\Builder\Provider\ProductUrlProvider::class);
             $this->assertContainerBuilderHasServiceDefinitionWithTag('sylius.sitemap_provider.product', 'sylius.sitemap_provider');
         } else {
             $this->assertContainerBuilderNotHasService('sylius.sitemap_provider.product');
         }
 
         if ($taxons) {
-            $this->assertContainerBuilderHasService('sylius.sitemap_provider.taxon', \StefanDoorn\SyliusSitemapPlugin\Provider\TaxonUrlProvider::class);
+            $this->assertContainerBuilderHasService('sylius.sitemap_provider.taxon', \SitemapPlugin\Builder\Provider\TaxonUrlProvider::class);
             $this->assertContainerBuilderHasServiceDefinitionWithTag('sylius.sitemap_provider.taxon', 'sylius.sitemap_provider');
         } else {
             $this->assertContainerBuilderNotHasService('sylius.sitemap_provider.taxon');
         }
 
         if ($static) {
-            $this->assertContainerBuilderHasService('sylius.sitemap_provider.static', \StefanDoorn\SyliusSitemapPlugin\Provider\StaticUrlProvider::class);
+            $this->assertContainerBuilderHasService('sylius.sitemap_provider.static', \SitemapPlugin\Builder\Provider\StaticUrlProvider::class);
             $this->assertContainerBuilderHasServiceDefinitionWithTag('sylius.sitemap_provider.static', 'sylius.sitemap_provider');
         } else {
             $this->assertContainerBuilderNotHasService('sylius.sitemap_provider.static');

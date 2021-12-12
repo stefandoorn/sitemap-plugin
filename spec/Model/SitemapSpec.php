@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Model;
+namespace spec\SitemapPlugin\Builder\Model;
 
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Exception\SitemapUrlNotFoundException;
-use StefanDoorn\SyliusSitemapPlugin\Model\Sitemap;
-use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
+use SitemapPlugin\Builder\Exception\SitemapUrlNotFoundException;
+use SitemapPlugin\Builder\Model\Sitemap;
+use SitemapPlugin\Builder\Model\SitemapInterface;
+use SitemapPlugin\Builder\Model\UrlInterface;
 
 final class SitemapSpec extends ObjectBehavior
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Exception;
+namespace SitemapPlugin\Builder\Exception;
 
 final class RouteExistsException extends \Exception
 {

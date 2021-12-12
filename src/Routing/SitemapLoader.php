@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Routing;
+namespace SitemapPlugin\Builder\Routing;
 
-use StefanDoorn\SyliusSitemapPlugin\Builder\SitemapBuilderInterface;
-use StefanDoorn\SyliusSitemapPlugin\Exception\RouteExistsException;
+use SitemapPlugin\Builder\Builder\SitemapBuilderInterface;
+use SitemapPlugin\Builder\Exception\RouteExistsException;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;

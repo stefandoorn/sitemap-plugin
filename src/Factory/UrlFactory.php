@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Factory;
+namespace SitemapPlugin\Builder\Factory;
 
-use StefanDoorn\SyliusSitemapPlugin\Model\Url;
-use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
+use SitemapPlugin\Builder\Model\Url;
+use SitemapPlugin\Builder\Model\UrlInterface;
 
 final class UrlFactory implements UrlFactoryInterface
 {

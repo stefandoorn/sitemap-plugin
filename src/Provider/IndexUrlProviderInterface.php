@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Provider;
+namespace SitemapPlugin\Builder\Provider;
 
 interface IndexUrlProviderInterface
 {

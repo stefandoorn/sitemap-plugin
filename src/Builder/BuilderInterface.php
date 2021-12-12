@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Builder;
+namespace SitemapPlugin\Builder\Builder;
 
-use StefanDoorn\SyliusSitemapPlugin\Provider\UrlProviderInterface;
+use SitemapPlugin\Builder\Provider\UrlProviderInterface;
 
 interface BuilderInterface
 {

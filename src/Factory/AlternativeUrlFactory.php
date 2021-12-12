@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Factory;
+namespace SitemapPlugin\Builder\Factory;
 
-use StefanDoorn\SyliusSitemapPlugin\Model\AlternativeUrl;
-use StefanDoorn\SyliusSitemapPlugin\Model\AlternativeUrlInterface;
+use SitemapPlugin\Builder\Model\AlternativeUrl;
+use SitemapPlugin\Builder\Model\AlternativeUrlInterface;
 
 final class AlternativeUrlFactory implements AlternativeUrlFactoryInterface
 {

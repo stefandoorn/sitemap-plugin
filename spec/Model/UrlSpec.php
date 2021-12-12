@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Model;
+namespace spec\SitemapPlugin\Builder\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Model\ChangeFrequency;
-use StefanDoorn\SyliusSitemapPlugin\Model\ImageInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\Url;
-use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
+use SitemapPlugin\Builder\Model\ChangeFrequency;
+use SitemapPlugin\Builder\Model\ImageInterface;
+use SitemapPlugin\Builder\Model\Url;
+use SitemapPlugin\Builder\Model\UrlInterface;
 
 final class UrlSpec extends ObjectBehavior
 {

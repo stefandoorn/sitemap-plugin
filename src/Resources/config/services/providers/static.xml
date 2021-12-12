@@ -3,7 +3,7 @@
     <services>
         <defaults autowire="false" autoconfigure="false" public="false" />
 
-        <service id="sylius.sitemap_provider.static" class="StefanDoorn\SyliusSitemapPlugin\Provider\StaticUrlProvider">
+        <service id="sylius.sitemap_provider.static" class="SitemapPlugin\Builder\Provider\StaticUrlProvider">
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
             <argument type="service" id="sylius.sitemap_url_alternative_factory" />

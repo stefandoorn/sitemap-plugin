@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Factory;
+namespace spec\SitemapPlugin\Builder\Factory;
 
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactory;
-use StefanDoorn\SyliusSitemapPlugin\Factory\UrlFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\Url;
+use SitemapPlugin\Builder\Factory\UrlFactory;
+use SitemapPlugin\Builder\Factory\UrlFactoryInterface;
+use SitemapPlugin\Builder\Model\Url;
 
 final class UrlFactorySpec extends ObjectBehavior
 {

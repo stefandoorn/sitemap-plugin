@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: StefanDoorn\SyliusSitemapPlugin
-        psr4_prefix: StefanDoorn\SyliusSitemapPlugin
+        namespace: SitemapPlugin\Builder
+        psr4_prefix: SitemapPlugin\Builder

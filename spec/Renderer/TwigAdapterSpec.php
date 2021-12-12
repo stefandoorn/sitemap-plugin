@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace spec\StefanDoorn\SyliusSitemapPlugin\Renderer;
+namespace spec\SitemapPlugin\Builder\Renderer;
 
 use PhpSpec\ObjectBehavior;
-use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\UrlInterface;
-use StefanDoorn\SyliusSitemapPlugin\Renderer\RendererAdapterInterface;
-use StefanDoorn\SyliusSitemapPlugin\Renderer\TwigAdapter;
+use SitemapPlugin\Builder\Model\SitemapInterface;
+use SitemapPlugin\Builder\Model\UrlInterface;
+use SitemapPlugin\Builder\Renderer\RendererAdapterInterface;
+use SitemapPlugin\Builder\Renderer\TwigAdapter;
 use Twig\Environment;
 
 final class TwigAdapterSpec extends ObjectBehavior

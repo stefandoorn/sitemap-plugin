@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StefanDoorn\SyliusSitemapPlugin\Builder;
+namespace SitemapPlugin\Builder\Builder;
 
-use StefanDoorn\SyliusSitemapPlugin\Factory\SitemapIndexFactoryInterface;
-use StefanDoorn\SyliusSitemapPlugin\Model\SitemapInterface;
-use StefanDoorn\SyliusSitemapPlugin\Provider\IndexUrlProviderInterface;
-use StefanDoorn\SyliusSitemapPlugin\Provider\UrlProviderInterface;
+use SitemapPlugin\Builder\Factory\SitemapIndexFactoryInterface;
+use SitemapPlugin\Builder\Model\SitemapInterface;
+use SitemapPlugin\Builder\Provider\IndexUrlProviderInterface;
+use SitemapPlugin\Builder\Provider\UrlProviderInterface;
 
 final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
 {

@@ -27,7 +27,7 @@ extraction to a separate bundle.
 2. Add to `app/config/bundles.php`:
 
 ```
-  StefanDoorn\SyliusSitemapPlugin\StefanDoornSyliusSitemapPlugin::class => ['all' => true],
+  SitemapPlugin\Builder\StefanDoornSyliusSitemapPlugin::class => ['all' => true],
 ```
 
 3. Add to `app/config/packages/_sylius.yaml`: 
