@@ -77,6 +77,15 @@
         ],
         "post-create-project-cmd": [
             "php bin/create_node_symlink.php"
+        ],
+        "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l 3 src",
+        "check-style": "vendor/bin/ecs check --ansi src/ tests/ spec/",
+        "fix-style": "vendor/bin/ecs check --ansi src/ tests/ spec/ --fix",
+        "phpspec": "vendor/bin/phpspec run --ansi",
+        "phpunit": "vendor/bin/phpunit",
+        "test": [
+            "@phpunit",
+            "@phpspec"
         ]
     }
 }
