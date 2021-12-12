@@ -10,10 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class SitemapProviderPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->has('sylius.sitemap_builder')) {
             return;

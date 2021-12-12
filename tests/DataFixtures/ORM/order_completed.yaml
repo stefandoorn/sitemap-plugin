@@ -1,0 +1,10 @@
+Sylius\Component\Core\Model\Order:
+  order_1:
+    customer: "@customer_test"
+    currency_code: "EUR"
+    locale_code: "en_GB"
+    channel: "@fashion_web"
+    token_value: 12345
+    promotion_coupon: "@something_coupon"
+    state: "new"
+    checkout_state: "completed"

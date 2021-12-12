@@ -1,0 +1,41 @@
+Sylius\Component\Core\Model\Product:
+    test_product:
+        code: "test-code"
+        channels: ["@us_web_channel"]
+        currentLocale: "en_US"
+        translations: ["@en_us_test_product_translation", "@nl_nl_test_product_translation"]
+        images: ["@test_image"]
+    mock_product:
+        code: "mock-code"
+        channels: ["@us_web_channel"]
+        currentLocale: "en_US"
+        translations: ["@en_us_mock_product_translation", "@nl_nl_mock_product_translation"]
+        images: ["@mock_image"]
+
+Sylius\Component\Core\Model\ProductTranslation:
+    en_us_test_product_translation:
+        slug: "test"
+        locale: "en_US"
+        name: "Test"
+        translatable: "@test_product"
+    nl_nl_test_product_translation:
+        slug: "test"
+        locale: "nl_NL"
+        name: "Test"
+        translatable: "@test_product"
+    en_us_mock_product_translation:
+        slug: "mock"
+        locale: "en_US"
+        name: "Mock"
+        translatable: "@mock_product"
+    nl_nl_mock_product_translation:
+        slug: "mock"
+        locale: "nl_NL"
+        name: "Mock"
+        translatable: "@mock_product"
+
+Sylius\Component\Core\Model\ProductImage:
+    test_image:
+        path: "test.jpg"
+    mock_image:
+        path: "mock.jpg"

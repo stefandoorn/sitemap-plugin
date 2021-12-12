@@ -1,0 +1,50 @@
+Sylius\Component\Core\Model\Taxon:
+    root_taxon:
+        code: "root"
+        currentLocale: "en_US"
+        translations: ["@en_us_root_translation", "@nl_nl_root_translation"]
+        children: ["@test_taxon", "@mock_taxon"]
+    test_taxon:
+        code: "test-code"
+        currentLocale: "en_US"
+        translations: ["@en_us_test_taxon_translation", "@nl_nl_test_taxon_translation"]
+        parent: "@root_taxon"
+        position: 0
+    mock_taxon:
+        code: "mock-code"
+        currentLocale: "en_US"
+        translations: ["@en_us_mock-code_translation", "@nl_nl_mock-code_translation"]
+        parent: "@root_taxon"
+        position: 1
+
+Sylius\Component\Taxonomy\Model\TaxonTranslation:
+    en_us_root_translation:
+        slug: "root"
+        locale: "en_US"
+        name: "Root"
+        translatable: "@root_taxon"
+    nl_nl_root_translation:
+        slug: "root"
+        locale: "nl_NL"
+        name: "Root"
+        translatable: "@root_taxon"
+    en_us_test_taxon_translation:
+        slug: "test"
+        locale: "en_US"
+        name: "Test"
+        translatable: "@test_taxon"
+    nl_nl_test_taxon_translation:
+        slug: "test"
+        locale: "nl_NL"
+        name: "Test"
+        translatable: "@test_taxon"
+    en_us_mock-code_translation:
+        slug: "mock"
+        locale: "en_US"
+        name: "Mock"
+        translatable: "@mock_taxon"
+    nl_nl_mock-code_translation:
+        slug: "mock"
+        locale: "nl_NL"
+        name: "Mock"
+        translatable: "@mock_taxon"

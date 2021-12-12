@@ -24,39 +24,29 @@ extraction to a separate bundle.
 ## Installation
 
 1. Run `composer require stefandoorn/sitemap-plugin`.
-2. Add to `app/AppKernel.php`:
+2. Add to `app/config/bundles.php`:
 
 ```
-  new SitemapPlugin\SitemapPlugin(),
+  SitemapPlugin\SitemapPlugin::class => ['all' => true],
 ```
 
-3. Add to `app/config/config.yml`: 
+3. Add to `app/config/packages/_sylius.yaml`: 
 
 ```
-  - { resource: "@SitemapPlugin/Resources/config/config.yml" }
+    - { resource: "@SitemapPlugin/Resources/config/config.yaml" }
 ```
 
-4. Add to `app/config/routing.yml`: 
+4. Add to `app/config/routes.yaml`: 
 
 ```
 sylius_sitemap:
-     resource: "@SitemapPlugin/Resources/config/routing.yml"
+    resource: "@SitemapPlugin/Resources/config/routing.yml"
 ```
 
-### Installation from Sylius 1.7:
-
-1. Run `composer require stefandoorn/sitemap-plugin`.
-
-2. Add to `app/config/packages/sylius_sitemap.yaml`: 
+5. Add to `app/config/packages/sylius_sitemap.yaml`: 
 
    -  [Default configuration](#default-configuration)
 
-3. Add to `app/config/routes/sylius_sitemap.yml`: 
-
-```
-sylius_sitemap:
-     resource: "@SitemapPlugin/Resources/config/routing.yml"
-```
 
 ## Usage
 
@@ -104,7 +94,7 @@ sitemap:
 The request context is also important for generating the URLs inside the sitemap:
 
 * The hostname is defined per channel, if nothing set it defaults to `localhost`
-* Other request context settings can be adjusted as mentioned in the [Symfony docs](https://symfony.com/doc/4.1/console/request_context.html#configuring-the-request-context-globally)
+* Other request context settings can be adjusted as mentioned in the [Symfony docs](https://symfony.com/doc/current/routing.html#generating-urls-in-commands)
 
 ## Default storage
 

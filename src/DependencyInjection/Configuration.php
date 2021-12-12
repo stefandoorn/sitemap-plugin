@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -12,17 +11,10 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('stefandoorn_sylius_sitemap');
+        $treeBuilder = new TreeBuilder('sylius_sitemap');
         $rootNode = $treeBuilder->getRootNode();
 
-        $this->addSitemapSection($rootNode);
-
-        return $treeBuilder;
-    }
-
-    private function addSitemapSection(ArrayNodeDefinition $node): void
-    {
-        $node
+        $rootNode
             ->children()
                 ->arrayNode('providers')
                     ->addDefaultsIfNotSet()
@@ -72,5 +64,7 @@ final class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end();
+
+        return $treeBuilder;
     }
 }

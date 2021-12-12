@@ -14,9 +14,9 @@ final class SitemapPlugin extends Bundle
     use SyliusPluginTrait;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 

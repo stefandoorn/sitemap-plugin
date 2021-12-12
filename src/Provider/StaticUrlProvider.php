@@ -18,7 +18,7 @@ final class StaticUrlProvider implements UrlProviderInterface
 
     private AlternativeUrlFactoryInterface $urlAlternativeFactory;
 
-    /** @var string[] */
+    /** @var array<string, array> */
     private array $routes;
 
     private ChannelInterface $channel;

@@ -10,10 +10,10 @@ use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\UrlInterface;
+use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
-use Sylius\Component\Core\Repository\ProductRepositoryInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
@@ -21,7 +21,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class ProductUrlProvider implements UrlProviderInterface
 {
-    private ProductRepositoryInterface $productRepository;
+    private ProductRepository $productRepository;
 
     private RouterInterface $router;
 
@@ -33,13 +33,13 @@ final class ProductUrlProvider implements UrlProviderInterface
 
     private ChannelInterface $channel;
 
-    /** @var string[] */
-    private ?array $channelLocaleCodes;
+    /** @var array<string|null> */
+    private array $channelLocaleCodes;
 
     private ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator;
 
     public function __construct(
-        ProductRepositoryInterface $productRepository,
+        ProductRepository $productRepository,
         RouterInterface $router,
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
@@ -60,13 +60,13 @@ final class ProductUrlProvider implements UrlProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function generate(ChannelInterface $channel): iterable
     {
         $this->channel = $channel;
         $urls = [];
-        $this->channelLocaleCodes = null;
+        $this->channelLocaleCodes = [];
 
         foreach ($this->getProducts() as $product) {
             $urls[] = $this->createProductUrl($product);
@@ -75,19 +75,16 @@ final class ProductUrlProvider implements UrlProviderInterface
         return $urls;
     }
 
-    /**
-     * @return Collection|ProductTranslationInterface[]
-     */
     private function getTranslations(ProductInterface $product): Collection
     {
-        return $product->getTranslations()->filter(function (TranslationInterface $translation) {
+        return $product->getTranslations()->filter(function (TranslationInterface $translation): bool {
             return $this->localeInLocaleCodes($translation);
         });
     }
 
     private function localeInLocaleCodes(TranslationInterface $translation): bool
     {
-        return \in_array($translation->getLocale(), $this->getLocaleCodes());
+        return \in_array($translation->getLocale(), $this->getLocaleCodes(), true);
     }
 
     /**
@@ -108,8 +105,8 @@ final class ProductUrlProvider implements UrlProviderInterface
 
     private function getLocaleCodes(): array
     {
-        if ($this->channelLocaleCodes === null) {
-            $this->channelLocaleCodes = $this->channel->getLocales()->map(function (LocaleInterface $locale) {
+        if ($this->channelLocaleCodes === []) {
+            $this->channelLocaleCodes = $this->channel->getLocales()->map(function (LocaleInterface $locale): ?string {
                 return $locale->getCode();
             })->toArray();
         }
@@ -123,7 +120,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         $productUrl->setChangeFrequency(ChangeFrequency::always());
         $productUrl->setPriority(0.5);
         $updatedAt = $product->getUpdatedAt();
-        if ($updatedAt) {
+        if ($updatedAt !== null) {
             $productUrl->setLastModification($updatedAt);
         }
         $productUrl->setImages($this->productToImageSitemapArrayGenerator->generate($product));
@@ -132,7 +129,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         foreach ($this->getTranslations($product) as $translation) {
             $locale = $translation->getLocale();
 
-            if (!$locale) {
+            if ($locale === null) {
                 continue;
             }
 

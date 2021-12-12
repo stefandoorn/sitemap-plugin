@@ -1,0 +1,647 @@
+Sylius\Component\Core\Model\Channel:
+    gb_web_channel:
+        code: "WEB_GB"
+        name: "Great Britain Channel"
+        hostname: "localhost"
+        description: "Lorem ipsum"
+        baseCurrency: "@pound"
+        defaultLocale: "@locale_en_gb"
+        locales: ["@locale_en_gb", "@locale_de_de"]
+        color: "black"
+        enabled: true
+        taxCalculationStrategy: "order_items_based"
+    de_web_channel:
+        code: "WEB_DE"
+        name: "Deutch Channel"
+        hostname: "localhost"
+        description: "Lorem ipsum"
+        baseCurrency: "@euro"
+        defaultLocale: "@locale_de_de"
+        locales: ["@locale_de_de"]
+        color: "blue"
+        enabled: true
+        taxCalculationStrategy: "order_items_based"
+
+Sylius\Component\Currency\Model\Currency:
+    pound:
+        code: GBP
+    euro:
+        code: EUR
+
+Sylius\Component\Locale\Model\Locale:
+    locale_en_gb:
+        code: en_GB
+    locale_de_de:
+        code: de_DE
+
+Sylius\Component\Core\Model\Product:
+    mug:
+        code: "LOGAN_MUG_CODE"
+        createdAt: "<date_create('2019-02-01 03:00:00')>"
+        channels: ["@gb_web_channel", "@de_web_channel"]
+        currentLocale: "en_GB"
+        translations: ["@en_gb_mug_product_translation", "@de_de_mug_product_translation"]
+        images: ["@mug_thumbnail"]
+        mainTaxon: "@mug_taxon"
+        productTaxons: ["@mug_product_taxon"]
+        attributes:
+            - "@en_gb_mug_holiday_collection_value"
+            - "@de_de_mug_holiday_collection_value"
+            - "@en_gb_mug_holiday_material_value"
+            - "@de_de_mug_holiday_material_value"
+    t_shirt:
+        code: "LOGAN_T_SHIRT_CODE"
+        createdAt: "<date_create('2019-02-01 01:00:00')>"
+        channels: ["@gb_web_channel"]
+        currentLocale: "en_GB"
+        images: ["@t_shirt_thumbnail", "@small_t_shirt_thumbnail", "@large_t_shirt_thumbnail"]
+        mainTaxon: "@t_shirt_taxon"
+        productTaxons: ["@women_t_shirt_product_taxon"]
+    hat:
+        code: "LOGAN_HAT_CODE"
+        createdAt: "<date_create('2019-02-01 04:00:00')>"
+        channels: ["@gb_web_channel", "@de_web_channel"]
+        options: ["@hat_size"]
+        currentLocale: "en_GB"
+        translations: ["@en_gb_hat_product_translation", "@de_de_hat_product_translation"]
+        associations: ["@cross-sell-hat-association"]
+        mainTaxon: "@hat_taxon"
+        productTaxons: ["@hat_product_taxon"]
+    shoes:
+        code: "LOGAN_SHOES_CODE"
+        createdAt: "<date_create('2019-02-01 02:00:00')>"
+        channels: ["@gb_web_channel"]
+        currentLocale: "en_GB"
+        translations: ["@en_gb_shoes_product_translation"]
+    free_download:
+        code: "FREE_DOWNLOAD"
+        createdAt: "<date_create('2019-02-01 02:00:00')>"
+        channels: ["@gb_web_channel"]
+        currentLocale: "en_GB"
+        translations: ["@en_gb_free_download_translation"]
+
+Sylius\Component\Core\Model\ProductTranslation:
+    en_gb_mug_product_translation:
+        slug: "logan-mug"
+        locale: "en_GB"
+        name: "Logan Mug"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@mug"
+    de_de_mug_product_translation:
+        slug: "logan-becher"
+        locale: "de_DE"
+        name: "Logan Becher"
+        translatable: "@mug"
+    t_shirt_translation:
+        slug: "logan-t-shirt"
+        locale: "en_GB"
+        name: "Logan T-Shirt"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@t_shirt"
+    en_gb_hat_product_translation:
+        slug: "logan-hat"
+        locale: "en_GB"
+        name: "Logan Hat"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@hat"
+    de_de_hat_product_translation:
+        slug: "logan-hut"
+        locale: "de_DE"
+        name: "Logan Hut"
+        description: "Einige Beschreibung Lorem ipsum dolor sit amet."
+        translatable: "@hat"
+    en_gb_shoes_product_translation:
+        slug: "logan-shoes"
+        locale: "en_GB"
+        name: "Logan Shoes"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@shoes"
+    en_gb_free_download_translation:
+        slug: "free-download"
+        locale: "en_GB"
+        name: "Free download"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@free_download"
+
+Sylius\Component\Core\Model\ProductVariant:
+    mug_variant:
+        code: "LOGAN_MUG_CODE"
+        product: "@mug"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_mug_variant_translation", "@de_de_mug_variant_translation"]
+        channelPricings:
+            WEB_GB: "@gb_mug_web_channel_pricing"
+            WEB_DE: "@de_mug_web_channel_pricing"
+    t_shirt_small:
+        code: "SMALL_LOGAN_T_SHIRT_CODE"
+        product: "@t_shirt"
+        currentLocale: "en_GB"
+        channelPricings:
+            WEB_GB: "@gb_small_t_shirt_web_channel_pricing"
+            WEB_DE: "@de_small_t_shirt_web_channel_pricing"
+    t_shirt_large:
+        code: "LARGE_LOGAN_T_SHIRT_CODE"
+        product: "@t_shirt"
+        currentLocale: "en_GB"
+        channelPricings:
+            WEB_GB: "@gb_large_t_shirt_web_channel_pricing"
+            WEB_DE: "@de_large_t_shirt_web_channel_pricing"
+    hat_red_small:
+        code: "SMALL_RED_LOGAN_HAT_CODE"
+        product: "@hat"
+        currentLocale: "en_GB"
+        optionValues: ["@hat_size_s", "@hat_color_red"]
+        translations: ["@small_red_en_gb_hat_translation", "@small_red_de_de_hat_translation"]
+        channelPricings:
+            WEB_GB: "@gb_small_red_hat_web_channel_pricing"
+            WEB_DE: "@de_small_red_hat_web_channel_pricing"
+    hat_red_large:
+        code: "LARGE_RED_LOGAN_HAT_CODE"
+        product: "@hat"
+        optionValues: ["@hat_size_l", "@hat_color_red"]
+        currentLocale: "en_GB"
+        translations: ["@large_red_en_gb_hat_translation"]
+        channelPricings:
+            WEB_GB: "@gb_large_red_hat_web_channel_pricing"
+            WEB_DE: "@de_large_red_hat_web_channel_pricing"
+    hat_blue_small:
+        code: "SMALL_BLUE_LOGAN_HAT_CODE"
+        product: "@hat"
+        currentLocale: "en_GB"
+        optionValues: ["@hat_size_s", "@hat_color_blue"]
+        translations: ["@small_blue_en_gb_hat_translation", "@small_blue_de_de_hat_translation"]
+        channelPricings:
+            WEB_GB: "@gb_small_blue_hat_web_channel_pricing"
+            WEB_DE: "@de_small_blue_hat_web_channel_pricing"
+    hat_blue_large:
+        code: "LARGE_BLUE_LOGAN_HAT_CODE"
+        product: "@hat"
+        optionValues: ["@hat_size_l", "@hat_color_blue"]
+        currentLocale: "en_GB"
+        translations: ["@large_blue_en_gb_hat_translation", "@large_blue_de_de_hat_translation"]
+        channelPricings:
+            WEB_GB: "@gb_large_blue_hat_web_channel_pricing"
+            WEB_DE: "@de_large_blue_hat_web_channel_pricing"
+    free_download_0:
+        code: "FREE_DOWNLOAD"
+        product: "@free_download"
+        currentLocale: "en_GB"
+        channelPricings:
+            WEB_GB: "@gb_free_web_channel_pricing"
+            WEB_DE: "@de_free_web_channel_pricing"
+
+Sylius\Component\Product\Model\ProductVariantTranslation:
+    en_gb_mug_variant_translation:
+        locale: "en_GB"
+        name: "Logan Mug"
+        translatable: "@mug_variant"
+    de_de_mug_variant_translation:
+        locale: "de_DE"
+        name: "Logan Becher"
+        translatable: "@mug_variant"
+    small_t_shirt_translation:
+        locale: "en_GB"
+        name: "Small Logan T-Shirt"
+        translatable: "@t_shirt_small"
+    large_t_shirt_translation:
+        locale: "en_GB"
+        name: "Large Logan T-Shirt"
+        translatable: "@t_shirt_large"
+    small_red_en_gb_hat_translation:
+        locale: "en_GB"
+        name: "Small Red Logan Hat"
+        translatable: "@hat_red_small"
+    large_red_en_gb_hat_translation:
+        locale: "en_GB"
+        name: "Large Red Logan Hat"
+        translatable: "@hat_red_large"
+    small_blue_en_gb_hat_translation:
+        locale: "en_GB"
+        name: "Small Blue Logan Hat"
+        translatable: "@hat_blue_small"
+    large_blue_en_gb_hat_translation:
+        locale: "en_GB"
+        name: "Large Blue Logan Hat"
+        translatable: "@hat_blue_large"
+    small_red_de_de_hat_translation:
+        locale: "de_DE"
+        name: "Klein Rot Logan Hut"
+        translatable: "@hat_red_small"
+    small_blue_de_de_hat_translation:
+        locale: "de_DE"
+        name: "Klein Blau Logan Hut"
+        translatable: "@hat_blue_small"
+    large_blue_de_de_hat_translation:
+        locale: "de_DE"
+        name: "Großes Blau Logan Hut"
+        translatable: "@hat_blue_large"
+
+Sylius\Component\Core\Model\ChannelPricing:
+    gb_mug_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 1999
+        originalPrice: 2999
+    gb_small_t_shirt_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 1999
+    gb_large_t_shirt_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 2999
+    gb_small_red_hat_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 500
+    gb_large_red_hat_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 999
+    gb_small_blue_hat_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 1500
+    gb_large_blue_hat_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 2599
+    gb_free_web_channel_pricing:
+        channelCode: "WEB_GB"
+        price: 0
+        originalPrice: 0
+    de_mug_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 2099
+    de_small_t_shirt_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 2099
+    de_large_t_shirt_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 3099
+    de_small_red_hat_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 590
+    de_large_red_hat_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 1099
+    de_small_blue_hat_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 1600
+    de_large_blue_hat_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 2699
+    de_free_web_channel_pricing:
+        channelCode: "WEB_DE"
+        price: 0
+        originalPrice: 0
+
+Sylius\Component\Product\Model\ProductOption:
+    hat_size:
+        currentLocale: "en_GB"
+        fallbackLocale: "en_GB"
+        code: "HAT_SIZE"
+        translations: ["@en_gb_hat_size_translations"]
+    hat_color:
+        currentLocale: "en_GB"
+        fallbackLocale: "en_GB"
+        code: "HAT_COLOR"
+        translations: ["@en_gb_hat_color_translations", "@de_de_hat_color_translations"]
+
+Sylius\Component\Product\Model\ProductOptionTranslation:
+    en_gb_hat_size_translations:
+        locale: "en_GB"
+        name: "Size"
+        translatable: "@hat_size"
+    en_gb_hat_color_translations:
+        locale: "en_GB"
+        name: "Color"
+        translatable: "@hat_color"
+    de_de_hat_color_translations:
+        locale: "de_DE"
+        name: "Farbe"
+        translatable: "@hat_color"
+
+Sylius\Component\Product\Model\ProductOptionValue:
+    hat_size_s:
+        currentLocale: "en_GB"
+        fallbackLocale: "en_GB"
+        code: "HAT_SIZE_S"
+        option: "@hat_size"
+        translations: ["@en_gb_hat_size_s_translations", "@de_de_hat_size_s_translations"]
+    hat_size_l:
+        currentLocale: "en_GB"
+        fallbackLocale: "en_GB"
+        code: "HAT_SIZE_L"
+        option: "@hat_size"
+        translations: ["@en_gb_hat_size_l_translations", "@de_de_hat_size_l_translations"]
+    hat_color_red:
+        currentLocale: "en_GB"
+        fallbackLocale: "en_GB"
+        code: "HAT_COLOR_RED"
+        option: "@hat_color"
+        translations: ["@en_gb_hat_color_red_translations", "@de_de_hat_color_red_translations"]
+    hat_color_blue:
+        currentLocale: "en_GB"
+        fallbackLocale: "en_GB"
+        code: "HAT_COLOR_BLUE"
+        option: "@hat_color"
+        translations: ["@en_gb_hat_color_blue_translations", "@de_de_hat_color_blue_translations"]
+
+Sylius\Component\Product\Model\ProductOptionValueTranslation:
+    en_gb_hat_size_s_translations:
+        locale: "en_GB"
+        value: "S"
+        translatable: "@hat_size_s"
+    en_gb_hat_size_l_translations:
+        locale: "en_GB"
+        value: "L"
+        translatable: "@hat_size_l"
+    en_gb_hat_color_red_translations:
+        locale: "en_GB"
+        value: "Red"
+        translatable: "@hat_color_red"
+    en_gb_hat_color_blue_translations:
+        locale: "en_GB"
+        value: "Blue"
+        translatable: "@hat_color_blue"
+    de_de_hat_size_s_translations:
+        locale: "de_DE"
+        value: "S"
+        translatable: "@hat_size_s"
+    de_de_hat_size_l_translations:
+        locale: "de_DE"
+        value: "L"
+        translatable: "@hat_size_l"
+    de_de_hat_color_red_translations:
+        locale: "de_DE"
+        value: "Rot"
+        translatable: "@hat_color_red"
+    de_de_hat_color_blue_translations:
+        locale: "de_DE"
+        value: "Blau"
+        translatable: "@hat_color_blue"
+
+Sylius\Component\Core\Model\ProductImage:
+    mug_thumbnail:
+        type: "thumbnail"
+        path: "/pants.jpeg"
+        productVariants: ["@mug_variant"]
+    t_shirt_thumbnail:
+        type: "thumbnail"
+        path: "/pants.jpeg"
+    small_t_shirt_thumbnail:
+        type: "thumbnail"
+        path: "/pants.jpeg"
+        productVariants: ["@t_shirt_small"]
+    large_t_shirt_thumbnail:
+        type: "thumbnail"
+        path: "/pants.jpeg"
+        productVariants: ["@t_shirt_large"]
+
+Sylius\Component\Core\Model\Taxon:
+    category_taxon:
+        code: "CATEGORY"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_category_translation"]
+        children: ["@mug_taxon", "@hat_taxon", "@t_shirt_taxon"]
+    mug_taxon:
+        code: "MUG"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_mug_taxon_translation", "@de_de_mug_taxon_translation"]
+        parent: "@category_taxon"
+        position: 0
+    hat_taxon:
+        code: "HAT"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_hat_translation", "@de_de_hat_translation"]
+        parent: "@category_taxon"
+        position: 1
+    t_shirt_taxon:
+        code: "T_SHIRTS"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_t_shirt_taxon_translation", "@de_de_t_shirt_taxon_translation"]
+        images: ["@t_shirt_taxon_thumbnail"]
+        children: ["@men_t_shirt_taxon", "@women_t_shirt_taxon"]
+        parent: "@category_taxon"
+        position: 2
+    men_t_shirt_taxon:
+        code: "MEN_T_SHIRTS"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_men_t_shirt_translation", "@de_de_men_t_shirt_translation"]
+        parent: "@t_shirt_taxon"
+    women_t_shirt_taxon:
+        code: "WOMEN_T_SHIRTS"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_women_t_shirt_translation", "@de_de_women_t_shirt_translation"]
+        parent: "@t_shirt_taxon"
+    brand_taxon:
+        code: "BRAND"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_brand_translation", "@de_de_brand_translation"]
+    yet_another_taxon:
+        code: "de?lol=xd#boom"
+        currentLocale: "en_GB"
+        translations: ["@en_gb_yet_another_taxon_translation"]
+
+Sylius\Component\Taxonomy\Model\TaxonTranslation:
+    en_gb_category_translation:
+        slug: "categories"
+        locale: "en_GB"
+        name: "Categories"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@category_taxon"
+    en_gb_mug_taxon_translation:
+        slug: "categories/mugs"
+        locale: "en_GB"
+        name: "Mugs"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@mug_taxon"
+    en_gb_hat_translation:
+        slug: "categories/hats"
+        locale: "en_GB"
+        name: "Hats"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@hat_taxon"
+    en_gb_t_shirt_taxon_translation:
+        slug: "categories/t-shirts"
+        locale: "en_GB"
+        name: "T-Shirts"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@t_shirt_taxon"
+    en_gb_men_t_shirt_translation:
+        slug: "categories/t-shirts/men-t-shirts"
+        locale: "en_GB"
+        name: "Men T-Shirts"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@men_t_shirt_taxon"
+    en_gb_women_t_shirt_translation:
+        slug: "categories/t-shirts/women-t-shirts"
+        locale: "en_GB"
+        name: "Women T-Shirts"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@women_t_shirt_taxon"
+    en_gb_brand_translation:
+        slug: "brands"
+        locale: "en_GB"
+        name: "Brands"
+        description: "Some description Lorem ipsum dolor sit amet."
+    en_gb_yet_another_taxon_translation:
+        slug: "yet_another_taxons"
+        locale: "en_GB"
+        name: "Yet another taxon"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@yet_another_taxon"
+    en_us_yet_another_taxon_translation:
+        slug: "yet_another_taxons"
+        locale: "en_US"
+        name: "Yet another taxon"
+        description: "Some description Lorem ipsum dolor sit amet."
+        translatable: "@yet_another_taxon"
+    de_de_mug_taxon_translation:
+        slug: "tassen"
+        locale: "de_DE"
+        name: "Tassen"
+        description: "Einige Beschreibung Lorem ipsum dolor sit amet."
+        translatable: "@mug_taxon"
+    de_de_hat_translation:
+        slug: "hute"
+        locale: "de_DE"
+        name: "Hüte"
+        translatable: "@hat_taxon"
+    de_de_t_shirt_taxon_translation:
+        slug: "t-shirts"
+        locale: "de_DE"
+        name: "T-Shirts"
+        description: "Einige Beschreibung Lorem ipsum dolor sit amet."
+        translatable: "@t_shirt_taxon"
+    de_de_men_t_shirt_translation:
+        slug: "männer-t-shirts"
+        locale: "de_DE"
+        name: "Männer T-Shirts"
+        description: "Einige Beschreibung Lorem ipsum dolor sit amet."
+        translatable: "@men_t_shirt_taxon"
+    de_de_women_t_shirt_translation:
+        slug: "frauen-t-shirts"
+        locale: "de_DE"
+        name: "Frauen T-Shirts"
+        description: "Einige Beschreibung Lorem ipsum dolor sit amet."
+        translatable: "@women_t_shirt_taxon"
+    de_de_brand_translation:
+        slug: "marken"
+        locale: "de_DE"
+        name: "Marken"
+        description: "Einige Beschreibung Lorem ipsum dolor sit amet."
+        translatable: "@brand_taxon"
+
+Sylius\Component\Core\Model\ProductTaxon:
+    mug_product_taxon:
+        product: "@mug"
+        taxon: "@mug_taxon"
+        position: 0
+    women_t_shirt_product_taxon:
+        product: "@t_shirt"
+        taxon: "@women_t_shirt_taxon"
+        position: 0
+    hat_product_taxon:
+        product: "@hat"
+        taxon: "@hat_taxon"
+        position: 0
+    mug_brand_taxon:
+        product: "@mug"
+        taxon: "@brand_taxon"
+        position: 0
+    t_shirt_brand_taxon:
+        product: "@t_shirt"
+        taxon: "@brand_taxon"
+        position: 1
+    hat_brand_taxon:
+        product: "@hat"
+        taxon: "@brand_taxon"
+        position: 2
+
+Sylius\Component\Core\Model\TaxonImage:
+    t_shirt_taxon_thumbnail:
+        type: "thumbnail"
+        path: "/pants.jpeg"
+
+Sylius\Component\Product\Model\ProductAssociationType:
+    cross-sell:
+        code: "CROSS_SELL_ASSOCIATION_TYPE"
+        currentLocale: "en_GB"
+
+Sylius\Component\Product\Model\ProductAssociationTypeTranslation:
+    en_gb_cross-sell_translation:
+        name: "Cross sell"
+        locale: "en_GB"
+        translatable: "@cross-sell"
+
+Sylius\Component\Product\Model\ProductAssociation:
+    cross-sell-hat-association:
+        owner: "@hat"
+        type: "@cross-sell"
+        associatedProducts:
+            - "@t_shirt"
+            - "@mug"
+
+Sylius\Component\Product\Model\ProductAttributeTranslation:
+    mug_collection_de_de_translation:
+        locale: "de_DE"
+        name: "Becher Sammlung"
+        translatable: "@mug_collection"
+    mug_material_de_de_translation:
+        locale: "de_DE"
+        name: "Becher Material"
+        translatable: "@mug_material"
+    mug_collection_en_gb_translation:
+        locale: "en_GB"
+        name: "Mug collection"
+        translatable: "@mug_collection"
+    mug_material_en_gb_translation:
+        locale: "en_GB"
+        name: "Mug material"
+        translatable: "@mug_material"
+
+Sylius\Component\Product\Model\ProductAttribute:
+    mug_collection:
+        fallbackLocale: "en_GB"
+        currentLocale: "en_GB"
+        code: "MUG_COLLECTION_CODE"
+        type: "text"
+        storage_type: "text"
+        translations:
+            - "@mug_collection_en_gb_translation"
+            - "@mug_collection_de_de_translation"
+    mug_material:
+        fallbackLocale: "en_GB"
+        currentLocale: "en_GB"
+        code: "MUG_MATERIAL_CODE"
+        type: "select"
+        storage_type: "json"
+        configuration:
+            required: true
+            choices:
+                1:
+                    "en_GB": Wood
+                    "de_DE": Holz
+                2:
+                    "en_GB": Porcelain
+                    "de_DE": Porzellan
+        translations:
+            - "@mug_material_en_gb_translation"
+            - "@mug_material_de_de_translation"
+
+Sylius\Component\Product\Model\ProductAttributeValue:
+    en_gb_mug_holiday_collection_value:
+        subject: "@mug"
+        attribute: "@mug_collection"
+        localeCode: "en_GB"
+        value: "HOLIDAY COLLECTION"
+    de_de_mug_holiday_collection_value:
+        subject: "@mug"
+        attribute: "@mug_collection"
+        localeCode: "de_DE"
+        value: "FEIERTAGSKOLLEKTION"
+    en_gb_mug_holiday_material_value:
+        subject: "@mug"
+        attribute: "@mug_material"
+        localeCode: "en_GB"
+        value: ['1']
+    de_de_mug_holiday_material_value:
+        subject: "@mug"
+        attribute: "@mug_material"
+        localeCode: "de_DE"
+        value: ['1']
