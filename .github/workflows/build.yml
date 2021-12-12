@@ -70,9 +70,9 @@ jobs:
                 name: Install certificates
                 run: symfony server:ca:install
 
-            -
-                name: Run Chrome Headless
-                run: google-chrome-stable --enable-automation --disable-background-networking --no-default-browser-check --no-first-run --disable-popup-blocking --disable-default-apps --allow-insecure-localhost --disable-translate --disable-extensions --no-sandbox --enable-features=Metal --headless --remote-debugging-port=9222 --window-size=2880,1800 --proxy-server='direct://' --proxy-bypass-list='*' http://127.0.0.1 > /dev/null 2>&1 &
+            #-
+            #    name: Run Chrome Headless
+            #    run: google-chrome-stable --enable-automation --disable-background-networking --no-default-browser-check --no-first-run --disable-popup-blocking --disable-default-apps --allow-insecure-localhost --disable-translate --disable-extensions --no-sandbox --enable-features=Metal --headless --remote-debugging-port=9222 --window-size=2880,1800 --proxy-server='direct://' --proxy-bypass-list='*' http://127.0.0.1 > /dev/null 2>&1 &
 
             -
                 name: Run webserver
@@ -101,23 +101,23 @@ jobs:
                 name: Install PHP dependencies
                 run: composer install --no-interaction
 
-            -
-                name: Get Yarn cache directory
-                id: yarn-cache
-                run: echo "::set-output name=dir::$(yarn cache dir)"
+            #-
+            #    name: Get Yarn cache directory
+            #    id: yarn-cache
+            #    run: echo "::set-output name=dir::$(yarn cache dir)"
 
-            -
-                name: Cache Yarn
-                uses: actions/cache@v2
-                with:
-                    path: ${{ steps.yarn-cache.outputs.dir }}
-                    key: ${{ runner.os }}-node-${{ matrix.node }}-yarn-${{ hashFiles('**/package.json **/yarn.lock') }}
-                    restore-keys: |
-                        ${{ runner.os }}-node-${{ matrix.node }}-yarn-
+            #-
+            #    name: Cache Yarn
+            #    uses: actions/cache@v2
+            #    with:
+            #        path: ${{ steps.yarn-cache.outputs.dir }}
+            #        key: ${{ runner.os }}-node-${{ matrix.node }}-yarn-${{ hashFiles('**/package.json **/yarn.lock') }}
+            #        restore-keys: |
+            #            ${{ runner.os }}-node-${{ matrix.node }}-yarn-
 
-            -
-                name: Install JS dependencies
-                run: yarn install
+            #-
+            #    name: Install JS dependencies
+            #    run: yarn install
 
             -
                 name: Prepare test application database
@@ -125,11 +125,11 @@ jobs:
                     APP_DEBUG=1 bin/console doctrine:database:create -vvv
                     bin/console doctrine:migrations:migrate -n -vvv
 
-            -
-                name: Prepare test application assets
-                run: |
-                    bin/console assets:install public -vvv
-                    yarn build
+            #-
+            #    name: Prepare test application assets
+            #    run: |
+            #        bin/console assets:install public -vvv
+            #        yarn build
 
             -
                 name: Prepare test application cache
