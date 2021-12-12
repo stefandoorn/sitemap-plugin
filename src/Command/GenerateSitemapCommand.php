@@ -73,7 +73,7 @@ final class GenerateSitemapCommand extends Command
         $this->router->getContext()->setHost($channel->getHostname() ?? 'localhost');
         // TODO make sure providers are every time emptied (reset call or smth?)
         foreach ($this->sitemapBuilder->getProviders() as $provider) {
-            $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode() ?? 'no_code'));
+            $output->writeln(\sprintf('Start generating sitemap "%s" for channel "%s"', $provider->getName(), $channel->getCode()));
 
             $sitemap = $this->sitemapBuilder->build($provider, $channel); // TODO use provider instance, not the name
             $xml = $this->sitemapRenderer->render($sitemap);
@@ -84,10 +84,10 @@ final class GenerateSitemapCommand extends Command
                 $xml
             );
 
-            $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode() ?? 'no_code', $path));
+            $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
         }
 
-        $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode() ?? 'no_code'));
+        $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
         $sitemap = $this->sitemapIndexBuilder->build();
         $xml = $this->sitemapIndexRenderer->render($sitemap);
@@ -98,12 +98,12 @@ final class GenerateSitemapCommand extends Command
             $xml
         );
 
-        $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode() ?? 'no_code', $path));
+        $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));
     }
 
     private function path(ChannelInterface $channel, string $path): string
     {
-        return \sprintf('%s/%s', $channel->getCode() ?? 'no_code', $path);
+        return \sprintf('%s/%s', $channel->getCode(), $path);
     }
 
     /**

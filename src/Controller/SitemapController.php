@@ -23,7 +23,7 @@ final class SitemapController extends AbstractController
 
     public function showAction(string $name): Response
     {
-        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode() ?? 'no_code', \sprintf('%s.xml', $name));
+        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), \sprintf('%s.xml', $name));
 
         return $this->createResponse($path);
     }
