@@ -1,7 +1,3 @@
-includes:
-    - vendor/phpstan/phpstan-strict-rules/rules.neon
-    - vendor/phpstan/phpstan-webmozart-assert/extension.neon
-
 parameters:
     reportUnmatchedIgnoredErrors: true
     checkMissingIterableValueType: false
