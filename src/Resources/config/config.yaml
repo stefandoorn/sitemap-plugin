@@ -1,4 +1,4 @@
-stefan_doorn_sylius_sitemap:
+sitemap:
     static_routes:
         - { route: sylius_shop_homepage }
         - { route: sylius_shop_contact_request }

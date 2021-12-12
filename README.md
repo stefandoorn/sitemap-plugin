@@ -21,7 +21,7 @@ extraction to a separate bundle.
 * Product provider supports locales (hreflang) & is channel aware
 * Taxon provider supports locales (hreflang)
 
-## Installation from Sylius 1.9
+## Installation
 
 1. Run `composer require stefandoorn/sitemap-plugin`.
 2. Add to `app/config/bundles.php`:
@@ -73,10 +73,10 @@ Next to this, each provider registeres it's own URI. Take a look in the sitemap 
 
 ## Default Configuration
 
-Get a full list of configuration: `bin/console  config:dump-reference stefan_doorn_sylius_sitemap`
+Get a full list of configuration: `bin/console  config:dump-reference sitemap`
 
 ```yaml
-stefan_doorn_sylius_sitemap:
+sitemap:
     providers:
         products: true
         taxons: true
