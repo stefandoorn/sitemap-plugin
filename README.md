@@ -39,11 +39,11 @@ extraction to a separate bundle.
 4. Add to `app/config/routes.yaml`: 
 
 ```
-stefandoorn_sylius_sitemap:
+sylius_sitemap:
     resource: "@SitemapPlugin/Resources/config/routing.yml"
 ```
 
-5. Add to `app/config/packages/stefandoorn_sylius_sitemap.yaml`: 
+5. Add to `app/config/packages/sylius_sitemap.yaml`: 
 
    -  [Default configuration](#default-configuration)
 

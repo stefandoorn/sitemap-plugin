@@ -11,7 +11,7 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('stefandoorn_sylius_sitemap');
+        $treeBuilder = new TreeBuilder('sylius_sitemap');
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
