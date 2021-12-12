@@ -2,7 +2,8 @@
 
 ## TL-DR
 
-* Plugin structure upgraded to PluginSkeleton:^1.6
+* Plugin structure upgraded to PluginSkeleton:^1.9
+* Plugin minimum Sylius version bumped to Sylius 1.9
 * Removed the `all.xml` endpoint - use the sitemap index
 * Sitemaps are now generated via the command line, see below.
 * Dropped support for relative URL's
