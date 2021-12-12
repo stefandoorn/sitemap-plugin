@@ -8,7 +8,6 @@ use ApiTestCase\XmlApiTestCase as BaseXmlApiTestCase;
 use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use SitemapPlugin\Command\GenerateSitemapCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\HttpFoundation\Response;
