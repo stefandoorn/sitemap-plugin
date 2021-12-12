@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\SitemapPlugin\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use SitemapPlugin\DependencyInjection\StefanDoornSyliusSitemapExtension;
+use SitemapPlugin\DependencyInjection\SitemapExtension;
 
 final class SitemapParameterTest extends AbstractExtensionTestCase
 {
@@ -92,7 +92,7 @@ final class SitemapParameterTest extends AbstractExtensionTestCase
     protected function getContainerExtensions(): array
     {
         return [
-            new StefanDoornSyliusSitemapExtension(),
+            new SitemapExtension(),
         ];
     }
 }

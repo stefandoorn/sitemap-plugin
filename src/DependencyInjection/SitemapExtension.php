@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class StefanDoornSyliusSitemapExtension extends Extension
+final class SitemapExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {

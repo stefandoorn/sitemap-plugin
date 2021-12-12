@@ -59,8 +59,8 @@
     },
     "autoload": {
         "psr-4": {
-            "SyliusSitemapPlugin\\": "src/",
-            "Tests\\SyliusSitemapPlugin\\": ["tests/", "tests/Application/src"]
+            "SitemapPlugin\\": "src/",
+            "Tests\\SitemapPlugin\\": ["tests/", "tests/Application/src"]
         }
     },
     "autoload-dev": {
