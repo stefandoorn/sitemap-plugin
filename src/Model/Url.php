@@ -18,8 +18,10 @@ final class Url implements UrlInterface
 
     private ?float $priority = null;
 
+    /** @var Collection|AlternativeUrlInterface[] */
     private Collection $alternatives;
 
+    /** @var Collection|ImageInterface[] */
     private Collection $images;
 
     public function __construct(string $location)

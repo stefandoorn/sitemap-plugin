@@ -73,7 +73,7 @@ Next to this, each provider registeres it's own URI. Take a look in the sitemap 
 
 ## Default Configuration
 
-Get a full list of configuration: `bin/console  config:dump-reference sitemap`
+Get a full list of configuration: `bin/console config:dump-reference sitemap`
 
 ```yaml
 sitemap:
