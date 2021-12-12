@@ -16,20 +16,25 @@ jobs:
     tests:
         runs-on: ubuntu-18.04
 
-        name: "PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
-
-        timeout-minutes: 50
+        name: "Sylius ${{ matrix.sylius }}, PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
 
         strategy:
             fail-fast: false
             matrix:
-                php: ["7.4", "8.0"]
+                php: ["8.0", "7.4"]
                 symfony: ["^4.4", "^5.2"]
+                sylius: ["~1.8.0", "~1.9.0", "~1.10.0"]
                 node: ["10.x"]
-                mysql: ["5.7", "8.0"]
-                
+                mysql: ["8.0"]
+
+                exclude:
+                    -
+                        php: "8.0"
+                        sylius: "~1.9.0"
+
+
         env:
-            APP_ENV: test_cached
+            APP_ENV: test
             DATABASE_URL: "mysql://root:root@127.0.0.1/sylius?serverVersion=${{ matrix.mysql }}"
 
         steps:
@@ -45,11 +50,11 @@ jobs:
                     tools: symfony
                     coverage: none
 
-            -
-                name: Setup Node
-                uses: actions/setup-node@v1
-                with:
-                    node-version: "${{ matrix.node }}"
+            #-
+            #    name: Setup Node
+            #    uses: actions/setup-node@v1
+            #    with:
+            #        node-version: "${{ matrix.node }}"
 
             -
                 name: Shutdown default MySQL
@@ -76,12 +81,7 @@ jobs:
 
             -
                 name: Run webserver
-                run: symfony server:start --port=8080 --dir=public --daemon
-
-            -
-                name: Restrict Symfony version
-                if: matrix.symfony != ''
-                run: composer config extra.symfony.require "${{ matrix.symfony }}"
+                run: (cd tests/Application && symfony server:start --port=8080 --dir=public --daemon)
 
             -
                 name: Get Composer cache directory
@@ -98,6 +98,18 @@ jobs:
                         ${{ runner.os }}-php-${{ matrix.php }}-composer-
 
             -
+                name: Restrict Symfony version
+                if: matrix.symfony != ''
+                run: |
+                    composer global require --no-progress --no-scripts --no-plugins "symfony/flex:^1.10"
+                    composer config extra.symfony.require "${{ matrix.symfony }}"
+
+            -
+                name: Restrict Sylius version
+                if: matrix.sylius != ''
+                run: composer require "sylius/sylius:${{ matrix.sylius }}" --no-update --no-scripts --no-interaction
+
+            -
                 name: Install PHP dependencies
                 run: composer install --no-interaction
 
@@ -107,7 +119,7 @@ jobs:
             #    run: echo "::set-output name=dir::$(yarn cache dir)"
 
             #-
-            #    name: Cache Yarn
+            #   name: Cache Yarn
             #    uses: actions/cache@v2
             #    with:
             #        path: ${{ steps.yarn-cache.outputs.dir }}
@@ -117,35 +129,39 @@ jobs:
 
             #-
             #    name: Install JS dependencies
-            #    run: yarn install
+            #    run: (cd tests/Application && yarn install)
 
             -
                 name: Prepare test application database
                 run: |
-                    APP_DEBUG=1 bin/console doctrine:database:create -vvv
-                    bin/console doctrine:migrations:migrate -n -vvv
+                    (cd tests/Application && bin/console doctrine:database:create -vvv)
+                    (cd tests/Application && bin/console doctrine:schema:create -vvv)
 
             #-
             #    name: Prepare test application assets
             #    run: |
-            #        bin/console assets:install public -vvv
-            #        yarn build
+            #        (cd tests/Application && bin/console assets:install public -vvv)
+            #        (cd tests/Application && yarn build)
 
             -
                 name: Prepare test application cache
-                run: bin/console cache:warmup -vvv
+                run: (cd tests/Application && bin/console cache:warmup -vvv)
 
             -
-                name: Load fixtures
-                run: bin/console sylius:fixtures:load -n
+                name: Load fixtures in test application
+                run: (cd tests/Application && bin/console sylius:fixtures:load -n)
 
             -
                 name: Validate composer.json
-                run: composer validate --ansi --strict --no-check-publish
+                run: composer validate --ansi --strict
 
             -
-                name: Run security check
-                run: symfony security:check
+                name: Validate database schema
+                run: (cd tests/Application && bin/console doctrine:schema:validate)
+
+            #-
+            #    name: Run security check
+            #    run: symfony security:check
 
             -
                 name: Check coding standard
@@ -155,10 +171,12 @@ jobs:
                 name: Run PHPStan
                 run: composer analyse
 
-            -
-                name: Validate database schema
-                run: bin/console doctrine:schema:validate
+            #-
+            #    name: Run Psalm
+            #    run: vendor/bin/psalm
 
             -
-                name: Tests
+                name: Run tests
                 run: composer test
+
+           
