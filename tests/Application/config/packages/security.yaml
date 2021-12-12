@@ -96,7 +96,6 @@ security:
         api:
             pattern: "%sylius.security.api_regex%/.*"
             provider: sylius_admin_user_provider
-            fos_oauth: true
             stateless: true
             anonymous: true
 
