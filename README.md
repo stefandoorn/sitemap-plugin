@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/packagist/l/stefandoorn/sitemap-plugin.svg)](https://packagist.org/packages/stefandoorn/sitemap-plugin)
 [![Version](https://img.shields.io/packagist/v/stefandoorn/sitemap-plugin.svg)](https://packagist.org/packages/stefandoorn/sitemap-plugin)
-[![CI](https://github.com/stefandoorn/sitemap-plugin/workflows/CI/badge.svg)](http://github.com/stefandoorn/sitemap-plugin/actions)
+[![Build](https://github.com/stefandoorn/sitemap-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/stefandoorn/sitemap-plugin/actions/workflows/build.yml)
 [![Coverage Status](https://coveralls.io/repos/github/stefandoorn/sitemap-plugin/badge.svg?branch=master)](https://coveralls.io/github/stefandoorn/sitemap-plugin?branch=master)
 
 <p align="center"><a href="https://sylius.com/plugins/" target="_blank"><img src="https://sylius.com/assets/badge-approved-by-sylius.png" width="200"></a></p>
