@@ -19,11 +19,6 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
 
     public function __construct(SitemapBuilderInterface $sitemapBuilder)
     {
-        // @TODO Remove when SF4 not supported anymore
-        if (\method_exists(Loader::class, '__construct')) {
-            parent::__construct();
-        }
-
         $this->sitemapBuilder = $sitemapBuilder;
     }
 
