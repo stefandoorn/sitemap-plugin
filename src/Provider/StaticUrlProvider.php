@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Provider;
+namespace SitemapPlugin\Provider;
 
-use SitemapPlugin\Builder\Factory\AlternativeUrlFactoryInterface;
-use SitemapPlugin\Builder\Factory\UrlFactoryInterface;
-use SitemapPlugin\Builder\Model\ChangeFrequency;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use SitemapPlugin\Factory\UrlFactoryInterface;
+use SitemapPlugin\Model\ChangeFrequency;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Routing\RouterInterface;
 

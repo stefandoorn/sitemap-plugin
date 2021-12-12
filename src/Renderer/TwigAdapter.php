@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Renderer;
+namespace SitemapPlugin\Renderer;
 
-use SitemapPlugin\Builder\Model\SitemapInterface;
+use SitemapPlugin\Model\SitemapInterface;
 use Twig\Environment;
 
 final class TwigAdapter implements RendererAdapterInterface

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Builder;
+namespace SitemapPlugin\Builder;
 
-use SitemapPlugin\Builder\Factory\SitemapIndexFactoryInterface;
-use SitemapPlugin\Builder\Model\SitemapInterface;
-use SitemapPlugin\Builder\Provider\IndexUrlProviderInterface;
-use SitemapPlugin\Builder\Provider\UrlProviderInterface;
+use SitemapPlugin\Factory\SitemapIndexFactoryInterface;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Provider\IndexUrlProviderInterface;
+use SitemapPlugin\Provider\UrlProviderInterface;
 
 final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
 {

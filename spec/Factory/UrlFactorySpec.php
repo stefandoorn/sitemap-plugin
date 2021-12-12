@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Builder\Factory;
+namespace spec\SitemapPlugin\Factory;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Builder\Factory\UrlFactory;
-use SitemapPlugin\Builder\Factory\UrlFactoryInterface;
-use SitemapPlugin\Builder\Model\Url;
+use SitemapPlugin\Factory\UrlFactory;
+use SitemapPlugin\Factory\UrlFactoryInterface;
+use SitemapPlugin\Model\Url;
 
 final class UrlFactorySpec extends ObjectBehavior
 {

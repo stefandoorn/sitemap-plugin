@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Builder\Model;
+namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
 

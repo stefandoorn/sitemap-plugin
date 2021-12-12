@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Builder\Controller;
+namespace Tests\SitemapPlugin\Controller;
 
 use ApiTestCase\XmlApiTestCase as BaseXmlApiTestCase;
 use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use SitemapPlugin\Builder\Command\GenerateSitemapCommand;
+use SitemapPlugin\Command\GenerateSitemapCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\HttpFoundation\Response;

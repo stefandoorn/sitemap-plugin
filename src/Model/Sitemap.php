@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Model;
+namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
-use SitemapPlugin\Builder\Exception\SitemapUrlNotFoundException;
+use SitemapPlugin\Exception\SitemapUrlNotFoundException;
 
 final class Sitemap implements SitemapInterface
 {

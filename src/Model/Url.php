@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Model;
+namespace SitemapPlugin\Model;
 
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;

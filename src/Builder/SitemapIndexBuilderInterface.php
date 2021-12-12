@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Builder;
+namespace SitemapPlugin\Builder;
 
-use SitemapPlugin\Builder\Model\SitemapInterface;
-use SitemapPlugin\Builder\Provider\IndexUrlProviderInterface;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Provider\IndexUrlProviderInterface;
 
 interface SitemapIndexBuilderInterface extends BuilderInterface
 {

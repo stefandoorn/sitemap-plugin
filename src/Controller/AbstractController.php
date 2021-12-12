@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Controller;
+namespace SitemapPlugin\Controller;
 
 use Gaufrette\StreamMode;
-use SitemapPlugin\Builder\Filesystem\Reader;
+use SitemapPlugin\Filesystem\Reader;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

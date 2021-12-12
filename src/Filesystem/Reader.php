@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Filesystem;
+namespace SitemapPlugin\Filesystem;
 
 use Gaufrette\FilesystemInterface;
 use Gaufrette\Stream;

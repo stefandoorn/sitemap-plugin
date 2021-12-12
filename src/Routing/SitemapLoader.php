@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Routing;
+namespace SitemapPlugin\Routing;
 
-use SitemapPlugin\Builder\Builder\SitemapBuilderInterface;
-use SitemapPlugin\Builder\Exception\RouteExistsException;
+use SitemapPlugin\Builder\SitemapBuilderInterface;
+use SitemapPlugin\Exception\RouteExistsException;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;

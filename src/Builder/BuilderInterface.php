@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Builder;
+namespace SitemapPlugin\Builder;
 
-use SitemapPlugin\Builder\Provider\UrlProviderInterface;
+use SitemapPlugin\Provider\UrlProviderInterface;
 
 interface BuilderInterface
 {

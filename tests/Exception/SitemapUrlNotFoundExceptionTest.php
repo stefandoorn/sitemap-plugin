@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Builder\Exception;
+namespace Tests\SitemapPlugin\Exception;
 
 use PHPUnit\Framework\TestCase;
-use SitemapPlugin\Builder\Exception\SitemapUrlNotFoundException;
-use SitemapPlugin\Builder\Model\Url;
+use SitemapPlugin\Exception\SitemapUrlNotFoundException;
+use SitemapPlugin\Model\Url;
 
 final class SitemapUrlNotFoundExceptionTest extends TestCase
 {

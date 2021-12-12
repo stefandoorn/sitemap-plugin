@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Factory;
+namespace SitemapPlugin\Factory;
 
-use SitemapPlugin\Builder\Model\Sitemap;
-use SitemapPlugin\Builder\Model\SitemapInterface;
+use SitemapPlugin\Model\Sitemap;
+use SitemapPlugin\Model\SitemapInterface;
 
 final class SitemapFactory implements SitemapFactoryInterface
 {

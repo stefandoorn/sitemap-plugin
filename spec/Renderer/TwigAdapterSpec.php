@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Builder\Renderer;
+namespace spec\SitemapPlugin\Renderer;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Builder\Model\SitemapInterface;
-use SitemapPlugin\Builder\Model\UrlInterface;
-use SitemapPlugin\Builder\Renderer\RendererAdapterInterface;
-use SitemapPlugin\Builder\Renderer\TwigAdapter;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Model\UrlInterface;
+use SitemapPlugin\Renderer\RendererAdapterInterface;
+use SitemapPlugin\Renderer\TwigAdapter;
 use Twig\Environment;
 
 final class TwigAdapterSpec extends ObjectBehavior

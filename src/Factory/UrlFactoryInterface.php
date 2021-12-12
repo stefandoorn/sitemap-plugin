@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Factory;
+namespace SitemapPlugin\Factory;
 
-use SitemapPlugin\Builder\Model\UrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 
 interface UrlFactoryInterface
 {

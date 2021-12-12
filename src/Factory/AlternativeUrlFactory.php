@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Factory;
+namespace SitemapPlugin\Factory;
 
-use SitemapPlugin\Builder\Model\AlternativeUrl;
-use SitemapPlugin\Builder\Model\AlternativeUrlInterface;
+use SitemapPlugin\Model\AlternativeUrl;
+use SitemapPlugin\Model\AlternativeUrlInterface;
 
 final class AlternativeUrlFactory implements AlternativeUrlFactoryInterface
 {

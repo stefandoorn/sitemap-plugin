@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Tests\SitemapPlugin\Builder\Application\Kernel;
+use Tests\SitemapPlugin\Application\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 

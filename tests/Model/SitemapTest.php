@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Builder\Model;
+namespace Tests\SitemapPlugin\Model;
 
 use PHPUnit\Framework\TestCase;
-use SitemapPlugin\Builder\Model\Sitemap;
-use SitemapPlugin\Builder\Model\Url;
+use SitemapPlugin\Model\Sitemap;
+use SitemapPlugin\Model\Url;
 
 final class SitemapTest extends TestCase
 {

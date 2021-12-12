@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Factory;
+namespace SitemapPlugin\Factory;
 
-use SitemapPlugin\Builder\Model\IndexUrl;
-use SitemapPlugin\Builder\Model\IndexUrlInterface;
+use SitemapPlugin\Model\IndexUrl;
+use SitemapPlugin\Model\IndexUrlInterface;
 
 final class IndexUrlFactory implements IndexUrlFactoryInterface
 {

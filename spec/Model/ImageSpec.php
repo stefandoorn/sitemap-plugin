@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Builder\Model;
+namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Builder\Model\Image;
-use SitemapPlugin\Builder\Model\ImageInterface;
+use SitemapPlugin\Model\Image;
+use SitemapPlugin\Model\ImageInterface;
 
 final class ImageSpec extends ObjectBehavior
 {

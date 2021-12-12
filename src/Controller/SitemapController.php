@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Controller;
+namespace SitemapPlugin\Controller;
 
-use SitemapPlugin\Builder\Filesystem\Reader;
+use SitemapPlugin\Filesystem\Reader;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 

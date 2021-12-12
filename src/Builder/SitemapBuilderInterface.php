@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Builder;
+namespace SitemapPlugin\Builder;
 
-use SitemapPlugin\Builder\Model\SitemapInterface;
-use SitemapPlugin\Builder\Provider\UrlProviderInterface;
+use SitemapPlugin\Model\SitemapInterface;
+use SitemapPlugin\Provider\UrlProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 
 interface SitemapBuilderInterface extends BuilderInterface

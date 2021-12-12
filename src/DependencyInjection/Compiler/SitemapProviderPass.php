@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\DependencyInjection\Compiler;
+namespace SitemapPlugin\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

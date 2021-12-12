@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Model;
+namespace SitemapPlugin\Model;
 
 interface AlternativeUrlInterface
 {

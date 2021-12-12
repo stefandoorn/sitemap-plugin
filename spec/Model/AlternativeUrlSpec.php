@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Builder\Model;
+namespace spec\SitemapPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Builder\Model\AlternativeUrl;
-use SitemapPlugin\Builder\Model\AlternativeUrlInterface;
+use SitemapPlugin\Model\AlternativeUrl;
+use SitemapPlugin\Model\AlternativeUrlInterface;
 
 final class AlternativeUrlSpec extends ObjectBehavior
 {

@@ -3,7 +3,7 @@
     <services>
         <defaults autowire="false" autoconfigure="false" public="false" />
 
-        <service id="sylius.sitemap_provider.taxon" class="SitemapPlugin\Builder\Provider\TaxonUrlProvider">
+        <service id="sylius.sitemap_provider.taxon" class="SitemapPlugin\Provider\TaxonUrlProvider">
             <argument type="service" id="sylius.repository.taxon" />
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />

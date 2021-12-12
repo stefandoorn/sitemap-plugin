@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Exception;
+namespace SitemapPlugin\Exception;
 
 final class RouteExistsException extends \Exception
 {

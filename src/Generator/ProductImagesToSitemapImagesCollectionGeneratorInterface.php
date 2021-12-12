@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Generator;
+namespace SitemapPlugin\Generator;
 
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ProductInterface;

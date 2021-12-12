@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Builder\Model;
+namespace Tests\SitemapPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
-use SitemapPlugin\Builder\Model\Image;
-use SitemapPlugin\Builder\Model\Url;
+use SitemapPlugin\Model\Image;
+use SitemapPlugin\Model\Url;
 
 final class SitemapUrlTest extends TestCase
 {

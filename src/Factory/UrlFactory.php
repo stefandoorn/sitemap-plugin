@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Factory;
+namespace SitemapPlugin\Factory;
 
-use SitemapPlugin\Builder\Model\Url;
-use SitemapPlugin\Builder\Model\UrlInterface;
+use SitemapPlugin\Model\Url;
+use SitemapPlugin\Model\UrlInterface;
 
 final class UrlFactory implements UrlFactoryInterface
 {

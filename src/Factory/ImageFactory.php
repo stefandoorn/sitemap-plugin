@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Factory;
+namespace SitemapPlugin\Factory;
 
-use SitemapPlugin\Builder\Model\Image;
-use SitemapPlugin\Builder\Model\ImageInterface;
+use SitemapPlugin\Model\Image;
+use SitemapPlugin\Model\ImageInterface;
 
 final class ImageFactory implements ImageFactoryInterface
 {

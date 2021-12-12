@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Provider;
+namespace SitemapPlugin\Provider;
 
 interface IndexUrlProviderInterface
 {

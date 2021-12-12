@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Provider;
+namespace SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\Collection;
-use SitemapPlugin\Builder\Factory\AlternativeUrlFactoryInterface;
-use SitemapPlugin\Builder\Factory\UrlFactoryInterface;
-use SitemapPlugin\Builder\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
-use SitemapPlugin\Builder\Model\ChangeFrequency;
-use SitemapPlugin\Builder\Model\UrlInterface;
+use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
+use SitemapPlugin\Factory\UrlFactoryInterface;
+use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
+use SitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Model\UrlInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;

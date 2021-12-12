@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\SitemapPlugin\Builder\Controller;
+namespace Tests\SitemapPlugin\Controller;
 
 final class SitemapProductControllerApiLocalesTest extends XmlApiTestCase
 {

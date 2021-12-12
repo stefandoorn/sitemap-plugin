@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace spec\SitemapPlugin\Builder\Model;
+namespace spec\SitemapPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
-use SitemapPlugin\Builder\Model\ChangeFrequency;
-use SitemapPlugin\Builder\Model\ImageInterface;
-use SitemapPlugin\Builder\Model\Url;
-use SitemapPlugin\Builder\Model\UrlInterface;
+use SitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Model\ImageInterface;
+use SitemapPlugin\Model\Url;
+use SitemapPlugin\Model\UrlInterface;
 
 final class UrlSpec extends ObjectBehavior
 {

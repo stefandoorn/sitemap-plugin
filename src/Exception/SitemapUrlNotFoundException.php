@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Exception;
+namespace SitemapPlugin\Exception;
 
-use SitemapPlugin\Builder\Model\UrlInterface;
+use SitemapPlugin\Model\UrlInterface;
 
 final class SitemapUrlNotFoundException extends \Exception
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder\Provider;
+namespace SitemapPlugin\Provider;
 
-use SitemapPlugin\Builder\Factory\IndexUrlFactoryInterface;
-use SitemapPlugin\Builder\Model\IndexUrlInterface;
+use SitemapPlugin\Factory\IndexUrlFactoryInterface;
+use SitemapPlugin\Model\IndexUrlInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 final class IndexUrlProvider implements IndexUrlProviderInterface
