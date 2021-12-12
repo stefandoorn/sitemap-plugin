@@ -7,6 +7,9 @@ parameters:
         # Makes PHPStan crash
         - 'src/DependencyInjection/Configuration.php'
 
+        # Remove when SF4 is not supported anymore (and do the parent call)
+        - src/Routing/SitemapLoader.php
+
         # Test dependencies
         - 'tests/Application/app/**.php'
         - 'tests/Application/src/**.php'
