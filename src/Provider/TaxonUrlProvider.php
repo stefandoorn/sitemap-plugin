@@ -94,7 +94,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     private function getTaxons(): iterable
     {
         /** @var TaxonInterface[] $taxons */
-        $taxons = $this->taxonRepository->findAll();
+        $taxons = $this->taxonRepository->findBy(['enabled' => true]);
 
         return $taxons;
     }
