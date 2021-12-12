@@ -14,5 +14,5 @@ interface IndexUrlInterface
 
     public function getLastModification(): ?DateTimeInterface;
 
-    public function setLastModification(?DateTimeInterface $lastModification);
+    public function setLastModification(?DateTimeInterface $lastModification): void;
 }

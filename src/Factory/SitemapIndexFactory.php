@@ -9,9 +9,6 @@ use SitemapPlugin\Model\SitemapInterface;
 
 final class SitemapIndexFactory implements SitemapIndexFactoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function createNew(): SitemapInterface
     {
         return new SitemapIndex();

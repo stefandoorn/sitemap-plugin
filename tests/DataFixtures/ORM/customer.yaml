@@ -1,0 +1,52 @@
+Sylius\Component\Core\Model\ShopUser:
+    user_oliver:
+        plainPassword: "123password"
+        roles: ["ROLE_USER"]
+        enabled: "true"
+        customer: "@customer_oliver"
+        username: "oliver@queen.com"
+        usernameCanonical: "oliver@queen.com"
+
+    user_hater:
+        plainPassword: "123password"
+        roles: ["ROLE_USER"]
+        enabled: "true"
+        customer: "@hater"
+        username: "hater@queen.com"
+        usernameCanonical: "hater@queen.com"
+
+    user_test:
+        plainPassword: "MegaSafePassword"
+        roles: ["ROLE_USER"]
+        enabled: "true"
+        customer: "@customer_test"
+        username: "test@example.com"
+        usernameCanonical: "test@example.com"
+
+Sylius\Component\Core\Model\Customer:
+    customer_oliver:
+        firstName: "Oliver"
+        lastName: "Queen"
+        email: "oliver@queen.com"
+        emailCanonical: "oliver@queen.com"
+        gender: "m"
+        group: "@retail"
+        phoneNumber: "0212115512"
+        birthday: <dateTimeBetween("-200 days", "now")>
+
+    hater:
+        firstName: "Slade"
+        lastName: "Wilson"
+        email: "hater@queen.com"
+        emailCanonical: "slade@queen.com"
+
+    customer_test:
+        firstName: "John"
+        lastName: "Nowak"
+        email: "test@example.com"
+        emailCanonical: "test@example.com"
+
+Sylius\Component\Customer\Model\CustomerGroup:
+    retail:
+        name: "Retail"
+        code: "retail"

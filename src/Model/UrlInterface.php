@@ -25,14 +25,8 @@ interface UrlInterface
 
     public function setPriority(float $priority): void;
 
-    /**
-     * @return Collection|AlternativeUrlInterface[]
-     */
     public function getAlternatives(): Collection;
 
-    /**
-     * @param AlternativeUrlInterface[] $alternatives
-     */
     public function setAlternatives(iterable $alternatives): void;
 
     public function addAlternative(AlternativeUrlInterface $alternative): void;
@@ -43,14 +37,8 @@ interface UrlInterface
 
     public function hasAlternatives(): bool;
 
-    /**
-     * @return Collection|ImageInterface[]
-     */
     public function getImages(): Collection;
 
-    /**
-     * @param ImageInterface[] $images
-     */
     public function setImages(iterable $images): void;
 
     public function addImage(ImageInterface $image): void;

@@ -46,6 +46,9 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
 
             $sitemapImage = $this->sitemapImageUrlFactory->createNew($this->imagineCacheManager->getBrowserPath($path, $this->imagePreset));
 
+            /**
+             * @psalm-suppress InvalidArgument
+             */
             $images->add($sitemapImage);
         }
 
