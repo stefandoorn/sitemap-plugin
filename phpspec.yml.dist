@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: SitemapPlugin\Builder
-        psr4_prefix: SitemapPlugin\Builder
+        namespace: SitemapPlugin
+        psr4_prefix: SitemapPlugin
