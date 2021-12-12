@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SitemapPlugin\Builder;
+namespace SitemapPlugin;
 
 use SitemapPlugin\DependencyInjection\Compiler\SitemapProviderPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
