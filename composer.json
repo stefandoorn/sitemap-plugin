@@ -32,7 +32,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpspec/phpspec": "^7.0",
         "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "0.12.88",
+        "phpstan/phpstan": "0.12.99",
         "phpstan/phpstan-doctrine": "0.12.37",
         "phpstan/phpstan-strict-rules": "^0.12.0",
         "phpstan/phpstan-symfony": "^0.12",
