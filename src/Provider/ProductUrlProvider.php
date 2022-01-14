@@ -33,6 +33,8 @@ final class ProductUrlProvider implements UrlProviderInterface
 
     private ChannelInterface $channel;
 
+    private string $defaultLocaleCode;
+
     /** @var array<string|null> */
     private array $channelLocaleCodes;
 
@@ -67,6 +69,8 @@ final class ProductUrlProvider implements UrlProviderInterface
         $this->channel = $channel;
         $urls = [];
         $this->channelLocaleCodes = [];
+        $channelDefaultLocaleCode = $this->getChannelDefaultLocaleCode($channel);
+        $this->defaultLocaleCode = $channelDefaultLocaleCode ?? $this->localeContext->getLocaleCode();
 
         foreach ($this->getProducts() as $product) {
             $urls[] = $this->createProductUrl($product);
@@ -127,9 +131,9 @@ final class ProductUrlProvider implements UrlProviderInterface
 
         /** @var ProductTranslationInterface $translation */
         foreach ($this->getTranslations($product) as $translation) {
-            $locale = $translation->getLocale();
+            $localeCode = $translation->getLocale();
 
-            if ($locale === null) {
+            if ($localeCode === null) {
                 continue;
             }
 
@@ -142,15 +146,25 @@ final class ProductUrlProvider implements UrlProviderInterface
                 '_locale' => $translation->getLocale(),
             ]);
 
-            if ($locale === $this->localeContext->getLocaleCode()) {
+            if ($localeCode === $this->defaultLocaleCode) {
                 $productUrl->setLocation($location);
 
                 continue;
             }
 
-            $productUrl->addAlternative($this->urlAlternativeFactory->createNew($location, $locale));
+            $productUrl->addAlternative($this->urlAlternativeFactory->createNew($location, $localeCode));
         }
 
         return $productUrl;
+    }
+
+    private function getChannelDefaultLocaleCode(ChannelInterface $channel): ?string
+    {
+        $channelDefaultLocale = $channel->getDefaultLocale();
+        if ($channelDefaultLocale === null) {
+            return null;
+        }
+
+        return $channelDefaultLocale->getCode();
     }
 }
