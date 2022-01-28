@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SitemapPlugin\Provider;
 
 use SitemapPlugin\Factory\IndexUrlFactoryInterface;
-use SitemapPlugin\Model\IndexUrlInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 final class IndexUrlProvider implements IndexUrlProviderInterface
@@ -16,9 +15,6 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     private RouterInterface $router;
 
     private IndexUrlFactoryInterface $sitemapIndexUrlFactory;
-
-    /** @var IndexUrlInterface[] */
-    private array $urls = [];
 
     public function __construct(
         RouterInterface $router,
@@ -35,12 +31,12 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
 
     public function generate(): iterable
     {
+        $urls = [];
         foreach ($this->providers as $provider) {
             $location = $this->router->generate('sylius_sitemap_' . $provider->getName());
-
-            $this->urls[] = $this->sitemapIndexUrlFactory->createNew($location);
+            $urls[] = $this->sitemapIndexUrlFactory->createNew($location);
         }
 
-        return $this->urls;
+        return $urls;
     }
 }
