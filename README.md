@@ -47,6 +47,14 @@ sylius_sitemap:
 
    -  [Default configuration](#default-configuration)
 
+6. Forcing HTTPS on Generated URLs, see [Symfony Docu](https://symfony.com/doc/current/routing.html#forcing-https-on-generated-urls). In console commands, where there is no HTTP request, URLs use http by default. You can change this globally with these configuration parameters:
+
+```
+# config/services.yaml
+parameters:
+    router.request_context.scheme: 'https'
+```
+
 
 ## Usage
 
