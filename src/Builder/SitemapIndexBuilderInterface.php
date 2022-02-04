@@ -9,7 +9,7 @@ use SitemapPlugin\Provider\IndexUrlProviderInterface;
 
 interface SitemapIndexBuilderInterface extends BuilderInterface
 {
-    public function addIndexProvider(IndexUrlProviderInterface $provider): void;
+    public function addIndexProvider(IndexUrlProviderInterface $indexProvider): void;
 
     public function build(): SitemapInterface;
 }

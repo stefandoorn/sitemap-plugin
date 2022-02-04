@@ -29,9 +29,13 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
         $this->providers[] = $provider;
     }
 
-    public function addIndexProvider(IndexUrlProviderInterface $provider): void
+    public function addIndexProvider(IndexUrlProviderInterface $indexProvider): void
     {
-        $this->indexProviders[] = $provider;
+        foreach ($this->providers as $provider) {
+            $indexProvider->addProvider($provider);
+        }
+
+        $this->indexProviders[] = $indexProvider;
     }
 
     public function build(): SitemapInterface
@@ -40,10 +44,6 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
         $urls = [];
 
         foreach ($this->indexProviders as $indexProvider) {
-            foreach ($this->providers as $provider) {
-                $indexProvider->addProvider($provider);
-            }
-
             $urls[] = $indexProvider->generate();
         }
 
