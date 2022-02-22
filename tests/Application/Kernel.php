@@ -13,6 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Sylius\Calendar\SyliusCalendarBundle;
 
 final class Kernel extends BaseKernel
 {
@@ -38,6 +39,10 @@ final class Kernel extends BaseKernel
                 continue;
             }
             yield from $this->registerBundlesFromFile($bundlesFile);
+
+            if(class_exists(SyliusCalendarBundle::class)) {
+                yield new SyliusCalendarBundle();
+            }
         }
     }
 
@@ -67,7 +72,7 @@ final class Kernel extends BaseKernel
 
     protected function getContainerBaseClass(): string
     {
-        if ($this->isTestEnvironment()) {
+        if ($this->isTestEnvironment() && class_exists(MockerContainer::class)) {
             return MockerContainer::class;
         }
 
