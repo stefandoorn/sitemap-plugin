@@ -1,5 +1,5 @@
 {% import '@SitemapPlugin/Macro/xml.html.twig' as xml_helper %}
-{% spaceless %}
+{% apply spaceless %}
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {%- for url in url_set -%}
@@ -9,4 +9,4 @@
         </sitemap>
     {% endfor %}
 </sitemapindex>
-{% endspaceless %}
+{% endapply %}
