@@ -93,6 +93,10 @@ jobs:
                         ${{ runner.os }}-php-${{ matrix.php }}-composer-
 
             -
+                name: Allow Composer plugins
+                run: composer global config --no-plugins allow-plugins.symfony/flex true
+
+            -
                 name: Restrict Symfony version
                 if: matrix.symfony != ''
                 run: |
