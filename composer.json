@@ -46,7 +46,12 @@
     },
     "config": {
         "sort-packages": true,
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "symfony/thanks": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "branch-alias": {
