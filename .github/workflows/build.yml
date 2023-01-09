@@ -144,10 +144,6 @@ jobs:
                 name: Run PHPStan
                 run: composer analyse
 
-            #-
-            #    name: Run Psalm
-            #    run: vendor/bin/psalm
-
             -
                 name: Run tests
                 run: composer test
