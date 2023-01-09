@@ -107,7 +107,7 @@ final class GenerateSitemapCommand extends Command
     }
 
     /**
-     * @return ChannelInterface[]
+     * @return iterable<int, ChannelInterface>
      */
     private function channels(InputInterface $input): iterable
     {
