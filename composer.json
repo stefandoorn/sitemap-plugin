@@ -20,6 +20,7 @@
         "api-platform/core": "~2.5.0 || ~2.6.0",
         "friendsofsymfony/oauth-server-bundle": "^1.6 || >2.0.0-alpha.0 ^2.0@dev",
         "lchrusciel/api-test-case": "^5.1",
+        "league/flysystem-bundle": "^2.0 || ^3.0",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpspec/phpspec": "^7.0",
         "phpstan/extension-installer": "^1.0",
