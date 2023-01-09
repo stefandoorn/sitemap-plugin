@@ -44,7 +44,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
@@ -100,7 +100,8 @@ final class ProductUrlProvider implements UrlProviderInterface
             ->setParameter('channel', $this->channel)
             ->setParameter('enabled', true)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
 
     private function getLocaleCodes(): array

@@ -14,7 +14,7 @@ final class SitemapIndexController extends AbstractController
 
     public function __construct(
         ChannelContextInterface $channelContext,
-        Reader $reader
+        Reader $reader,
     ) {
         $this->channelContext = $channelContext;
 

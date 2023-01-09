@@ -11,13 +11,14 @@ final class SitemapParameterTest extends AbstractExtensionTestCase
 {
     /**
      * @test
+     *
      * @dataProvider providers
      */
     public function it_has_providers_enabled_by_default_with_parameter(
         array $config,
         bool $products,
         bool $taxons,
-        bool $static
+        bool $static,
     ) {
         $this->load($config);
 
