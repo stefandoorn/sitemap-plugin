@@ -7,6 +7,9 @@
         "sylius-plugin"
     ],
     "license": "MIT",
+    "conflict": {
+        "twig/twig": "<2.9"
+    },
     "require": {
         "php": "^7.4 || ^8.0",
         "sylius/sylius": "~1.9.0 || ~1.10.0 || ~1.11.0 || ~1.12.0",
