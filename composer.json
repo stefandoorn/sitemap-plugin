@@ -17,7 +17,7 @@
         "symfony/webpack-encore-bundle": "^1.15"
     },
     "require-dev": {
-        "api-platform/core": "~2.5.0 || ~2.6.0",
+        "api-platform/core": "^2.7.5",
         "friendsofsymfony/oauth-server-bundle": "^1.6 || >2.0.0-alpha.0 ^2.0@dev",
         "lchrusciel/api-test-case": "^5.1",
         "league/flysystem-bundle": "^2.0 || ^3.0",
