@@ -3,13 +3,13 @@ sylius_sitemap_index:
     path: /sitemap_index.xml
     methods: [GET]
     defaults:
-        _controller: sylius.controller.sitemap_index:showAction
+        _controller: sylius.controller.sitemap_index::showAction
 
 # Redirect always to the index, as this is the preferred way
 sylius_sitemap_no_index:
     path: /sitemap.xml
     defaults:
-        _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController:redirectAction'
+        _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction'
         route: sylius_sitemap_index
         permanent: true
 
