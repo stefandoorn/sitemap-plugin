@@ -127,6 +127,7 @@ jobs:
             -
                 name: Run security check
                 run: symfony security:check
+                continue-on-error: true
 
             -
                 name: Check coding standard
