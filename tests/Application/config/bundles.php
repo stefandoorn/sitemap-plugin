@@ -1,5 +1,10 @@
 <?php
 
+$previousSyliusVersions = [];
+if (class_exists('Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle')) {
+    $previousSyliusVersions[Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class] = ['all' => true];
+}
+
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
@@ -55,4 +60,4 @@ return [
     Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class => ['dev' => true, 'test' => true, 'test_cached' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
- ];
+ ] + $previousSyliusVersions;
