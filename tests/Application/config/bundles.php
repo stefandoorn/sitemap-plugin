@@ -2,6 +2,7 @@
 
 $previousSyliusVersions = [];
 if (class_exists('Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle')) {
+    // Sylius v1.11
     $previousSyliusVersions[Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class] = ['all' => true];
 }
 
