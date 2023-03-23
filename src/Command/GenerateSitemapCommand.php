@@ -39,7 +39,7 @@ final class GenerateSitemapCommand extends Command
         SitemapIndexBuilderInterface $sitemapIndexBuilder,
         Writer $writer,
         ChannelRepositoryInterface $channelRepository,
-        RouterInterface $router,
+        RouterInterface $router
     ) {
         $this->sitemapRenderer = $sitemapRenderer;
         $this->sitemapIndexRenderer = $sitemapIndexRenderer;
@@ -81,7 +81,7 @@ final class GenerateSitemapCommand extends Command
 
             $this->writer->write(
                 $path,
-                $xml,
+                $xml
             );
 
             $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
@@ -95,7 +95,7 @@ final class GenerateSitemapCommand extends Command
 
         $this->writer->write(
             $path,
-            $xml,
+            $xml
         );
 
         $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));

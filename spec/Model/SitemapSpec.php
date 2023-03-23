@@ -37,7 +37,7 @@ final class SitemapSpec extends ObjectBehavior
     function it_removes_url(
         UrlInterface $sitemapUrl,
         UrlInterface $productUrl,
-        UrlInterface $staticUrl,
+        UrlInterface $staticUrl
     ): void {
         $this->addUrl($sitemapUrl);
         $this->addUrl($staticUrl);
@@ -61,7 +61,7 @@ final class SitemapSpec extends ObjectBehavior
 
     function it_throws_sitemap_url_not_found_exception_if_cannot_find_url_to_remove(
         UrlInterface $productUrl,
-        UrlInterface $staticUrl,
+        UrlInterface $staticUrl
     ): void {
         $this->addUrl($productUrl);
 

@@ -71,7 +71,7 @@ final class Url implements UrlInterface
         if (0 > $priority || 1 < $priority) {
             throw new \InvalidArgumentException(\sprintf(
                 'The value %s is not supported by the option priority, it must be a number between 0.0 and 1.0.',
-                $priority,
+                $priority
             ));
         }
 

@@ -10,6 +10,7 @@ use SitemapPlugin\Model\ChangeFrequency;
 final class ChangeFrequencyTest extends TestCase
 {
     /**
+     * @param $interval
      * @dataProvider dataProvider
      */
     public function testBasic($interval)

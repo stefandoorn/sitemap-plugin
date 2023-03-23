@@ -34,7 +34,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $this->beConstructedWith($repository, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $productToImageSitemapArrayGenerator);
     }
@@ -67,7 +67,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $now = new \DateTime();
 
@@ -157,7 +157,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         QueryBuilder $queryBuilder,
         AbstractQuery $query,
         ChannelInterface $channel,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ): void {
         $now = new \DateTime();
 
