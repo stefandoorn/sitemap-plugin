@@ -11,6 +11,7 @@ final class SitemapParameterTest extends AbstractExtensionTestCase
 {
     /**
      * @test
+     *
      * @dataProvider providers
      */
     public function it_has_providers_enabled_by_default_with_parameter(

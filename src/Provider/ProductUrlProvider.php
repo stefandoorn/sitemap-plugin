@@ -100,7 +100,8 @@ final class ProductUrlProvider implements UrlProviderInterface
             ->setParameter('channel', $this->channel)
             ->setParameter('enabled', true)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
 
     private function getLocaleCodes(): array
