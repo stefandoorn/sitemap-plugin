@@ -51,8 +51,8 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
                     [],
                     '',
                     [],
-                    ['GET'],
-                ),
+                    ['GET']
+                )
             );
         }
 
