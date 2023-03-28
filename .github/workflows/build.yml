@@ -99,6 +99,11 @@ jobs:
                     composer config extra.symfony.require "${{ matrix.symfony }}"
 
             -
+                name: Symfony Security Checker
+                if: matrix.symfony == '^4.4' || matrix.symfony == '^5.4'
+                run: composer require sensiolabs/security-checker --dev --no-update --no-scripts
+
+            -
                 name: Restrict Sylius version
                 if: matrix.sylius != ''
                 run: composer require "sylius/sylius:${{ matrix.sylius }}" --no-update --no-scripts --no-interaction
