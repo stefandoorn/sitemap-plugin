@@ -22,7 +22,7 @@ final class ProductImagesToSitemapImagesCollectionGenerator implements ProductIm
     public function __construct(
         ImageFactoryInterface $sitemapImageUrlFactory,
         CacheManager $imagineCacheManager,
-        ?string $imagePreset = null,
+        ?string $imagePreset = null
     ) {
         $this->sitemapImageUrlFactory = $sitemapImageUrlFactory;
         $this->imagineCacheManager = $imagineCacheManager;

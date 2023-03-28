@@ -44,7 +44,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
+        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
     ) {
         $this->productRepository = $productRepository;
         $this->router = $router;
