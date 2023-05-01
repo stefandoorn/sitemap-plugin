@@ -66,7 +66,7 @@ final class GenerateSitemapCommand extends Command
         return 0;
     }
 
-    private function executeChannel(ChannelInterface $channel, OutputInterface $output): void
+   private function executeChannel(ChannelInterface $channel, OutputInterface $output): void
     {
         $output->writeln(\sprintf('Start generating sitemaps for channel "%s"', $channel->getName()));
 
@@ -89,7 +89,7 @@ final class GenerateSitemapCommand extends Command
 
         $output->writeln(\sprintf('Start generating sitemap index for channel "%s"', $channel->getCode()));
 
-        $sitemap = $this->sitemapIndexBuilder->build();
+        $sitemap = $this->sitemapIndexBuilder->build($channel);
         $xml = $this->sitemapIndexRenderer->render($sitemap);
         $path = $this->path($channel, 'sitemap_index.xml');
 
