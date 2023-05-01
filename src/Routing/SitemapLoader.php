@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Routing\RouteLoaderInterface;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-
 final class SitemapLoader extends Loader implements RouteLoaderInterface
 {
     private bool $loaded = false;
@@ -39,16 +38,17 @@ public function getCountryCodeByLocale(string $locale): string {
             if (null !== $routes->get($name)) {
                 throw new RouteExistsException($name);
             }
-            if(isset($provider->getChannel())){
-               $this->channel=$provider->getChannel();
+            $url='/sitemap/' . $provider->getName() . '.xml';
+            if(isset($provider->currentChannel)){
+               $this->channel=$provider->currentChannel;
+               $locale=$this->channel->getDefaultLocale()->getCode();
+               $url='/'.$this->getCountryCodeByLocale($locale).'/'.$locale.'/sitemap/' . $provider->getName() . '.xml';
            }
-           if($this->channel){
-            $locale=$this->channel->getDefaultLocale()->getCode();
+
             $routes->add(
                 $name,
                 new Route(
-                        '/'.$this->getCountryCodeByLocale($locale).'/'.$locale.'/sitemap/' . $provider->getName() . '.xml',
-                   
+                    $url,
                     [
                         '_controller' => 'sylius.controller.sitemap:showAction',
                         'name' => $provider->getName(),
@@ -60,23 +60,6 @@ public function getCountryCodeByLocale(string $locale): string {
                     ['GET']
                 )
             );
-        }else{
-            $routes->add(
-                $name,
-                new Route(
-                   '/sitemap/' . $provider->getName() . '.xml',
-                    [
-                        '_controller' => 'sylius.controller.sitemap:showAction',
-                        'name' => $provider->getName(),
-                    ],
-                    [],
-                    [],
-                    '',
-                    [],
-                    ['GET']
-                )
-            );
-        }
             
         }
 
