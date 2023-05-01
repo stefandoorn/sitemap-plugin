@@ -74,7 +74,9 @@ final class ProductUrlProvider implements UrlProviderInterface
 
         return $urls;
     }
-
+    public function getCountryCodeByLocale(string $locale): string {
+       return $locale == 'en_US'?'us': explode("_",$locale)[0];
+    }
     private function getTranslations(ProductInterface $product): Collection
     {
         return $product->getTranslations()->filter(function (TranslationInterface $translation): bool {
@@ -100,8 +102,7 @@ final class ProductUrlProvider implements UrlProviderInterface
             ->setParameter('channel', $this->channel)
             ->setParameter('enabled', true)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
     private function getLocaleCodes(): array
@@ -141,6 +142,7 @@ final class ProductUrlProvider implements UrlProviderInterface
             $location = $this->router->generate('sylius_shop_product_show', [
                 'slug' => $translation->getSlug(),
                 '_locale' => $translation->getLocale(),
+                'countryCode'=>$this->getCountryCodeByLocale($translation->getLocale())
             ]);
 
             if ($locale === $this->localeContext->getLocaleCode()) {
@@ -155,3 +157,4 @@ final class ProductUrlProvider implements UrlProviderInterface
         return $productUrl;
     }
 }
+
