@@ -20,10 +20,11 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
     public function __construct(SitemapBuilderInterface $sitemapBuilder)
     {
         $this->sitemapBuilder = $sitemapBuilder;
-
-        parent::__construct();
     }
-
+public function getCountryCodeByLocale(string $locale): string {
+       return $locale == 'en_US'?'us': explode("_",$locale)[0];
+    }
+    private $channel;
     public function load($resource, $type = null)
     {
         $routes = new RouteCollection();
@@ -38,13 +39,18 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
             if (null !== $routes->get($name)) {
                 throw new RouteExistsException($name);
             }
-
+            if(isset($provider->getChannel())){
+               $this->channel=$provider->getChannel();
+           }
+           if($this->channel){
+            $locale=$this->channel->getDefaultLocale()->getCode();
             $routes->add(
                 $name,
                 new Route(
-                    '/sitemap/' . $provider->getName() . '.xml',
+                        '/'.$this->getCountryCodeByLocale($locale).'/'.$locale.'/sitemap/' . $provider->getName() . '.xml',
+                   
                     [
-                        '_controller' => 'sylius.controller.sitemap::showAction',
+                        '_controller' => 'sylius.controller.sitemap:showAction',
                         'name' => $provider->getName(),
                     ],
                     [],
@@ -54,6 +60,24 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
                     ['GET']
                 )
             );
+        }else{
+            $routes->add(
+                $name,
+                new Route(
+                   '/sitemap/' . $provider->getName() . '.xml',
+                    [
+                        '_controller' => 'sylius.controller.sitemap:showAction',
+                        'name' => $provider->getName(),
+                    ],
+                    [],
+                    [],
+                    '',
+                    [],
+                    ['GET']
+                )
+            );
+        }
+            
         }
 
         $this->loaded = true;
