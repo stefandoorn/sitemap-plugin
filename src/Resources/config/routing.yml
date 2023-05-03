@@ -1,10 +1,3 @@
-# Index file holding references to all generated sitemaps (per provider)
-sylius_sitemap_index:
-    path: /sitemap_index.xml
-    methods: [GET]
-    defaults:
-        _controller: sylius.controller.sitemap_index::showAction
-
 # Redirect always to the index, as this is the preferred way
 sylius_sitemap_no_index:
     path: /sitemap.xml
@@ -17,3 +10,40 @@ sylius_sitemap_no_index:
 sylius_sitemap_providers:
     resource: .
     type: sitemap
+# Index file holding references to all generated sitemaps (per provider)
+# adding /prefix/locale/ to accept like /fr/fr_FR/sitemap_index.xml
+sylius_sitemap_index:
+    path: /{countryCode}/{_locale}/sitemap_index.xml
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.sitemap_index:showAction       
+sylius_sitemap_cms_pages:
+    path: /{countryCode}/{_locale}/sitemap/cms_pages.xml
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.sitemap:showAction   
+        name: 'cms_pages'
+sylius_sitemap_cms_sections:
+    path: /{countryCode}/{_locale}/sitemap/cms_sections.xml
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.sitemap:showAction   
+        name: 'cms_sections'
+sylius_sitemap_products:
+    path: /{countryCode}/{_locale}/sitemap/products.xml
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.sitemap:showAction 
+        name: 'products'
+sylius_sitemap_taxons:
+    path: /{countryCode}/{_locale}/sitemap/taxons.xml
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.sitemap:showAction    
+        name: 'taxons'
+sylius_sitemap_static:
+    path: /{countryCode}/{_locale}/sitemap/static.xml
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.sitemap:showAction
+        name: 'static'   
