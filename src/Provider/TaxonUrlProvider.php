@@ -56,7 +56,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     {
         $urls = [];
 
-        foreach ($this->getTaxons() as $taxon) {
+        foreach ($this->findTaxonsWithProducts() as $taxon) {
             /** @var TaxonInterface $taxon */
             if ($this->excludeTaxonRoot && $taxon->isRoot()) {
                 continue;
@@ -102,4 +102,17 @@ final class TaxonUrlProvider implements UrlProviderInterface
 
         return $taxons;
     }
+    public function findTaxonsWithProducts()
+    {  
+        $qb = $this->taxonRepository->createQueryBuilder('t');
+        $qb
+            ->select('t')
+            ->join('Sylius\Component\Core\Model\ProductTaxon', 'pt', 'WITH', 't.id = pt.taxon')
+            ->where('t.enabled = true')
+            ->groupBy('t.id')
+            ->having($qb->expr()->gt($qb->expr()->count('pt.product'), 0));
+
+        return $qb->getQuery()->getResult();
+    }
+
 }
