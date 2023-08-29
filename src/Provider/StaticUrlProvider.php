@@ -39,7 +39,9 @@ final class StaticUrlProvider implements UrlProviderInterface
     {
         return 'static';
     }
-
+    public function getCountryCodeByLocale(string $locale): string {
+       return $locale == 'en_US'?'us': explode("_",$locale)[0];
+    }
     public function generate(ChannelInterface $channel): iterable
     {
         $this->channel = $channel;
@@ -50,6 +52,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         }
 
         foreach ($this->transformAndYieldRoutes() as $route) {
+            $route['parameters']['countryCode']= $this->getCountryCodeByLocale($route['parameters']['_locale']);
             $location = $this->router->generate($route['route'], $route['parameters']);
 
             $staticUrl = $this->sitemapUrlFactory->createNew($location);

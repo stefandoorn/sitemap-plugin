@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Routing\RouteLoaderInterface;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-
 final class SitemapLoader extends Loader implements RouteLoaderInterface
 {
     private bool $loaded = false;
@@ -21,7 +20,10 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
     {
         $this->sitemapBuilder = $sitemapBuilder;
     }
-
+public function getCountryCodeByLocale(string $locale): string {
+       return $locale == 'en_US'?'us': explode("_",$locale)[0];
+    }
+    private $channel;
     public function load($resource, $type = null)
     {
         $routes = new RouteCollection();
@@ -36,13 +38,19 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
             if (null !== $routes->get($name)) {
                 throw new RouteExistsException($name);
             }
+            $url='/sitemap/' . $provider->getName() . '.xml';
+            if(isset($provider->currentChannel)){
+               $this->channel=$provider->currentChannel;
+               $locale=$this->channel->getDefaultLocale()->getCode();
+               $url='/'.$this->getCountryCodeByLocale($locale).'/'.$locale.'/sitemap/' . $provider->getName() . '.xml';
+           }
 
             $routes->add(
                 $name,
                 new Route(
-                    '/sitemap/' . $provider->getName() . '.xml',
+                    $url,
                     [
-                        '_controller' => 'sylius.controller.sitemap::showAction',
+                        '_controller' => 'sylius.controller.sitemap:showAction',
                         'name' => $provider->getName(),
                     ],
                     [],
@@ -52,6 +60,7 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
                     ['GET']
                 )
             );
+            
         }
 
         $this->loaded = true;
