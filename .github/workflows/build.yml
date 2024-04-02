@@ -34,9 +34,9 @@ jobs:
                     - symfony: "^6.4"
                       sylius: "~1.12.0"
                     - symfony: "^4.4"
-                      sylius: "~1.13.0"
+                      sylius: "~1.13.0@beta"
                     - php: "8.0"
-                      sylius: "~1.13.0"
+                      sylius: "~1.13.0@beta"
 
         env:
             APP_ENV: test
