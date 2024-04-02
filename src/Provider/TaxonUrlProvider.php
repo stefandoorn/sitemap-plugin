@@ -27,7 +27,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     private LocaleContextInterface $localeContext;
 
     private bool $excludeTaxonRoot;
-
+   
     public function __construct(
         RepositoryInterface $taxonRepository,
         RouterInterface $router,
@@ -42,18 +42,21 @@ final class TaxonUrlProvider implements UrlProviderInterface
         $this->urlAlternativeFactory = $urlAlternativeFactory;
         $this->localeContext = $localeContext;
         $this->excludeTaxonRoot = $excludeTaxonRoot;
+        
     }
 
     public function getName(): string
     {
         return 'taxons';
     }
-
+    public function getCountryCodeByLocale(string $locale): string {
+       return $locale == 'en_US'?'us': explode("_",$locale)[0];
+    }
     public function generate(ChannelInterface $channel): iterable
     {
         $urls = [];
 
-        foreach ($this->getTaxons() as $taxon) {
+        foreach ($this->findTaxonsWithProducts() as $taxon) {
             /** @var TaxonInterface $taxon */
             if ($this->excludeTaxonRoot && $taxon->isRoot()) {
                 continue;
@@ -68,6 +71,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
                 $location = $this->router->generate('sylius_shop_product_index', [
                     'slug' => $translation->getSlug(),
                     '_locale' => $translation->getLocale(),
+                    'countryCode'=>$this->getCountryCodeByLocale($translation->getLocale())
                 ]);
 
                 if ($translation->getLocale() === $this->localeContext->getLocaleCode()) {
@@ -98,4 +102,17 @@ final class TaxonUrlProvider implements UrlProviderInterface
 
         return $taxons;
     }
+    public function findTaxonsWithProducts()
+    {  
+        $qb = $this->taxonRepository->createQueryBuilder('t');
+        $qb
+            ->select('t')
+            ->join('Sylius\Component\Core\Model\ProductTaxon', 'pt', 'WITH', 't.id = pt.taxon')
+            ->where('t.enabled = true')
+            ->groupBy('t.id')
+            ->having($qb->expr()->gt($qb->expr()->count('pt.product'), 0));
+
+        return $qb->getQuery()->getResult();
+    }
+
 }
