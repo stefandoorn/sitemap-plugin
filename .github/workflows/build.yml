@@ -110,6 +110,11 @@ jobs:
                 run: composer require "sylius/sylius:${{ matrix.sylius }}" --no-update --no-scripts --no-interaction
 
             -
+                name: Add security checker
+                if: matrix.symfony != "^6.4"
+                run: composer require sensiolabs/security-checker:^6.0 --no-update --no-scripts --no-interaction
+
+            -
                 name: Install PHP dependencies
                 run: composer install --no-interaction
 
