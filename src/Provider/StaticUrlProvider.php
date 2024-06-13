@@ -54,7 +54,7 @@ final class StaticUrlProvider implements UrlProviderInterface
 
             $staticUrl = $this->sitemapUrlFactory->createNew($location);
             $staticUrl->setChangeFrequency(ChangeFrequency::weekly());
-            $staticUrl->setPriority(0.3);
+            $staticUrl->setPriority($route['priority']);
 
             foreach ($route['locales'] as $alternativeLocaleCode) {
                 $route['parameters']['_locale'] = $alternativeLocaleCode;
