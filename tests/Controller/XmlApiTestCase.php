@@ -32,14 +32,11 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
         $commandTester->execute(['command' => $command->getName()]);
     }
 
-    protected function getBufferedResponse(string $uri): Response
+    protected function getResponse(string $uri): Response
     {
-        \ob_start();
         $this->client->request('GET', $uri);
-        $response = $this->client->getResponse();
-        $contents = \ob_get_clean();
 
-        return new Response($contents, $response->getStatusCode(), $response->headers->all());
+        return $this->client->getResponse();
     }
 
     protected function deleteSitemaps(): void

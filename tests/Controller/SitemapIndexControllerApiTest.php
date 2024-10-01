@@ -14,21 +14,21 @@ final class SitemapIndexControllerApiTest extends XmlApiTestCase
 
     public function testRedirectActionResponse()
     {
-        $response = $this->getBufferedResponse('/sitemap.xml');
+        $response = $this->getResponse('/sitemap.xml');
         self::assertResponseRedirects('http://localhost/sitemap_index.xml', 301);
         $this->deleteSitemaps();
     }
 
     public function testShowActionResponse()
     {
-        $response = $this->getBufferedResponse('/sitemap_index.xml');
+        $response = $this->getResponse('/sitemap_index.xml');
         $this->assertResponse($response, 'show_sitemap_index');
         $this->deleteSitemaps();
     }
 
     public function testRedirectResponse()
     {
-        $response = $this->getBufferedResponse('/sitemap.xml');
+        $response = $this->getResponse('/sitemap.xml');
 
         $this->assertResponseCode($response, 301);
         $this->assertTrue($response->isRedirect());

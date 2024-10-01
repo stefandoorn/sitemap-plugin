@@ -10,7 +10,7 @@ final class SitemapTaxonControllerApiLocalesTest extends XmlApiTestCase
     {
         $this->loadFixturesFromFiles(['channel.yaml', 'taxon_locale.yaml']);
         $this->generateSitemaps();
-        $response = $this->getBufferedResponse('/sitemap/taxons.xml');
+        $response = $this->getResponse('/sitemap/taxons.xml');
 
         $this->assertResponse($response, 'show_sitemap_taxons_locale');
         $this->deleteSitemaps();
