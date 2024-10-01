@@ -17,9 +17,13 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
 
     private SitemapBuilderInterface $sitemapBuilder;
 
-    public function __construct(SitemapBuilderInterface $sitemapBuilder)
-    {
+    public function __construct(
+        SitemapBuilderInterface $sitemapBuilder,
+        ?string $env = null
+    ) {
         $this->sitemapBuilder = $sitemapBuilder;
+
+        parent::__construct($env);
     }
 
     public function load($resource, $type = null)

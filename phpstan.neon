@@ -1,7 +1,5 @@
 parameters:
     reportUnmatchedIgnoredErrors: true
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
 
     excludePaths:
         # Makes PHPStan crash
@@ -10,9 +8,3 @@ parameters:
         # Test dependencies
         - 'tests/Application/app/**.php'
         - 'tests/Application/src/**.php'
-
-    ignoreErrors:
-        -
-            message: "#^Method SitemapPlugin\\\\Command\\\\GenerateSitemapCommand\\:\\:channels\\(\\) should return iterable\\<int, Sylius\\\\Component\\\\Core\\\\Model\\\\ChannelInterface\\> but returns array\\<int, Sylius\\\\Component\\\\Resource\\\\Model\\\\ResourceInterface\\>\\.$#"
-            count: 2
-            path: src/Command/GenerateSitemapCommand.php

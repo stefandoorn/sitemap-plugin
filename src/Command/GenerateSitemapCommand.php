@@ -111,11 +111,12 @@ final class GenerateSitemapCommand extends Command
      */
     private function channels(InputInterface $input): iterable
     {
-        if (self::hasChannelInput($input)) {
-            return $this->channelRepository->findBy(['code' => $input->getOption('channel'), 'enabled' => true]);
-        }
+        /** @var iterable<int, ChannelInterface> $channels */
+        $channels = self::hasChannelInput($input)
+            ? $this->channelRepository->findBy(['code' => $input->getOption('channel'), 'enabled' => true])
+            : $this->channelRepository->findBy(['enabled' => true]);
 
-        return $this->channelRepository->findBy(['enabled' => true]);
+        return $channels;
     }
 
     private static function hasChannelInput(InputInterface $input): bool
