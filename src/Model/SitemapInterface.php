@@ -22,16 +22,10 @@ interface SitemapInterface
 
     public function removeUrl(UrlInterface $url): void;
 
-    /**
-     * @return string
-     */
     public function getLocalization(): ?string;
 
     public function setLocalization(string $localization): void;
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getLastModification(): ?DateTimeInterface;
 
     public function setLastModification(DateTimeInterface $lastModification): void;

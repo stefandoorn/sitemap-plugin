@@ -8,16 +8,20 @@ use Symplify\EasyCodingStandard\Config\ECSConfig;
 return static function (ECSConfig $config): void {
     $config->import('vendor/sylius-labs/coding-standard/ecs.php');
 
+    $config->paths([
+        __DIR__ . '/src',
+    ]);
+
     $config->skip([
         VisibilityRequiredFixer::class => ['*Spec.php'],
         'tests/Application/*',
     ]);
 
-    $services = $config->services();
-    $services->set(
-        NativeFunctionInvocationFixer::class
-    )->call('configure', [['include' => ['@all'], 'scope' => 'all', 'strict' => \true]]);
-    $services->set(
-        TrailingCommaInMultilineFixer::class
-    )->call('configure', [['elements' => ['arrays']]]);
+    $config->ruleWithConfiguration(
+        NativeFunctionInvocationFixer::class,
+        ['include' => ['@all'], 'scope' => 'all', 'strict' => \true]);
+
+    $config->ruleWithConfiguration(
+        TrailingCommaInMultilineFixer::class,
+        ['elements' => ['arrays']]);
 };
