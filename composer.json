@@ -34,7 +34,7 @@
         "symfony/debug-bundle": "^4.4 || ^5.4 || ^6.4",
         "symfony/dotenv": "^4.4 || ^5.4 || ^6.4",
         "symfony/intl": "^4.4 || ^5.4 || ^6.4",
-        "symfony/runtime": "^7.1",
+        "symfony/runtime": "^4.4 || ^5.4 || ^6.4 || ^7.0",
         "symfony/web-profiler-bundle": "^4.4 || ^5.4 || ^6.4",
         "symfony/webpack-encore-bundle": "^1.15",
         "vimeo/psalm": "4.23.0"
