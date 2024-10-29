@@ -1,0 +1,20 @@
+Sylius\Component\Core\Model\Product:
+    test_product:
+        code: "test-code"
+        channels: ["@web_channel"]
+        currentLocale: "nl_NL"
+        translations:
+            - "@nl_nl_test_product_translation"
+            - "@en_us_test_product_translation"
+
+Sylius\Component\Core\Model\ProductTranslation:
+    nl_nl_test_product_translation:
+        slug: "test-code"
+        locale: "nl_NL"
+        name: "Test"
+        translatable: "@test_product"
+    en_us_test_product_translation:
+        slug: "test-code"
+        locale: "en_US"
+        name: "Test"
+        translatable: "@test_product"
