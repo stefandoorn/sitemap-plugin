@@ -26,7 +26,7 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
         parent::__construct($env);
     }
 
-    public function load($resource, $type = null)
+    public function load(mixed $resource, ?string $type = null): mixed
     {
         $routes = new RouteCollection();
 
@@ -63,7 +63,7 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
         return $routes;
     }
 
-    public function supports($resource, $type = null): bool
+    public function supports(mixed $resource, ?string $type = null): bool
     {
         return 'sitemap' === $type;
     }
