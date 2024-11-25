@@ -7,26 +7,25 @@ namespace SitemapPlugin\Routing;
 use SitemapPlugin\Builder\SitemapBuilderInterface;
 use SitemapPlugin\Exception\RouteExistsException;
 use Symfony\Bundle\FrameworkBundle\Routing\RouteLoaderInterface;
-use Symfony\Component\Config\Loader\Loader;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-final class SitemapLoader extends Loader implements RouteLoaderInterface
+final class SitemapLoader implements LoaderInterface, RouteLoaderInterface
 {
     private bool $loaded = false;
+    private ?LoaderResolverInterface $resolver = null;
 
     private SitemapBuilderInterface $sitemapBuilder;
 
     public function __construct(
-        SitemapBuilderInterface $sitemapBuilder,
-        ?string $env = null
+        SitemapBuilderInterface $sitemapBuilder
     ) {
         $this->sitemapBuilder = $sitemapBuilder;
-
-        parent::__construct($env);
     }
 
-    public function load($resource, $type = null)
+    public function load(mixed $resource, ?string $type = null): mixed
     {
         $routes = new RouteCollection();
 
@@ -63,8 +62,18 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
         return $routes;
     }
 
-    public function supports($resource, $type = null): bool
+    public function supports(mixed $resource, ?string $type = null): bool
     {
         return 'sitemap' === $type;
+    }
+
+    public function getResolver(): LoaderResolverInterface
+    {
+        return $this->resolver ?? throw new \RuntimeException('No resolver has been set');
+    }
+
+    public function setResolver(LoaderResolverInterface $resolver): void
+    {
+        $this->resolver = $resolver;
     }
 }
