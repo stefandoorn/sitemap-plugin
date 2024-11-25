@@ -8,12 +8,14 @@ use SitemapPlugin\Builder\SitemapBuilderInterface;
 use SitemapPlugin\Exception\RouteExistsException;
 use Symfony\Bundle\FrameworkBundle\Routing\RouteLoaderInterface;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 final class SitemapLoader implements LoaderInterface, RouteLoaderInterface
 {
     private bool $loaded = false;
+    private ?LoaderResolverInterface $resolver = null;
 
     private SitemapBuilderInterface $sitemapBuilder;
 
@@ -65,13 +67,13 @@ final class SitemapLoader implements LoaderInterface, RouteLoaderInterface
         return 'sitemap' === $type;
     }
 
-    public function getResolver(): ?\Symfony\Component\Config\Loader\LoaderResolverInterface
+    public function getResolver(): LoaderResolverInterface
     {
-        return null;
+        return $this->resolver ?? throw new \RuntimeException('No resolver has been set');
     }
 
-    public function setResolver(\Symfony\Component\Config\Loader\LoaderResolverInterface $resolver): void
+    public function setResolver(LoaderResolverInterface $resolver): void
     {
-        // Not needed
+        $this->resolver = $resolver;
     }
 }
