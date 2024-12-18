@@ -20,8 +20,4 @@ return static function (ECSConfig $config): void {
     $config->ruleWithConfiguration(
         NativeFunctionInvocationFixer::class,
         ['include' => ['@all'], 'scope' => 'all', 'strict' => \true]);
-
-    $config->ruleWithConfiguration(
-        TrailingCommaInMultilineFixer::class,
-        ['elements' => ['arrays']]);
 };
