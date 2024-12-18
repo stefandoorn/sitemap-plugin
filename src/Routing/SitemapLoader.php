@@ -19,7 +19,7 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
 
     public function __construct(
         SitemapBuilderInterface $sitemapBuilder,
-        ?string $env = null
+        ?string $env = null,
     ) {
         $this->sitemapBuilder = $sitemapBuilder;
 
@@ -53,8 +53,8 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
                     [],
                     '',
                     [],
-                    ['GET']
-                )
+                    ['GET'],
+                ),
             );
         }
 
