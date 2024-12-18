@@ -35,7 +35,7 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
 
     protected function getResponse(string $uri): Response
     {
-        if (version_compare(Kernel::VERSION, '6.0', '>=')) {
+        if (\version_compare(Kernel::VERSION, '6.0', '>=')) {
             $this->doRequest($uri);
 
             return new Response(
