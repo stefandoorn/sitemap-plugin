@@ -1,0 +1,15 @@
+version: '3'
+services:
+    db:
+        image: mariadb:10.6
+        environment:
+            - MYSQL_DATABASE=sylius
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+            - MYSQL_ROOT_HOST=%
+        command: --sql_mode=""
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./docker/volumes/mysql:/var/lib/mysql

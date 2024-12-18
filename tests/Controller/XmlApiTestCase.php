@@ -11,6 +11,7 @@ use RecursiveIteratorIterator;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Kernel;
 
 abstract class XmlApiTestCase extends BaseXmlApiTestCase
 {
@@ -32,10 +33,20 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
         $commandTester->execute(['command' => $command->getName()]);
     }
 
-    protected function getBufferedResponse(string $uri): Response
+    protected function getResponse(string $uri): Response
     {
+        if (\version_compare(Kernel::VERSION, '6.0', '>=')) {
+            $this->doRequest($uri);
+
+            return new Response(
+                $this->client->getInternalResponse()->getContent(),
+                $this->client->getInternalResponse()->getStatusCode(),
+                $this->client->getInternalResponse()->getHeaders(),
+            );
+        }
+
         \ob_start();
-        $this->client->request('GET', $uri);
+        $this->doRequest($uri);
         $response = $this->client->getResponse();
         $contents = \ob_get_clean();
 
@@ -62,5 +73,10 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
                 \rmdir($dir);
             }
         }
+    }
+
+    private function doRequest(string $uri): void
+    {
+        $this->client->request('GET', $uri);
     }
 }

@@ -16,3 +16,6 @@
 /behat.yml
 /phpunit.xml
 /phpspec.yml
+
+/docker/
+node_modules

@@ -11,7 +11,7 @@ final class SitemapProductControllerApiTest extends XmlApiTestCase
         $this->loadFixturesFromFiles(['channel.yaml', 'product.yaml']);
         $this->generateSitemaps();
 
-        $response = $this->getBufferedResponse('/sitemap/products.xml');
+        $response = $this->getResponse('/sitemap/products.xml');
         $this->assertResponse($response, 'show_sitemap_products');
         $this->deleteSitemaps();
     }
