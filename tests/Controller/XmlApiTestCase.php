@@ -35,22 +35,13 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
 
     protected function getResponse(string $uri): Response
     {
-        if (\version_compare(Kernel::VERSION, '6.0', '>=')) {
-            $this->doRequest($uri);
+        $this->client->request('GET', $uri);
 
-            return new Response(
-                $this->client->getInternalResponse()->getContent(),
-                $this->client->getInternalResponse()->getStatusCode(),
-                $this->client->getInternalResponse()->getHeaders(),
-            );
-        }
-
-        \ob_start();
-        $this->doRequest($uri);
-        $response = $this->client->getResponse();
-        $contents = \ob_get_clean();
-
-        return new Response($contents, $response->getStatusCode(), $response->headers->all());
+        return new Response(
+            $this->client->getInternalResponse()->getContent(),
+            $this->client->getInternalResponse()->getStatusCode(),
+            $this->client->getInternalResponse()->getHeaders(),
+        );
     }
 
     protected function deleteSitemaps(): void
@@ -73,10 +64,5 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
                 \rmdir($dir);
             }
         }
-    }
-
-    private function doRequest(string $uri): void
-    {
-        $this->client->request('GET', $uri);
     }
 }
