@@ -1,11 +1,5 @@
 <?php
 
-$previousSyliusVersions = [];
-if (class_exists('Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle')) {
-    // Sylius v1.11
-    $previousSyliusVersions[Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class] = ['all' => true];
-}
-
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
@@ -63,4 +57,4 @@ return [
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
     Sylius\Abstraction\StateMachine\SyliusStateMachineAbstractionBundle::class => ['all' => true],
     Sylius\Calendar\SyliusCalendarBundle::class => ['all' => true],
- ] + $previousSyliusVersions;
+ ];
