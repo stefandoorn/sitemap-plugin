@@ -2,7 +2,6 @@ parameters:
     sylius.security.shop_regex: "^/(?!admin|new-api|api/.*|api$|media/.*)[^/]++"
 
 security:
-    enable_authenticator_manager: true
     providers:
         sylius_shop_user_provider:
             id: sylius.shop_user_provider.email_or_name_based
