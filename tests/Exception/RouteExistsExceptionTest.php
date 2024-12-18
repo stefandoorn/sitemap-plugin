@@ -9,9 +9,10 @@ use SitemapPlugin\Exception\RouteExistsException;
 
 final class RouteExistsExceptionTest extends TestCase
 {
-    public function testException()
+    public function testException(): void
     {
         $exception = new RouteExistsException('test');
-        $this->assertSame('Sitemap route "test" already exists, probably a provider with a non-unique name', $exception->getMessage());
+
+        self::assertSame('Sitemap route "test" already exists, probably a provider with a non-unique name', $exception->getMessage());
     }
 }

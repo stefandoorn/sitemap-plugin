@@ -9,7 +9,7 @@ final class SitemapIndexControllerApiTest extends XmlApiTestCase
     protected function setUp(): void
     {
         $this->loadFixturesFromFiles(['channel.yaml']);
-        $this->generateSitemaps();
+        self::generateSitemaps();
     }
 
     public function testRedirectActionResponse()

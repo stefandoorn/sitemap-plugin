@@ -10,16 +10,16 @@ use SitemapPlugin\Model\Url;
 
 final class SitemapTest extends TestCase
 {
-    public function testInit()
+    public function testInit(): void
     {
         $obj = new Sitemap();
 
-        $this->assertEmpty($obj->getUrls());
-        $this->assertNull($obj->getLocalization());
-        $this->assertNull($obj->getLastModification());
+        self::assertEmpty($obj->getUrls());
+        self::assertNull($obj->getLocalization());
+        self::assertNull($obj->getLastModification());
     }
 
-    public function testUrls()
+    public function testUrls(): void
     {
         $obj = new Sitemap();
 
@@ -31,37 +31,37 @@ final class SitemapTest extends TestCase
 
         $obj->addUrl($sitemapUrl);
 
-        $this->assertCount(1, $obj->getUrls());
-        $this->assertTrue(\is_iterable($obj->getUrls()));
-        $this->assertEquals([$sitemapUrl], $obj->getUrls());
+        self::assertCount(1, $obj->getUrls());
+        self::assertTrue(\is_iterable($obj->getUrls()));
+        self::assertEquals([$sitemapUrl], $obj->getUrls());
 
         $obj->setUrls([$sitemapUrl, $sitemapUrlTwo]);
 
-        $this->assertCount(2, $obj->getUrls());
-        $this->assertTrue(\is_iterable($obj->getUrls()));
-        $this->assertEquals([$sitemapUrl, $sitemapUrlTwo], $obj->getUrls());
+        self::assertCount(2, $obj->getUrls());
+        self::assertTrue(\is_iterable($obj->getUrls()));
+        self::assertEquals([$sitemapUrl, $sitemapUrlTwo], $obj->getUrls());
 
         $obj->removeUrl($sitemapUrlTwo);
 
-        $this->assertCount(1, $obj->getUrls());
-        $this->assertTrue(\is_iterable($obj->getUrls()));
-        $this->assertEquals([$sitemapUrl], $obj->getUrls());
+        self::assertCount(1, $obj->getUrls());
+        self::assertTrue(\is_iterable($obj->getUrls()));
+        self::assertEquals([$sitemapUrl], $obj->getUrls());
     }
 
-    public function testLocalization()
+    public function testLocalization(): void
     {
         $obj = new Sitemap();
-
         $obj->setLocalization('test');
-        $this->assertEquals('test', $obj->getLocalization());
+
+        self::assertEquals('test', $obj->getLocalization());
     }
 
-    public function testModificationDate()
+    public function testModificationDate(): void
     {
         $obj = new Sitemap();
         $date = new \DateTimeImmutable();
-
         $obj->setLastModification($date);
-        $this->assertEquals($date, $obj->getLastModification());
+
+        self::assertEquals($date, $obj->getLastModification());
     }
 }

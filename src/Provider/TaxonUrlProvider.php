@@ -16,32 +16,14 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class TaxonUrlProvider implements UrlProviderInterface
 {
-    private RepositoryInterface $taxonRepository;
-
-    private RouterInterface $router;
-
-    private UrlFactoryInterface $sitemapUrlFactory;
-
-    private AlternativeUrlFactoryInterface $urlAlternativeFactory;
-
-    private LocaleContextInterface $localeContext;
-
-    private bool $excludeTaxonRoot;
-
     public function __construct(
-        RepositoryInterface $taxonRepository,
-        RouterInterface $router,
-        UrlFactoryInterface $sitemapUrlFactory,
-        AlternativeUrlFactoryInterface $urlAlternativeFactory,
-        LocaleContextInterface $localeContext,
-        bool $excludeTaxonRoot = true
+        private readonly RepositoryInterface $taxonRepository,
+        private readonly RouterInterface $router,
+        private readonly UrlFactoryInterface $sitemapUrlFactory,
+        private readonly AlternativeUrlFactoryInterface $urlAlternativeFactory,
+        private readonly LocaleContextInterface $localeContext,
+        private readonly bool $excludeTaxonRoot = true,
     ) {
-        $this->taxonRepository = $taxonRepository;
-        $this->router = $router;
-        $this->sitemapUrlFactory = $sitemapUrlFactory;
-        $this->urlAlternativeFactory = $urlAlternativeFactory;
-        $this->localeContext = $localeContext;
-        $this->excludeTaxonRoot = $excludeTaxonRoot;
     }
 
     public function getName(): string

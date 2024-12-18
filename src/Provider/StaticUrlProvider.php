@@ -12,27 +12,15 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class StaticUrlProvider implements UrlProviderInterface
 {
-    private RouterInterface $router;
-
-    private UrlFactoryInterface $sitemapUrlFactory;
-
-    private AlternativeUrlFactoryInterface $urlAlternativeFactory;
-
-    /** @var array<string, array> */
-    private array $routes;
-
     private ChannelInterface $channel;
 
     public function __construct(
-        RouterInterface $router,
-        UrlFactoryInterface $sitemapUrlFactory,
-        AlternativeUrlFactoryInterface $urlAlternativeFactory,
-        array $routes
+        private readonly RouterInterface $router,
+        private readonly UrlFactoryInterface $sitemapUrlFactory,
+        private readonly AlternativeUrlFactoryInterface $urlAlternativeFactory,
+        /** @var array<string, array> */
+        private readonly array $routes,
     ) {
-        $this->router = $router;
-        $this->sitemapUrlFactory = $sitemapUrlFactory;
-        $this->urlAlternativeFactory = $urlAlternativeFactory;
-        $this->routes = $routes;
     }
 
     public function getName(): string

@@ -15,18 +15,14 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
 {
     private bool $loaded = false;
 
-    private SitemapBuilderInterface $sitemapBuilder;
-
     public function __construct(
-        SitemapBuilderInterface $sitemapBuilder,
-        ?string $env = null
+        private readonly SitemapBuilderInterface $sitemapBuilder,
+        ?string $env = null,
     ) {
-        $this->sitemapBuilder = $sitemapBuilder;
-
         parent::__construct($env);
     }
 
-    public function load($resource, $type = null)
+    public function load(mixed $resource, ?string $type = null): mixed
     {
         $routes = new RouteCollection();
 
@@ -53,8 +49,8 @@ final class SitemapLoader extends Loader implements RouteLoaderInterface
                     [],
                     '',
                     [],
-                    ['GET']
-                )
+                    ['GET'],
+                ),
             );
         }
 

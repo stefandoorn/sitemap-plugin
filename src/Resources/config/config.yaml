@@ -4,15 +4,12 @@ sitemap:
         - { route: sylius_shop_contact_request }
 
 parameters:
-    sylius.sitemap.filesystem: sylius_sitemap
     sylius.sitemap.path: "%kernel.project_dir%/var/sitemap"
 
-knp_gaufrette:
-    adapters:
-        sylius_sitemap:
-            local:
+flysystem:
+    storages:
+        flysystem.storage.sylius_sitemap:
+            adapter: 'local'
+            options:
                 directory: "%sylius.sitemap.path%"
-                create: true
-    filesystems:
-        sylius_sitemap:
-            adapter: "%sylius.sitemap.filesystem%"
+                lazy_root_creation: true

@@ -10,16 +10,14 @@ use SitemapPlugin\DependencyInjection\SitemapExtension;
 final class SitemapParameterTest extends AbstractExtensionTestCase
 {
     /**
-     * @test
-     *
      * @dataProvider providers
      */
-    public function it_has_providers_enabled_by_default_with_parameter(
+    public function testProvidersEnabledDefault(
         array $config,
         bool $products,
         bool $taxons,
-        bool $static
-    ) {
+        bool $static,
+    ): void {
         $this->load($config);
 
         $this->assertContainerBuilderHasParameter(\sprintf('sylius.provider.%s', 'products'), $products);
@@ -48,7 +46,7 @@ final class SitemapParameterTest extends AbstractExtensionTestCase
         }
     }
 
-    public function providers(): array
+    public static function providers(): array
     {
         return [
             [

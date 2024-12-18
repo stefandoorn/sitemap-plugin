@@ -10,14 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class SitemapController extends AbstractController
 {
-    private ChannelContextInterface $channelContext;
-
     public function __construct(
-        ChannelContextInterface $channelContext,
-        Reader $reader
+        private readonly ChannelContextInterface $channelContext,
+        Reader $reader,
     ) {
-        $this->channelContext = $channelContext;
-
         parent::__construct($reader);
     }
 

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Exception;
 
+use Exception;
 use SitemapPlugin\Model\UrlInterface;
 
-final class SitemapUrlNotFoundException extends \Exception
+final class SitemapUrlNotFoundException extends Exception
 {
-    public function __construct(UrlInterface $sitemapUrl, \Exception $previousException = null)
+    public function __construct(UrlInterface $sitemapUrl, Exception $previousException = null)
     {
         $template = 'Sitemap url "%s" not found';
 

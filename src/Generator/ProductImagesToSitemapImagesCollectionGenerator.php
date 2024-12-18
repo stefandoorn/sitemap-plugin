@@ -13,20 +13,13 @@ use Sylius\Component\Core\Model\ProductInterface;
 
 final class ProductImagesToSitemapImagesCollectionGenerator implements ProductImagesToSitemapImagesCollectionGeneratorInterface
 {
-    private CacheManager $imagineCacheManager;
-
-    private ImageFactoryInterface $sitemapImageUrlFactory;
-
     private string $imagePreset = 'sylius_shop_product_original';
 
     public function __construct(
-        ImageFactoryInterface $sitemapImageUrlFactory,
-        CacheManager $imagineCacheManager,
-        ?string $imagePreset = null
+        private readonly ImageFactoryInterface $sitemapImageUrlFactory,
+        private readonly CacheManager $imagineCacheManager,
+        ?string $imagePreset = null,
     ) {
-        $this->sitemapImageUrlFactory = $sitemapImageUrlFactory;
-        $this->imagineCacheManager = $imagineCacheManager;
-
         if (null !== $imagePreset) {
             $this->imagePreset = $imagePreset;
         }

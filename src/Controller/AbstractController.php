@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Controller;
 
-use Gaufrette\StreamMode;
+use League\Flysystem\FilesystemException;
+use League\Flysystem\UnableToReadFile;
 use SitemapPlugin\Filesystem\Reader;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -12,26 +13,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class AbstractController
 {
-    protected Reader $reader;
-
-    public function __construct(Reader $reader)
+    public function __construct(private readonly Reader $reader)
     {
-        $this->reader = $reader;
     }
 
     protected function createResponse(string $path): Response
     {
-        if (!$this->reader->has($path)) {
-            throw new NotFoundHttpException(\sprintf('File "%s" not found', $path));
-        }
-
         $response = new StreamedResponse(function () use ($path): void {
-            $stream = $this->reader->getStream($path);
-            $stream->open(new StreamMode('r'));
-            while (!$stream->eof()) {
-                echo $stream->read(100000);
+            try {
+                $handle = $this->reader->getStream($path);
+
+                while (!\feof($handle)) {
+                    echo \fread($handle, 8192);
+                }
+            } catch (UnableToReadFile | FilesystemException) {
+                throw new NotFoundHttpException(\sprintf('File "%s" not found', $path));
             }
-            $stream->close();
         });
         $response->headers->set('Content-Type', 'application/xml');
 

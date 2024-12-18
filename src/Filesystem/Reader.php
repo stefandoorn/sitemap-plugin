@@ -4,25 +4,19 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Filesystem;
 
-use Gaufrette\FilesystemInterface;
-use Gaufrette\Stream;
+use League\Flysystem\FilesystemOperator;
 
 final class Reader
 {
-    private FilesystemInterface $filesystem;
-
-    public function __construct(FilesystemInterface $filesystem)
+    public function __construct(private readonly FilesystemOperator $filesystem)
     {
-        $this->filesystem = $filesystem;
     }
 
-    public function has(string $path): bool
+    /**
+     * @return resource
+     */
+    public function getStream(string $path): mixed
     {
-        return $this->filesystem->has($path);
-    }
-
-    public function getStream(string $path): Stream
-    {
-        return $this->filesystem->createStream($path);
+        return $this->filesystem->readStream($path);
     }
 }

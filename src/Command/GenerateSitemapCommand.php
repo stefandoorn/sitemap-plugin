@@ -18,37 +18,15 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class GenerateSitemapCommand extends Command
 {
-    private SitemapBuilderInterface $sitemapBuilder;
-
-    private SitemapIndexBuilderInterface $sitemapIndexBuilder;
-
-    private SitemapRendererInterface $sitemapRenderer;
-
-    private SitemapRendererInterface $sitemapIndexRenderer;
-
-    private Writer $writer;
-
-    private ChannelRepositoryInterface $channelRepository;
-
-    private RouterInterface $router;
-
     public function __construct(
-        SitemapRendererInterface $sitemapRenderer,
-        SitemapRendererInterface $sitemapIndexRenderer,
-        SitemapBuilderInterface $sitemapBuilder,
-        SitemapIndexBuilderInterface $sitemapIndexBuilder,
-        Writer $writer,
-        ChannelRepositoryInterface $channelRepository,
-        RouterInterface $router
+        private readonly SitemapRendererInterface $sitemapRenderer,
+        private readonly SitemapRendererInterface $sitemapIndexRenderer,
+        private readonly SitemapBuilderInterface $sitemapBuilder,
+        private readonly SitemapIndexBuilderInterface $sitemapIndexBuilder,
+        private readonly Writer $writer,
+        private readonly ChannelRepositoryInterface $channelRepository,
+        private readonly RouterInterface $router,
     ) {
-        $this->sitemapRenderer = $sitemapRenderer;
-        $this->sitemapIndexRenderer = $sitemapIndexRenderer;
-        $this->sitemapBuilder = $sitemapBuilder;
-        $this->sitemapIndexBuilder = $sitemapIndexBuilder;
-        $this->writer = $writer;
-        $this->channelRepository = $channelRepository;
-        $this->router = $router;
-
         parent::__construct('sylius:sitemap:generate');
     }
 
@@ -81,7 +59,7 @@ final class GenerateSitemapCommand extends Command
 
             $this->writer->write(
                 $path,
-                $xml
+                $xml,
             );
 
             $output->writeln(\sprintf('Finished generating sitemap "%s" for channel "%s" at path "%s"', $provider->getName(), $channel->getCode(), $path));
@@ -95,7 +73,7 @@ final class GenerateSitemapCommand extends Command
 
         $this->writer->write(
             $path,
-            $xml
+            $xml,
         );
 
         $output->writeln(\sprintf('Finished generating sitemap index for channel "%s" at path "%s"', $channel->getCode(), $path));

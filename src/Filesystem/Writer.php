@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Filesystem;
 
-use Gaufrette\FilesystemInterface;
+use League\Flysystem\FilesystemOperator;
 
 final class Writer
 {
-    private FilesystemInterface $filesystem;
-
-    public function __construct(FilesystemInterface $filesystem)
+    public function __construct(private readonly FilesystemOperator $filesystem)
     {
-        $this->filesystem = $filesystem;
     }
 
     public function write(string $path, string $contents): void
     {
-        $this->filesystem->write($path, $contents, $overwrite = true);
+        $this->filesystem->write($path, $contents);
     }
 }
