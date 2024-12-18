@@ -36,7 +36,11 @@ abstract class XmlApiTestCase extends BaseXmlApiTestCase
     {
         $this->client->request('GET', $uri);
 
-        return $this->client->getResponse();
+        return new Response(
+            $this->client->getInternalResponse()->getContent(),
+            $this->client->getInternalResponse()->getStatusCode(),
+            $this->client->getInternalResponse()->getHeaders(),
+        );
     }
 
     protected function deleteSitemaps(): void
