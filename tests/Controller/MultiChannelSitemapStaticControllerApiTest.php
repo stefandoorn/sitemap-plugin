@@ -11,7 +11,7 @@ final class MultiChannelSitemapStaticControllerApiTest extends XmlApiTestCase
         $this->loadFixturesFromFiles(['multi_channel.yaml']);
         $this->generateSitemaps();
 
-        $response = $this->getBufferedResponse('http://store.fr/sitemap/static.xml');
+        $response = $this->getResponse('http://store.fr/sitemap/static.xml');
 
         $this->assertResponse($response, 'show_sitemap_static_fr');
     }
