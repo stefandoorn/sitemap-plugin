@@ -18,7 +18,7 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
 
     public function __construct(
         RouterInterface $router,
-        IndexUrlFactoryInterface $sitemapIndexUrlFactory
+        IndexUrlFactoryInterface $sitemapIndexUrlFactory,
     ) {
         $this->router = $router;
         $this->sitemapIndexUrlFactory = $sitemapIndexUrlFactory;

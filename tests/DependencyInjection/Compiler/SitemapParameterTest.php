@@ -18,7 +18,7 @@ final class SitemapParameterTest extends AbstractExtensionTestCase
         array $config,
         bool $products,
         bool $taxons,
-        bool $static
+        bool $static,
     ) {
         $this->load($config);
 

@@ -34,7 +34,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
         UrlFactoryInterface $sitemapUrlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
         LocaleContextInterface $localeContext,
-        bool $excludeTaxonRoot = true
+        bool $excludeTaxonRoot = true,
     ) {
         $this->taxonRepository = $taxonRepository;
         $this->router = $router;

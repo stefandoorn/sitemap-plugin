@@ -43,7 +43,7 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
             'addProvider',
             [
                 new Reference('sylius.sitemap_provider.product'),
-            ]
+            ],
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
@@ -51,7 +51,7 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
             'addIndexProvider',
             [
                 new Reference('sylius.sitemap_index_provider.index'),
-            ]
+            ],
         );
     }
 
@@ -70,12 +70,12 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
 
         $this->assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall(
             'sylius.sitemap_builder',
-            'addProvider'
+            'addProvider',
         );
 
         $this->assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall(
             'sylius.sitemap_index_builder',
-            'addProvider'
+            'addProvider',
         );
     }
 
@@ -94,7 +94,7 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
 
         self::assertThat(
             $definition,
-            new \PHPUnit\Framework\Constraint\LogicalNot(new DefinitionHasMethodCallConstraint($method))
+            new \PHPUnit\Framework\Constraint\LogicalNot(new DefinitionHasMethodCallConstraint($method)),
         );
     }
 }

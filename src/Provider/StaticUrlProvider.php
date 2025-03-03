@@ -27,7 +27,7 @@ final class StaticUrlProvider implements UrlProviderInterface
         RouterInterface $router,
         UrlFactoryInterface $sitemapUrlFactory,
         AlternativeUrlFactoryInterface $urlAlternativeFactory,
-        array $routes
+        array $routes,
     ) {
         $this->router = $router;
         $this->sitemapUrlFactory = $sitemapUrlFactory;
