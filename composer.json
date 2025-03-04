@@ -7,38 +7,34 @@
         "sylius-plugin"
     ],
     "license": "MIT",
-    "conflict": {
-        "twig/twig": "<2.9"
-    },
     "require": {
-        "php": "^7.4 || ^8.1",
-        "symfony/config": "^5.4 || ^6.4",
-        "sylius/sylius": "~1.9.0 || ~1.10.0 || ~1.11.0 || ~1.12.0 || ~1.13.0 || ~1.14.0"
+        "php": "^8.2",
+        "league/flysystem-bundle": "^3.0",
+        "sylius/sylius": "~2.0.0"
     },
     "require-dev": {
-        "api-platform/core": "~2.5.0 || ~2.6.0 || ~2.7.0",
         "lchrusciel/api-test-case": "^5.1",
-        "league/flysystem-bundle": "^2.0 || ^3.0",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
+        "matthiasnoback/symfony-dependency-injection-test": "^6.0",
+        "nyholm/psr7": "^1.8",
         "phpspec/phpspec": "^7.0",
         "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "^1.2",
-        "phpstan/phpstan-doctrine": "^1.0",
-        "phpstan/phpstan-strict-rules": "^1.1",
-        "phpstan/phpstan-symfony": "^1.0",
-        "phpstan/phpstan-webmozart-assert": "^1.0",
-        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpstan/phpstan-webmozart-assert": "^2.0",
+        "phpunit/phpunit": "^10.0",
         "sylius-labs/coding-standard": "^4.0",
-        "sylius/calendar": "^0.5.0",
-        "sylius/state-machine-abstraction": "^1.0",
-        "symfony/browser-kit": "^5.4 || ^6.4",
-        "symfony/debug-bundle": "^5.4 || ^6.4",
-        "symfony/dotenv": "^5.4 || ^6.4",
-        "symfony/intl": "^5.4 || ^6.4",
-        "symfony/runtime": "^5.4 || ^6.4 || ^7.0",
-        "symfony/web-profiler-bundle": "^5.4 || ^6.4",
-        "symfony/webpack-encore-bundle": "^1.15",
-        "vimeo/psalm": "4.23.0"
+        "sylius/twig-hooks": "^0.5.1",
+        "symfony/browser-kit": "^6.4 || ^7.1",
+        "symfony/debug-bundle": "^6.4 || ^7.1",
+        "symfony/dotenv": "^6.4 || ^7.1",
+        "symfony/intl": "^6.4 || ^7.1",
+        "symfony/runtime": "^6.4 || ^7.0",
+        "symfony/ux-icons": "^2.22",
+        "symfony/web-profiler-bundle": "^6.4 || ^7.1",
+        "symfony/webpack-encore-bundle": "^1.15 || ^2.2",
+        "vimeo/psalm": "^5.0"
     },
     "config": {
         "sort-packages": true,
@@ -47,12 +43,13 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "symfony/thanks": true,
             "phpstan/extension-installer": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "php-http/discovery": true
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0-dev"
+            "dev-master": "3.0-dev"
         }
     },
     "autoload": {
@@ -76,7 +73,7 @@
         "post-create-project-cmd": [
             "php bin/create_node_symlink.php"
         ],
-        "analyse": "bin/phpstan analyse -c phpstan.neon -l 3 src",
+        "analyse": "bin/phpstan analyse -c phpstan.neon src/",
         "check-style": "bin/ecs check --ansi src/ tests/ spec/",
         "fix-style": "ecs check --ansi src/ tests/ spec/ --fix",
         "phpspec": "bin/phpspec run --ansi",

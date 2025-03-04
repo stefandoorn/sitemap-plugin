@@ -6,12 +6,10 @@ namespace SitemapPlugin\Model;
 
 final class AlternativeUrl implements AlternativeUrlInterface
 {
-    private string $location;
-
-    private string $locale;
-
-    public function __construct(string $location, string $locale)
-    {
+    public function __construct(
+        private string $location,
+        private string $locale,
+    ) {
         $this->setLocation($location);
         $this->setLocale($locale);
     }

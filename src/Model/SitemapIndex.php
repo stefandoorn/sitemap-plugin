@@ -55,7 +55,7 @@ final class SitemapIndex implements SitemapInterface
         $this->lastModification = $lastModification;
     }
 
-    public function getLastModification(): ?DateTimeInterface
+    public function getLastModification(): DateTimeInterface
     {
         return $this->lastModification;
     }

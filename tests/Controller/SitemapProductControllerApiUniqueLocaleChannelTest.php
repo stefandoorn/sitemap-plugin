@@ -9,7 +9,7 @@ final class SitemapProductControllerApiUniqueLocaleChannelTest extends XmlApiTes
     public function testShowActionResponse()
     {
         $this->loadFixturesFromFiles(['product_unique_locale_channel.yaml']);
-        $this->generateSitemaps();
+        self::generateSitemaps();
 
         $response = $this->getResponse('/sitemap/products.xml');
 

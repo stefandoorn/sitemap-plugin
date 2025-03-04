@@ -77,7 +77,7 @@ The plugin defines three default URI's:
 * `sitemap.xml`: redirects to `sitemap_index.xml`
 * `sitemap_index.xml`: renders the sitemap index file (with links to the provider xml files)
 
-Next to this, each provider registeres it's own URI. Take a look in the sitemap index file for the correct URI's.
+Next to this, each provider registers its own URI. Take a look in the sitemap index file for the correct URI's.
 
 ## Default Configuration
 
@@ -106,7 +106,7 @@ The request context is also important for generating the URLs inside the sitemap
 
 ## Default storage
 
-By default the sitemaps will be saved in `%kernel.root_dir%/var/sitemap`. You can change this setting 
+By default, the sitemaps will be saved in `%kernel.root_dir%/var/sitemap`. You can change this setting 
 by adjusting the parameter `sylius.sitemap.path`.
 
 ### Feature switches

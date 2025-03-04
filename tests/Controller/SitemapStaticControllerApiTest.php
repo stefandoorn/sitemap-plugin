@@ -9,7 +9,7 @@ final class SitemapStaticControllerApiTest extends XmlApiTestCase
     public function testShowActionResponse()
     {
         $this->loadFixturesFromFiles(['channel.yaml']);
-        $this->generateSitemaps();
+        self::generateSitemaps();
         $response = $this->getResponse('/sitemap/static.xml');
 
         $this->assertResponse($response, 'show_sitemap_static');

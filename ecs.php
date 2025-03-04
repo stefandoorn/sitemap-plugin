@@ -9,7 +9,10 @@ return static function (ECSConfig $config): void {
     $config->import('vendor/sylius-labs/coding-standard/ecs.php');
 
     $config->paths([
+        __DIR__ . '/spec',
         __DIR__ . '/src',
+        __DIR__ . '/tests',
+        'ecs.php',
     ]);
 
     $config->skip([
@@ -23,5 +26,5 @@ return static function (ECSConfig $config): void {
 
     $config->ruleWithConfiguration(
         TrailingCommaInMultilineFixer::class,
-        ['elements' => ['arrays']]);
+        ['elements' => ['arguments', 'array_destructuring', 'arrays', 'match', 'parameters']]);
 };

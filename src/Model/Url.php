@@ -10,8 +10,6 @@ use Doctrine\Common\Collections\Collection;
 
 final class Url implements UrlInterface
 {
-    private string $location;
-
     private ?DateTimeInterface $lastModification = null;
 
     private ?string $changeFrequency = null;
@@ -24,9 +22,8 @@ final class Url implements UrlInterface
     /** @var Collection|ImageInterface[] */
     private Collection $images;
 
-    public function __construct(string $location)
+    public function __construct(private string $location)
     {
-        $this->setLocation($location);
         $this->alternatives = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
@@ -71,7 +68,7 @@ final class Url implements UrlInterface
         if (0 > $priority || 1 < $priority) {
             throw new \InvalidArgumentException(\sprintf(
                 'The value %s is not supported by the option priority, it must be a number between 0.0 and 1.0.',
-                $priority
+                $priority,
             ));
         }
 

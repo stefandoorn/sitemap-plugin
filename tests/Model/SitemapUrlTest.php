@@ -17,11 +17,11 @@ final class SitemapUrlTest extends TestCase
         $obj = new Url('location');
         $image = new Image('location');
 
-        $this->assertFalse($obj->hasImage($image));
+        self::assertFalse($obj->hasImage($image));
 
         $obj->addImage($image);
 
-        $this->assertTrue($obj->hasImage($image));
+        self::assertTrue($obj->hasImage($image));
     }
 
     public function testSetImages(): void
@@ -31,11 +31,11 @@ final class SitemapUrlTest extends TestCase
         $collection = new ArrayCollection([$image]);
         $obj->setImages($collection);
 
-        $this->assertInstanceOf(Collection::class, $obj->getImages());
-        $this->assertInstanceOf(ArrayCollection::class, $obj->getImages());
-        $this->assertCount(1, $obj->getImages());
+        self::assertInstanceOf(Collection::class, $obj->getImages());
+        self::assertInstanceOf(ArrayCollection::class, $obj->getImages());
+        self::assertCount(1, $obj->getImages());
 
-        $this->assertTrue($obj->hasImage($image));
+        self::assertTrue($obj->hasImage($image));
     }
 
     public function testHasImages(): void
@@ -43,11 +43,11 @@ final class SitemapUrlTest extends TestCase
         $obj = new Url('location');
         $image = new Image('location');
 
-        $this->assertFalse($obj->hasImages());
+        self::assertFalse($obj->hasImages());
 
         $obj->addImage($image);
 
-        $this->assertTrue($obj->hasImages());
+        self::assertTrue($obj->hasImages());
     }
 
     public function testGetImages(): void
@@ -57,18 +57,18 @@ final class SitemapUrlTest extends TestCase
 
         $obj->addImage($image);
 
-        $this->assertInstanceOf(Collection::class, $obj->getImages());
-        $this->assertInstanceOf(ArrayCollection::class, $obj->getImages());
-        $this->assertCount(1, $obj->getImages());
+        self::assertInstanceOf(Collection::class, $obj->getImages());
+        self::assertInstanceOf(ArrayCollection::class, $obj->getImages());
+        self::assertCount(1, $obj->getImages());
     }
 
     public function testAddImage(): void
     {
         $obj = new Url('location');
         $image = new Image('location');
-
         $obj->addImage($image);
-        $this->assertTrue($obj->hasImages());
+
+        self::assertTrue($obj->hasImages());
     }
 
     public function testRemoveImage(): void
@@ -76,14 +76,15 @@ final class SitemapUrlTest extends TestCase
         $obj = new Url('location');
         $image = new Image('location');
 
-        $this->assertFalse($obj->hasImages());
+        self::assertFalse($obj->hasImages());
 
         $obj->addImage($image);
 
-        $this->assertTrue($obj->hasImages());
+        self::assertTrue($obj->hasImages());
 
         $obj->removeImage($image);
-        $this->assertFalse($obj->hasImages());
-        $this->assertFalse($obj->hasImage($image));
+
+        self::assertFalse($obj->hasImages());
+        self::assertFalse($obj->hasImage($image));
     }
 }

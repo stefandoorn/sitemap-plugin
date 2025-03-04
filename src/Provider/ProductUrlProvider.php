@@ -21,37 +21,19 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class ProductUrlProvider implements UrlProviderInterface
 {
-    private ProductRepository $productRepository;
-
-    private RouterInterface $router;
-
-    private UrlFactoryInterface $urlFactory;
-
-    private AlternativeUrlFactoryInterface $urlAlternativeFactory;
-
-    private LocaleContextInterface $localeContext;
-
     private ChannelInterface $channel;
 
     /** @var array<string|null> */
     private array $channelLocaleCodes;
 
-    private ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator;
-
     public function __construct(
-        ProductRepository $productRepository,
-        RouterInterface $router,
-        UrlFactoryInterface $urlFactory,
-        AlternativeUrlFactoryInterface $urlAlternativeFactory,
-        LocaleContextInterface $localeContext,
-        ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator
+        private readonly ProductRepository $productRepository,
+        private readonly RouterInterface $router,
+        private readonly UrlFactoryInterface $urlFactory,
+        private readonly AlternativeUrlFactoryInterface $urlAlternativeFactory,
+        private readonly LocaleContextInterface $localeContext,
+        private readonly ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
     ) {
-        $this->productRepository = $productRepository;
-        $this->router = $router;
-        $this->urlFactory = $urlFactory;
-        $this->urlAlternativeFactory = $urlAlternativeFactory;
-        $this->localeContext = $localeContext;
-        $this->productToImageSitemapArrayGenerator = $productToImageSitemapArrayGenerator;
     }
 
     public function getName(): string
@@ -65,9 +47,9 @@ final class ProductUrlProvider implements UrlProviderInterface
     public function generate(ChannelInterface $channel): iterable
     {
         $this->channel = $channel;
-        $urls = [];
         $this->channelLocaleCodes = [];
 
+        $urls = [];
         foreach ($this->getProducts() as $product) {
             $urls[] = $this->createProductUrl($product);
         }

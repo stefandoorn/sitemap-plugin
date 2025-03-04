@@ -11,17 +11,14 @@ use SitemapPlugin\Provider\UrlProviderInterface;
 
 final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
 {
-    private SitemapIndexFactoryInterface $sitemapIndexFactory;
-
     /** @var UrlProviderInterface[] */
     private array $providers = [];
 
     /** @var IndexUrlProviderInterface[] */
     private array $indexProviders = [];
 
-    public function __construct(SitemapIndexFactoryInterface $sitemapIndexFactory)
+    public function __construct(private readonly SitemapIndexFactoryInterface $sitemapIndexFactory)
     {
-        $this->sitemapIndexFactory = $sitemapIndexFactory;
     }
 
     public function addProvider(UrlProviderInterface $provider): void

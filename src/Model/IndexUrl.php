@@ -8,13 +8,10 @@ use DateTimeInterface;
 
 final class IndexUrl implements IndexUrlInterface
 {
-    private string $location;
-
     private ?DateTimeInterface $lastModification = null;
 
-    public function __construct(string $location)
+    public function __construct(private string $location)
     {
-        $this->setLocation($location);
     }
 
     public function getLocation(): string

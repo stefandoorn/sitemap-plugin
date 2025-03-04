@@ -2,21 +2,11 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="sylius.sitemap_writer" class="SitemapPlugin\Filesystem\Writer">
-            <argument type="service">
-                <service class="Gaufrette\Filesystem">
-                    <argument>%sylius.sitemap.filesystem%</argument>
-                    <factory service="knp_gaufrette.filesystem_map" method="get" />
-                </service>
-            </argument>
+            <argument type="service" id="flysystem.storage.sylius_sitemap" />
         </service>
 
         <service id="sylius.sitemap_reader" class="SitemapPlugin\Filesystem\Reader">
-            <argument type="service">
-                <service class="Gaufrette\Filesystem">
-                    <argument>%sylius.sitemap.filesystem%</argument>
-                    <factory service="knp_gaufrette.filesystem_map" method="get" />
-                </service>
-            </argument>
+            <argument type="service" id="flysystem.storage.sylius_sitemap" />
         </service>
 
         <service id="sylius.command.generate_sitemap" class="SitemapPlugin\Command\GenerateSitemapCommand">

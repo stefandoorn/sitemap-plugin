@@ -6,6 +6,7 @@ namespace Tests\SitemapPlugin\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\DefinitionHasMethodCallConstraint;
+use PHPUnit\Framework\Constraint\LogicalNot;
 use SitemapPlugin\Builder\SitemapBuilder;
 use SitemapPlugin\Builder\SitemapIndexBuilder;
 use SitemapPlugin\DependencyInjection\Compiler\SitemapProviderPass;
@@ -17,10 +18,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
 {
-    /**
-     * @test
-     */
-    public function it_adds_method_call_to_sitemap_builder_if_providers_exist()
+    public function testAddMethodsIfProvidersExist(): void
     {
         $sitemapBuilderDefinition = new Definition(SitemapBuilder::class);
         $this->setDefinition('sylius.sitemap_builder', $sitemapBuilderDefinition);
@@ -43,7 +41,7 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
             'addProvider',
             [
                 new Reference('sylius.sitemap_provider.product'),
-            ]
+            ],
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
@@ -51,14 +49,11 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
             'addIndexProvider',
             [
                 new Reference('sylius.sitemap_index_provider.index'),
-            ]
+            ],
         );
     }
 
-    /**
-     * @test
-     */
-    public function it_does_not_add_method_call_if_there_is_no_url_providers()
+    public function testDoNotAddIfNoUrlProvider(): void
     {
         $sitemapBuilderDefinition = new Definition(SitemapBuilder::class);
         $this->setDefinition('sylius.sitemap_builder', $sitemapBuilderDefinition);
@@ -70,12 +65,12 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
 
         $this->assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall(
             'sylius.sitemap_builder',
-            'addProvider'
+            'addProvider',
         );
 
         $this->assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall(
             'sylius.sitemap_index_builder',
-            'addProvider'
+            'addProvider',
         );
     }
 
@@ -84,17 +79,13 @@ final class SitemapProviderPassTest extends AbstractCompilerPassTestCase
         $container->addCompilerPass(new SitemapProviderPass());
     }
 
-    /**
-     * @param string $serviceId
-     * @param string $method
-     */
-    private function assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall($serviceId, $method)
+    private function assertContainerBuilderDoesNotHaveServiceDefinitionWithMethodCall(string $serviceId, string $method): void
     {
         $definition = $this->container->findDefinition($serviceId);
 
         self::assertThat(
             $definition,
-            new \PHPUnit\Framework\Constraint\LogicalNot(new DefinitionHasMethodCallConstraint($method))
+            new LogicalNot(new DefinitionHasMethodCallConstraint($method)),
         );
     }
 }

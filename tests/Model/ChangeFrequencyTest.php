@@ -12,20 +12,17 @@ final class ChangeFrequencyTest extends TestCase
     /**
      * @dataProvider dataProvider
      */
-    public function testBasic($interval)
+    public function testBasic($interval): void
     {
         $obj = ChangeFrequency::$interval();
         $castedString = (string) $obj;
         $toString = $obj->__toString();
 
-        $this->assertSame($interval, $castedString);
-        $this->assertSame($interval, $toString);
+        self::assertSame($interval, $castedString);
+        self::assertSame($interval, $toString);
     }
 
-    /**
-     * @return array
-     */
-    public function dataProvider()
+    public static function dataProvider(): array
     {
         return [
             ['daily'],

@@ -6,16 +6,13 @@ namespace SitemapPlugin\Model;
 
 final class ChangeFrequency
 {
-    private string $value;
-
-    private function __construct(string $changeFrequency)
+    private function __construct(private readonly string $changeFrequency)
     {
-        $this->value = $changeFrequency;
     }
 
     public function __toString(): string
     {
-        return $this->value;
+        return $this->changeFrequency;
     }
 
     public static function always(): self

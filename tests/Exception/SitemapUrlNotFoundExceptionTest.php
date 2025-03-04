@@ -10,12 +10,13 @@ use SitemapPlugin\Model\Url;
 
 final class SitemapUrlNotFoundExceptionTest extends TestCase
 {
-    public function testException()
+    public function testException(): void
     {
         $sitemapUrl = new Url('location');
         $sitemapUrl->setLocation('test');
 
         $exception = new SitemapUrlNotFoundException($sitemapUrl);
-        $this->assertSame('Sitemap url "test" not found', $exception->getMessage());
+
+        self::assertSame('Sitemap url "test" not found', $exception->getMessage());
     }
 }

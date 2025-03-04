@@ -12,16 +12,10 @@ final class IndexUrlProvider implements IndexUrlProviderInterface
     /** @var UrlProviderInterface[] */
     private array $providers = [];
 
-    private RouterInterface $router;
-
-    private IndexUrlFactoryInterface $sitemapIndexUrlFactory;
-
     public function __construct(
-        RouterInterface $router,
-        IndexUrlFactoryInterface $sitemapIndexUrlFactory
+        private readonly RouterInterface $router,
+        private readonly IndexUrlFactoryInterface $sitemapIndexUrlFactory,
     ) {
-        $this->router = $router;
-        $this->sitemapIndexUrlFactory = $sitemapIndexUrlFactory;
     }
 
     public function addProvider(UrlProviderInterface $provider): void
