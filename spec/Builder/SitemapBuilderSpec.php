@@ -46,4 +46,45 @@ final class SitemapBuilderSpec extends ObjectBehavior
 
         $this->build($productUrlProvider, $channel)->shouldReturn($sitemap);
     }
+
+    function it_builds_sitemap_with_generator(
+        $sitemapFactory,
+        UrlProviderInterface $productUrlProvider,
+        SitemapInterface $sitemap,
+        UrlInterface $bookUrl,
+        ChannelInterface $channel
+    ): void {
+        $sitemapFactory->createNew()->willReturn($sitemap);
+
+        $generator = new class($productUrlProvider->getWrappedObject()) implements UrlProviderInterface {
+            private UrlProviderInterface $productUrlProvider;
+
+            public function __construct(UrlProviderInterface $productUrlProvider)
+            {
+                $this->productUrlProvider = $productUrlProvider;
+            }
+
+            public function generate(ChannelInterface $channel): iterable
+            {
+                foreach ($this->productUrlProvider->generate($channel) as $url) {
+                    yield $url;
+                }
+            }
+
+            public function getName(): string
+            {
+                return 'product_iterable';
+            }
+        };
+
+        $this->addProvider($generator);
+
+        $productUrlProvider->generate($channel)->willReturn((function () use ($bookUrl) {
+            yield $bookUrl;
+        })());
+
+        $sitemap->setUrls([$bookUrl])->shouldBeCalled();
+
+        $this->build($productUrlProvider, $channel)->shouldReturn($sitemap);
+    }
 }
