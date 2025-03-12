@@ -33,7 +33,7 @@ final class SitemapBuilder implements SitemapBuilderInterface
         $urls = [];
 
         $sitemap = $this->sitemapFactory->createNew();
-        $urls[] = $provider->generate($channel);
+        $urls[] = [...$provider->generate($channel)];
 
         $sitemap->setUrls(\array_merge(...$urls));
 
