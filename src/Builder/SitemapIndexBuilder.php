@@ -44,7 +44,7 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
         $urls = [];
 
         foreach ($this->indexProviders as $indexProvider) {
-            $urls[] = $indexProvider->generate();
+            $urls[] = [...$indexProvider->generate()];
         }
 
         $sitemap->setUrls(\array_merge(...$urls));
