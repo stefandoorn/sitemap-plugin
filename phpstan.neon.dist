@@ -3,6 +3,9 @@ parameters:
 
     reportUnmatchedIgnoredErrors: true
 
+    paths:
+        - src
+
     excludePaths:
         # Makes PHPStan crash
         - 'src/DependencyInjection/Configuration.php'
