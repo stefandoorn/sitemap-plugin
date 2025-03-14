@@ -52,7 +52,7 @@ final class SitemapBuilderSpec extends ObjectBehavior
         UrlProviderInterface $productUrlProvider,
         SitemapInterface $sitemap,
         UrlInterface $bookUrl,
-        ChannelInterface $channel
+        ChannelInterface $channel,
     ): void {
         $sitemapFactory->createNew()->willReturn($sitemap);
 
