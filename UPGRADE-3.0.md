@@ -32,10 +32,20 @@ The plugin has been updated to use Flysystem.
 
 If you did make configuration changes, have a look at `src/Resources/config/config.yaml` for the new configuration.
 
-### Breaking change
+#### Breaking change
 
 `Filesystem/Reader::has` has been removed, as we can rely on Flysystem exceptions now.
 
 As a side benefit, this also saves an I/O operation.
 
 `AbstractController::$reader` has been made `private`.
+
+### Data providers (potential breaking change)
+
+Both the `product` & `taxon` URL provider have been changed. The data fetching part of them has been extracted
+into separate services.
+
+This change should make it easier for you to adjust only the data fetching, and not adjust the actual URL provider as well.
+
+In case you have adjusted these providers, this might incur a breaking change for you. Please do review your implementation.
+

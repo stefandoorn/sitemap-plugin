@@ -3,8 +3,12 @@
     <services>
         <defaults autowire="false" autoconfigure="false" public="false" />
 
-        <service id="sylius.sitemap_provider.product" class="SitemapPlugin\Provider\ProductUrlProvider">
+        <service id="sylius.sitemap_provider.data.product" class="SitemapPlugin\Provider\Data\ProductDataProvider">
             <argument type="service" id="sylius.repository.product" />
+        </service>
+
+        <service id="sylius.sitemap_provider.product" class="SitemapPlugin\Provider\ProductUrlProvider">
+            <argument type="service" id="sylius.sitemap_provider.data.product" />
             <argument type="service" id="router" />
             <argument type="service" id="sylius.sitemap_url_factory" />
             <argument type="service" id="sylius.sitemap_url_alternative_factory" />
