@@ -10,7 +10,7 @@ use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\UrlInterface;
-use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
+use SitemapPlugin\Provider\Data\ProductDataProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductTranslationInterface;
@@ -27,7 +27,7 @@ final class ProductUrlProvider implements UrlProviderInterface
     private array $channelLocaleCodes;
 
     public function __construct(
-        private readonly ProductRepository $productRepository,
+        private readonly ProductDataProviderInterface $dataProvider,
         private readonly RouterInterface $router,
         private readonly UrlFactoryInterface $urlFactory,
         private readonly AlternativeUrlFactoryInterface $urlAlternativeFactory,
@@ -50,7 +50,7 @@ final class ProductUrlProvider implements UrlProviderInterface
         $this->channelLocaleCodes = [];
 
         $urls = [];
-        foreach ($this->getProducts() as $product) {
+        foreach ($this->dataProvider->get($channel) as $product) {
             $urls[] = $this->createProductUrl($product);
         }
 
@@ -67,23 +67,6 @@ final class ProductUrlProvider implements UrlProviderInterface
     private function localeInLocaleCodes(TranslationInterface $translation): bool
     {
         return \in_array($translation->getLocale(), $this->getLocaleCodes(), true);
-    }
-
-    /**
-     * @return array|Collection|ProductInterface[]
-     */
-    private function getProducts(): iterable
-    {
-        return $this->productRepository->createQueryBuilder('o')
-            ->addSelect('translation')
-            ->innerJoin('o.translations', 'translation')
-            ->andWhere(':channel MEMBER OF o.channels')
-            ->andWhere('o.enabled = :enabled')
-            ->setParameter('channel', $this->channel)
-            ->setParameter('enabled', true)
-            ->getQuery()
-            ->getResult()
-        ;
     }
 
     private function getLocaleCodes(): array

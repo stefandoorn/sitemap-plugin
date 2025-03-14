@@ -6,8 +6,6 @@ namespace spec\SitemapPlugin\Provider;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\AbstractQuery;
-use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
 use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
@@ -15,9 +13,9 @@ use SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGeneratorInter
 use SitemapPlugin\Model\AlternativeUrlInterface;
 use SitemapPlugin\Model\ChangeFrequency;
 use SitemapPlugin\Model\UrlInterface;
+use SitemapPlugin\Provider\Data\ProductDataProviderInterface;
 use SitemapPlugin\Provider\ProductUrlProvider;
 use SitemapPlugin\Provider\UrlProviderInterface;
-use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -29,14 +27,14 @@ use Symfony\Component\Routing\RouterInterface;
 final class ProductUrlProviderSpec extends ObjectBehavior
 {
     function let(
-        ProductRepository $repository,
+        ProductDataProviderInterface $dataProvider,
         RouterInterface $router,
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
         LocaleContextInterface $localeContext,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
     ): void {
-        $this->beConstructedWith($repository, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $productToImageSitemapArrayGenerator);
+        $this->beConstructedWith($dataProvider, $router, $urlFactory, $alternativeUrlFactory, $localeContext, $productToImageSitemapArrayGenerator);
     }
 
     function it_is_initializable(): void
@@ -50,7 +48,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
     }
 
     function it_generates_urls_for_the_unique_channel_locale(
-        ProductRepository $repository,
+        ProductDataProviderInterface $dataProvider,
         RouterInterface $router,
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
@@ -64,8 +62,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductTranslation $productNlNLTranslation,
         UrlInterface $url,
         AlternativeUrlInterface $alternativeUrl,
-        QueryBuilder $queryBuilder,
-        AbstractQuery $query,
         ChannelInterface $channel,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
     ): void {
@@ -79,22 +75,13 @@ final class ProductUrlProviderSpec extends ObjectBehavior
             $locale->getWrappedObject(),
         ]));
 
-        $repository->createQueryBuilder('o')->willReturn($queryBuilder);
-        $queryBuilder->addSelect('translation')->willReturn($queryBuilder);
-        $queryBuilder->innerJoin('o.translations', 'translation')->willReturn($queryBuilder);
-        $queryBuilder->andWhere(':channel MEMBER OF o.channels')->willReturn($queryBuilder);
-        $queryBuilder->andWhere('o.enabled = :enabled')->willReturn($queryBuilder);
-        $queryBuilder->setParameter('channel', $channel)->willReturn($queryBuilder);
-        $queryBuilder->setParameter('enabled', true)->willReturn($queryBuilder);
-        $queryBuilder->getQuery()->willReturn($query);
-        $query->getResult()->willReturn($products);
-
         $products->getIterator()->willReturn($iterator);
         $iterator->valid()->willReturn(true, false);
         $iterator->next()->shouldBeCalled();
         $iterator->rewind()->shouldBeCalled();
-
         $iterator->current()->willReturn($product);
+
+        $dataProvider->get($channel)->willReturn($products);
 
         $productImage->getPath()->willReturn(null);
 
@@ -139,7 +126,7 @@ final class ProductUrlProviderSpec extends ObjectBehavior
     }
 
     function it_generates_urls_for_all_channel_locales(
-        ProductRepository $repository,
+        ProductDataProviderInterface $dataProvider,
         RouterInterface $router,
         UrlFactoryInterface $urlFactory,
         AlternativeUrlFactoryInterface $alternativeUrlFactory,
@@ -154,8 +141,6 @@ final class ProductUrlProviderSpec extends ObjectBehavior
         ProductTranslation $productNlNLTranslation,
         UrlInterface $url,
         AlternativeUrlInterface $alternativeUrl,
-        QueryBuilder $queryBuilder,
-        AbstractQuery $query,
         ChannelInterface $channel,
         ProductImagesToSitemapImagesCollectionGeneratorInterface $productToImageSitemapArrayGenerator,
     ): void {
@@ -171,22 +156,13 @@ final class ProductUrlProviderSpec extends ObjectBehavior
             $nlNLLocale->getWrappedObject(),
         ]));
 
-        $repository->createQueryBuilder('o')->willReturn($queryBuilder);
-        $queryBuilder->addSelect('translation')->willReturn($queryBuilder);
-        $queryBuilder->innerJoin('o.translations', 'translation')->willReturn($queryBuilder);
-        $queryBuilder->andWhere(':channel MEMBER OF o.channels')->willReturn($queryBuilder);
-        $queryBuilder->andWhere('o.enabled = :enabled')->willReturn($queryBuilder);
-        $queryBuilder->setParameter('channel', $channel)->willReturn($queryBuilder);
-        $queryBuilder->setParameter('enabled', true)->willReturn($queryBuilder);
-        $queryBuilder->getQuery()->willReturn($query);
-        $query->getResult()->willReturn($products);
-
         $products->getIterator()->willReturn($iterator);
         $iterator->valid()->willReturn(true, false);
         $iterator->next()->shouldBeCalled();
         $iterator->rewind()->shouldBeCalled();
-
         $iterator->current()->willReturn($product);
+
+        $dataProvider->get($channel)->willReturn($products);
 
         $productImage->getPath()->willReturn(null);
 

@@ -7,17 +7,17 @@ namespace SitemapPlugin\Provider;
 use SitemapPlugin\Factory\AlternativeUrlFactoryInterface;
 use SitemapPlugin\Factory\UrlFactoryInterface;
 use SitemapPlugin\Model\ChangeFrequency;
+use SitemapPlugin\Provider\Data\TaxonDataProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Taxonomy\Model\TaxonTranslationInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 final class TaxonUrlProvider implements UrlProviderInterface
 {
     public function __construct(
-        private readonly RepositoryInterface $taxonRepository,
+        private readonly TaxonDataProviderInterface $dataProvider,
         private readonly RouterInterface $router,
         private readonly UrlFactoryInterface $sitemapUrlFactory,
         private readonly AlternativeUrlFactoryInterface $urlAlternativeFactory,
@@ -35,7 +35,7 @@ final class TaxonUrlProvider implements UrlProviderInterface
     {
         $urls = [];
 
-        foreach ($this->getTaxons() as $taxon) {
+        foreach ($this->dataProvider->get($channel) as $taxon) {
             /** @var TaxonInterface $taxon */
             if ($this->excludeTaxonRoot && $taxon->isRoot()) {
                 continue;
@@ -68,16 +68,5 @@ final class TaxonUrlProvider implements UrlProviderInterface
         }
 
         return $urls;
-    }
-
-    /**
-     * @return TaxonInterface[]
-     */
-    private function getTaxons(): iterable
-    {
-        /** @var TaxonInterface[] $taxons */
-        $taxons = $this->taxonRepository->findBy(['enabled' => true]);
-
-        return $taxons;
     }
 }
