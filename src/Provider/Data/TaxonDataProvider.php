@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Provider\Data;
 
-use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
@@ -17,7 +16,7 @@ final class TaxonDataProvider implements TaxonDataProviderInterface
     }
 
     /**
-     * @return array|Collection|TaxonInterface[]
+     * @return array|TaxonInterface[]
      */
     public function get(ChannelInterface $channel): iterable
     {

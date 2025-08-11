@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SitemapPlugin\Provider\Data;
 
-use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -17,7 +16,7 @@ final class ProductDataProvider implements ProductDataProviderInterface
     }
 
     /**
-     * @return array|Collection|ProductInterface[]
+     * @return array|ProductInterface[]
      */
     public function get(ChannelInterface $channel): iterable
     {
