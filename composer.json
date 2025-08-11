@@ -16,7 +16,6 @@
         "lchrusciel/api-test-case": "^5.1",
         "matthiasnoback/symfony-dependency-injection-test": "^6.0",
         "nyholm/psr7": "^1.8",
-        "phpspec/phpspec": "^7.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^2.0",
         "phpstan/phpstan-doctrine": "^2.0",
@@ -72,13 +71,11 @@
             "php bin/create_node_symlink.php"
         ],
         "analyse": "bin/phpstan analyse",
-        "check-style": "bin/ecs check --ansi src/ tests/ spec/",
-        "fix-style": "ecs check --ansi src/ tests/ spec/ --fix",
-        "phpspec": "bin/phpspec run --ansi",
+        "check-style": "bin/ecs check --ansi src/ tests/",
+        "fix-style": "ecs check --ansi src/ tests/ --fix",
         "phpunit": "bin/phpunit",
         "test": [
-            "@phpunit",
-            "@phpspec"
+            "@phpunit"
         ]
     }
 }
