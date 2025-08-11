@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.2",
         "league/flysystem-bundle": "^3.0",
-        "sylius/sylius": "~2.0.0"
+        "sylius/sylius": "^2.0"
     },
     "require-dev": {
         "lchrusciel/api-test-case": "^5.1",
