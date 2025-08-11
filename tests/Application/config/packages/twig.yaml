@@ -10,3 +10,4 @@ services:
         autoconfigure: true
 
     Twig\Extra\Intl\IntlExtension: ~
+    Twig\Extra\String\StringExtension: ~

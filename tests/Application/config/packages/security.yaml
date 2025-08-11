@@ -26,8 +26,8 @@ security:
                 use_forward: false
                 use_referer: true
                 enable_csrf: true
-                csrf_parameter: _csrf_admin_security_token
-                csrf_token_id: admin_authenticate
+                csrf_parameter: _csrf_shop_security_token
+                csrf_token_id: shop_authenticate
             json_login:
                 check_path: sylius_shop_json_login_check
                 username_path: _username
@@ -43,6 +43,10 @@ security:
                 path: sylius_shop_logout
                 target: sylius_shop_homepage
                 invalidate_session: false
+
+        image_resolver:
+            pattern: ^/media/cache/resolve
+            security: false
 
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
