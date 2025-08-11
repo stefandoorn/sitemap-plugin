@@ -32,8 +32,7 @@
         "symfony/runtime": "^6.4 || ^7.0",
         "symfony/ux-icons": "^2.22",
         "symfony/web-profiler-bundle": "^6.4 || ^7.1",
-        "symfony/webpack-encore-bundle": "^1.15 || ^2.2",
-        "vimeo/psalm": "^5.0"
+        "symfony/webpack-encore-bundle": "^1.15 || ^2.2"
     },
     "config": {
         "sort-packages": true,
@@ -77,7 +76,6 @@
         "fix-style": "ecs check --ansi src/ tests/ spec/ --fix",
         "phpspec": "bin/phpspec run --ansi",
         "phpunit": "bin/phpunit",
-        "psalm": "bin/psalm",
         "test": [
             "@phpunit",
             "@phpspec"
