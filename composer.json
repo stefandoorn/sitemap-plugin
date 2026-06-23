@@ -13,7 +13,7 @@
         "sylius/sylius": "^2.0"
     },
     "require-dev": {
-        "lchrusciel/api-test-case": "^5.1",
+        "lchrusciel/api-test-case": "^6.0",
         "matthiasnoback/symfony-dependency-injection-test": "^6.0",
         "nyholm/psr7": "^1.8",
         "phpstan/extension-installer": "^1.0",
