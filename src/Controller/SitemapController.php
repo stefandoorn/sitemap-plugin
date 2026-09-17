@@ -21,9 +21,9 @@ final class SitemapController extends AbstractController
         parent::__construct($reader);
     }
 
-    public function showAction(string $name): Response
+    public function showAction(string $name, int $index): Response
     {
-        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), \sprintf('%s.xml', $name));
+        $path = \sprintf('%s/%s', $this->channelContext->getChannel()->getCode(), \sprintf('%s_%d.xml', $name, $index));
 
         return $this->createResponse($path);
     }
