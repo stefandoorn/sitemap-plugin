@@ -42,11 +42,11 @@ final class SitemapIndexBuilder implements SitemapIndexBuilderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function addPath(UrlProviderInterface $provider, string $path): void
     {
-        if (!array_key_exists($provider->getName(), $this->paths)) {
+        if (!\array_key_exists($provider->getName(), $this->paths)) {
             $this->paths[$provider->getName()] = [];
         }
 

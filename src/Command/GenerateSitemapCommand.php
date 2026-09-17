@@ -78,8 +78,8 @@ final class GenerateSitemapCommand extends Command
 
             $sitemap = $this->sitemapBuilder->build($provider, $channel); // TODO use provider instance, not the name
 
-            $xml = $this->sitemapRenderer->render($sitemap, (int)$input->getOption('limit'));
-            foreach($xml as $index => $data) {
+            $xml = $this->sitemapRenderer->render($sitemap, (int) $input->getOption('limit'));
+            foreach ($xml as $index => $data) {
                 $path = $this->path($channel, \sprintf('%s_%d.xml', $provider->getName(), $index));
                 $this->writer->write($path, $data);
                 $output->writeln(
@@ -100,7 +100,8 @@ final class GenerateSitemapCommand extends Command
         $sitemap = $this->sitemapIndexBuilder->build();
         $xml = $this->sitemapIndexRenderer->render($sitemap);
 
-        foreach($xml as $index => $data) {
+        $path = '';
+        foreach ($xml as $index => $data) {
             $path = $this->path($channel, 'sitemap_index.xml');
             $this->writer->write($path, $data);
         }
