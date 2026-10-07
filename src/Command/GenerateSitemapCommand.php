@@ -10,12 +10,14 @@ use SitemapPlugin\Filesystem\Writer;
 use SitemapPlugin\Renderer\SitemapRendererInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Routing\RouterInterface;
 
+#[AsCommand(name: 'sylius:sitemap:generate', description: 'Generate sitemap')]
 final class GenerateSitemapCommand extends Command
 {
     public function __construct(
@@ -27,7 +29,7 @@ final class GenerateSitemapCommand extends Command
         private readonly ChannelRepositoryInterface $channelRepository,
         private readonly RouterInterface $router,
     ) {
-        parent::__construct('sylius:sitemap:generate');
+        parent::__construct();
     }
 
     protected function configure(): void
