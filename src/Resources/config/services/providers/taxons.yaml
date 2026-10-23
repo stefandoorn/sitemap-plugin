@@ -1,0 +1,22 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    sylius.sitemap_provider.data.taxon:
+        class: SitemapPlugin\Provider\Data\TaxonDataProvider
+        arguments:
+            - '@sylius.repository.taxon'
+
+    sylius.sitemap_provider.taxon:
+        class: SitemapPlugin\Provider\TaxonUrlProvider
+        arguments:
+            - '@sylius.sitemap_provider.data.taxon'
+            - '@router'
+            - '@sylius.sitemap_url_factory'
+            - '@sylius.sitemap_url_alternative_factory'
+            - '@sylius.context.locale'
+            - '%sylius.sitemap_exclude_taxon_root%'
+        tags:
+            - { name: sylius.sitemap_provider }

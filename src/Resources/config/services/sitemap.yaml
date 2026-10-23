@@ -1,0 +1,113 @@
+services:
+    sylius.sitemap_writer:
+        class: SitemapPlugin\Filesystem\Writer
+        arguments:
+            - '@flysystem.storage.sylius_sitemap'
+
+    sylius.sitemap_reader:
+        class: SitemapPlugin\Filesystem\Reader
+        arguments:
+            - '@flysystem.storage.sylius_sitemap'
+
+    sylius.command.generate_sitemap:
+        class: SitemapPlugin\Command\GenerateSitemapCommand
+        arguments:
+            - '@sylius.sitemap_renderer'
+            - '@sylius.sitemap_index_renderer'
+            - '@sylius.sitemap_builder'
+            - '@sylius.sitemap_index_builder'
+            - '@sylius.sitemap_writer'
+            - '@sylius.repository.channel'
+            - '@router'
+        tags:
+            - { name: console.command }
+
+    sylius.controller.sitemap:
+        class: SitemapPlugin\Controller\SitemapController
+        arguments:
+            - '@sylius.context.channel'
+            - '@sylius.sitemap_reader'
+        tags:
+            - { name: controller.service_arguments }
+
+    sylius.controller.sitemap_index:
+        class: SitemapPlugin\Controller\SitemapIndexController
+        arguments:
+            - '@sylius.context.channel'
+            - '@sylius.sitemap_reader'
+        tags:
+            - { name: controller.service_arguments }
+
+    sylius.sitemap_renderer.twig_adapter:
+        class: SitemapPlugin\Renderer\TwigAdapter
+        arguments:
+            - '@twig'
+            - '%sylius.sitemap_template%'
+            - '%sylius.sitemap_hreflang%'
+            - '%sylius.sitemap_images%'
+
+    sylius.sitemap_index_renderer.twig_adapter:
+        class: SitemapPlugin\Renderer\TwigAdapter
+        arguments:
+            - '@twig'
+            - '%sylius.sitemap_index_template%'
+
+    sylius.sitemap_renderer:
+        class: SitemapPlugin\Renderer\SitemapRenderer
+        arguments:
+            - '@sylius.sitemap_renderer.twig_adapter'
+
+    sylius.sitemap_index_renderer:
+        class: SitemapPlugin\Renderer\SitemapRenderer
+        arguments:
+            - '@sylius.sitemap_index_renderer.twig_adapter'
+
+    sylius.sitemap_factory:
+        class: SitemapPlugin\Factory\SitemapFactory
+
+    sylius.sitemap_index_factory:
+        class: SitemapPlugin\Factory\SitemapIndexFactory
+
+    sylius.sitemap_url_factory:
+        class: SitemapPlugin\Factory\UrlFactory
+
+    sylius.sitemap_url_alternative_factory:
+        class: SitemapPlugin\Factory\AlternativeUrlFactory
+
+    sylius.sitemap_image_url_factory:
+        class: SitemapPlugin\Factory\ImageFactory
+
+    sylius.sitemap_index_url_factory:
+        class: SitemapPlugin\Factory\IndexUrlFactory
+
+    sylius.sitemap_builder:
+        class: SitemapPlugin\Builder\SitemapBuilder
+        arguments:
+            - '@sylius.sitemap_factory'
+
+    sylius.sitemap_index_builder:
+        class: SitemapPlugin\Builder\SitemapIndexBuilder
+        arguments:
+            - '@sylius.sitemap_index_factory'
+
+    sylius.sitemap.routing_loader:
+        class: SitemapPlugin\Routing\SitemapLoader
+        arguments:
+            - '@sylius.sitemap_builder'
+        tags:
+            - { name: routing.loader }
+
+    sylius.sitemap_index_provider.index:
+        class: SitemapPlugin\Provider\IndexUrlProvider
+        arguments:
+            - '@router'
+            - '@sylius.sitemap_index_url_factory'
+        tags:
+            - { name: sylius.sitemap_index_provider }
+
+    sylius.sitemap.generator.product_images_to_sitemap_images_collection:
+        class: SitemapPlugin\Generator\ProductImagesToSitemapImagesCollectionGenerator
+        arguments:
+            - '@sylius.sitemap_image_url_factory'
+            - '@liip_imagine.cache.manager'
+            - 'sylius_shop_product_original'

@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    sylius.sitemap_provider.static:
+        class: SitemapPlugin\Provider\StaticUrlProvider
+        arguments:
+            - '@router'
+            - '@sylius.sitemap_url_factory'
+            - '@sylius.sitemap_url_alternative_factory'
+            - '%sylius.sitemap_static%'
+        tags:
+            - { name: sylius.sitemap_provider }
